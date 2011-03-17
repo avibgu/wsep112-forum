@@ -22,17 +22,18 @@ public class MainClient {
 
 		System.out.println("Client is Starting..");
 		
-		if (System.getSecurityManager() == null) {
-			
-            System.setSecurityManager(new SecurityManager());
-        }
+//		if (System.getSecurityManager() == null) {
+//			
+//            System.setSecurityManager(new SecurityManager());
+//        }
 		
         try {
 
-        	ForumServer forumServer = (ForumServer) LocateRegistry.getRegistry(args[0]).lookup("ForumServer");
+        	//	TODO: get the real ip of the server from the command line..
+        	ForumServer forumServerStub = (ForumServer) LocateRegistry.getRegistry("127.0.0.1").lookup("ForumServer");
             
             //	TODO: just for test - remove it..
-            Message answer = forumServer.getInformation(new LoginMessage());
+            Message answer = forumServerStub.getInformation(new LoginMessage());
             
             System.out.println(answer.getMessageType());
             

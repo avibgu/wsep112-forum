@@ -7,7 +7,7 @@ package network;
  * @author avi
  *
  */
-public class LoginMessage implements Message {
+public class LoginMessage implements Message /* ,Serializable */{
 
 	/* (non-Javadoc)
 	 * @see network.Message#getMessageType()
