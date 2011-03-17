@@ -1,8 +1,9 @@
 
-package main;
+package domain;
 /**
  *
  */
 public class ForumController {
+
 
 }
