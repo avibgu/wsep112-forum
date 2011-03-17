@@ -30,16 +30,16 @@ public class MainServer {
 		
 		System.out.println("ForumServer Starts..");
 		
-		if (System.getSecurityManager() == null){
-			
-            System.setSecurityManager(new SecurityManager());
-        }
+//		if (System.getSecurityManager() == null){
+//			
+//            System.setSecurityManager(new SecurityManager());
+//        }
 		
         try{
             
         	ForumServer server = new ForumServerImpl(forumController);
             
-        	ForumServer stub = (ForumServer) UnicastRemoteObject.exportObject(server, 0);
+        	ForumServer stub = (ForumServer) UnicastRemoteObject.exportObject(server, 17170);
             
         	LocateRegistry.getRegistry().rebind("ForumServer", stub);
             

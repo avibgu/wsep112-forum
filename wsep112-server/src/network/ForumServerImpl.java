@@ -4,7 +4,6 @@
 package network;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
 import domain.ForumController;
 
@@ -12,7 +11,7 @@ import domain.ForumController;
  * @author Avi Digmi
  *
  */
-public class ForumServerImpl extends UnicastRemoteObject implements ForumServer {
+public class ForumServerImpl implements ForumServer {
 
 	private static final long serialVersionUID = 2555939371339195609L;
 
@@ -26,7 +25,7 @@ public class ForumServerImpl extends UnicastRemoteObject implements ForumServer 
 	@Override
 	public Message getInformation(Message whatToGet) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return new LogutMessage();
 	}
 
 }
