@@ -9,7 +9,14 @@ package network;
  */
 public enum MessageType {
 
+	REGISTRATION,
 	LOGIN,
     LOGOUT,
-    ADDPOST
+    ADD_FRIEND,
+    REMOVE_FRIEND,
+    SEE_FORUMS_LIST,
+    SEE_FORUM_SUBJECTS,
+    SEE_MESSAGES_OF_SOME_SUBJECT,
+    ADD_MESSAGE,
+    ADD_THREAD
 }
