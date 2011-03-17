@@ -17,7 +17,7 @@ import network.ForumServerImpl;
  * @author Avi Digmi
  *
  */
-public class Main {
+public class MainServer {
 
 	/**
 	 * @param args
