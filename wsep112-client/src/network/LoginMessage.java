@@ -3,11 +3,15 @@
  */
 package network;
 
+import java.io.Serializable;
+
 /**
  * @author avi
  *
  */
-public class LoginMessage implements Message /* ,Serializable */{
+public class LoginMessage implements Message ,Serializable {
+
+	private static final long serialVersionUID = -6144281381240070187L;
 
 	/* (non-Javadoc)
 	 * @see network.Message#getMessageType()

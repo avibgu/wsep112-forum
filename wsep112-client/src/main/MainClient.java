@@ -4,6 +4,7 @@
 package main;
 
 import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 import network.ForumServer;
 import network.LoginMessage;
@@ -22,15 +23,19 @@ public class MainClient {
 
 		System.out.println("Client is Starting..");
 		
-//		if (System.getSecurityManager() == null) {
-//			
-//            System.setSecurityManager(new SecurityManager());
-//        }
+		if (System.getSecurityManager() == null) {
+			
+            System.setSecurityManager(new SecurityManager());
+        }
 		
         try {
 
+        	String name = "ForumServer";
+        	
         	//	TODO: get the real ip of the server from the command line..
-        	ForumServer forumServerStub = (ForumServer) LocateRegistry.getRegistry("127.0.0.1").lookup("ForumServer");
+        	Registry registry = LocateRegistry.getRegistry("192.168.56.1");
+        	
+        	ForumServer forumServerStub = (ForumServer) registry.lookup(name);
             
             //	TODO: just for test - remove it..
             Message answer = forumServerStub.getInformation(new LoginMessage());
