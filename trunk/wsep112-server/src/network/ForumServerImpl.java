@@ -4,6 +4,7 @@
 package network;
 
 import java.rmi.RemoteException;
+import java.rmi.server.RemoteStub;
 
 import domain.ForumController;
 
@@ -11,12 +12,13 @@ import domain.ForumController;
  * @author Avi Digmi
  *
  */
-public class ForumServerImpl implements ForumServer {
+public class ForumServerImpl extends RemoteStub implements ForumServer {
 
 	private static final long serialVersionUID = 2555939371339195609L;
 
 	public ForumServerImpl(ForumController forumController) throws RemoteException {
 		// TODO Auto-generated constructor stub
+		super();
 	}
 	
 	/* (non-Javadoc)
