@@ -41,8 +41,7 @@ public class MainClient {
 		
         try {
 
-        	//	TODO: get the real ip of the server from the command line..
-        	registry = LocateRegistry.getRegistry("192.168.56.1");
+        	registry = LocateRegistry.getRegistry(args[0]);
         	
         	forumServerStub = (ForumServer) registry.lookup(serverName);
         }
@@ -60,9 +59,6 @@ public class MainClient {
         //	TODO: just for test - remove it..            
         try {
 			System.out.println(forumServerStub.getInformation(new LoginMessage()).getMessageType());
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (RemoteException e) { e.printStackTrace(); }
 	}
 }
