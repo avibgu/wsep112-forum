@@ -1,12 +1,10 @@
 /**
  * 
  */
-package network;
+package server.network;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-
-import network.messages.Message;
 
 /**
  * @author Avi Digmi
