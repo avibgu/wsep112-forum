@@ -9,9 +9,20 @@ import java.io.Serializable;
  * @author avi
  *
  */
-public class LogutMessage implements Message, Serializable{
+public class LogoutMessage implements Message, Serializable{
 
 	private static final long serialVersionUID = 8498004073663790243L;
+
+	private String username;
+	
+	/**
+	 * @param username
+	 */
+	public LogoutMessage(String username) {
+		
+		super();
+		setUsername(username);
+	}
 
 	/* (non-Javadoc)
 	 * @see network.Message#getMessageType()
@@ -22,4 +33,11 @@ public class LogutMessage implements Message, Serializable{
 		return MessageType.LOGOUT;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }
