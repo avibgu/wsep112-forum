@@ -30,6 +30,7 @@ public class MainServer {
 
 		ForumController forumController = new ForumController();
 		
+		//	TODO: change to log..
 		System.out.println("ForumServer Starts..");
 		
 		if (System.getSecurityManager() == null){
@@ -37,10 +38,10 @@ public class MainServer {
             System.setSecurityManager(new RMISecurityManager());
         }
 		
+    	String name = "ForumServer";
+		
         try{
-            
-        	String name = "ForumServer";
-        		
+
         	ForumServer server = new ForumServerImpl(forumController);
             
         	ForumServer stub = (ForumServer) UnicastRemoteObject.exportObject(server, 0);
@@ -49,8 +50,8 @@ public class MainServer {
         	
         	registry.rebind(name, stub);
             
+    		//	TODO: change to log..
             System.out.println(name + " bound");
-            
         }
         catch (Exception e){
         	
