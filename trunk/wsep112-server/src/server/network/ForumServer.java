@@ -6,6 +6,8 @@ package server.network;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import common.network.messages.Message;
+
 /**
  * @author Avi Digmi
  *
