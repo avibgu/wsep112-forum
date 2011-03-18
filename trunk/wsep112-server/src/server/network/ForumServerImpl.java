@@ -7,12 +7,14 @@ import java.rmi.RemoteException;
 import java.rmi.server.RemoteStub;
 
 import common.network.ForumServer;
+import common.network.messages.AddFriendMessage;
 import common.network.messages.ErrorMessage;
 import common.network.messages.LoginMessage;
+import common.network.messages.LogoutMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
 import common.network.messages.RegMessage;
-
+import common.network.messages.RemoveFriendMessage;
 
 import domain.ForumController;
 
@@ -50,14 +52,8 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	@Override
 	public Message setInformation(Message whatToSet){
 		
-		// TODO:
-		/*
-	    LOGOUT,
-	    ADD_FRIEND,
-	    REMOVE_FRIEND,
-	    ADD_MESSAGE,
-	    ADD_THREAD
-		*/
+		// TODO:	ADD_MESSAGE, ADD_THREAD
+		
 		switch(whatToSet.getMessageType()){
 		
 			case REGISTRATION:
@@ -75,9 +71,21 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 				
 			case LOGOUT:
 				
-				LoginMessage lom = (LoginMessage)whatToSet;
+				LogoutMessage lom = (LogoutMessage)whatToSet;
 				
 				return getForumController().logout(lom.getUsername());
+				
+			case ADD_FRIEND:
+				
+				AddFriendMessage afm = (AddFriendMessage)whatToSet;
+				
+				return getForumController().AddFriend(afm.getUsername(), afm.getFriendUsername());
+				
+			case REMOVE_FRIEND:
+				
+				RemoveFriendMessage rfm = (RemoveFriendMessage)whatToSet;
+				
+				return getForumController().RemoveFriend(rfm.getUsername(), rfm.getFriendUsername());
 
 			default:
 				
