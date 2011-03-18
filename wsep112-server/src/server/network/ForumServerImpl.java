@@ -20,10 +20,13 @@ import domain.ForumController;
 public class ForumServerImpl extends RemoteStub implements ForumServer {
 
 	private static final long serialVersionUID = 2555939371339195609L;
+	
+	private ForumController forumController;
 
 	public ForumServerImpl(ForumController forumController) throws RemoteException {
-		// TODO Auto-generated constructor stub
+		
 		super();
+		setForumController(forumController);
 	}
 	
 	/* (non-Javadoc)
@@ -38,5 +41,13 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	@Override
 	public void SetInformation(Message whatToSet) throws RemoteException {
 		// TODO Auto-generated method stub
+	}
+
+	public void setForumController(ForumController forumController) {
+		this.forumController = forumController;
+	}
+
+	public ForumController getForumController() {
+		return forumController;
 	}
 }
