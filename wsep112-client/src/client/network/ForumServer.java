@@ -1,9 +1,9 @@
 /**
  * 
  */
-package network;
+package client.network;
 
-import network.messages.Message;
+import client.network.messages.Message;
 
 /**
  * @author Avi Digmi
