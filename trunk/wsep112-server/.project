@@ -3,6 +3,7 @@
 	<name>wsep112-server</name>
 	<comment></comment>
 	<projects>
+		<project>wsep112-common</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
