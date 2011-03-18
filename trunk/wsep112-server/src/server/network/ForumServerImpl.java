@@ -6,8 +6,9 @@ package server.network;
 import java.rmi.RemoteException;
 import java.rmi.server.RemoteStub;
 
-import server.network.messages.LogutMessage;
-import server.network.messages.Message;
+import common.network.ForumServer;
+import common.network.messages.LogutMessage;
+import common.network.messages.Message;
 
 
 import domain.ForumController;

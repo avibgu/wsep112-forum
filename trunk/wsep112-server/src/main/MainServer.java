@@ -10,7 +10,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import server.network.ForumServer;
+import common.network.ForumServer;
+
 import server.network.ForumServerImpl;
 
 import domain.ForumController;
