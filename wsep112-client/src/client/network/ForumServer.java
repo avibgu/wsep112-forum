@@ -3,7 +3,7 @@
  */
 package client.network;
 
-import client.network.messages.Message;
+import common.network.messages.Message;
 
 /**
  * @author Avi Digmi
