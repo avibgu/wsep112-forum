@@ -16,4 +16,6 @@ import common.network.messages.Message;
 public interface ForumServer extends Remote{
 
 	Message getInformation(Message whatToGet) throws RemoteException;
+	
+	void SetInformation(Message whatToSet) throws RemoteException;
 }
