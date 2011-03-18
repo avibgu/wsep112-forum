@@ -6,9 +6,8 @@ package main;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import client.network.ForumServer;
-import client.network.messages.LoginMessage;
-
+import common.network.ForumServer;
+import common.network.messages.LoginMessage;
 
 /**
  * @author Avi Digmi
