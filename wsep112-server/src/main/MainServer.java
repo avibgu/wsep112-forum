@@ -4,8 +4,10 @@
 package main;
 
 import java.net.MalformedURLException;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 import domain.ForumController;
@@ -30,20 +32,24 @@ public class MainServer {
 		
 		System.out.println("ForumServer Starts..");
 		
-//		if (System.getSecurityManager() == null){
-//			
-//            System.setSecurityManager(new SecurityManager());
-//        }
+		if (System.getSecurityManager() == null){
+			
+            System.setSecurityManager(new RMISecurityManager());
+        }
 		
         try{
             
+        	String name = "ForumServer";
+        		
         	ForumServer server = new ForumServerImpl(forumController);
             
-        	ForumServer stub = (ForumServer) UnicastRemoteObject.exportObject(server, 17170);
+        	ForumServer stub = (ForumServer) UnicastRemoteObject.exportObject(server, 0);
             
-        	LocateRegistry.getRegistry().rebind("ForumServer", stub);
+        	Registry registry = LocateRegistry.getRegistry();
+        	
+        	registry.rebind(name, stub);
             
-            System.out.println("ForumServer bound");
+            System.out.println(name + " bound");
             
         }
         catch (Exception e){
