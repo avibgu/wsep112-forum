@@ -1,9 +1,10 @@
 /**
  * 
  */
-package network;
+package network.messages;
 
 import java.io.Serializable;
+
 
 /**
  * @author avi

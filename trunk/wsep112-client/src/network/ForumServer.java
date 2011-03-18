@@ -3,6 +3,8 @@
  */
 package network;
 
+import network.messages.Message;
+
 /**
  * @author Avi Digmi
  *

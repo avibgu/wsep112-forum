@@ -1,7 +1,8 @@
 /**
  * 
  */
-package network;
+package network.messages;
+
 
 /**
  * @author Avi Digmi
