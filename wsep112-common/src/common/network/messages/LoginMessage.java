@@ -1,7 +1,7 @@
 /**
  * 
  */
-package network.messages;
+package common.network.messages;
 
 import java.io.Serializable;
 
