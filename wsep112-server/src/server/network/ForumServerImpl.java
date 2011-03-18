@@ -35,4 +35,8 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 		return new LogutMessage();
 	}
 
+	@Override
+	public void SetInformation(Message whatToSet) throws RemoteException {
+		// TODO Auto-generated method stub
+	}
 }
