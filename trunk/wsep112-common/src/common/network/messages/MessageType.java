@@ -18,5 +18,7 @@ public enum MessageType {
     SEE_FORUM_SUBJECTS,
     SEE_MESSAGES_OF_SOME_SUBJECT,
     ADD_MESSAGE,
-    ADD_THREAD
+    ADD_THREAD,
+    OK,
+    ERROR
 }

@@ -7,8 +7,11 @@ import java.rmi.RemoteException;
 import java.rmi.server.RemoteStub;
 
 import common.network.ForumServer;
-import common.network.messages.LogutMessage;
+import common.network.messages.ErrorMessage;
+import common.network.messages.LoginMessage;
 import common.network.messages.Message;
+import common.network.messages.OKMessage;
+import common.network.messages.RegMessage;
 
 
 import domain.ForumController;
@@ -34,13 +37,52 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	 */
 	@Override
 	public Message getInformation(Message whatToGet) throws RemoteException {
-		// TODO Auto-generated method stub
-		return new LogutMessage();
+		
+		// TODO:
+		/*
+	    SEE_FORUMS_LIST,
+	    SEE_FORUM_SUBJECTS,
+	    SEE_MESSAGES_OF_SOME_SUBJECT,
+		*/
+		return new OKMessage();
 	}
 
 	@Override
-	public void SetInformation(Message whatToSet) throws RemoteException {
-		// TODO Auto-generated method stub
+	public Message setInformation(Message whatToSet){
+		
+		// TODO:
+		/*
+	    LOGOUT,
+	    ADD_FRIEND,
+	    REMOVE_FRIEND,
+	    ADD_MESSAGE,
+	    ADD_THREAD
+		*/
+		switch(whatToSet.getMessageType()){
+		
+			case REGISTRATION:
+				
+				RegMessage rm = (RegMessage)whatToSet;
+
+				return getForumController().register(rm.getFirstName(), rm.getLastName(), rm.getUsername(),
+						rm.getPassword(), rm.getEmail());
+			
+			case LOGIN:
+				
+				LoginMessage lim = (LoginMessage)whatToSet;
+				
+				return getForumController().login(lim.getUsername(), lim.getPassword());
+				
+			case LOGOUT:
+				
+				LoginMessage lom = (LoginMessage)whatToSet;
+				
+				return getForumController().logout(lom.getUsername());
+
+			default:
+				
+				return new ErrorMessage("Message Type is unrecognized");
+		}
 	}
 
 	public void setForumController(ForumController forumController) {
