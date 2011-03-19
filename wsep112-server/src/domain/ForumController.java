@@ -1,8 +1,12 @@
 
 package domain;
 
+import java.util.Vector;
+
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
+import common.network.messages.SeeForumThreadsMessage;
+import common.network.messages.SeeForumsListMessage;
 
 /**
  *
@@ -95,5 +99,39 @@ public class ForumController {
 	public Message addThread(String title, String body) {
 		// TODO Auto-generated method stub
 		return new OKMessage();
+	}
+
+	/**
+	 * 
+	 * @param sflm
+	 * 
+	 * @return list of Forums inside the given message, or ErrorMessage (with reason) on failure
+	 */
+	public Message getForumsList(SeeForumsListMessage sflm) {
+		
+		Vector<String> listOfForums = new Vector<String>();
+		
+		//	TODO: add the forums names to listOfForums
+		
+		sflm.setListOfForums(listOfForums);
+		
+		return sflm;
+	}
+
+	/**
+	 * 
+	 * @param sflm
+	 * 
+	 * @return list of Threads inside the given message, or ErrorMessage (with reason) on failure
+	 */
+	public Message getForumsList(String forumID, SeeForumThreadsMessage sftm) {
+
+		Vector<String> listOfThreads = new Vector<String>();
+		
+		//	TODO: add the threads names to listOfThreads
+		
+		sftm.setListOfThreads(listOfThreads);
+		
+		return sftm;
 	}
 }

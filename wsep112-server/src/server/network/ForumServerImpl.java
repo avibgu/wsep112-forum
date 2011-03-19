@@ -14,9 +14,10 @@ import common.network.messages.ErrorMessage;
 import common.network.messages.LoginMessage;
 import common.network.messages.LogoutMessage;
 import common.network.messages.Message;
-import common.network.messages.OKMessage;
 import common.network.messages.RegMessage;
 import common.network.messages.RemoveFriendMessage;
+import common.network.messages.SeeForumThreadsMessage;
+import common.network.messages.SeeForumsListMessage;
 
 import domain.ForumController;
 
@@ -42,13 +43,27 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	@Override
 	public Message getInformation(Message whatToGet) throws RemoteException {
 		
-		// TODO:
-		/*
-	    SEE_FORUMS_LIST,
-	    SEE_FORUM_THREADS
-		SEE_POSTS_OF_SOME_THREAD
-		*/
-		return new OKMessage();
+		switch(whatToGet.getMessageType()){
+
+			case SEE_FORUMS_LIST:
+				
+				SeeForumsListMessage sflm = (SeeForumsListMessage)whatToGet;
+				
+				return getForumController().getForumsList(sflm);
+				
+			case SEE_FORUM_THREADS:
+				
+				SeeForumThreadsMessage sftm = (SeeForumThreadsMessage)whatToGet;
+				
+				return getForumController().getForumsList(sftm.getForumID(), sftm);
+				
+			case SEE_POSTS_OF_SOME_THREAD:
+
+				
+			default:
+				
+				return new ErrorMessage("Message Type is unrecognized");
+		}
 	}
 
 	@Override
