@@ -71,4 +71,29 @@ public class ForumController {
 		// TODO Auto-generated method stub
 		return new OKMessage();
 	}
+
+	/**
+	 * 
+	 * @param title
+	 * @param body
+	 * @param threadId
+	 * 
+	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
+	 */
+	public Message replyToThread(String title, String body, String threadId) {
+		// TODO Auto-generated method stub
+		return new OKMessage();
+	}
+
+	/**
+	 * 
+	 * @param title
+	 * @param body
+	 * 
+	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
+	 */
+	public Message addThread(String title, String body) {
+		// TODO Auto-generated method stub
+		return new OKMessage();
+	}
 }
