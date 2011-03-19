@@ -37,29 +37,28 @@ public class MainServer {
 		
 		if (System.getSecurityManager() == null){
 			
-            System.setSecurityManager(new RMISecurityManager());
-        }
+			System.setSecurityManager(new RMISecurityManager());
+		}
 		
-    	String name = "ForumServer";
+		String name = "ForumServer";
 		
-        try{
+		try{
 
-        	ForumServer server = new ForumServerImpl(forumController);
+			ForumServer server = new ForumServerImpl(forumController);
             
-        	ForumServer stub = (ForumServer) UnicastRemoteObject.exportObject(server, 0);
+			ForumServer stub = (ForumServer) UnicastRemoteObject.exportObject(server, 0);
             
-        	Registry registry = LocateRegistry.getRegistry();
+			Registry registry = LocateRegistry.getRegistry();
         	
-        	registry.rebind(name, stub);
+			registry.rebind(name, stub);
             
-    		//	TODO: change to log..
-            System.out.println(name + " bound");
-        }
-        catch (Exception e){
+			//	TODO: change to log..
+			System.out.println(name + " bound");
+		}
+		catch (Exception e){
         	
-            System.err.println("ForumServer exception:");
-            e.printStackTrace();
-        }
+			System.err.println("ForumServer exception:");
+			e.printStackTrace();
+		}
 	}
-
 }
