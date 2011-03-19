@@ -8,6 +8,8 @@ import java.rmi.server.RemoteStub;
 
 import common.network.ForumServer;
 import common.network.messages.AddFriendMessage;
+import common.network.messages.AddPostMessage;
+import common.network.messages.AddThreadMessage;
 import common.network.messages.ErrorMessage;
 import common.network.messages.LoginMessage;
 import common.network.messages.LogoutMessage;
@@ -43,17 +45,15 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 		// TODO:
 		/*
 	    SEE_FORUMS_LIST,
-	    SEE_FORUM_SUBJECTS,
-	    SEE_MESSAGES_OF_SOME_SUBJECT,
+	    SEE_FORUM_THREADS
+		SEE_POSTS_OF_SOME_THREAD
 		*/
 		return new OKMessage();
 	}
 
 	@Override
 	public Message setInformation(Message whatToSet){
-		
-		// TODO:	ADD_MESSAGE, ADD_THREAD
-		
+
 		switch(whatToSet.getMessageType()){
 		
 			case REGISTRATION:
@@ -86,7 +86,19 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 				RemoveFriendMessage rfm = (RemoveFriendMessage)whatToSet;
 				
 				return getForumController().RemoveFriend(rfm.getUsername(), rfm.getFriendUsername());
+			
+			case ADD_POST_TO_THREAD:
+				
+				AddPostMessage apttm = (AddPostMessage)whatToSet;
+				
+				return getForumController().replyToThread(apttm.getTitle(), apttm.getBody(), apttm.getThreadId());
 
+			case ADD_THREAD:
+				
+				AddThreadMessage athm = (AddThreadMessage)whatToSet;
+				
+				return getForumController().addThread(athm.getTitle(), athm.getBody());
+				
 			default:
 				
 				return new ErrorMessage("Message Type is unrecognized");
