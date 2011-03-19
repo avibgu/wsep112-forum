@@ -32,8 +32,8 @@ public class MainClient {
 		//	creating security policy manager
 		if (System.getSecurityManager() == null) {
 			
-            System.setSecurityManager(new SecurityManager());
-        }
+			System.setSecurityManager(new SecurityManager());
+		}
 		
 		String serverName = "ForumServer";
 		
