@@ -8,6 +8,7 @@ import common.network.messages.Message;
 import common.network.messages.OKMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
+import common.network.messages.SeeThreadPostsMessage;
 
 /**
  *
@@ -232,20 +233,38 @@ public class ForumController {
                 return sflm;
         }
 
-        /**
-         * 
-         * @param sflm
-         * 
-         * @return list of Threads inside the given message, or ErrorMessage (with reason) on failure
-         */
-        public Message getForumsList(String forumID, SeeForumThreadsMessage sftm) {
+    	/**
+    	 * 
+    	 * @param sflm
+    	 * 
+    	 * @return list of Threads inside the given message, or ErrorMessage (with reason) on failure
+    	 */
+    	public Message getThreadsList(String forumID, SeeForumThreadsMessage sftm) {
 
-                Vector<String> listOfThreads = new Vector<String>();
-                
-                //      TODO: add the threads names to listOfThreads
-                
-                sftm.setListOfThreads(listOfThreads);
-                
-                return sftm;
-        }
+    		Vector<String> listOfThreads = new Vector<String>();
+    		
+    		//	TODO: add the threads names to listOfThreads
+    		
+    		sftm.setListOfThreads(listOfThreads);
+    		
+    		return sftm;
+    	}
+
+    	/**
+    	 * 
+    	 * @param threadID
+    	 * @param stpm
+    	 * 
+    	 * @return list of Posts inside the given message, or ErrorMessage (with reason) on failure
+    	 */
+    	public Message getPostsList(String threadID, SeeThreadPostsMessage stpm) {
+
+    		Vector<String> listOfPosts = new Vector<String>();
+    		
+    		//	TODO: add the threads names to listOfThreads
+    		
+    		stpm.setListOfPosts(listOfPosts);
+    		
+    		return stpm;
+    	}
 }

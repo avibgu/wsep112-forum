@@ -18,6 +18,7 @@ import common.network.messages.RegMessage;
 import common.network.messages.RemoveFriendMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
+import common.network.messages.SeeThreadPostsMessage;
 
 import domain.ForumController;
 
@@ -55,10 +56,13 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 				
 				SeeForumThreadsMessage sftm = (SeeForumThreadsMessage)whatToGet;
 				
-				return getForumController().getForumsList(sftm.getForumID(), sftm);
+				return getForumController().getThreadsList(sftm.getForumID(), sftm);
 				
 			case SEE_POSTS_OF_SOME_THREAD:
 
+				SeeThreadPostsMessage stpm = (SeeThreadPostsMessage)whatToGet;
+				
+				return getForumController().getPostsList(stpm.getThreadID(), stpm);
 				
 			default:
 				
