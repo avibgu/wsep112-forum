@@ -3,15 +3,12 @@
  */
 package main;
 
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import presentation.CLI;
 
 import common.network.ForumServer;
-import common.network.messages.ErrorMessage;
-import common.network.messages.OKMessage;
 
 import domain.ClientController;
 
@@ -56,12 +53,5 @@ public class MainClient {
         ClientController clientController = new ClientController(forumServerStub);
         
         new CLI(clientController).start();
-        
-        
-        //	TODO: just for test - remove it..            
-        try {
-			System.out.println(forumServerStub.getInformation(new OKMessage()).getMessageType());
-			System.out.println(forumServerStub.setInformation(new ErrorMessage("test")).getMessageType());
-		} catch (RemoteException e) { e.printStackTrace(); }
 	}
 }
