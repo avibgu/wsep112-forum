@@ -1,8 +1,9 @@
-
 package domain;
 
+import java.util.Set;
 import java.util.Vector;
 
+import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
 import common.network.messages.SeeForumThreadsMessage;
@@ -12,7 +13,11 @@ import common.network.messages.SeeForumsListMessage;
  *
  */
 public class ForumController {
-
+	
+	private Vector<User> _registerdUsers;
+	private Set<String> _loginUsers;
+		
+	
 	/**
 	 * 
 	 * @param firstName
@@ -25,10 +30,87 @@ public class ForumController {
 	 */
 	public Message register(String firstName, String lastName, String username,
 			String password, String email) {
-		// TODO Auto-generated method stub
+		
+		// Check if the username is already in use.
+		if (isExist(username.toLowerCase())){
+			return new ErrorMessage("username is already exists.");
+		}
+		
+		// Check if when of the parameters is empty.
+		if (firstName.equals("") || lastName.equals("") || username.equals("") || 
+			email.equals("")){
+			return new ErrorMessage("Missing parameters.");
+		}
+		
+		// Check if the password is strong enough.
+			if (!validPassword(password)){
+				return new ErrorMessage("Password is too weak.");
+			}
+		
+		// Add the user.
+		User newUser = new User(firstName,lastName,username,password,email);
+		_registerdUsers.add(newUser);
+		
 		return new OKMessage();
 	}
-
+	
+	/**
+	 * 
+	 * @param username
+	 * @return true if the username exist, and false otherwise.
+	 */
+	public Boolean isExist(String username){
+		for (int i=0; i<_registerdUsers.size() ; ++i){
+			if (_registerdUsers.get(i).getUserName().equals(username))
+				return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * 
+	 * @param word
+	 * @return
+	 */
+	public Boolean containUpper(String word){
+		
+		for (char c : word.toCharArray()) {
+		    if (Character.isUpperCase(c)) 
+		    	return true;
+		}
+		return false;
+	}
+	
+	
+	/**
+	 * 
+	 * @param word
+	 * @return
+	 */
+	public Boolean containDigit(String word){
+		
+		for (char c : word.toCharArray()) {
+		    if (Character.isDigit(c)) 
+		    	return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 
+	 * @param password
+	 * @return
+	 */
+	public Boolean validPassword(String password){
+		if ((password.length() < 6) || !(containUpper(password)) || !(containDigit(password)) ){
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
 	/**
 	 * 
 	 * @param username
@@ -37,10 +119,36 @@ public class ForumController {
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
 	public Message login(String username, String password) {
-		// TODO Auto-generated method stub
+		
+		// Check is username exists.
+		if (!isExist(username))
+			return new ErrorMessage("Username doesn't exists.");
+		
+		User loginUser = getUser(username);
+		
+		// check if password is correct.
+		if (!loginUser.getPassword().equals(password))
+			return new ErrorMessage("Invalid password.");
+		
+		_loginUsers.add(username);
+		
 		return new OKMessage();
 	}
-
+	
+	/**
+	 * 
+	 * @param username
+	 * @return the user object.
+	 */
+	public User getUser(String username){
+		for (int i=0; i< _registerdUsers.size(); ++i){
+			User user = _registerdUsers.get(i);
+			if (user.getUserName().equals(username.toLowerCase()))
+				return user;
+		}
+		return null;
+	}
+	
 	/**
 	 * 
 	 * @param username
@@ -48,90 +156,96 @@ public class ForumController {
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
 	public Message logout(String username) {
-		// TODO Auto-generated method stub
+		
+		// Check is username exists.
+		if (!isExist(username))
+			return new ErrorMessage("Username doesn't exists.");
+		
+		_loginUsers.remove(username);
+		
 		return new OKMessage();
 	}
 
-	/**
-	 * 
-	 * @param username
-	 * @param friendUsername
-	 * 
-	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
-	 */
-	public Message AddFriend(String username, String friendUsername) {
-		// TODO Auto-generated method stub
-		return new OKMessage();
-	}
+        /**
+         * 
+         * @param username
+         * @param friendUsername
+         * 
+         * @return OKMessage on success, or ErrorMessage (with reason) on failure
+         */
+        public Message AddFriend(String username, String friendUsername) {
+                // TODO Auto-generated method stub
+                return new OKMessage();
+        }
 
-	/**
-	 * 
-	 * @param username
-	 * @param friendUsername
-	 * 
-	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
-	 */
-	public Message RemoveFriend(String username, String friendUsername) {
-		// TODO Auto-generated method stub
-		return new OKMessage();
-	}
+        /**
+         * 
+         * @param username
+         * @param friendUsername
+         * 
+         * @return OKMessage on success, or ErrorMessage (with reason) on failure
+         */
+        public Message RemoveFriend(String username, String friendUsername) {
+                // TODO Auto-generated method stub
+                return new OKMessage();
+        }
 
-	/**
-	 * 
-	 * @param title
-	 * @param body
-	 * @param threadId
-	 * 
-	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
-	 */
-	public Message replyToThread(String title, String body, String threadId) {
-		// TODO Auto-generated method stub
-		return new OKMessage();
-	}
+        /**
+         * 
+         * @param title
+         * @param body
+         * @param threadId
+         * 
+         * @return OKMessage on success, or ErrorMessage (with reason) on failure
+         */
+        public Message replyToThread(String title, String body, String threadId) {
+                // TODO Auto-generated method stub
+                return new OKMessage();
+        }
 
-	/**
-	 * 
-	 * @param title
-	 * @param body
-	 * 
-	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
-	 */
-	public Message addThread(String title, String body) {
-		// TODO Auto-generated method stub
-		return new OKMessage();
-	}
+        /**
+         * 
+         * @param title
+         * @param body
+         * 
+         * @return OKMessage on success, or ErrorMessage (with reason) on failure
+         */
+        public Message addThread(String title, String body) {
+                // TODO Auto-generated method stub
+                return new OKMessage();
+        }
 
-	/**
-	 * 
-	 * @param sflm
-	 * 
-	 * @return list of Forums inside the given message, or ErrorMessage (with reason) on failure
-	 */
-	public Message getForumsList(SeeForumsListMessage sflm) {
-		
-		Vector<String> listOfForums = new Vector<String>();
-		
-		//	TODO: add the forums names to listOfForums
-		
-		sflm.setListOfForums(listOfForums);
-		
-		return sflm;
-	}
+        /**
+         * 
+         * @param sflm
+         * 
+         * @return list of Forums inside the given message, or ErrorMessage (with reason) on failure
+         */
+        public Message getForumsList(SeeForumsListMessage sflm) {
+                
+                Vector<String> listOfForums = new Vector<String>();
+                
+                //      TODO: add the forums names to listOfForums
+                
+                sflm.setListOfForums(listOfForums);
+                
+                return sflm;
+        }
 
-	/**
-	 * 
-	 * @param sflm
-	 * 
-	 * @return list of Threads inside the given message, or ErrorMessage (with reason) on failure
-	 */
-	public Message getForumsList(String forumID, SeeForumThreadsMessage sftm) {
+        /**
+         * 
+         * @param sflm
+         * 
+         * @return list of Threads inside the given message, or ErrorMessage (with reason) on failure
+         */
+        public Message getForumsList(String forumID, SeeForumThreadsMessage sftm) {
 
-		Vector<String> listOfThreads = new Vector<String>();
-		
-		//	TODO: add the threads names to listOfThreads
-		
-		sftm.setListOfThreads(listOfThreads);
-		
-		return sftm;
-	}
+                Vector<String> listOfThreads = new Vector<String>();
+                
+                //      TODO: add the threads names to listOfThreads
+                
+                sftm.setListOfThreads(listOfThreads);
+                
+                return sftm;
+        }
 }
