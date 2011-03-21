@@ -30,11 +30,6 @@ public class ClientControllerTests {
 	@Before
 	public void setUp() throws Exception {
 		
-		if (System.getSecurityManager() == null) {
-			
-			System.setSecurityManager(new SecurityManager());
-		}
-		
 		String serverName = "ForumServer";
 		
 		Registry registry  = null;
