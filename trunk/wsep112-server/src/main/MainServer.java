@@ -34,12 +34,11 @@ public class MainServer {
 		
 		//	TODO: change to log..
 		System.out.println("ForumServer Starts..");
-		
-		//	TODO: uncomment it after testing.. there are problems with jUnit..
-//		if (System.getSecurityManager() == null){
-//			
-//			System.setSecurityManager(new RMISecurityManager());
-//		}
+
+		if (System.getSecurityManager() == null){
+			
+			System.setSecurityManager(new RMISecurityManager());
+		}
 		
 		String name = "ForumServer";
 		
