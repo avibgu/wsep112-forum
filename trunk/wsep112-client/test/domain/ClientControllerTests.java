@@ -14,7 +14,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import common.network.ForumServer;
+import common.network.messages.MessageType;
 import common.network.messages.OKMessage;
+import common.network.messages.RegMessage;
 
 /**
  * @author Avi Digmi
@@ -61,6 +63,7 @@ public class ClientControllerTests {
 	public void testClientController() {
 		
 		try {
+			
 			assertNotNull(forumServerStub.getInformation(new OKMessage()));
 			assertNotNull(forumServerStub.setInformation(new OKMessage()));
 		}
@@ -72,7 +75,14 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testRegister() {
-		fail("Not yet implemented");
+		
+		RegMessage rm = new RegMessage("Avi", "Digmi", "digmia", "1234", "digmia@bgu.ac.il");
+		
+		try {
+			
+			assertEquals(MessageType.OK, forumServerStub.setInformation(rm).getMessageType());
+		}
+		catch (RemoteException e) { e.printStackTrace(); }
 	}
 
 	/**
