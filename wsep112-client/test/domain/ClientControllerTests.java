@@ -14,6 +14,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import common.network.ForumServer;
+import common.network.messages.AddFriendMessage;
+import common.network.messages.LoginMessage;
+import common.network.messages.LogoutMessage;
 import common.network.messages.MessageType;
 import common.network.messages.OKMessage;
 import common.network.messages.RegMessage;
@@ -90,7 +93,16 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testLogin() {
-		fail("Not yet implemented");
+
+		RegMessage regMessage = new RegMessage("Avi", "Digmi", "digmia", "1234", "digmia@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("digmia", "1234");
+		
+		try {
+			
+			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
+		}
+		catch (RemoteException e) { e.printStackTrace(); }
 	}
 
 	/**
@@ -98,7 +110,18 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testLogout() {
-		fail("Not yet implemented");
+
+		RegMessage regMessage = new RegMessage("Avi", "Digmi", "digmia", "1234", "digmia@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("digmia", "1234");
+		LogoutMessage logoutMessage = new LogoutMessage("digmia");
+		
+		try {
+			
+			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
+		}
+		catch (RemoteException e) { e.printStackTrace(); }
 	}
 
 	/**
@@ -106,7 +129,22 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testAddFriend() {
-		fail("Not yet implemented");
+
+		RegMessage regMessage1 = new RegMessage("Avi", "Digmi", "digmia", "1234", "digmia@bgu.ac.il");
+		RegMessage regMessage2 = new RegMessage("Shiran", "Gabay", "shiran", "1234", "shiran@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("digmia", "1234");
+		AddFriendMessage addFriendMessage = new AddFriendMessage("digmia", "shiran");
+		LogoutMessage logoutMessage = new LogoutMessage("digmia");
+		
+		try {
+			
+			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage1).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage2).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(addFriendMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
+		}
+		catch (RemoteException e) { e.printStackTrace(); }
 	}
 
 	/**
