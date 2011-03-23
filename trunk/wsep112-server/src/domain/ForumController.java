@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
@@ -18,7 +19,10 @@ public class ForumController {
 	private Vector<User> _registerdUsers;
 	private Set<String> _loginUsers;
 		
-	
+	public ForumController(){
+		_registerdUsers = new Vector<User>();
+		_loginUsers = new HashSet<String>();		
+	}
 	/**
 	 * 
 	 * @param firstName
