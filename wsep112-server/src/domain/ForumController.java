@@ -35,7 +35,6 @@ public class ForumController {
 	 */
 	public Message register(String firstName, String lastName, String username,
 			String password, String email) {
-		
 		// Check if the username is already in use.
 		if (isExist(username.toLowerCase())){
 			return new ErrorMessage("username is already exists.");
@@ -65,8 +64,8 @@ public class ForumController {
 	 * @return true if the username exist, and false otherwise.
 	 */
 	public Boolean isExist(String username){
-		for (int i=0; i<_registerdUsers.size() ; ++i){
-			if (_registerdUsers.get(i).getUserName().equals(username))
+		for (int i=0; i < _registerdUsers.size() ; ++i){
+			if ((_registerdUsers.get(i).getUserName()).equals(username))
 				return true;
 		}
 		
@@ -132,10 +131,10 @@ public class ForumController {
 		User loginUser = getUser(username);
 		
 		// check if password is correct.
-		if (!loginUser.getPassword().equals(password))
+		if (!(loginUser.getPassword().equals(password)))
 			return new ErrorMessage("Invalid password.");
 		
-		_loginUsers.add(username);
+		_loginUsers.add(username); 
 		
 		return new OKMessage();
 	}
