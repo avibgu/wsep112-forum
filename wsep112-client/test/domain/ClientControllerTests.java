@@ -111,8 +111,8 @@ public class ClientControllerTests {
 	@Test
 	public void testLogout() {
 
-		RegMessage regMessage = new RegMessage("Miri", "Peretz", "miripe", "Aa1234", "miripe@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("miripe", "Aa1234");
+		RegMessage regMessage = new RegMessage("Miri", "Peretz", "miripe", "Miri1234", "miripe@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("miripe", "Miri1234");
 		LogoutMessage logoutMessage = new LogoutMessage("miripe");
 		
 		try {
