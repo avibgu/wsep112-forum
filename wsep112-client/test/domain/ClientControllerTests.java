@@ -79,11 +79,12 @@ public class ClientControllerTests {
 	@Test
 	public void testRegister() {
 		
-		RegMessage rm = new RegMessage("Avi", "Digmi", "digmia", "1234", "digmia@bgu.ac.il");
+		RegMessage rm = new RegMessage("Avi", "Digmi", "digmia", "Aa1234", "digmia@bgu.ac.il");
 		
 		try {
-			
 			assertEquals(MessageType.OK, forumServerStub.setInformation(rm).getMessageType());
+			
+			
 		}
 		catch (RemoteException e) { e.printStackTrace(); }
 	}
@@ -93,12 +94,10 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testLogin() {
-
-		RegMessage regMessage = new RegMessage("Avi", "Digmi", "digmia", "1234", "digmia@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("digmia", "1234");
-		
+		RegMessage regMessage = new RegMessage("Shiran", "Gabay", "gshir", "Aa1234", "gshir@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("gshir", "Aa1234");
+	 
 		try {
-			
 			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
 		}
@@ -111,9 +110,9 @@ public class ClientControllerTests {
 	@Test
 	public void testLogout() {
 
-		RegMessage regMessage = new RegMessage("Avi", "Digmi", "digmia", "1234", "digmia@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("digmia", "1234");
-		LogoutMessage logoutMessage = new LogoutMessage("digmia");
+		RegMessage regMessage = new RegMessage("Miri", "Peretz", "miripe", "Aa1234", "miripe@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("miripe", "Aa1234");
+		LogoutMessage logoutMessage = new LogoutMessage("miripe");
 		
 		try {
 			
