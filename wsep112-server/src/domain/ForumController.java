@@ -10,6 +10,7 @@ import common.network.messages.OKMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeThreadPostsMessage;
+import common.encryption.SHA1;
 
 /**
  *
@@ -51,8 +52,10 @@ public class ForumController {
 				return new ErrorMessage("Password is too weak.");
 			}
 		
+		// Encrypt the password using SHA1 algorithm.
+		String tEncrypted_Password = SHA1.hash(password);
 		// Add the user.
-		User newUser = new User(firstName,lastName,username,password,email);
+		User newUser = new User(firstName,lastName,username,tEncrypted_Password,email);
 		_registerdUsers.add(newUser);
 		
 		return new OKMessage();
@@ -130,8 +133,11 @@ public class ForumController {
 		
 		User loginUser = getUser(username);
 		
+		// Encrypt the password using SHA1 algorithm.
+		String tEncrypted_Password = SHA1.hash(password);
+		
 		// check if password is correct.
-		if (!(loginUser.getPassword().equals(password)))
+		if (!(loginUser.getPassword().equals(tEncrypted_Password)))
 			return new ErrorMessage("Invalid password.");
 		
 		_loginUsers.add(username); 
