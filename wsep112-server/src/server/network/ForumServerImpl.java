@@ -42,7 +42,7 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	 * @see network.ForumServer#getInformation(network.Message)
 	 */
 	@Override
-	public Message getInformation(Message whatToGet) throws RemoteException {
+	public synchronized Message getInformation(Message whatToGet) throws RemoteException {
 		
 		switch(whatToGet.getMessageType()){
 
@@ -71,7 +71,7 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	}
 
 	@Override
-	public Message setInformation(Message whatToSet){
+	public synchronized Message setInformation(Message whatToSet){
 
 		switch(whatToSet.getMessageType()){
 		
@@ -124,11 +124,11 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 		}
 	}
 
-	public void setForumController(ForumController forumController) {
+	public synchronized void setForumController(ForumController forumController) {
 		this.forumController = forumController;
 	}
 
-	public ForumController getForumController() {
+	public synchronized ForumController getForumController() {
 		return forumController;
 	}
 }
