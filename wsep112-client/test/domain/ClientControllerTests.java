@@ -82,9 +82,8 @@ public class ClientControllerTests {
 		RegMessage rm = new RegMessage("Avi", "Digmi", "digmia", "Aa1234", "digmia@bgu.ac.il");
 		
 		try {
+
 			assertEquals(MessageType.OK, forumServerStub.setInformation(rm).getMessageType());
-			
-			
 		}
 		catch (RemoteException e) { e.printStackTrace(); }
 	}
@@ -97,8 +96,9 @@ public class ClientControllerTests {
 
 		RegMessage regMessage = new RegMessage("Shiran", "Gabay", "gshir", "Aa1234", "gshir@bgu.ac.il");
 		LoginMessage loginMessage = new LoginMessage("gshir", "Aa1234");
-	 
+		
 		try {
+
 			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
 		}
