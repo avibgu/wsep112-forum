@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 import presentation.CLI;
 
+import common.logging.VerySimpleLogFormatter;
 import common.network.ForumServer;
 
 import domain.ClientController;
@@ -39,6 +40,8 @@ public class MainClient {
 			logFileHandler = new FileHandler("client.log");
 		}
 		catch(IOException e){}
+		
+		logFileHandler.setFormatter(new VerySimpleLogFormatter());
 
 		// logger output is written to a file in logFileHandler handler - client.log
 	    logger.addHandler(logFileHandler);
