@@ -31,7 +31,7 @@ public class VerySimpleLogFormatter extends SimpleFormatter {
 	public VerySimpleLogFormatter() {
 
 		super();
-		this.dateFormat = new SimpleDateFormat ("HH:mm:ss");
+		this.dateFormat = new SimpleDateFormat ("dd/MM/yyyy HH:mm:ss");
 		this.lineSep = System.getProperty("line.separator");
 	}
 
@@ -45,8 +45,9 @@ public class VerySimpleLogFormatter extends SimpleFormatter {
 
 		String message = "";
 
-		message += this.formatMessage(record);
 		message += this.dateFormat.format(new Date());
+		message += " ";
+		message += this.formatMessage(record);
 		message += this.lineSep;
 
 		return message;
