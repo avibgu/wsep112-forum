@@ -18,6 +18,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import common.logging.VerySimpleLogFormatter;
 import common.network.ForumServer;
 
 import server.network.ForumServerImpl;
@@ -49,6 +50,8 @@ public class MainServer {
 			logFileHandler = new FileHandler("server.log");
 		}
 		catch(IOException e){}
+		
+		logFileHandler.setFormatter(new VerySimpleLogFormatter() );
 
 		// logger output is written to a file in logFileHandler handler - server.log
 	    logger.addHandler(logFileHandler);
