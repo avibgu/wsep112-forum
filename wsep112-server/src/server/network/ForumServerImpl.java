@@ -5,6 +5,9 @@ package server.network;
 
 import java.rmi.RemoteException;
 import java.rmi.server.RemoteStub;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 
 import common.network.ForumServer;
 import common.network.messages.AddFriendMessage;
@@ -31,18 +34,28 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	private static final long serialVersionUID = 2555939371339195609L;
 	
 	private ForumController forumController;
+	private ReentrantReadWriteLock rwLock;
+	private ReadLock rdLock;
+	private WriteLock wrLock;
 
 	public ForumServerImpl(ForumController forumController) throws RemoteException {
 		
 		super();
 		setForumController(forumController);
+		setRwLock(new ReentrantReadWriteLock(true));
+		setRdLock(getRwLock().readLock());
+		setWrLock(getRwLock().writeLock());
 	}
 	
 	/* (non-Javadoc)
 	 * @see network.ForumServer#getInformation(network.Message)
 	 */
 	@Override
-	public synchronized Message getInformation(Message whatToGet) throws RemoteException {
+	public Message getInformation(Message whatToGet) throws RemoteException {
+		
+		Message answer;
+		
+		getRdLock().lock();
 		
 		switch(whatToGet.getMessageType()){
 
@@ -50,85 +63,141 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 				
 				SeeForumsListMessage sflm = (SeeForumsListMessage)whatToGet;
 				
-				return getForumController().getForumsList(sflm);
+				answer = getForumController().getForumsList(sflm);
+				
+				break;
 				
 			case SEE_FORUM_THREADS:
 				
 				SeeForumThreadsMessage sftm = (SeeForumThreadsMessage)whatToGet;
 				
-				return getForumController().getThreadsList(sftm.getForumID(), sftm);
+				answer = getForumController().getThreadsList(sftm.getForumID(), sftm);
+				
+				break;
 				
 			case SEE_POSTS_OF_SOME_THREAD:
 
 				SeeThreadPostsMessage stpm = (SeeThreadPostsMessage)whatToGet;
 				
-				return getForumController().getPostsList(stpm.getThreadID(), stpm);
+				answer = getForumController().getPostsList(stpm.getThreadID(), stpm);
+				
+				break;
 				
 			default:
 				
-				return new ErrorMessage("Message Type is unrecognized");
+				answer = new ErrorMessage("Message Type is unrecognized");
 		}
+		
+		getRdLock().unlock();
+		
+		return answer;
 	}
 
 	@Override
-	public synchronized Message setInformation(Message whatToSet){
+	public Message setInformation(Message whatToSet){
 
+		Message answer;
+		
+		getWrLock().lock();
+		
 		switch(whatToSet.getMessageType()){
 		
 			case REGISTRATION:
 				
 				RegMessage rm = (RegMessage)whatToSet;
 
-				return getForumController().register(rm.getFirstName(), rm.getLastName(), rm.getUsername(),
+				answer = getForumController().register(rm.getFirstName(), rm.getLastName(), rm.getUsername(),
 						rm.getPassword(), rm.getEmail());
+				
+				break;
 			
 			case LOGIN:
 				
 				LoginMessage lim = (LoginMessage)whatToSet;
 				
-				return getForumController().login(lim.getUsername(), lim.getPassword());
+				answer = getForumController().login(lim.getUsername(), lim.getPassword());
+				
+				break;
 				
 			case LOGOUT:
 				
 				LogoutMessage lom = (LogoutMessage)whatToSet;
 				
-				return getForumController().logout(lom.getUsername());
+				answer = getForumController().logout(lom.getUsername());
+				
+				break;
 				
 			case ADD_FRIEND:
 				
 				AddFriendMessage afm = (AddFriendMessage)whatToSet;
 				
-				return getForumController().AddFriend(afm.getUsername(), afm.getFriendUsername());
+				answer = getForumController().AddFriend(afm.getUsername(), afm.getFriendUsername());
+				
+				break;
 				
 			case REMOVE_FRIEND:
 				
 				RemoveFriendMessage rfm = (RemoveFriendMessage)whatToSet;
 				
-				return getForumController().RemoveFriend(rfm.getUsername(), rfm.getFriendUsername());
+				answer = getForumController().RemoveFriend(rfm.getUsername(), rfm.getFriendUsername());
+				
+				break;
 			
 			case ADD_POST_TO_THREAD:
 				
 				AddPostMessage apttm = (AddPostMessage)whatToSet;
 				
-				return getForumController().replyToThread(apttm.getTitle(), apttm.getBody(), apttm.getThreadId());
+				answer = getForumController().replyToThread(apttm.getTitle(), apttm.getBody(), apttm.getThreadId());
+				
+				break;
 
 			case ADD_THREAD:
 				
 				AddThreadMessage athm = (AddThreadMessage)whatToSet;
 				
-				return getForumController().addThread(athm.getTitle(), athm.getBody());
+				answer = getForumController().addThread(athm.getTitle(), athm.getBody());
+				
+				break;
 				
 			default:
 				
-				return new ErrorMessage("Message Type is unrecognized");
+				answer = new ErrorMessage("Message Type is unrecognized");
 		}
+		
+		getWrLock().unlock();
+		
+		return answer;
 	}
 
-	public synchronized void setForumController(ForumController forumController) {
+	public void setForumController(ForumController forumController) {
 		this.forumController = forumController;
 	}
 
-	public synchronized ForumController getForumController() {
+	public ForumController getForumController() {
 		return forumController;
+	}
+
+	public void setRwLock(ReentrantReadWriteLock rwLock) {
+		this.rwLock = rwLock;
+	}
+
+	public ReentrantReadWriteLock getRwLock() {
+		return rwLock;
+	}
+
+	public void setRdLock(ReadLock rdLock) {
+		this.rdLock = rdLock;
+	}
+
+	public ReadLock getRdLock() {
+		return rdLock;
+	}
+
+	public void setWrLock(WriteLock wrLock) {
+		this.wrLock = wrLock;
+	}
+
+	public WriteLock getWrLock() {
+		return wrLock;
 	}
 }
