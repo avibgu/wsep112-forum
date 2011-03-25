@@ -4,6 +4,7 @@
 package domain;
 
 import java.rmi.RemoteException;
+import java.util.logging.Logger;
 
 import common.network.ForumServer;
 import common.network.messages.AddFriendMessage;
@@ -26,10 +27,12 @@ import common.network.messages.SeeThreadPostsMessage;
 public class ClientController {
 
 	private ForumServer forumServerStub;
+	private Logger logger;
 	
-	public ClientController(ForumServer forumServerStub) {
+	public ClientController(ForumServer forumServerStub, Logger logger) {
 
 		setForumServerStub(forumServerStub);
+		setLogger(logger);
 	}
 
 	/**
@@ -234,7 +237,6 @@ public class ClientController {
 		
 		return new ErrorMessage("Connection Error - can't connect with the server");
 	}
-	
 
 	public void setForumServerStub(ForumServer forumServerStub) {
 		this.forumServerStub = forumServerStub;
@@ -242,5 +244,17 @@ public class ClientController {
 
 	public ForumServer getForumServerStub() {
 		return forumServerStub;
+	}
+
+	public void setLogger(Logger logger) {
+		this.logger = logger;
+	}
+
+	public Logger getLogger() {
+		return logger;
+	}
+	
+	public void log(String msg){
+		getLogger().info(msg);
 	}
 }

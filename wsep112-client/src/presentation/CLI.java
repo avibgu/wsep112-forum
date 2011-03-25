@@ -3,6 +3,8 @@
  */
 package presentation;
 
+import java.util.logging.Logger;
+
 import domain.ClientController;
 
 /**
@@ -12,9 +14,12 @@ import domain.ClientController;
 public class CLI {
 
 	private ClientController clientController;
+	private Logger logger;
 	
-	public CLI(ClientController clientController) {
+	public CLI(ClientController clientController, Logger logger) {
+		
 		setClientController(clientController);
+		setLogger(logger);
 	}
 
 	/**
@@ -34,5 +39,17 @@ public class CLI {
 
 	public ClientController getClientController() {
 		return clientController;
+	}
+
+	public void setLogger(Logger logger) {
+		this.logger = logger;
+	}
+
+	public Logger getLogger() {
+		return logger;
+	}
+	
+	public void log(String msg){
+		getLogger().info(msg);
 	}
 }
