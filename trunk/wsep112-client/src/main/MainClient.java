@@ -3,8 +3,13 @@
  */
 package main;
 
+import java.io.IOException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import presentation.CLI;
 
@@ -23,8 +28,25 @@ public class MainClient {
 	 */
 	public static void main(String[] args) {
 
-		//	TODO: change to log..
-		System.out.println("Client is Starting..");
+		// creating logger called ClientLog 
+		Logger logger = Logger.getLogger("ClientLog");
+		
+		// creating log file
+		Handler logFileHandler = null;
+		
+		try{
+			
+			logFileHandler = new FileHandler("client.log");
+		}
+		catch(IOException e){}
+
+		// logger output is written to a file in logFileHandler handler - client.log
+	    logger.addHandler(logFileHandler);
+
+		// Set the log level specifying which message levels will be logged by this logger
+	    logger.setLevel(Level.INFO);
+
+	    logger.info("Client is Starting..");
 		
 		//	creating security policy manager
 		if (System.getSecurityManager() == null) {
@@ -50,8 +72,8 @@ public class MainClient {
             e.printStackTrace();
         }
         
-        ClientController clientController = new ClientController(forumServerStub);
+        ClientController clientController = new ClientController(forumServerStub, logger);
         
-        new CLI(clientController).start();
+        new CLI(clientController, logger).start();
 	}
 }

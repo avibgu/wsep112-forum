@@ -3,12 +3,20 @@
  */
 package main;
 
+import java.io.IOException;
+
 import java.net.MalformedURLException;
+
 import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import common.network.ForumServer;
 
@@ -30,10 +38,27 @@ public class MainServer {
 	 */
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
 
-		ForumController forumController = new ForumController();
+		// creating logger called ServerLog
+		Logger logger = Logger.getLogger("ServerLog");
 		
-		//	TODO: change to log..
-		System.out.println("ForumServer Starts..");
+		// creating log file
+		Handler logFileHandler = null;
+		
+		try{
+			
+			logFileHandler = new FileHandler("server.log");
+		}
+		catch(IOException e){}
+
+		// logger output is written to a file in logFileHandler handler - server.log
+	    logger.addHandler(logFileHandler);
+
+		// Set the log level specifying which message levels will be logged by this logger
+	    logger.setLevel(Level.INFO);
+
+		ForumController forumController = new ForumController(logger);
+		
+		logger.info("ForumServer Starts..");
 
 		if (System.getSecurityManager() == null){
 			
@@ -44,7 +69,7 @@ public class MainServer {
 		
 		try{
 
-			ForumServer server = new ForumServerImpl(forumController);
+			ForumServer server = new ForumServerImpl(forumController, logger);
             
 			ForumServer stub = (ForumServer) UnicastRemoteObject.exportObject(server, 0);
             
@@ -52,8 +77,7 @@ public class MainServer {
         	
 			registry.rebind(name, stub);
             
-			//	TODO: change to log..
-			System.out.println(name + " bound");
+			logger.info(name + " bound");
 		}
 		catch (Exception e){
         	

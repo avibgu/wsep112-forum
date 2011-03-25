@@ -3,6 +3,7 @@ package domain;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
+import java.util.logging.Logger;
 
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
@@ -19,10 +20,12 @@ public class ForumController {
 	
 	private Vector<User> _registerdUsers;
 	private Set<String> _loginUsers;
+	private Logger logger;
 		
-	public ForumController(){
+	public ForumController(Logger logger){
 		_registerdUsers = new Vector<User>();
-		_loginUsers = new HashSet<String>();		
+		_loginUsers = new HashSet<String>();	
+		setLogger(logger);
 	}
 	/**
 	 * 
@@ -89,7 +92,6 @@ public class ForumController {
 		return false;
 	}
 	
-	
 	/**
 	 * 
 	 * @param word
@@ -116,8 +118,7 @@ public class ForumController {
 		
 		return true;
 	}
-	
-	
+
 	/**
 	 * 
 	 * @param username
@@ -176,104 +177,116 @@ public class ForumController {
 		return new OKMessage();
 	}
 
-        /**
-         * 
-         * @param username
-         * @param friendUsername
-         * 
-         * @return OKMessage on success, or ErrorMessage (with reason) on failure
-         */
-        public Message AddFriend(String username, String friendUsername) {
-                // TODO Auto-generated method stub
-                return new OKMessage();
-        }
+    /**
+     * 
+     * @param username
+     * @param friendUsername
+     * 
+     * @return OKMessage on success, or ErrorMessage (with reason) on failure
+     */
+    public Message AddFriend(String username, String friendUsername) {
+            // TODO Auto-generated method stub
+            return new OKMessage();
+    }
 
-        /**
-         * 
-         * @param username
-         * @param friendUsername
-         * 
-         * @return OKMessage on success, or ErrorMessage (with reason) on failure
-         */
-        public Message RemoveFriend(String username, String friendUsername) {
-                // TODO Auto-generated method stub
-                return new OKMessage();
-        }
+    /**
+     * 
+     * @param username
+     * @param friendUsername
+     * 
+     * @return OKMessage on success, or ErrorMessage (with reason) on failure
+     */
+    public Message RemoveFriend(String username, String friendUsername) {
+            // TODO Auto-generated method stub
+            return new OKMessage();
+    }
 
-        /**
-         * 
-         * @param title
-         * @param body
-         * @param threadId
-         * 
-         * @return OKMessage on success, or ErrorMessage (with reason) on failure
-         */
-        public Message replyToThread(String title, String body, String threadId) {
-                // TODO Auto-generated method stub
-                return new OKMessage();
-        }
+    /**
+     * 
+     * @param title
+     * @param body
+     * @param threadId
+     * 
+     * @return OKMessage on success, or ErrorMessage (with reason) on failure
+     */
+    public Message replyToThread(String title, String body, String threadId) {
+            // TODO Auto-generated method stub
+            return new OKMessage();
+    }
 
-        /**
-         * 
-         * @param title
-         * @param body
-         * 
-         * @return OKMessage on success, or ErrorMessage (with reason) on failure
-         */
-        public Message addThread(String title, String body) {
-                // TODO Auto-generated method stub
-                return new OKMessage();
-        }
+    /**
+     * 
+     * @param title
+     * @param body
+     * 
+     * @return OKMessage on success, or ErrorMessage (with reason) on failure
+     */
+    public Message addThread(String title, String body) {
+            // TODO Auto-generated method stub
+            return new OKMessage();
+    }
 
-        /**
-         * 
-         * @param sflm
-         * 
-         * @return list of Forums inside the given message, or ErrorMessage (with reason) on failure
-         */
-        public Message getForumsList(SeeForumsListMessage sflm) {
-                
-                Vector<String> listOfForums = new Vector<String>();
-                
-                //      TODO: add the forums names to listOfForums
-                
-                sflm.setListOfForums(listOfForums);
-                
-                return sflm;
-        }
+    /**
+     * 
+     * @param sflm
+     * 
+     * @return list of Forums inside the given message, or ErrorMessage (with reason) on failure
+     */
+    public Message getForumsList(SeeForumsListMessage sflm) {
+            
+            Vector<String> listOfForums = new Vector<String>();
+            
+            //      TODO: add the forums names to listOfForums
+            
+            sflm.setListOfForums(listOfForums);
+            
+            return sflm;
+    }
 
-    	/**
-    	 * 
-    	 * @param sflm
-    	 * 
-    	 * @return list of Threads inside the given message, or ErrorMessage (with reason) on failure
-    	 */
-    	public Message getThreadsList(String forumID, SeeForumThreadsMessage sftm) {
+	/**
+	 * 
+	 * @param sflm
+	 * 
+	 * @return list of Threads inside the given message, or ErrorMessage (with reason) on failure
+	 */
+	public Message getThreadsList(String forumID, SeeForumThreadsMessage sftm) {
 
-    		Vector<String> listOfThreads = new Vector<String>();
-    		
-    		//	TODO: add the threads names to listOfThreads
-    		
-    		sftm.setListOfThreads(listOfThreads);
-    		
-    		return sftm;
-    	}
+		Vector<String> listOfThreads = new Vector<String>();
+		
+		//	TODO: add the threads names to listOfThreads
+		
+		sftm.setListOfThreads(listOfThreads);
+		
+		return sftm;
+	}
 
-    	/**
-    	 * 
-    	 * @param threadID
-    	 * @param stpm
-    	 * 
-    	 * @return list of Posts inside the given message, or ErrorMessage (with reason) on failure
-    	 */
-    	public Message getPostsList(String threadID, SeeThreadPostsMessage stpm) {
+	/**
+	 * 
+	 * @param threadID
+	 * @param stpm
+	 * 
+	 * @return list of Posts inside the given message, or ErrorMessage (with reason) on failure
+	 */
+	public Message getPostsList(String threadID, SeeThreadPostsMessage stpm) {
 
-    		Vector<String> listOfPosts = new Vector<String>();
-    		
-    		//	TODO: add the threads names to listOfThreads
-    		
-    		stpm.setListOfPosts(listOfPosts);
-    		
-    		return stpm;
-    	}
+		Vector<String> listOfPosts = new Vector<String>();
+		
+		//	TODO: add the threads names to listOfThreads
+		
+		stpm.setListOfPosts(listOfPosts);
+		
+		return stpm;
+	}
+	
+	public void setLogger(Logger logger) {
+		this.logger = logger;
+	}
+	
+	public Logger getLogger() {
+		return logger;
+	}
+	
+	public void log(String msg){
+		getLogger().info(msg);
+	}
 }

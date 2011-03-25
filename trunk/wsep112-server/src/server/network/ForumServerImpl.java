@@ -8,6 +8,7 @@ import java.rmi.server.RemoteStub;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
+import java.util.logging.Logger;
 
 import common.network.ForumServer;
 import common.network.messages.AddFriendMessage;
@@ -37,14 +38,16 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	private ReentrantReadWriteLock rwLock;
 	private ReadLock rdLock;
 	private WriteLock wrLock;
+	private Logger logger;
 
-	public ForumServerImpl(ForumController forumController) throws RemoteException {
+	public ForumServerImpl(ForumController forumController, Logger logger) throws RemoteException {
 		
 		super();
 		setForumController(forumController);
 		setRwLock(new ReentrantReadWriteLock(true));
 		setRdLock(getRwLock().readLock());
 		setWrLock(getRwLock().writeLock());
+		setLogger(logger);
 	}
 	
 	/* (non-Javadoc)
@@ -199,5 +202,17 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 
 	public WriteLock getWrLock() {
 		return wrLock;
+	}
+
+	public void setLogger(Logger logger) {
+		this.logger = logger;
+	}
+
+	public Logger getLogger() {
+		return logger;
+	}
+	
+	public void log(String msg){
+		getLogger().info(msg);
 	}
 }
