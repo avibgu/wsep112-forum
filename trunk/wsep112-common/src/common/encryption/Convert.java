@@ -299,9 +299,9 @@ public final class Convert {
     *           <br />
     *           Note: the ArrayList should not be returned to the object pool!
     */
-    public static final ArrayList splitString ( String original )
+    public static final ArrayList<String> splitString ( String original )
     {
-        ArrayList result = new ArrayList ( 8 );
+        ArrayList<String> result = new ArrayList<String> ( 8 );
         if ( original == null )
             return result;
         
