@@ -56,6 +56,8 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	@Override
 	public Message getInformation(Message whatToGet) throws RemoteException {
 		
+		log("got a " + whatToGet.getMessageType() + " message");
+		
 		Message answer;
 		
 		getRdLock().lock();
@@ -99,6 +101,8 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	@Override
 	public Message setInformation(Message whatToSet){
 
+		log("got a " + whatToSet.getMessageType() + " message");
+		
 		Message answer;
 		
 		getWrLock().lock();
@@ -172,47 +176,47 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 		return answer;
 	}
 
-	public void setForumController(ForumController forumController) {
+	private void setForumController(ForumController forumController) {
 		this.forumController = forumController;
 	}
 
-	public ForumController getForumController() {
+	private ForumController getForumController() {
 		return forumController;
 	}
 
-	public void setRwLock(ReentrantReadWriteLock rwLock) {
+	private void setRwLock(ReentrantReadWriteLock rwLock) {
 		this.rwLock = rwLock;
 	}
 
-	public ReentrantReadWriteLock getRwLock() {
+	private ReentrantReadWriteLock getRwLock() {
 		return rwLock;
 	}
 
-	public void setRdLock(ReadLock rdLock) {
+	private void setRdLock(ReadLock rdLock) {
 		this.rdLock = rdLock;
 	}
 
-	public ReadLock getRdLock() {
+	private ReadLock getRdLock() {
 		return rdLock;
 	}
 
-	public void setWrLock(WriteLock wrLock) {
+	private void setWrLock(WriteLock wrLock) {
 		this.wrLock = wrLock;
 	}
 
-	public WriteLock getWrLock() {
+	private WriteLock getWrLock() {
 		return wrLock;
 	}
 
-	public void setLogger(Logger logger) {
+	private void setLogger(Logger logger) {
 		this.logger = logger;
 	}
 
-	public Logger getLogger() {
+	private Logger getLogger() {
 		return logger;
 	}
 	
-	public void log(String msg){
+	private void log(String msg){
 		getLogger().info(msg);
 	}
 }
