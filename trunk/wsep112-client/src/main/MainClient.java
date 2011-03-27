@@ -26,8 +26,9 @@ public class MainClient {
 
 	/**
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		// creating logger called ClientLog 
 		Logger logger = Logger.getLogger("ClientLog");
