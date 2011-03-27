@@ -12,6 +12,7 @@ import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeThreadPostsMessage;
 import common.encryption.SHA1;
+import domain.User.Status;
 
 /**
  *
@@ -138,6 +139,7 @@ public class ForumController {
 		if (!(loginUser.getPassword().equals(password)))
 			return new ErrorMessage("Invalid password.");
 		
+		loginUser.setStatus(Status.ONLINE);
 		_loginUsers.add(username); 
 		
 		return new OKMessage();
@@ -169,33 +171,51 @@ public class ForumController {
 		if (!isExist(username))
 			return new ErrorMessage("Username doesn't exists.");
 		
+		User logoutUser = getUser(username);
+		logoutUser.setStatus(Status.OFFLINE);
+		
 		_loginUsers.remove(username);
 		
 		return new OKMessage();
 	}
 
     /**
-     * 
+     * Add friend to user's list
      * @param username
      * @param friendUsername
      * 
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
     public Message AddFriend(String username, String friendUsername) {
-            // TODO Auto-generated method stub
-            return new OKMessage();
+		// Check is username exists.
+		if (!isExist(username))
+			return new ErrorMessage("Username doesn't exists.");
+		// Check is friendUsername exists.
+		if (!isExist(friendUsername))
+			return new ErrorMessage("friend Username doesn't exists.");
+		
+		
+		User user = getUser(username);
+		return user.addFriend(friendUsername);
     }
 
     /**
-     * 
+     * Remove friend from user's list
      * @param username
      * @param friendUsername
      * 
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
     public Message RemoveFriend(String username, String friendUsername) {
-            // TODO Auto-generated method stub
-            return new OKMessage();
+		// Check is username exists.
+		if (!isExist(username))
+			return new ErrorMessage("Username doesn't exists.");
+		// Check is friendUsername exists.
+		if (!isExist(friendUsername))
+			return new ErrorMessage("friend Username doesn't exists.");
+		
+		User user = getUser(username);
+		return user.removeFriend(friendUsername);
     }
 
     /**
