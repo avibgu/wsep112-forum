@@ -62,18 +62,23 @@ public class MainClient {
 		Registry registry  = null;
 		
 		ForumServer forumServerStub = null;
-		
-        try {
 
-        	registry = LocateRegistry.getRegistry(args[0]);
-        	
-        	forumServerStub = (ForumServer) registry.lookup(serverName);
-        }
-        catch (Exception e){
-        	
-            System.err.println("ForumServer exception:");
-            e.printStackTrace();
-        }
+		while(true){
+			
+		    try {
+		
+		    	registry = LocateRegistry.getRegistry(args[0]);
+		    	
+		    	forumServerStub = (ForumServer) registry.lookup(serverName);
+		    	
+		    	break;
+		    }
+		    catch (Exception e){
+		    	
+		        System.err.println("ForumServer exception:");
+		        e.printStackTrace();
+		    }
+		}
         
         ClientController clientController = new ClientController(forumServerStub, logger);
         
