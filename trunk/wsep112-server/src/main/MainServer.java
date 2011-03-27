@@ -70,22 +70,27 @@ public class MainServer {
 		
 		String name = "ForumServer";
 		
-		try{
+		while(true){
 
-			ForumServer server = new ForumServerImpl(forumController, logger);
-            
-			ForumServer stub = (ForumServer) UnicastRemoteObject.exportObject(server, 0);
-            
-			Registry registry = LocateRegistry.getRegistry();
-        	
-			registry.rebind(name, stub);
-            
-			logger.info(name + " bound");
-		}
-		catch (Exception e){
-        	
-			System.err.println("ForumServer exception:");
-			e.printStackTrace();
+			try{
+		
+				ForumServer server = new ForumServerImpl(forumController, logger);
+		        
+				ForumServer stub = (ForumServer) UnicastRemoteObject.exportObject(server, 0);
+		        
+				Registry registry = LocateRegistry.getRegistry();
+		    	
+				registry.rebind(name, stub);
+		        
+				logger.info(name + " bound");
+				
+				break;
+			}
+			catch (Exception e){
+		    	
+				System.err.println("ForumServer exception:");
+				e.printStackTrace();
+			}
 		}
 	}
 }
