@@ -133,12 +133,9 @@ public class ForumController {
 			return new ErrorMessage("Username doesn't exists.");
 		
 		User loginUser = getUser(username);
-		
-		// Encrypt the password using SHA1 algorithm.
-		String tEncrypted_Password = SHA1.hash(password);
-		
+
 		// check if password is correct.
-		if (!(loginUser.getPassword().equals(tEncrypted_Password)))
+		if (!(loginUser.getPassword().equals(password)))
 			return new ErrorMessage("Invalid password.");
 		
 		_loginUsers.add(username); 
