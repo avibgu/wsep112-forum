@@ -6,6 +6,7 @@ package domain;
 import java.rmi.RemoteException;
 import java.util.logging.Logger;
 
+import common.encryption.SHA1;
 import common.network.ForumServer;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.AddPostMessage;
@@ -68,7 +69,10 @@ public class ClientController {
 	 */
 	public Message login(String username, String password) {
 
-		LoginMessage lm = new LoginMessage(username, password);
+		// Encrypt the password using SHA1 algorithm.
+		String tEncrypted_Password = SHA1.hash(password);
+		
+		LoginMessage lm = new LoginMessage(username, tEncrypted_Password);
 		
 		try {
 			
