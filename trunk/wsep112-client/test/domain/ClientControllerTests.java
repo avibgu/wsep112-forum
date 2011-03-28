@@ -130,9 +130,9 @@ public class ClientControllerTests {
 	@Test
 	public void testAddFriend() {
 
-		RegMessage regMessage1 = new RegMessage("ghi", "ghi", "ghi", "1234", "ghi@bgu.ac.il");
-		RegMessage regMessage2 = new RegMessage("jkl", "jkl", "jkl", "1234", "jkl@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("ghi", "1234");
+		RegMessage regMessage1 = new RegMessage("ghi", "ghi", "ghi", "ab1234", "ghi@bgu.ac.il");
+		RegMessage regMessage2 = new RegMessage("jkl", "jkl", "jkl", "ab1234", "jkl@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("ghi", "ab1234");
 		AddFriendMessage addFriendMessage = new AddFriendMessage("ghi", "jkl");
 		LogoutMessage logoutMessage = new LogoutMessage("ghi");
 		
