@@ -52,7 +52,7 @@ public class Thread {
 		for(int i=0;i<this.posts.size();i++){
 			if(posts.elementAt(i).get_post_id()==post_id){
 				posts.remove(i);
-			//	owner.remove_post(this.thread_id,post_id);
+				owner.removePost(this.thread_id,post_id);
 				return new OKMessage();
 			}
 		}
