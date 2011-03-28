@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package common.network.messages;
 
@@ -16,17 +16,19 @@ public class AddPostMessage implements Message, Serializable {
 	private String title;
 	private String body;
 	private String threadId;
+	private String ownerUsername;
 
 	/**
 	 * @param title
 	 * @param body
 	 * @param threadId
 	 */
-	public AddPostMessage(String title, String body, String threadId) {
+	public AddPostMessage(String title, String body, String threadId, String ownerUsername) {
 		super();
 		setTitle(title);
 		setBody(body);
 		setThreadId(threadId);
+		setOwnerUsername(ownerUsername);
 	}
 
 	/* (non-Javadoc)
@@ -59,5 +61,13 @@ public class AddPostMessage implements Message, Serializable {
 
 	public void setThreadId(String threadId) {
 		this.threadId = threadId;
+	}
+
+	public void setOwnerUsername(String ownerUsername) {
+		this.ownerUsername = ownerUsername;
+	}
+
+	public String getOwnerUsername() {
+		return ownerUsername;
 	}
 }
