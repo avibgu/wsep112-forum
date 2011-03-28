@@ -50,10 +50,13 @@ public class ClientController {
 	 */
 	public Message register(String firstName, String lastName, String username,
 			String password, String email) {
-
+		
+		// Encrypt the password using SHA1 algorithm.
+		String tEncrypted_Password = SHA1.hash(password);
+		
 		setCurrentLogedInUsername(username);
 
-		RegMessage rm = new RegMessage(firstName, lastName, username, password, email);
+		RegMessage rm = new RegMessage(firstName, lastName, username, tEncrypted_Password, email);
 
 		try {
 
@@ -72,7 +75,12 @@ public class ClientController {
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
 	public Message login(String username, String password) {
-
+		
+		// Check if the password is strong enough.
+		if (!validPassword(password)){
+			return new ErrorMessage("Password is too weak.");
+		}
+		
 		setCurrentLogedInUsername(username);
 
 		// Encrypt the password using SHA1 algorithm.
@@ -89,7 +97,48 @@ public class ClientController {
 		return new ErrorMessage("Connection Error - can't connect with the server");
 	}
 
+	/**
+	 *
+	 * @param word
+	 * @return
+	 */
+	public Boolean containUpper(String word){
 
+		for (char c : word.toCharArray()) {
+		    if (Character.isUpperCase(c))
+		    	return true;
+		}
+		return false;
+	}
+
+	/**
+	 *
+	 * @param word
+	 * @return
+	 */
+	public Boolean containDigit(String word){
+
+		for (char c : word.toCharArray()) {
+		    if (Character.isDigit(c))
+		    	return true;
+		}
+		return false;
+	}
+
+	/**
+	 *
+	 * @param password
+	 * @return
+	 */
+	public Boolean validPassword(String password){
+		if ((password.length() < 6) || !(containUpper(password)) || !(containDigit(password)) ){
+			return false;
+		}
+
+		return true;
+	}
+
+	
 	/**
 	 *
 	 * @param username
