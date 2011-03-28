@@ -2,14 +2,20 @@ package domain;
 
 public class Post {
 private int _post_id;
+private int thread_id;
 private String _title;
 private String _body;
+private User owner;
 
-public Post(int id ,String title ,String body){
+public Post(int thread_id,int id ,String title ,String body,User owner){
 	this._post_id=id;
 	this._title=title;
 	this._body=body;
+	this.owner=owner;
+	this.thread_id=thread_id;
 }
+
+
 
 
 
@@ -69,6 +75,30 @@ public String get_body() {
 public void set_body(String _body) {
 	this._body = _body;
 }
+
+
+public User getOwner() {
+	return owner;
+}
+
+
+
+public void setOwner(User owner) {
+	this.owner = owner;
+}
+
+public int getThread_id() {
+	return thread_id;
+}
+
+
+
+
+
+public void setThread_id(int thread_id) {
+	this.thread_id = thread_id;
+}
+
 
 
 }
