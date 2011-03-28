@@ -32,8 +32,7 @@ public class RemoveFriendMessage implements Message, Serializable {
 	 */
 	@Override
 	public MessageType getMessageType() {
-		// TODO Auto-generated method stub
-		return null;
+		return MessageType.REMOVE_FRIEND;
 	}
 
 	public String getUsername() {

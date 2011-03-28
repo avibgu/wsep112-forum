@@ -29,8 +29,7 @@ public class AddFriendMessage implements Message, Serializable{
 
 	@Override
 	public MessageType getMessageType() {
-		// TODO Auto-generated method stub
-		return null;
+		return MessageType.ADD_FRIEND;
 	}
 	
 	public String getUsername() {
