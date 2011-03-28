@@ -11,7 +11,6 @@ import common.network.messages.OKMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeThreadPostsMessage;
-import common.encryption.SHA1;
 import domain.User.Status;
 
 /**
@@ -191,7 +190,7 @@ public class ForumController {
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message addThread(String title, String body) {
+    public Message addThread(String title, String body, String ownerUsername) {
             // TODO Auto-generated method stub
             return new OKMessage();
     }

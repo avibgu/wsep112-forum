@@ -15,17 +15,19 @@ public class AddThreadMessage implements Message, Serializable {
 	
 	private String title;
 	private String body;
+	private String ownerUsername;
 	
 	/**
 	 * 
 	 * @param title
 	 * @param body
 	 */
-	public AddThreadMessage(String title, String body) {
+	public AddThreadMessage(String title, String body, String ownerUsername) {
 		
 		super();
 		setTitle(title);
 		setBody(body);
+		setOwnerUsername(ownerUsername);
 	}
 
 	/* (non-Javadoc)
@@ -50,5 +52,13 @@ public class AddThreadMessage implements Message, Serializable {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public void setOwnerUsername(String ownerUsername) {
+		this.ownerUsername = ownerUsername;
+	}
+
+	public String getOwnerUsername() {
+		return ownerUsername;
 	}
 }
