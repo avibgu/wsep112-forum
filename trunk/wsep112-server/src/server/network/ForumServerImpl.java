@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package server.network;
 
@@ -33,7 +33,7 @@ import domain.ForumController;
 public class ForumServerImpl extends RemoteStub implements ForumServer {
 
 	private static final long serialVersionUID = 2555939371339195609L;
-	
+
 	private ForumController forumController;
 	private ReentrantReadWriteLock rwLock;
 	private ReadLock rdLock;
@@ -41,7 +41,7 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	private Logger logger;
 
 	public ForumServerImpl(ForumController forumController, Logger logger) throws RemoteException {
-		
+
 		super();
 		setForumController(forumController);
 		setRwLock(new ReentrantReadWriteLock(true));
@@ -49,52 +49,52 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 		setWrLock(getRwLock().writeLock());
 		setLogger(logger);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see network.ForumServer#getInformation(network.Message)
 	 */
 	@Override
 	public Message getInformation(Message whatToGet) throws RemoteException {
-		
+
 		log("got a " + whatToGet.getMessageType() + " message");
-		
+
 		Message answer;
-		
+
 		getRdLock().lock();
-		
+
 		switch(whatToGet.getMessageType()){
 
 			case SEE_FORUMS_LIST:
-				
+
 				SeeForumsListMessage sflm = (SeeForumsListMessage)whatToGet;
-				
+
 				answer = getForumController().getForumsList(sflm);
-				
+
 				break;
-				
+
 			case SEE_FORUM_THREADS:
-				
+
 				SeeForumThreadsMessage sftm = (SeeForumThreadsMessage)whatToGet;
-				
+
 				answer = getForumController().getThreadsList(sftm.getForumID(), sftm);
-				
+
 				break;
-				
+
 			case SEE_POSTS_OF_SOME_THREAD:
 
 				SeeThreadPostsMessage stpm = (SeeThreadPostsMessage)whatToGet;
-				
+
 				answer = getForumController().getPostsList(stpm.getThreadID(), stpm);
-				
+
 				break;
-				
+
 			default:
-				
+
 				answer = new ErrorMessage("Message Type is unrecognized");
 		}
-		
+
 		getRdLock().unlock();
-		
+
 		return answer;
 	}
 
@@ -102,77 +102,77 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	public Message setInformation(Message whatToSet){
 
 		log("got a " + whatToSet.getMessageType() + " message");
-		
+
 		Message answer;
-		
+
 		getWrLock().lock();
-		
+
 		switch(whatToSet.getMessageType()){
-		
+
 			case REGISTRATION:
-				
+
 				RegMessage rm = (RegMessage)whatToSet;
 
 				answer = getForumController().register(rm.getFirstName(), rm.getLastName(), rm.getUsername(),
 						rm.getPassword(), rm.getEmail());
-				
+
 				break;
-			
+
 			case LOGIN:
-				
+
 				LoginMessage lim = (LoginMessage)whatToSet;
-				
+
 				answer = getForumController().login(lim.getUsername(), lim.getPassword());
-				
+
 				break;
-				
+
 			case LOGOUT:
-				
+
 				LogoutMessage lom = (LogoutMessage)whatToSet;
-				
+
 				answer = getForumController().logout(lom.getUsername());
-				
+
 				break;
-				
+
 			case ADD_FRIEND:
-				
+
 				AddFriendMessage afm = (AddFriendMessage)whatToSet;
-				
+
 				answer = getForumController().AddFriend(afm.getUsername(), afm.getFriendUsername());
-				
+
 				break;
-				
+
 			case REMOVE_FRIEND:
-				
+
 				RemoveFriendMessage rfm = (RemoveFriendMessage)whatToSet;
-				
+
 				answer = getForumController().RemoveFriend(rfm.getUsername(), rfm.getFriendUsername());
-				
+
 				break;
-			
+
 			case ADD_POST_TO_THREAD:
-				
+
 				AddPostMessage apttm = (AddPostMessage)whatToSet;
-				
-				answer = getForumController().replyToThread(apttm.getTitle(), apttm.getBody(), apttm.getThreadId());
-				
+
+				answer = getForumController().replyToThread(apttm.getTitle(), apttm.getBody(), apttm.getThreadId(), apttm.getOwnerUsername());
+
 				break;
 
 			case ADD_THREAD:
-				
+
 				AddThreadMessage athm = (AddThreadMessage)whatToSet;
-				
+
 				answer = getForumController().addThread(athm.getTitle(), athm.getBody());
-				
+
 				break;
-				
+
 			default:
-				
+
 				answer = new ErrorMessage("Message Type is unrecognized");
 		}
-		
+
 		getWrLock().unlock();
-		
+
 		return answer;
 	}
 
@@ -215,7 +215,7 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	private Logger getLogger() {
 		return logger;
 	}
-	
+
 	private void log(String msg){
 		getLogger().info(msg);
 	}
