@@ -51,6 +51,11 @@ public class ClientController {
 	public Message register(String firstName, String lastName, String username,
 			String password, String email) {
 		
+		// Check if the password is strong enough.
+		if (!validPassword(password)){
+			return new ErrorMessage("Password is too weak.");
+		}
+		
 		// Encrypt the password using SHA1 algorithm.
 		String tEncrypted_Password = SHA1.hash(password);
 		
@@ -75,11 +80,6 @@ public class ClientController {
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
 	public Message login(String username, String password) {
-		
-		// Check if the password is strong enough.
-		if (!validPassword(password)){
-			return new ErrorMessage("Password is too weak.");
-		}
 		
 		setCurrentLogedInUsername(username);
 
