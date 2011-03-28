@@ -162,7 +162,7 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 
 				AddThreadMessage athm = (AddThreadMessage)whatToSet;
 
-				answer = getForumController().addThread(athm.getTitle(), athm.getBody());
+				answer = getForumController().addThread(athm.getTitle(), athm.getBody(), athm.getOwnerUsername());
 
 				break;
 

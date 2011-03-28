@@ -230,7 +230,7 @@ public class ClientController {
      */
     public Message addThread(String title, String body) {
 
-    	AddThreadMessage atm = new AddThreadMessage(title, body);
+    	AddThreadMessage atm = new AddThreadMessage(title, body, getCurrentLogedInUsername());
 
 		try {
 
