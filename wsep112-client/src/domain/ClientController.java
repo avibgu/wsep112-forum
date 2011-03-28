@@ -97,6 +97,8 @@ public class ClientController {
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
 	public Message logout() {
+		
+		setCurrentLogedInUsername("");
 
 		LogoutMessage lm = new LogoutMessage(getCurrentLogedInUsername());
 
