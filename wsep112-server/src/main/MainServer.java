@@ -38,7 +38,7 @@ public class MainServer {
 	 * @throws RemoteException 
 	 */
 	public static void main(String[] args) throws RemoteException, MalformedURLException {
-
+		
 		// creating logger called ServerLog
 		Logger logger = Logger.getLogger("ServerLog");
 		
