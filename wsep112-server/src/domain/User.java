@@ -35,7 +35,7 @@ public class User {
 			_email = email;
 			_status= Status.OFFLINE;
 			_friends = new Vector<String>();
-			//_posts= new Vector<Post>();
+			_posts= new Vector<Post>();
 	}
 
 	/**
