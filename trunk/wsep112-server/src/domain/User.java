@@ -138,7 +138,7 @@ public class User {
 	public Message addFriend(String userNameFriend){
 
 		// Check if the username is already in his friends
-		if (isExist(userNameFriend.toLowerCase())){
+		if (isExistUser(userNameFriend.toLowerCase())){
 			return new ErrorMessage("friend is already exists in user's list.");
 		}
 
@@ -154,20 +154,21 @@ public class User {
 	public Message removeFriend(String userNameFriend){
 
 		// Check if the userName is in user's list of friends
-		if (isExist(userNameFriend.toLowerCase())){
+		if (isExistUser(userNameFriend.toLowerCase())){
 			_friends.removeElementAt(this.getFriendIndex(userNameFriend));
 			return new OKMessage();
 		}
 		return new ErrorMessage("friend is not exists in user's list.");
 	}
 
-	/*
+	/**
 	 * @return Vector<Post> - posts of User (Owner)
 	 */
 	public Vector<Post> getPosts(){
 		return _posts;
 	}
-	/*
+
+	/**
 	 * @param post
 	 * Links a post to user (owner)
 	 */
@@ -176,17 +177,43 @@ public class User {
 	}
 
 	/**
+	 * @param post
+	 * Links a post to user (owner)
+	 */
+	public void removePost(Post post){
+		int idOfPost=post.get_post_id();
+		if (this.isExistPostId(idOfPost)){
+			_posts.remove(getPostIndex(idOfPost));
+		}
+	}
+
+	/**
 	 *
 	 * @param username
 	 * @return true if the userName exist, and false otherwise.
 	 */
-	public Boolean isExist(String username){
+	public Boolean isExistUser(String username){
 		for (int i=0; i < _friends.size() ; i++){
 			if (_friends.get(i).equals(username))
 				return true;
 		}
 		return false;
 	}
+
+	/**
+	 *
+	 * @param postId
+	 * @return true if the postId exists, and false otherwise.
+	 */
+	public Boolean isExistPostId(int postId){
+		for (int i=0; i < _posts.size() ; i++){
+			if (_posts.get(i).get_post_id()==postId)
+				return true;
+		}
+		return false;
+	}
+
+
 
 	/**
 	 *
@@ -200,6 +227,21 @@ public class User {
 		}
 		return -1;
 	}
+
+	/**
+	 *
+	 * @param postId
+	 * @return index of post id in array _posts, -1 if not exists
+	 */
+	public int getPostIndex(int postId){
+		for (int i=0; i < _posts.size() ; i++){
+			if (_posts.get(i).get_post_id()==postId)
+				return i;
+		}
+		return -1;
+	}
+
+
 
 
 }
