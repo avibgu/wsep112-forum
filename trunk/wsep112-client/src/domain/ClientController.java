@@ -15,6 +15,7 @@ import common.network.messages.ErrorMessage;
 import common.network.messages.LoginMessage;
 import common.network.messages.LogoutMessage;
 import common.network.messages.Message;
+import common.network.messages.MessageType;
 import common.network.messages.RegMessage;
 import common.network.messages.RemoveFriendMessage;
 import common.network.messages.SeeForumThreadsMessage;
@@ -58,14 +59,16 @@ public class ClientController {
 		
 		// Encrypt the password using SHA1 algorithm.
 		String tEncrypted_Password = SHA1.hash(password);
-		
-		setCurrentLogedInUsername(username);
 
 		RegMessage rm = new RegMessage(firstName, lastName, username, tEncrypted_Password, email);
 
 		try {
 
-			return getForumServerStub().setInformation(rm);
+			Message answer = getForumServerStub().setInformation(rm);
+			
+			if (answer.getMessageType() == MessageType.OK) setCurrentLogedInUsername(username);
+			
+			return answer;
 		}
 		catch (RemoteException e) { e.printStackTrace(); }
 
@@ -80,8 +83,6 @@ public class ClientController {
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
 	public Message login(String username, String password) {
-		
-		setCurrentLogedInUsername(username);
 
 		// Encrypt the password using SHA1 algorithm.
 		String tEncrypted_Password = SHA1.hash(password);
@@ -90,55 +91,17 @@ public class ClientController {
 
 		try {
 
-			return getForumServerStub().setInformation(lm);
+			Message answer = getForumServerStub().setInformation(lm);
+			
+			if (answer.getMessageType() == MessageType.OK) setCurrentLogedInUsername(username);
+			
+			return answer;
 		}
 		catch (RemoteException e) { e.printStackTrace(); }
 
 		return new ErrorMessage("Connection Error - can't connect with the server");
 	}
 
-	/**
-	 *
-	 * @param word
-	 * @return
-	 */
-	public Boolean containUpper(String word){
-
-		for (char c : word.toCharArray()) {
-		    if (Character.isUpperCase(c))
-		    	return true;
-		}
-		return false;
-	}
-
-	/**
-	 *
-	 * @param word
-	 * @return
-	 */
-	public Boolean containDigit(String word){
-
-		for (char c : word.toCharArray()) {
-		    if (Character.isDigit(c))
-		    	return true;
-		}
-		return false;
-	}
-
-	/**
-	 *
-	 * @param password
-	 * @return
-	 */
-	public Boolean validPassword(String password){
-		if ((password.length() < 6) || !(containUpper(password)) || !(containDigit(password)) ){
-			return false;
-		}
-
-		return true;
-	}
-
-	
 	/**
 	 *
 	 * @param username
@@ -152,8 +115,12 @@ public class ClientController {
 		LogoutMessage lm = new LogoutMessage(getCurrentLogedInUsername());
 
 		try {
-
-			return getForumServerStub().setInformation(lm);
+			
+			Message answer = getForumServerStub().setInformation(lm);
+			
+			if (answer.getMessageType() == MessageType.OK) setCurrentLogedInUsername("");
+			
+			return answer;
 		}
 		catch (RemoteException e) { e.printStackTrace(); }
 
@@ -299,6 +266,47 @@ public class ClientController {
 		return new ErrorMessage("Connection Error - can't connect with the server");
 	}
 
+	/**
+	 *
+	 * @param word
+	 * @return
+	 */
+	public Boolean containUpper(String word){
+
+		for (char c : word.toCharArray()) {
+		    if (Character.isUpperCase(c))
+		    	return true;
+		}
+		return false;
+	}
+
+	/**
+	 *
+	 * @param word
+	 * @return
+	 */
+	public Boolean containDigit(String word){
+
+		for (char c : word.toCharArray()) {
+		    if (Character.isDigit(c))
+		    	return true;
+		}
+		return false;
+	}
+
+	/**
+	 *
+	 * @param password
+	 * @return
+	 */
+	public Boolean validPassword(String password){
+		if ((password.length() < 6) || !(containUpper(password)) || !(containDigit(password)) ){
+			return false;
+		}
+
+		return true;
+	}
+	
 	public void setForumServerStub(ForumServer forumServerStub) {
 		this.forumServerStub = forumServerStub;
 	}
