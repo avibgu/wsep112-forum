@@ -20,7 +20,7 @@ import common.network.messages.SeeThreadPostsMessage;
 import domain.ClientController;
 
 /**
- * @author Avi Digmi
+ * @author Miri Peretz
  *
  */
 public class CLI {
@@ -233,7 +233,7 @@ public class CLI {
 				n = Integer.parseInt(str);
 			}
 			if ((n<=length) | (n>0)) { //choose valid forum
-				//end?!
+				postsList.get(n);										///***toChange
 			}
 		}
 	}
@@ -271,7 +271,6 @@ public class CLI {
 		System.out.println("Please insert your password");
 		String password = buf.readLine();
      	clientController.login(username, password);
-     	//need to save the current user?!
 	}
 
 	public void logout() throws IOException {
