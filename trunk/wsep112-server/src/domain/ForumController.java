@@ -51,15 +51,8 @@ public class ForumController {
 			return new ErrorMessage("Missing parameters.");
 		}
 
-		// Check if the password is strong enough.
-			if (!validPassword(password)){
-				return new ErrorMessage("Password is too weak.");
-			}
-
-		// Encrypt the password using SHA1 algorithm.
-		String tEncrypted_Password = SHA1.hash(password);
 		// Add the user.
-		User newUser = new User(firstName,lastName,username,tEncrypted_Password,email);
+		User newUser = new User(firstName,lastName,username,password,email);
 		_registerdUsers.add(newUser);
 
 		return new OKMessage();
@@ -79,47 +72,7 @@ public class ForumController {
 		return false;
 	}
 
-	/**
-	 *
-	 * @param word
-	 * @return
-	 */
-	public Boolean containUpper(String word){
-
-		for (char c : word.toCharArray()) {
-		    if (Character.isUpperCase(c))
-		    	return true;
-		}
-		return false;
-	}
-
-	/**
-	 *
-	 * @param word
-	 * @return
-	 */
-	public Boolean containDigit(String word){
-
-		for (char c : word.toCharArray()) {
-		    if (Character.isDigit(c))
-		    	return true;
-		}
-		return false;
-	}
-
-	/**
-	 *
-	 * @param password
-	 * @return
-	 */
-	public Boolean validPassword(String password){
-		if ((password.length() < 6) || !(containUpper(password)) || !(containDigit(password)) ){
-			return false;
-		}
-
-		return true;
-	}
-
+	
 	/**
 	 *
 	 * @param username
