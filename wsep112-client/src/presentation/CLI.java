@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package presentation;
 
@@ -7,9 +7,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Logger;
 
+import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
+import common.network.messages.MessageType;
+import common.network.messages.SeeForumThreadsMessage;
 
 import domain.ClientController;
 
@@ -23,9 +27,9 @@ public class CLI {
 	private Logger logger;
 	InputStreamReader inp = new InputStreamReader(System.in);
     BufferedReader buf = new BufferedReader(inp);
-    
+
 	public CLI(ClientController clientController, Logger logger) {
-		
+
 		setClientController(clientController);
 		setLogger(logger);
 	}
@@ -36,7 +40,7 @@ public class CLI {
 	 * 1. shows options to user,
 	 * 2. get his input,
 	 * 3. redirect the queries to clientController.
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void start() throws IOException {
 		String key="";
@@ -76,7 +80,7 @@ public class CLI {
             }
         }
 	}
-	
+
 	private void viewForums() throws IOException {
 		String str = "";
 		List forumList = (List) clientController.getForumsList();
@@ -121,18 +125,26 @@ public class CLI {
 	        }
 		}
 	}
-	
+
 	public void addThread() throws IOException {
 		System.out.println("Please insert the title of the thread");
 		String title = buf.readLine();
 		System.out.println("Please insert the body of the thread");
-		String body = buf.readLine();				
+		String body = buf.readLine();
      	clientController.addThread(title, body);
 	}
-	
+
 	private void ViewThreads(String fourmID) throws IOException {
 		String str = "";
-		List threadList = (List) clientController.getThreadsList(fourmID);
+		Message answer = clientController.getThreadsList(fourmID);
+
+		if (answer.getMessageType() == MessageType.ERROR){
+			System.out.println( ((ErrorMessage)answer).getReason() );
+			return;
+		}
+
+		Vector<String> threadList = ((SeeForumThreadsMessage)answer).getListOfThreads(); ////********************************
+
 		int length = threadList.size();
 		int n = 0;
 		int i = 1;
@@ -153,7 +165,7 @@ public class CLI {
 			}
 		}
 	}
-	
+
 	public void ThreadOption(String threadID) throws IOException {
 		String str = "";
 		while (!(str.equals("3"))) { //loop until press '3. Back'
@@ -174,11 +186,11 @@ public class CLI {
 	        }
 		}
 	}
-	
+
 	public void addPost() throws IOException {
 		//?
 	}
-	
+
 	private void ViewPosts(String threadID) throws IOException {
 		String str = "";
 		List postList = (List) clientController.getPostsList(threadID);
@@ -202,7 +214,7 @@ public class CLI {
 			}
 		}
 	}
-	
+
 	public String readFromUser() throws IOException {
 		String str ="";
 		while ( !(str.equals("1")) &  !(str.equals("2")) &  !(str.equals("3"))){
@@ -215,7 +227,7 @@ public class CLI {
 		}
 		return str;
 	}
-	
+
 	public void register() throws IOException {
 		System.out.println("Please insert your firstName");
 		String firstName = buf.readLine();
@@ -229,7 +241,7 @@ public class CLI {
 		String email = buf.readLine();
      	clientController.register(firstName, lastName, username, password, email);
 	}
-	
+
 	public void login() throws IOException {
 		System.out.println("Please insert your username");
 		String username = buf.readLine();
@@ -238,13 +250,11 @@ public class CLI {
      	clientController.login(username, password);
      	//need to save the current user?!
 	}
-	
+
 	public void logout() throws IOException {
-		System.out.println("Please insert your username"); //?
-		String username = buf.readLine();					//?
-     	clientController.logout(username);
+     	clientController.logout();
 	}
-	
+
 	public String forumSystem() throws IOException {
 		String str = "";
 		while ( !(str.equals("1")) &  !(str.equals("2")) & !(str.equals("3")) & !(str.equals("4")) ){
@@ -258,7 +268,7 @@ public class CLI {
 		}
 		return str;
     }
-	
+
 	public void manageFriends() throws IOException {
 		String str = "";
 		while (!(str.equals("3"))) { //loop until press '3. Back'
@@ -271,21 +281,17 @@ public class CLI {
 				System.out.println("3. Back");
 				str = buf.readLine();
 			}
-			
+
 			if (str.equals("1")){//add friend
-				System.out.println("Please insert your username"); //?
-				String username = buf.readLine();					//?
 				System.out.println("Please insert friend username");
 				String friendUsername = buf.readLine();
-				clientController.AddFriend(username, friendUsername);
+				clientController.AddFriend(friendUsername);
 			}
-			
+
 			if (str.equals("2")){//remove friend
-				System.out.println("Please insert your username"); //?
-				String username = buf.readLine();					//?
 				System.out.println("Please insert friend username");
 				String friendUsername = buf.readLine();
-				clientController.RemoveFriend(username, friendUsername);
+				clientController.RemoveFriend(friendUsername);
 			}
 		}
     }
@@ -305,7 +311,7 @@ public class CLI {
 	public Logger getLogger() {
 		return logger;
 	}
-	
+
 	public void log(String msg){
 		getLogger().info(msg);
 	}
