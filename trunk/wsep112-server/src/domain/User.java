@@ -177,13 +177,13 @@ public class User {
 	}
 
 	/**
-	 * @param post
 	 * Links a post to user (owner)
+	 * @param threadId
+	 * @param postId
 	 */
-	public void removePost(Post post){
-		int idOfPost=post.get_post_id();
-		if (this.isExistPostId(idOfPost)){
-			_posts.remove(getPostIndex(idOfPost));
+	public void removePost(int threadId, int postId){
+		if (this.isExistPostId(postId,threadId)){
+			_posts.remove(getPostIndex(postId,threadId));
 		}
 	}
 
@@ -201,13 +201,14 @@ public class User {
 	}
 
 	/**
-	 *
+	 * 
+	 * @param threadId
 	 * @param postId
 	 * @return true if the postId exists, and false otherwise.
 	 */
-	public Boolean isExistPostId(int postId){
+	public Boolean isExistPostId(int threadId, int postId){
 		for (int i=0; i < _posts.size() ; i++){
-			if (_posts.get(i).get_post_id()==postId)
+			if (_posts.get(i).get_post_id()==postId && _posts.get(i).getThread_id()==threadId)
 				return true;
 		}
 		return false;
@@ -229,13 +230,14 @@ public class User {
 	}
 
 	/**
-	 *
-	 * @param postId
-	 * @return index of post id in array _posts, -1 if not exists
+	 * index of post id in array _posts, -1 if not exists
+	 * @param postId 
+	 * @param threadId
+	 * @return
 	 */
-	public int getPostIndex(int postId){
+	public int getPostIndex(int postId, int threadId){
 		for (int i=0; i < _posts.size() ; i++){
-			if (_posts.get(i).get_post_id()==postId)
+			if (_posts.get(i).get_post_id()==postId && _posts.get(i).getThread_id()==threadId)
 				return i;
 		}
 		return -1;
