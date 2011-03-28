@@ -20,6 +20,7 @@ import common.network.messages.LogoutMessage;
 import common.network.messages.MessageType;
 import common.network.messages.OKMessage;
 import common.network.messages.RegMessage;
+import common.network.messages.RemoveFriendMessage;
 
 /**
  * @author Avi Digmi
@@ -152,7 +153,24 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testRemoveFriend() {
-		fail("Not yet implemented");
+		
+		RegMessage regMessage1 = new RegMessage("asghi", "asghi", "asghi", "ab1234", "asghi@bgu.ac.il");
+		RegMessage regMessage2 = new RegMessage("asjkl", "asjkl", "asjkl", "ab1234", "asjkl@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("asghi", "ab1234");
+		AddFriendMessage addFriendMessage = new AddFriendMessage("asghi", "asjkl");
+		RemoveFriendMessage removeFriendMessage = new RemoveFriendMessage("asghi", "asjkl");
+		LogoutMessage logoutMessage = new LogoutMessage("asghi");
+		
+		try {
+			
+			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage1).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage2).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(addFriendMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(removeFriendMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
+		}
+		catch (RemoteException e) { e.printStackTrace(); }
 	}
 
 	/**
