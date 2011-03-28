@@ -68,7 +68,7 @@ public class CLI {
 
 	public void subMenu() throws IOException{
 		String str="";
-        while (!str.equals("4") || !str.equals("3")){ //loop until press '4. Back' or logout
+        while (!str.equals("4")){ //loop until press '4. Back'
         	System.out.println(((char) 27)+"[2J"); //clear screen
         	str = forumSystem();
         	if (str.equals("1")){ //manage friends list
@@ -79,6 +79,7 @@ public class CLI {
             }
             else if (str.equals("3")){ //logout from the system
             	logout();
+            	break; //return to main menu
             }
         }
 	}
@@ -142,7 +143,14 @@ public class CLI {
 		String title = buf.readLine();
 		System.out.println("Please insert the body of the thread");
 		String body = buf.readLine();
-     	clientController.addThread(title, body);
+     	
+     	Message answer = clientController.addThread(title, body);
+		if (answer.getMessageType() == MessageType.ERROR){
+			System.out.println( ((ErrorMessage)answer).getReason() );
+			return;
+		}
+     	
+     	
 	}
 
 	private void ViewThreads(String fourmID) throws IOException {
@@ -203,7 +211,12 @@ public class CLI {
 		String title = buf.readLine();
 		System.out.println("Please insert the body of the post");
 		String body = buf.readLine();
-     	clientController.replyToThread(title, body, threadId);
+		
+		Message answer = clientController.replyToThread(title, body, threadId);
+		if (answer.getMessageType() == MessageType.ERROR){
+			System.out.println( ((ErrorMessage)answer).getReason() );
+		}
+		
 	}
 
 	private void ViewPosts(String threadID) throws IOException {
@@ -212,7 +225,6 @@ public class CLI {
 
 		if (answer.getMessageType() == MessageType.ERROR){
 			System.out.println( ((ErrorMessage)answer).getReason() );
-			return;
 		}
 
 		Vector<String> postsList = ((SeeThreadPostsMessage)answer).getListOfPosts(); ////********************************
@@ -262,7 +274,11 @@ public class CLI {
 		String password = buf.readLine();
 		System.out.println("Please insert your email");
 		String email = buf.readLine();
-     	clientController.register(firstName, lastName, username, password, email);
+		
+		Message answer = clientController.register(firstName, lastName, username, password, email);
+		if (answer.getMessageType() == MessageType.ERROR){
+			System.out.println( ((ErrorMessage)answer).getReason() );
+		}
 	}
 
 	public void login() throws IOException {
@@ -270,11 +286,18 @@ public class CLI {
 		String username = buf.readLine();
 		System.out.println("Please insert your password");
 		String password = buf.readLine();
-     	clientController.login(username, password);
+		
+		Message answer = clientController.login(username, password);
+		if (answer.getMessageType() == MessageType.ERROR){
+			System.out.println( ((ErrorMessage)answer).getReason() );
+		}
 	}
 
 	public void logout() throws IOException {
-     	clientController.logout();
+		Message answer = clientController.logout();
+		if (answer.getMessageType() == MessageType.ERROR){
+			System.out.println( ((ErrorMessage)answer).getReason() );
+		}
 	}
 
 	public String forumSystem() throws IOException {
@@ -307,13 +330,21 @@ public class CLI {
 			if (str.equals("1")){//add friend
 				System.out.println("Please insert friend username");
 				String friendUsername = buf.readLine();
-				clientController.AddFriend(friendUsername);
+				Message answer = clientController.AddFriend(friendUsername);
+				if (answer.getMessageType() == MessageType.ERROR){
+					System.out.println( ((ErrorMessage)answer).getReason() );
+					return;
+				}
 			}
 
 			if (str.equals("2")){//remove friend
 				System.out.println("Please insert friend username");
 				String friendUsername = buf.readLine();
-				clientController.RemoveFriend(friendUsername);
+				Message answer = clientController.RemoveFriend(friendUsername);
+				if (answer.getMessageType() == MessageType.ERROR){
+					System.out.println( ((ErrorMessage)answer).getReason() );
+					return;
+				}
 			}
 		}
     }
