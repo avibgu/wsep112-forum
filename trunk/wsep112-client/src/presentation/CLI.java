@@ -14,6 +14,8 @@ import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.MessageType;
 import common.network.messages.SeeForumThreadsMessage;
+import common.network.messages.SeeForumsListMessage;
+import common.network.messages.SeeThreadPostsMessage;
 
 import domain.ClientController;
 
@@ -35,7 +37,7 @@ public class CLI {
 	}
 
 	/**
-	 * This is the main method of the cli.
+	 * This is the main method of the CLI.
 	 * Should while forever, which do:
 	 * 1. shows options to user,
 	 * 2. get his input,
@@ -66,7 +68,7 @@ public class CLI {
 
 	public void subMenu() throws IOException{
 		String str="";
-        while (!str.equals("4")){ //loop until press '4. Back'
+        while (!str.equals("4") || !str.equals("3")){ //loop until press '4. Back' or logout
         	System.out.println(((char) 27)+"[2J"); //clear screen
         	str = forumSystem();
         	if (str.equals("1")){ //manage friends list
@@ -83,7 +85,16 @@ public class CLI {
 
 	private void viewForums() throws IOException {
 		String str = "";
-		List forumList = (List) clientController.getForumsList();
+
+		Message answer = clientController.getForumsList();
+
+		if (answer.getMessageType() == MessageType.ERROR){
+			System.out.println( ((ErrorMessage)answer).getReason() );
+			return;
+		}
+
+		Vector<String> forumList = ((SeeForumsListMessage)answer).getListOfForums(); ////********************************
+
 		int length = forumList.size();
 		int n = 0;
 		int i = 1;
@@ -182,19 +193,31 @@ public class CLI {
 	    		ViewPosts(threadID);
 	        }
 	        else if (str.equals("2")){ //add new thread
-	        	addPost();
+	        	addPost(threadID);
 	        }
 		}
 	}
 
-	public void addPost() throws IOException {
-		//?
+	public void addPost(String threadId) throws IOException {
+		System.out.println("Please insert the title of the post");
+		String title = buf.readLine();
+		System.out.println("Please insert the body of the post");
+		String body = buf.readLine();
+     	clientController.replyToThread(title, body, threadId);
 	}
 
 	private void ViewPosts(String threadID) throws IOException {
 		String str = "";
-		List postList = (List) clientController.getPostsList(threadID);
-		int length = postList.size();
+		Message answer = clientController.getPostsList(threadID);
+
+		if (answer.getMessageType() == MessageType.ERROR){
+			System.out.println( ((ErrorMessage)answer).getReason() );
+			return;
+		}
+
+		Vector<String> postsList = ((SeeThreadPostsMessage)answer).getListOfPosts(); ////********************************
+
+		int length = postsList.size();
 		int n = 0;
 		int i = 1;
 		while (n!=i) { //loop until press 'Back'
@@ -203,7 +226,7 @@ public class CLI {
 				if (str!="") System.out.println("Incorrect input!");
 				System.out.println("Please choose one of the following options:");
 				for (i=1; i<=length; i++){
-					System.out.println(i + "." + postList.get(i));
+					System.out.println(i + "." + postsList.get(i));
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
