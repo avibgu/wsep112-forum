@@ -1,11 +1,16 @@
 package domain;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Post {
 private int _post_id;
 private int thread_id;
 private String _title;
 private String _body;
 private User owner;
+private Date _date;
 
 public Post(int thread_id,int id ,String title ,String body,User owner){
 	this._post_id=id;
@@ -13,10 +18,8 @@ public Post(int thread_id,int id ,String title ,String body,User owner){
 	this._body=body;
 	this.owner=owner;
 	this.thread_id=thread_id;
+	this._date = new Date();
 }
-
-
-
 
 
 /* 
@@ -97,6 +100,20 @@ public int getThread_id() {
 
 public void setThread_id(int thread_id) {
 	this.thread_id = thread_id;
+}
+
+
+
+
+
+public void setDate(Date _date) {
+	this._date = _date;
+}
+
+
+public String getDateTime() {
+    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    return dateFormat.format(_date);
 }
 
 
