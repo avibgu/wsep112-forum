@@ -24,8 +24,9 @@ public class AddPostMessage implements Message, Serializable {
 	 * @param body
 	 * @param threadId
 	 */
-	public AddPostMessage(String title, String body, String threadId, String ownerUsername) {
+	public AddPostMessage(String forumID,String title, String body, String threadId, String ownerUsername) {
 		super();
+		setForumId(forumID);
 		setTitle(title);
 		setBody(body);
 		setThreadId(threadId);
