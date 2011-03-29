@@ -84,7 +84,7 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 
 				SeeThreadPostsMessage stpm = (SeeThreadPostsMessage)whatToGet;
 
-				answer = getForumController().getPostsList(stpm.getThreadID(), stpm);
+				answer = getForumController().getPostsList(stpm.getForumID(),stpm.getThreadID(), stpm);
 
 				break;
 
@@ -154,7 +154,7 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 
 				AddPostMessage apttm = (AddPostMessage)whatToSet;
 
-				answer = getForumController().replyToThread(apttm.getTitle(), apttm.getBody(), apttm.getThreadId(), apttm.getOwnerUsername());
+				answer = getForumController().replyToThread(apttm.getForumId(),apttm.getTitle(), apttm.getBody(), apttm.getThreadId(), apttm.getOwnerUsername());
 
 				break;
 
@@ -162,7 +162,7 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 
 				AddThreadMessage athm = (AddThreadMessage)whatToSet;
 
-				answer = getForumController().addThread(athm.getTitle(), athm.getBody(), athm.getOwnerUsername());
+				answer = getForumController().addThread(athm.getForumId(),athm.getTitle(), athm.getBody(), athm.getOwnerUsername());
 
 				break;
 
