@@ -259,7 +259,8 @@ public class ForumController {
 	 * @return list of Posts inside the given message, or ErrorMessage (with reason) on failure
 	 */
 	public Message getPostsList(String forumID, String threadID, SeeThreadPostsMessage stpm) {
-
+		//System.out.println("forumId  " +  forumID);
+		//System.out.println("threadId  " +  threadID);
 		Vector<String> tListOfPosts = new Vector<String>();
 		Vector<Post> tPost = _forums.get(Integer.parseInt(forumID)).getThreads().get(Integer.parseInt(threadID)).getPosts();
 		for (int i=0; i < tPost.size(); ++i){
