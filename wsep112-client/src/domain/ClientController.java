@@ -70,7 +70,7 @@ public class ClientController {
 			
 			return answer;
 		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
 
 		return new ErrorMessage("Connection Error - can't connect with the server");
 	}
@@ -97,7 +97,7 @@ public class ClientController {
 			
 			return answer;
 		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
 
 		return new ErrorMessage("Connection Error - can't connect with the server");
 	}
@@ -122,7 +122,7 @@ public class ClientController {
 			
 			return answer;
 		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
 
 		return new ErrorMessage("Connection Error - can't connect with the server");
 	}
@@ -142,7 +142,7 @@ public class ClientController {
 
 			return getForumServerStub().setInformation(afm);
 		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
 
 		return new ErrorMessage("Connection Error - can't connect with the server");
     }
@@ -162,7 +162,7 @@ public class ClientController {
 
 			return getForumServerStub().setInformation(rfm);
 		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
 
 		return new ErrorMessage("Connection Error - can't connect with the server");
     }
@@ -183,7 +183,7 @@ public class ClientController {
 
 			return getForumServerStub().setInformation(apm);
 		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
 
 		return new ErrorMessage("Connection Error - can't connect with the server");
     }
@@ -203,7 +203,7 @@ public class ClientController {
 
 			return getForumServerStub().setInformation(atm);
 		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
 
 		return new ErrorMessage("Connection Error - can't connect with the server");
     }
@@ -222,7 +222,7 @@ public class ClientController {
 
 			return getForumServerStub().getInformation(sflm);
 		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
 
 		return new ErrorMessage("Connection Error - can't connect with the server");
     }
@@ -241,7 +241,7 @@ public class ClientController {
 
 			return getForumServerStub().getInformation(sftm);
 		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
 
 		return new ErrorMessage("Connection Error - can't connect with the server");
 	}
@@ -261,7 +261,7 @@ public class ClientController {
 
 			return getForumServerStub().getInformation(stpm);
 		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
 
 		return new ErrorMessage("Connection Error - can't connect with the server");
 	}
