@@ -120,7 +120,7 @@ public class CLI {
 		}
 	}
 
-	public void forumOption(String fourmID) throws IOException {
+	public void forumOption(String forumID) throws IOException {
 		String str = "";
 		while (!(str.equals("3"))) { //loop until press '3. Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
@@ -133,21 +133,21 @@ public class CLI {
 				str = buf.readLine();
 			}
 	    	if (str.equals("1")){ //view threads
-	    		ViewThreads(fourmID);
+	    		ViewThreads(forumID);
 	        }
 	        else if (str.equals("2")){ //add new thread
-	        	addThread();
+	        	addThread(forumID);
 	        }
 		}
 	}
 
-	public void addThread() throws IOException {
+	public void addThread(String forumID) throws IOException {
 		System.out.println("Please insert the title of the thread");
 		String title = buf.readLine();
 		System.out.println("Please insert the body of the thread");
 		String body = buf.readLine();
      	
-     	Message answer = clientController.addThread(title, body);
+     	Message answer = clientController.addThread(forumID,title, body);
 		if (answer.getMessageType() == MessageType.ERROR){
 			System.out.println( ((ErrorMessage)answer).getReason() );
 			return;
@@ -156,9 +156,9 @@ public class CLI {
      	
 	}
 
-	private void ViewThreads(String fourmID) throws IOException {
+	private void ViewThreads(String forumID) throws IOException {
 		String str = "";
-		Message answer = clientController.getThreadsList(fourmID);
+		Message answer = clientController.getThreadsList(forumID);
 
 		if (answer.getMessageType() == MessageType.ERROR){
 			System.out.println( ((ErrorMessage)answer).getReason() );
@@ -186,12 +186,12 @@ public class CLI {
 				strArr= Integer.toString(tnumInArray);
 			}
 			if ((n<=length) | (n>0)) { //choose valid forum
-				ThreadOption(strArr);
+				ThreadOption(forumID,strArr);
 			}
 		}
 	}
 
-	public void ThreadOption(String threadID) throws IOException {
+	public void ThreadOption(String forumID, String threadID) throws IOException {
 		String str = "";
 		while (!(str.equals("3"))) { //loop until press '3. Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
@@ -207,18 +207,18 @@ public class CLI {
 	    		ViewPosts(threadID);
 	        }
 	        else if (str.equals("2")){ //add new thread
-	        	addPost(threadID);
+	        	addPost(forumID,threadID);
 	        }
 		}
 	}
 
-	public void addPost(String threadId) throws IOException {
+	public void addPost(String forumID,String threadId) throws IOException {
 		System.out.println("Please insert the title of the post");
 		String title = buf.readLine();
 		System.out.println("Please insert the body of the post");
 		String body = buf.readLine();
 		
-		Message answer = clientController.replyToThread(title, body, threadId);
+		Message answer = clientController.replyToThread(forumID,title, body, threadId);
 		if (answer.getMessageType() == MessageType.ERROR){
 			System.out.println( ((ErrorMessage)answer).getReason() );
 		}
