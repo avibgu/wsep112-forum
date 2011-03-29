@@ -99,20 +99,23 @@ public class CLI {
 		int length = forumList.size();
 		int n = 0;
 		int i = 1;
+		String strArr="";
 		while (n!=i) { //loop until press 'Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 			while ((n>length+1) | (n<=0)) {
 				if (str!="") System.out.println("Incorrect input!");
 				System.out.println("Please choose one of the following options:");
 				for (i=1; i<=length; i++){
-					System.out.println(i + "." + forumList.get(i));
+					System.out.println(i + "." + forumList.get(i-1));
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
 				n = Integer.parseInt(str);
+				int tnumInArray= n-1;
+				strArr= Integer.toString(tnumInArray);
 			}
 	    	if ((n<=length) | (n>0)) { //choose valid forum
-				forumOption(str);
+				forumOption(strArr);
 			}
 		}
 	}
@@ -167,20 +170,23 @@ public class CLI {
 		int length = threadList.size();
 		int n = 0;
 		int i = 1;
+		String strArr="";
 		while (n!=i) { //loop until press 'Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 			while ((n>length+1) | (n<=0)) {
 				if (str!="") System.out.println("Incorrect input!");
 				System.out.println("Please choose one of the following options:");
 				for (i=1; i<=length; i++){
-					System.out.println(i + "." + threadList.get(i));
+					System.out.println(i + "." + threadList.get(i-1));
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
 				n = Integer.parseInt(str);
+				int tnumInArray= n-1;
+				strArr= Integer.toString(tnumInArray);
 			}
 			if ((n<=length) | (n>0)) { //choose valid forum
-				ThreadOption(str);
+				ThreadOption(strArr);
 			}
 		}
 	}
@@ -238,14 +244,14 @@ public class CLI {
 				if (str!="") System.out.println("Incorrect input!");
 				System.out.println("Please choose one of the following options:");
 				for (i=1; i<=length; i++){
-					System.out.println(i + "." + postsList.get(i));
+					System.out.println(i + "." + postsList.get(i-1));
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
 				n = Integer.parseInt(str);
 			}
 			if ((n<=length) | (n>0)) { //choose valid forum
-				postsList.get(n);										///***toChange
+				postsList.get(n-1);										///***toChange
 			}
 		}
 	}
