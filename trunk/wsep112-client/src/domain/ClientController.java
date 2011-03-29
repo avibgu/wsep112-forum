@@ -175,9 +175,9 @@ public class ClientController {
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message replyToThread(String title, String body, String threadId) {
+    public Message replyToThread(String forumID, String title, String body, String threadId) {
 
-    	AddPostMessage apm = new AddPostMessage(title, body, threadId, getCurrentLogedInUsername());
+    	AddPostMessage apm = new AddPostMessage(forumID,title, body, threadId, getCurrentLogedInUsername());
 
 		try {
 
@@ -195,9 +195,9 @@ public class ClientController {
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message addThread(String title, String body) {
+    public Message addThread(String forumID,String title, String body) {
 
-    	AddThreadMessage atm = new AddThreadMessage(title, body, getCurrentLogedInUsername());
+    	AddThreadMessage atm = new AddThreadMessage(forumID,title, body, getCurrentLogedInUsername());
 
 		try {
 
