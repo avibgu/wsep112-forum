@@ -23,9 +23,10 @@ public class AddThreadMessage implements Message, Serializable {
 	 * @param title
 	 * @param body
 	 */
-	public AddThreadMessage(String title, String body, String ownerUsername) {
+	public AddThreadMessage(String forumID,String title, String body, String ownerUsername) {
 		
 		super();
+		setForumId(forumID);
 		setTitle(title);
 		setBody(body);
 		setOwnerUsername(ownerUsername);
