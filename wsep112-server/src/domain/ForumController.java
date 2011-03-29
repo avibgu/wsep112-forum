@@ -263,7 +263,7 @@ public class ForumController {
 		Vector<Post> tPost = _forums.get(Integer.parseInt(forumID)).getThreads().get(Integer.parseInt(threadID)).getPosts();
 		for (int i=0; i < tPost.size(); ++i){
 			Post tcurrPost = tPost.get(i);
-			tListOfPosts.add(tcurrPost.get_title() +"\n\n" + tcurrPost.get_body());
+			tListOfPosts.add("Title:   " + tcurrPost.get_title() +"\n  Date:    " + tcurrPost.getDateTime() + "\n  Message: " + tcurrPost.get_body());
 		}
 		
 
