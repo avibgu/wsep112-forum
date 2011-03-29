@@ -253,9 +253,9 @@ public class ClientController {
 	 *
 	 * @return list of Posts inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Message getPostsList(String threadID) {
+	public Message getPostsList(String forumID,String threadID) {
 
-    	SeeThreadPostsMessage stpm = new SeeThreadPostsMessage(threadID);
+    	SeeThreadPostsMessage stpm = new SeeThreadPostsMessage(forumID,threadID);
 
 		try {
 
