@@ -210,11 +210,13 @@ public class CLI {
 			}
 	    	if (str.equals("1")){ //view threads
 	    		ViewPosts(forumID,threadID);
+	    		str="";
 	        }
 	        else if (str.equals("2")){ //add new thread
 	        	addPost(forumID,threadID);
+	        	str="";
 	        }
-		}
+	 	}
 	}
 
 	public void addPost(String forumID,String threadId) throws IOException {
@@ -252,6 +254,7 @@ public class CLI {
 				str = buf.readLine();
 				n = Integer.parseInt(str);
 		}
+	
 	}
 
 	public String readFromUser() throws IOException {
