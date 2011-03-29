@@ -13,7 +13,8 @@ import java.util.Vector;
 public class SeeThreadPostsMessage implements Message, Serializable {
 
 	private static final long serialVersionUID = 371165257644698436L;
-
+	 
+	private String forumID;
 	private String threadID;
 	private Vector<String> listOfPosts;
 	
@@ -47,5 +48,13 @@ public class SeeThreadPostsMessage implements Message, Serializable {
 
 	public Vector<String> getListOfPosts() {
 		return listOfPosts;
+	}
+
+	public void setForumID(String forumID) {
+		this.forumID = forumID;
+	}
+
+	public String getForumID() {
+		return forumID;
 	}
 }

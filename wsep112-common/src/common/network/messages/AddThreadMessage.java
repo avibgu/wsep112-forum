@@ -12,7 +12,8 @@ import java.io.Serializable;
 public class AddThreadMessage implements Message, Serializable {
 
 	private static final long serialVersionUID = 5581097442389236130L;
-	
+	 
+	private String forumId;
 	private String title;
 	private String body;
 	private String ownerUsername;
@@ -60,5 +61,13 @@ public class AddThreadMessage implements Message, Serializable {
 
 	public String getOwnerUsername() {
 		return ownerUsername;
+	}
+
+	public void setForumId(String forumId) {
+		this.forumId = forumId;
+	}
+
+	public String getForumId() {
+		return forumId;
 	}
 }

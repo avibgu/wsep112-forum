@@ -12,10 +12,11 @@ import java.io.Serializable;
 public class AddPostMessage implements Message, Serializable {
 
 	private static final long serialVersionUID = 4205576880359045229L;
-
+ 
 	private String title;
 	private String body;
 	private String threadId;
+	private String forumId;
 	private String ownerUsername;
 
 	/**
@@ -69,5 +70,13 @@ public class AddPostMessage implements Message, Serializable {
 
 	public String getOwnerUsername() {
 		return ownerUsername;
+	}
+
+	public void setForumId(String forumId) {
+		this.forumId = forumId;
+	}
+
+	public String getForumId() {
+		return forumId;
 	}
 }
