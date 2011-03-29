@@ -6,18 +6,18 @@ import java.util.Date;
 
 public class Post {
 private int _post_id;
-private int thread_id;
+private int _threadID;
 private String _title;
 private String _body;
-private User owner;
+private User _owner;
 private Date _date;
 
 public Post(int thread_id,int id ,String title ,String body,User owner){
 	this._post_id=id;
 	this._title=title;
 	this._body=body;
-	this.owner=owner;
-	this.thread_id=thread_id;
+	this._owner=owner;
+	this._threadID=thread_id;
 	this._date = new Date();
 }
 
@@ -81,17 +81,17 @@ public void set_body(String _body) {
 
 
 public User getOwner() {
-	return owner;
+	return _owner;
 }
 
 
 
 public void setOwner(User owner) {
-	this.owner = owner;
+	this._owner = owner;
 }
 
 public int getThread_id() {
-	return thread_id;
+	return _threadID;
 }
 
 
@@ -99,7 +99,7 @@ public int getThread_id() {
 
 
 public void setThread_id(int thread_id) {
-	this.thread_id = thread_id;
+	this._threadID = thread_id;
 }
 
 
