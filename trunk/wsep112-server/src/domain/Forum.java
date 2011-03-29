@@ -9,23 +9,24 @@ import common.network.messages.Message;
 
 public class Forum {
 
-	private String name;
+	private String _name;
 	private int _forumId;
-	private Vector<Thread> threads;
-	private Vector<Forum> sub_forums;
-	static int thread_available_id=0;
+	private Vector<Thread> _threads;
+	private Vector<Forum> _subForums;
+	static int _threadAvailableID=0;
+	
 	
 	public Forum (String name,int forumId){
-		this.name=name;
-		this.threads=new Vector<Thread>(0,1);
-		this.sub_forums=new Vector<Forum>(0,1);
+		this._name=name;
+		this._threads=new Vector<Thread>(0,1);
+		this._subForums=new Vector<Forum>(0,1);
 		setForumId(forumId);
 	}
 	
 	public Message reaplyToThread(String title, String body, int threadId,User owner) {
 		
-		for(int i=0;i<this.threads.size();i++){
-			Thread thread=threads.elementAt(i);
+		for(int i=0;i<this._threads.size();i++){
+			Thread thread=_threads.elementAt(i);
 			if(thread.getThread_id()==threadId){
 				return thread.reaply(title, body, owner);
 			}
@@ -37,18 +38,18 @@ public class Forum {
 	
 	//removing the given specific thread from the forum
 	public void deleteThread(int threadId){
-		for(int i=0;i<this.threads.size();i++){
-			if(threads.elementAt(i).getThread_id()==threadId)
-				 threads.remove(i);
+		for(int i=0;i<this._threads.size();i++){
+			if(_threads.elementAt(i).getThread_id()==threadId)
+				 _threads.remove(i);
 		}
 		
 	}
 	
 	//add new thread to the forum , and filling the thread with the given massage
 	public Message add_thread (String title,String body,User owner){
-		Thread new_thread=new Thread(thread_available_id,title);
-		this.threads.add(new_thread);
-		thread_available_id++;
+		Thread new_thread=new Thread(_threadAvailableID,title);
+		this._threads.add(new_thread);
+		_threadAvailableID++;
 		return new_thread.reaply(title, body,owner);
 		
 		
@@ -62,9 +63,9 @@ public class Forum {
 	 */
 	
 	public  Vector<Post> getPostsList (int threadID){
-		for(int i=0;i<this.threads.size();i++){
-			if(threads.elementAt(i).getThread_id()==threadID)
-				return threads.elementAt(i).getPosts();
+		for(int i=0;i<this._threads.size();i++){
+			if(_threads.elementAt(i).getThread_id()==threadID)
+				return _threads.elementAt(i).getPosts();
 		}
 		
 		return null; //meaning that we don't found the thread by the given id;
@@ -72,27 +73,27 @@ public class Forum {
 	}
 	
 	public Vector<Forum> getSub_forums() {
-		return sub_forums;
+		return _subForums;
 	}
 
 	public void setSub_forums(Vector<Forum> sub_forums) {
-		this.sub_forums = sub_forums;
+		this._subForums = sub_forums;
 	}
 	
 	public String getName() {
-		return name;
+		return _name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this._name = name;
 	}
 	
 	public Vector<Thread> getThreads() {
-		return threads;
+		return _threads;
 	}
 
 	public void setThreads(Vector<Thread> threads) {
-		this.threads = threads;
+		this._threads = threads;
 	}
 
 	public void setForumId(int _forumId) {
