@@ -58,7 +58,7 @@ public class ForumController {
 		// Add the user.
 		User newUser = new User(firstName,lastName,username,password,email);
 		_registerdUsers.add(newUser);
-
+		_loginUsers.add(username);
 		return new OKMessage();
 	}
 
@@ -245,7 +245,7 @@ public class ForumController {
 		for (int i=0; i < tThread.size(); ++i){
 			tListOfThreads.add(tThread.get(i).getTitle());
 		}
-
+		
 		sftm.setListOfThreads(tListOfThreads);
 
 		return sftm;
