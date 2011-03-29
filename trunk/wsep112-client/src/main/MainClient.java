@@ -36,11 +36,25 @@ public class MainClient {
 		// creating log file
 		Handler logFileHandler = null;
 		
-		try{
+		boolean error = false;
+		
+		while(true){
 			
-			logFileHandler = new FileHandler("client.log");
+			try{
+				
+				logFileHandler = new FileHandler("client.log");
+				
+				break;
+			}
+			catch(IOException e){
+				
+		    	if (!error){
+		    		
+		    		error = true;
+		    		System.err.println("unable to open file for logging, will try again..");
+		    	}
+			}
 		}
-		catch(IOException e){}
 		
 		logFileHandler.setFormatter(new VerySimpleLogFormatter());
 
@@ -63,6 +77,8 @@ public class MainClient {
 		Registry registry  = null;
 		
 		ForumServer forumServerStub = null;
+		
+		error = false;
 
 		while(true){
 			
@@ -76,8 +92,11 @@ public class MainClient {
 		    }
 		    catch (Exception e){
 		    	
-		        System.err.println("ForumServer exception:");
-		        e.printStackTrace();
+		    	if (!error){
+		    		
+		    		error = true;
+		    		logger.severe("ForumServer exception: cannot connect to the server, will try again..");
+		    	}
 		    }
 		}
         
