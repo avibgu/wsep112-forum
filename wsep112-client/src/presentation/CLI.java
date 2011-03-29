@@ -190,7 +190,7 @@ public class CLI {
 				int tnumInArray= n-1;
 				strArr= Integer.toString(tnumInArray);
 			}
-			if ((n<=length) | (n>0)) { //choose valid forum
+			if ((n<=length) | (n>0) && n!=i) { //choose valid forum
 				ThreadOption(forumID,strArr);
 			}
 		}
