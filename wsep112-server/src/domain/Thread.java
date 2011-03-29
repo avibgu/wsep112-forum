@@ -8,17 +8,17 @@ import common.network.messages.OKMessage;
 
 public class Thread {
 
-	private int thread_id;
-	private String title;
-	private Vector<Post> posts;
-	static int available_post_id=0;
+	private int _threadID;
+	private String _title;
+	private Vector<Post> _posts;
+	static int _available_post_id=0;
 	
 	
 	
 	public Thread (int thread_id,String title){
-		this.posts=new Vector<Post>(0,1);
-		this.thread_id=thread_id;
-		this.title=title;
+		this._posts=new Vector<Post>(0,1);
+		this._threadID=thread_id;
+		this._title=title;
 		
 		
 	}
@@ -33,9 +33,9 @@ public class Thread {
 	//return the new post created un order the user to store it on his list
 	public Message reaply(String title, String body,User owner){
 		
-		Post new_post=new Post(this.thread_id,available_post_id, title, body,owner);
-		available_post_id+=1;//updating the next available post id
-		posts.add(new_post);
+		Post new_post=new Post(this._threadID,_available_post_id, title, body,owner);
+		_available_post_id+=1;//updating the next available post id
+		_posts.add(new_post);
 		owner.addPostToOwnerUser(new_post);//adding the post to owner
 		
 		return new OKMessage();
@@ -49,10 +49,10 @@ public class Thread {
 	 */
 	public Message delete (int post_id,User owner){
 		
-		for(int i=0;i<this.posts.size();i++){
-			if(posts.elementAt(i).get_post_id()==post_id){
-				posts.remove(i);
-				owner.removePost(this.thread_id,post_id);
+		for(int i=0;i<this._posts.size();i++){
+			if(_posts.elementAt(i).get_post_id()==post_id){
+				_posts.remove(i);
+				owner.removePost(this._threadID,post_id);
 				return new OKMessage();
 			}
 		}
@@ -64,27 +64,27 @@ public class Thread {
 	
 	//*************************** GETTERS AND SETTERS ***********************************
 	public int getThread_id() {
-		return thread_id;
+		return _threadID;
 	}
 
 	public void setThread_id(int thread_id) {
-		this.thread_id = thread_id;
+		this._threadID = thread_id;
 	}
 
 	public String getTitle() {
-		return title;
+		return _title;
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		this._title = title;
 	}
 
 	public Vector<Post> getPosts() {
-		return posts;
+		return _posts;
 	}
 
 	public void setPosts(Vector<Post> posts) {
-		this.posts = posts;
+		this._posts = posts;
 	}
 	
 	
