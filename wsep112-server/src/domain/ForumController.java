@@ -21,11 +21,16 @@ public class ForumController {
 	private Vector<User> _registerdUsers;
 	private Set<String> _loginUsers;
 	private Logger logger;
-
+	private Vector<Forum> _forums;
+	static int _availableForumId=0;
+	
 	public ForumController(Logger logger){
 		_registerdUsers = new Vector<User>();
 		_loginUsers = new HashSet<String>();
+		_forums = new Vector<Forum>();
 		setLogger(logger);
+		Forum initialForum = new Forum("Initial forum",_availableForumId);
+		_forums.add(initialForum);
 	}
 	/**
 	 *
@@ -178,9 +183,15 @@ public class ForumController {
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message replyToThread(String title, String body, String threadId, String ownerUsername) {
-            // TODO Auto-generated method stub
-            return new OKMessage();
+    public Message replyToThread(String forumId, String title, String body, String threadId, String ownerUsername) {
+    	if (!isExist(ownerUsername))
+			return new ErrorMessage("Username doesn't exists.");
+    	
+    	 // Find the owner
+		User user = getUser(ownerUsername);
+		
+		// find the forum
+		return _forums.get(Integer.parseInt(forumId)).reaplyToThread(title, body, Integer.parseInt(threadId), user);
     }
 
     /**
@@ -190,9 +201,16 @@ public class ForumController {
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message addThread(String title, String body, String ownerUsername) {
-            // TODO Auto-generated method stub
-            return new OKMessage();
+    public Message addThread(String forumId,String title, String body, String ownerUsername) {
+    	if (!isExist(ownerUsername))
+			return new ErrorMessage("Username doesn't exists.");
+    	
+    	 // Find the owner
+		User user = getUser(ownerUsername);
+		
+		// find the forum
+		return _forums.get(Integer.parseInt(forumId)).add_thread(title, body, user);
+		
     }
 
     /**
@@ -205,7 +223,9 @@ public class ForumController {
 
             Vector<String> listOfForums = new Vector<String>();
 
-            //      TODO: add the forums names to listOfForums
+            for (int i=0; i < _forums.size() ; ++i){
+            	listOfForums.add(_forums.get(i).getName());
+            }
 
             sflm.setListOfForums(listOfForums);
 
@@ -220,11 +240,13 @@ public class ForumController {
 	 */
 	public Message getThreadsList(String forumID, SeeForumThreadsMessage sftm) {
 
-		Vector<String> listOfThreads = new Vector<String>();
+		Vector<String> tListOfThreads = new Vector<String>();
+		Vector<Thread> tThread = _forums.get(Integer.parseInt(forumID)).getThreads(); 
+		for (int i=0; i < tThread.size(); ++i){
+			tListOfThreads.add(tThread.get(i).getTitle());
+		}
 
-		//	TODO: add the threads names to listOfThreads
-
-		sftm.setListOfThreads(listOfThreads);
+		sftm.setListOfThreads(tListOfThreads);
 
 		return sftm;
 	}
@@ -236,13 +258,17 @@ public class ForumController {
 	 *
 	 * @return list of Posts inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Message getPostsList(String threadID, SeeThreadPostsMessage stpm) {
+	public Message getPostsList(String forumID, String threadID, SeeThreadPostsMessage stpm) {
 
-		Vector<String> listOfPosts = new Vector<String>();
+		Vector<String> tListOfPosts = new Vector<String>();
+		Vector<Post> tPost = _forums.get(Integer.parseInt(forumID)).getThreads().get(Integer.parseInt(threadID)).getPosts();
+		for (int i=0; i < tPost.size(); ++i){
+			Post tcurrPost = tPost.get(i);
+			tListOfPosts.add(tcurrPost.get_title() +"\n\n" + tcurrPost.get_body());
+		}
+		
 
-		//	TODO: add the threads names to listOfThreads
-
-		stpm.setListOfPosts(listOfPosts);
+		stpm.setListOfPosts(tListOfPosts);
 
 		return stpm;
 	}

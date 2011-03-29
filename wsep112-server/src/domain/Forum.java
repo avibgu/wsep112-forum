@@ -10,14 +10,16 @@ import common.network.messages.Message;
 public class Forum {
 
 	private String name;
+	private int _forumId;
 	private Vector<Thread> threads;
 	private Vector<Forum> sub_forums;
 	static int thread_available_id=0;
 	
-	public Forum (String name){
+	public Forum (String name,int forumId){
 		this.name=name;
 		this.threads=new Vector<Thread>(0,1);
 		this.sub_forums=new Vector<Forum>(0,1);
+		this.setForumId(forumId);
 	}
 	
 	public Message reaplyToThread(String title, String body, int threadId,User owner) {
@@ -91,6 +93,14 @@ public class Forum {
 
 	public void setThreads(Vector<Thread> threads) {
 		this.threads = threads;
+	}
+
+	public void setForumId(int _forumId) {
+		this._forumId = _forumId;
+	}
+
+	public int getForumId() {
+		return _forumId;
 	}
 
 	
