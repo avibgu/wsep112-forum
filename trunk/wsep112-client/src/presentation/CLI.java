@@ -131,13 +131,14 @@ public class CLI {
 				System.out.println("2. Add new thread");
 				System.out.println("3. Back");
 				str = buf.readLine();
-			}
 	    	if (str.equals("1")){ //view threads
 	    		ViewThreads(forumID);
 	        }
 	        else if (str.equals("2")){ //add new thread
 	        	addThread(forumID);
-	        }
+	        	}
+			}
+			str="";
 		}
 	}
 
@@ -152,8 +153,6 @@ public class CLI {
 			System.out.println( ((ErrorMessage)answer).getReason() );
 			return;
 		}
-     	
-     	
 	}
 
 	private void ViewThreads(String forumID) throws IOException {
