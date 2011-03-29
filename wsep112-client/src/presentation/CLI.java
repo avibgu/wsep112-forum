@@ -193,6 +193,7 @@ public class CLI {
 			if ((n<=length) | (n>0) && n!=i) { //choose valid forum
 				ThreadOption(forumID,strArr);
 			}
+		
 		}
 	}
 
