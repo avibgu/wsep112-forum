@@ -21,6 +21,12 @@ import common.network.messages.MessageType;
 import common.network.messages.OKMessage;
 import common.network.messages.RegMessage;
 import common.network.messages.RemoveFriendMessage;
+import common.network.messages.AddThreadMessage;
+import common.network.messages.AddPostMessage;
+import common.network.messages.SeeForumThreadsMessage;
+import common.network.messages.SeeThreadPostsMessage;
+import common.network.messages.SeeThreadPostsMessage;
+import common.network.messages.SeeForumsListMessage;
 
 /**
  * @author Avi Digmi
@@ -178,7 +184,20 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testReplyToThread() {
-		fail("Not yet implemented");
+		RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234");
+		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay");
+		AddPostMessage add_post_msg=new AddPostMessage("0","new post", "shalom shalom","0","avishay");
+		LogoutMessage logoutMessage = new LogoutMessage("avishay");
+		try {
+			
+			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(add_post_msg).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
+		}
+		catch (RemoteException e) { e.printStackTrace(); }
 	}
 
 	/**
@@ -186,7 +205,19 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testAddThread() {
-		fail("Not yet implemented");
+		RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234");
+		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay");
+		LogoutMessage logoutMessage = new LogoutMessage("avishay");
+		
+		try {
+			
+			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
+		}
+		catch (RemoteException e) { e.printStackTrace();}
 	}
 
 	/**
@@ -202,7 +233,23 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testGetThreadsList() {
-		fail("Not yet implemented");
+		RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234");
+		AddThreadMessage add_thread_msg1=new AddThreadMessage("0","new thread1","shalom shalom","avishay");
+		AddThreadMessage add_thread_msg2=new AddThreadMessage("0","new thread2","shalom shalom","avishay");
+		SeeForumThreadsMessage seeForumThreadsMsg= new SeeForumThreadsMessage("0");
+		LogoutMessage logoutMessage = new LogoutMessage("avishay");
+		
+		try {
+			
+			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg1).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg2).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(seeForumThreadsMsg).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
+		}
+		catch (RemoteException e) { e.printStackTrace();}
 	}
 
 	/**
@@ -210,7 +257,24 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testGetPostsList() {
-		fail("Not yet implemented");
+		RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234");
+		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay");
+		AddPostMessage add_post_msg1=new AddPostMessage("0","new post1", "shalom shalom","0","avishay");
+		AddPostMessage add_post_msg2=new AddPostMessage("0","new post2", "shalom shalom","0","avishay");
+		SeeThreadPostsMessage seeThreadPostMsg= new SeeThreadPostsMessage("0","0");
+		LogoutMessage logoutMessage = new LogoutMessage("avishay");
+		try {
+			
+			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(add_post_msg1).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(add_post_msg2).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(seeThreadPostMsg).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
+		}
+		catch (RemoteException e) { e.printStackTrace(); }
 	}
 
 	/**
