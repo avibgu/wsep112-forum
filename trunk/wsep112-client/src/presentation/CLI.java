@@ -54,13 +54,19 @@ public class CLI {
 			System.out.println();
 			key = readFromUser();
 	        if (key.equals("1")) {
-	        	register();
-	        	subMenu();
+	        	Message answer= register();
+	        	if (answer.getMessageType() == MessageType.ERROR){
+	    			System.out.println( ((ErrorMessage)answer).getReason() );
+	    		}
+	        	else subMenu();
 	        }
 	        else {
 	        	if (key.equals("2")){
-	        		login();
-	        		subMenu();
+	        		Message answer= login();
+	        		if (answer.getMessageType() == MessageType.ERROR){
+	        			System.out.println( ((ErrorMessage)answer).getReason() );
+	        		}
+	        		else subMenu();
 	        	}
 	        }
 		}
@@ -261,7 +267,7 @@ public class CLI {
 		return str;
 	}
 
-	public void register() throws IOException {
+	public Message register() throws IOException {
 		System.out.println("Please insert your firstName");
 		String firstName = buf.readLine();
 		System.out.println("Please insert your lastName");
@@ -273,22 +279,16 @@ public class CLI {
 		System.out.println("Please insert your email");
 		String email = buf.readLine();
 		
-		Message answer = clientController.register(firstName, lastName, username, password, email);
-		if (answer.getMessageType() == MessageType.ERROR){
-			System.out.println( ((ErrorMessage)answer).getReason() );
-		}
+		return clientController.register(firstName, lastName, username, password, email);
 	}
 
-	public void login() throws IOException {
+	public Message login() throws IOException {
 		System.out.println("Please insert your username");
 		String username = buf.readLine();
 		System.out.println("Please insert your password");
 		String password = buf.readLine();
 		
-		Message answer = clientController.login(username, password);
-		if (answer.getMessageType() == MessageType.ERROR){
-			System.out.println( ((ErrorMessage)answer).getReason() );
-		}
+		return clientController.login(username, password);
 	}
 
 	public void logout() throws IOException {
