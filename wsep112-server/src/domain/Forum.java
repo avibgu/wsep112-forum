@@ -19,7 +19,7 @@ public class Forum {
 		this.name=name;
 		this.threads=new Vector<Thread>(0,1);
 		this.sub_forums=new Vector<Forum>(0,1);
-		this.setForumId(forumId);
+		setForumId(forumId);
 	}
 	
 	public Message reaplyToThread(String title, String body, int threadId,User owner) {
