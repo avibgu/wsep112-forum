@@ -203,7 +203,7 @@ public class CLI {
 				str = buf.readLine();
 			}
 	    	if (str.equals("1")){ //view threads
-	    		ViewPosts(threadID);
+	    		ViewPosts(forumID,threadID);
 	        }
 	        else if (str.equals("2")){ //add new thread
 	        	addPost(forumID,threadID);
@@ -224,9 +224,9 @@ public class CLI {
 		
 	}
 
-	private void ViewPosts(String threadID) throws IOException {
+	private void ViewPosts(String forumID,String threadID) throws IOException {
 		String str = "";
-		Message answer = clientController.getPostsList(threadID);
+		Message answer = clientController.getPostsList(forumID,threadID);
 
 		if (answer.getMessageType() == MessageType.ERROR){
 			System.out.println( ((ErrorMessage)answer).getReason() );
@@ -239,19 +239,12 @@ public class CLI {
 		int i = 1;
 		while (n!=i) { //loop until press 'Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
-			while ((n>length+1) | (n<=0)) {
-				if (str!="") System.out.println("Incorrect input!");
-				System.out.println("Please choose one of the following options:");
 				for (i=1; i<=length; i++){
 					System.out.println(i + "." + postsList.get(i-1));
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
 				n = Integer.parseInt(str);
-			}
-			if ((n<=length) | (n>0)) { //choose valid forum
-				postsList.get(n-1);										///***toChange
-			}
 		}
 	}
 
