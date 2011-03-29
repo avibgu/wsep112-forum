@@ -21,8 +21,9 @@ public class SeeThreadPostsMessage implements Message, Serializable {
 	/**
 	 * @param threadId
 	 */
-	public SeeThreadPostsMessage(String threadID) {
+	public SeeThreadPostsMessage(String forumID, String threadID) {
 		super();
+		setForumID(forumID);
 		setThreadID(threadID);
 	}
 
