@@ -46,7 +46,7 @@ public class ForumController {
 			String password, String email) {
 		// Check if the username is already in use.
 		if (isExist(username.toLowerCase())){
-			return new ErrorMessage("username is already exists.");
+			return new ErrorMessage("Username is already exists.");
 		}
 
 		// Check if when of the parameters is empty.
@@ -125,8 +125,8 @@ public class ForumController {
 	public Message logout(String username) {
 
 		// Check is username exists.
-		if (!isExist(username))
-			return new ErrorMessage("Username doesn't exists.");
+		//if (!isExist(username))
+			//return new ErrorMessage("Username doesn't exists.");
 
 		User logoutUser = getUser(username);
 		logoutUser.setStatus(Status.OFFLINE);
@@ -149,7 +149,7 @@ public class ForumController {
 			return new ErrorMessage("Username doesn't exists.");
 		// Check is friendUsername exists.
 		if (!isExist(friendUsername))
-			return new ErrorMessage("friend Username doesn't exists.");
+			return new ErrorMessage("Friend Username doesn't exists.");
 
 
 		User user = getUser(username);
@@ -169,7 +169,7 @@ public class ForumController {
 			return new ErrorMessage("Username doesn't exists.");
 		// Check is friendUsername exists.
 		if (!isExist(friendUsername))
-			return new ErrorMessage("friend Username doesn't exists.");
+			return new ErrorMessage("Friend Username doesn't exists.");
 
 		User user = getUser(username);
 		return user.removeFriend(friendUsername);
