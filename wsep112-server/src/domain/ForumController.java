@@ -125,8 +125,8 @@ public class ForumController {
 	public Message logout(String username) {
 
 		// Check is username exists.
-		//if (!isExist(username))
-			//return new ErrorMessage("Username doesn't exists.");
+		if (!isExist(username))
+			return new ErrorMessage("Username doesn't exists.");
 
 		User logoutUser = getUser(username);
 		logoutUser.setStatus(Status.OFFLINE);
