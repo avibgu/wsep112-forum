@@ -110,10 +110,11 @@ public class ClientController {
 	 */
 	public Message logout() {
 		
-		setCurrentLogedInUsername("");
 
 		LogoutMessage lm = new LogoutMessage(getCurrentLogedInUsername());
 
+		setCurrentLogedInUsername("");
+		
 		try {
 			
 			Message answer = getForumServerStub().setInformation(lm);
