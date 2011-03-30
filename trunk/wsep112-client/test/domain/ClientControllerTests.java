@@ -25,8 +25,7 @@ import common.network.messages.AddThreadMessage;
 import common.network.messages.AddPostMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeThreadPostsMessage;
-import common.network.messages.SeeThreadPostsMessage;
-import common.network.messages.SeeForumsListMessage;
+
 
 /**
  * @author Avi Digmi
