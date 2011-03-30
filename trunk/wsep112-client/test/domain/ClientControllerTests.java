@@ -17,6 +17,7 @@ import common.network.ForumServer;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.LoginMessage;
 import common.network.messages.LogoutMessage;
+import common.network.messages.Message;
 import common.network.messages.MessageType;
 import common.network.messages.OKMessage;
 import common.network.messages.RegMessage;
@@ -24,6 +25,7 @@ import common.network.messages.RemoveFriendMessage;
 import common.network.messages.AddThreadMessage;
 import common.network.messages.AddPostMessage;
 import common.network.messages.SeeForumThreadsMessage;
+import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeThreadPostsMessage;
 
 
@@ -224,7 +226,27 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testGetForumsList() {
-		fail("Not yet implemented");
+		
+		RegMessage regMessage = new RegMessage("dagsd", "asdgas", "wrgsd", "asdgasdg", "asdgasdf@bgu.ac.il");
+		LoginMessage loginMessage = new LoginMessage("wrgsd", "asdgasdg");
+		
+		SeeForumsListMessage seeForumThreadsMsg = new SeeForumsListMessage();
+		
+		LogoutMessage logoutMessage = new LogoutMessage("wrgsd");
+		
+		try {
+			
+			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
+			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
+			
+			Message answer = forumServerStub.getInformation(seeForumThreadsMsg);
+			
+			assertEquals(MessageType.SEE_FORUMS_LIST, answer.getMessageType());
+			assertEquals(1, ((SeeForumsListMessage)answer).getListOfForums().size());
+			
+			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
+		}
+		catch (RemoteException e) { e.printStackTrace();}
 	}
 
 	/**
@@ -275,21 +297,4 @@ public class ClientControllerTests {
 		}
 		catch (RemoteException e) { e.printStackTrace(); }
 	}
-
-	/**
-	 * Test method for {@link domain.ClientController#setForumServerStub(common.network.ForumServer)}.
-	 */
-	@Test
-	public void testSetForumServerStub() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link domain.ClientController#getForumServerStub()}.
-	 */
-	@Test
-	public void testGetForumServerStub() {
-		fail("Not yet implemented");
-	}
-
 }
