@@ -205,14 +205,14 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testAddThread() {
-		RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
+		//RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
 		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234");
 		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay");
 		LogoutMessage logoutMessage = new LogoutMessage("avishay");
 		
 		try {
 			
-			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
+			//assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
@@ -233,7 +233,7 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testGetThreadsList() {
-		RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
+		//RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
 		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234");
 		AddThreadMessage add_thread_msg1=new AddThreadMessage("0","new thread1","shalom shalom","avishay");
 		AddThreadMessage add_thread_msg2=new AddThreadMessage("0","new thread2","shalom shalom","avishay");
@@ -242,11 +242,11 @@ public class ClientControllerTests {
 		
 		try {
 			
-			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
+			//assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg1).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg2).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(seeForumThreadsMsg).getMessageType());
+			assertEquals(MessageType.SEE_FORUM_THREADS, forumServerStub.getInformation(seeForumThreadsMsg).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
 		}
 		catch (RemoteException e) { e.printStackTrace();}
@@ -257,7 +257,7 @@ public class ClientControllerTests {
 	 */
 	@Test
 	public void testGetPostsList() {
-		RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
+		//RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
 		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234");
 		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay");
 		AddPostMessage add_post_msg1=new AddPostMessage("0","new post1", "shalom shalom","0","avishay");
@@ -266,12 +266,12 @@ public class ClientControllerTests {
 		LogoutMessage logoutMessage = new LogoutMessage("avishay");
 		try {
 			
-			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
+			//assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(add_post_msg1).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(add_post_msg2).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(seeThreadPostMsg).getMessageType());
+			assertEquals(MessageType.SEE_POSTS_OF_SOME_THREAD, forumServerStub.getInformation(seeThreadPostMsg).getMessageType());
 			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
 		}
 		catch (RemoteException e) { e.printStackTrace(); }
