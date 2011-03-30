@@ -139,7 +139,7 @@ public class User {
 
 		// Check if the username is already in his friends
 		if (isExistUser(userNameFriend.toLowerCase())){
-			return new ErrorMessage("friend is already exists in user's list.");
+			return new ErrorMessage("Friend is already exists in user's list.");
 		}
 
 		_friends.add(userNameFriend);
@@ -158,7 +158,7 @@ public class User {
 			_friends.removeElementAt(this.getFriendIndex(userNameFriend));
 			return new OKMessage();
 		}
-		return new ErrorMessage("friend is not exists in user's list.");
+		return new ErrorMessage("Friend is not exists in user's list.");
 	}
 
 	/**
