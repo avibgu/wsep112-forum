@@ -160,7 +160,6 @@ public class CLI {
 				if (!str.equals("")){
 					if (validInput(i,str)){
 						n = Integer.parseInt(str);
-						System.out.println("n is"+n);
 						int tnumInArray= n-1;
 						strArr= Integer.toString(tnumInArray);
 						if (n==i) break;
