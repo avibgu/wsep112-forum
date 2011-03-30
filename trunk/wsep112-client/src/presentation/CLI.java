@@ -72,6 +72,19 @@ public class CLI {
 		}
        }
 
+	public String readFromUser() throws IOException {
+		String str ="";
+		while ( !(str.equals("1")) &  !(str.equals("2")) &  !(str.equals("3"))){
+			if (!(str.equals(""))) System.out.println("Incorrect input!");
+			System.out.println("Please choose one of the following options:");
+			System.out.println("1. Register to the forum system");
+			System.out.println("2. Login to the forum system");
+			System.out.println("3. Exit");
+			str = buf.readLine();
+		}
+		return str;
+	}
+	
 	public void subMenu() throws IOException{
 		String str="";
         while (!str.equals("4")){ //loop until press '4. Back'
@@ -79,9 +92,11 @@ public class CLI {
         	str = forumSystem();
         	if (str.equals("1")){ //manage friends list
             	manageFriends();
+            	str="";
             }
             else if (str.equals("2")){ //view list of forums
             	viewForums();
+            	str="";
             }
             else if (str.equals("3")){ //logout from the system
             	logout();
@@ -89,19 +104,28 @@ public class CLI {
             }
         }
 	}
+	
+	public String forumSystem() throws IOException {
+		String str = "";
+		while ( !(str.equals("1")) &  !(str.equals("2")) & !(str.equals("3")) ){
+			if (!(str.equals(""))) System.out.println("Incorrect input!");
+			System.out.println("Please choose one of the following options:");
+			System.out.println("1. Manage friends list");
+			System.out.println("2. View list of forums");
+			System.out.println("3. Logout from the system");
+			str = buf.readLine();
+		}
+		return str;
+    }
 
 	private void viewForums() throws IOException {
 		String str = "";
-
 		Message answer = clientController.getForumsList();
-
 		if (answer.getMessageType() == MessageType.ERROR){
 			System.out.println( ((ErrorMessage)answer).getReason() );
 			return;
 		}
-
-		Vector<String> forumList = ((SeeForumsListMessage)answer).getListOfForums(); ////********************************
-
+		Vector<String> forumList = ((SeeForumsListMessage)answer).getListOfForums(); 
 		int length = forumList.size();
 		int n = 0;
 		int i = 1;
@@ -109,9 +133,9 @@ public class CLI {
 		while (n!=i) { //loop until press 'Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 			while ((n>length+1) | (n<=0)) {
-				System.out.println("Please choose one of the following options:");
+				System.out.println("Please choose one of the following fourms:");
 				for (i=1; i<=length; i++){
-					System.out.println(i + "." + forumList.get(i-1));
+					System.out.println(i + ". " + forumList.get(i-1));
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
@@ -123,6 +147,7 @@ public class CLI {
 	    	if ((n<=length) | (n>0) && (n!=i)) { //choose valid forum
 				forumOption(strArr);
 				n = 0;
+				str="";
 			}
 		}
 	}
@@ -132,7 +157,7 @@ public class CLI {
 		while (!(str.equals("3"))) { //loop until press '3. Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 			while ( !(str.equals("1")) &  !(str.equals("2")) & !(str.equals("3")) ){
-				if (str!="") System.out.println("Incorrect input!");
+				if (!(str.equals(""))) System.out.println("Incorrect input!");
 				System.out.println("Please choose one of the following options:");
 				System.out.println("1. View threads");
 				System.out.println("2. Add new thread");
@@ -141,9 +166,11 @@ public class CLI {
 			}
 			if (str.equals("1")){ //view threads
 	    		ViewThreads(forumID);
+	    		str="";
 	        }
 	        else if (str.equals("2")){ //add new thread
 	        	addThread(forumID);
+	        	str="";
 	        	}
 		}
 	}
@@ -153,8 +180,7 @@ public class CLI {
 		String title = buf.readLine();
 		System.out.println("Please insert the body of the thread");
 		String body = buf.readLine();
-     	
-     	Message answer = clientController.addThread(forumID,title, body);
+       	Message answer = clientController.addThread(forumID,title, body);
 		if (answer.getMessageType() == MessageType.ERROR){
 			System.out.println( ((ErrorMessage)answer).getReason() );
 			return;
@@ -164,14 +190,11 @@ public class CLI {
 	private void ViewThreads(String forumID) throws IOException {
 		String str = "";
 		Message answer = clientController.getThreadsList(forumID);
-
 		if (answer.getMessageType() == MessageType.ERROR){
 			System.out.println( ((ErrorMessage)answer).getReason() );
 			return;
 		}
-
-		Vector<String> threadList = ((SeeForumThreadsMessage)answer).getListOfThreads(); ////********************************
-
+		Vector<String> threadList = ((SeeForumThreadsMessage)answer).getListOfThreads();
 		int length = threadList.size();
 		int n = 0;
 		int i = 1;
@@ -179,10 +202,10 @@ public class CLI {
 		while (n!=i) { //loop until press 'Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 			while ((n>length+1) | (n<=0)) {
-				if (str!="") System.out.println("Incorrect input!");
-				System.out.println("Please choose one of the following options:");
+				if (!(str.equals(""))) System.out.println("Incorrect input!");
+				System.out.println("Please choose one of the following threads:");
 				for (i=1; i<=length; i++){
-					System.out.println(i + "." + threadList.get(i-1));
+					System.out.println(i + ". " + threadList.get(i-1));
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
@@ -192,17 +215,18 @@ public class CLI {
 			}
 			if ((n<=length) | (n>0) && n!=i) { //choose valid forum
 				ThreadOption(forumID,strArr);
+				n=0;
+				str="";
 			}
-		
 		}
 	}
 
 	public void ThreadOption(String forumID, String threadID) throws IOException {
 		String str = "";
-		 while (!str.equals("3")){ //loop until press '3. Back'
+		 while (!(str.equals("3"))){ //loop until press '3. Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 			while ( !(str.equals("1")) &  !(str.equals("2")) & !(str.equals("3")) ){
-				if (str!="") System.out.println("Incorrect input!");
+				if (!(str.equals(""))) System.out.println("Incorrect input!");
 				System.out.println("Please choose one of the following options:");
 				System.out.println("1. View posts");
 				System.out.println("2. Add new post");
@@ -211,9 +235,11 @@ public class CLI {
 			}
 	    	if (str.equals("1")){ //view threads
 	    		ViewPosts(forumID,threadID);
+		    	str="";
 	        }
 	        else if (str.equals("2")){ //add new thread
 	        	addPost(forumID,threadID);
+		    	str="";
 	        }
 	 	}
 	}
@@ -223,7 +249,6 @@ public class CLI {
 		String title = buf.readLine();
 		System.out.println("Please insert the body of the post");
 		String body = buf.readLine();
-		
 		Message answer = clientController.replyToThread(forumID,title, body, threadId);
 		if (answer.getMessageType() == MessageType.ERROR){
 			System.out.println( ((ErrorMessage)answer).getReason() );
@@ -234,13 +259,11 @@ public class CLI {
 	private void ViewPosts(String forumID,String threadID) throws IOException {
 		String str = "";
 		Message answer = clientController.getPostsList(forumID,threadID);
-
 		if (answer.getMessageType() == MessageType.ERROR){
 			System.out.println( ((ErrorMessage)answer).getReason() );
+			return;
 		}
-
-		Vector<String> postsList = ((SeeThreadPostsMessage)answer).getListOfPosts(); ////********************************
-
+		Vector<String> postsList = ((SeeThreadPostsMessage)answer).getListOfPosts();
 		int length = postsList.size();
 		int n = 0;
 		int i = 1;
@@ -253,20 +276,6 @@ public class CLI {
 				str = buf.readLine();
 				n = Integer.parseInt(str);
 		}
-	
-	}
-
-	public String readFromUser() throws IOException {
-		String str ="";
-		while ( !(str.equals("1")) &  !(str.equals("2")) &  !(str.equals("3"))){
-			if (str!="") System.out.println("Incorrect input!");
-			System.out.println("Please choose one of the following options:");
-			System.out.println("1. Register to the forum system");
-			System.out.println("2. Login to the forum system");
-			System.out.println("3. Exit");
-			str = buf.readLine();
-		}
-		return str;
 	}
 
 	public Message register() throws IOException {
@@ -280,7 +289,6 @@ public class CLI {
 		String password = buf.readLine();
 		System.out.println("Please insert your email");
 		String email = buf.readLine();
-		
 		return clientController.register(firstName, lastName, username, password, email);
 	}
 
@@ -289,7 +297,6 @@ public class CLI {
 		String username = buf.readLine();
 		System.out.println("Please insert your password");
 		String password = buf.readLine();
-		
 		return clientController.login(username, password);
 	}
 
@@ -300,26 +307,12 @@ public class CLI {
 		}
 	}
 
-	public String forumSystem() throws IOException {
-		String str = "";
-		while ( !(str.equals("1")) &  !(str.equals("2")) & !(str.equals("3")) & !(str.equals("4")) ){
-			if (str!="") System.out.println("Incorrect input!");
-			System.out.println("Please choose one of the following options:");
-			System.out.println("1. Manage friends list");
-			System.out.println("2. View list of forums");
-			System.out.println("3. Logout from the system");
-			System.out.println("4. Back");
-			str = buf.readLine();
-		}
-		return str;
-    }
-
 	public void manageFriends() throws IOException {
 		String str = "";
 		while (!(str.equals("3"))) { //loop until press '3. Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 			while ( !(str.equals("1")) &  !(str.equals("2")) & !(str.equals("3"))){
-				if (str!="") System.out.println("Incorrect input!");
+				if (!(str.equals(""))) System.out.println("Incorrect input!");
 				System.out.println("Please choose one of the following options:");
 				System.out.println("1. Add friend");
 				System.out.println("2. Remove friend");
