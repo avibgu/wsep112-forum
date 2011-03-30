@@ -214,8 +214,6 @@ public class User {
 		return false;
 	}
 
-
-
 	/**
 	 *
 	 * @param username username of friend
@@ -242,8 +240,4 @@ public class User {
 		}
 		return -1;
 	}
-
-
-
-
 }
