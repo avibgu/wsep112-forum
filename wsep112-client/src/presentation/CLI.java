@@ -46,7 +46,7 @@ public class CLI {
 	 */
 	public void start() throws IOException {
 		String key="";
-		while (key!="3"){//loop until user press '3. Exit'
+		while (!(key.equals("3"))){//loop until user press '3. Exit'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 			System.out.println("****************************************");
 			System.out.println("***** Welcome to Forum System 2011 *****");
@@ -109,7 +109,6 @@ public class CLI {
 		while (n!=i) { //loop until press 'Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 			while ((n>length+1) | (n<=0)) {
-				if (str!="") System.out.println("Incorrect input!");
 				System.out.println("Please choose one of the following options:");
 				for (i=1; i<=length; i++){
 					System.out.println(i + "." + forumList.get(i-1));
@@ -119,9 +118,11 @@ public class CLI {
 				n = Integer.parseInt(str);
 				int tnumInArray= n-1;
 				strArr= Integer.toString(tnumInArray);
+				if (n==i) break;
 			}
-	    	if ((n<=length) | (n>0)) { //choose valid forum
+	    	if ((n<=length) | (n>0) && (n!=i)) { //choose valid forum
 				forumOption(strArr);
+				n = 0;
 			}
 		}
 	}
@@ -137,14 +138,13 @@ public class CLI {
 				System.out.println("2. Add new thread");
 				System.out.println("3. Back");
 				str = buf.readLine();
-	    	if (str.equals("1")){ //view threads
+			}
+			if (str.equals("1")){ //view threads
 	    		ViewThreads(forumID);
 	        }
 	        else if (str.equals("2")){ //add new thread
 	        	addThread(forumID);
 	        	}
-			}
-			str="";
 		}
 	}
 
@@ -199,7 +199,7 @@ public class CLI {
 
 	public void ThreadOption(String forumID, String threadID) throws IOException {
 		String str = "";
-		while (!(str.equals("3"))) { //loop until press '3. Back'
+		 while (!str.equals("3")){ //loop until press '3. Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 			while ( !(str.equals("1")) &  !(str.equals("2")) & !(str.equals("3")) ){
 				if (str!="") System.out.println("Incorrect input!");
@@ -211,11 +211,9 @@ public class CLI {
 			}
 	    	if (str.equals("1")){ //view threads
 	    		ViewPosts(forumID,threadID);
-	    		str="";
 	        }
 	        else if (str.equals("2")){ //add new thread
 	        	addPost(forumID,threadID);
-	        	str="";
 	        }
 	 	}
 	}
@@ -337,6 +335,8 @@ public class CLI {
 					System.out.println( ((ErrorMessage)answer).getReason() );
 					return;
 				}
+				System.out.println("Friend "+friendUsername+ " added successfully.");
+				str = "";
 			}
 
 			if (str.equals("2")){//remove friend
@@ -347,6 +347,8 @@ public class CLI {
 					System.out.println( ((ErrorMessage)answer).getReason() );
 					return;
 				}
+				System.out.println("Friend "+friendUsername+ " removed successfully.");
+				str = "";
 			}
 		}
     }
