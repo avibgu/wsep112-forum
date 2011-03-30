@@ -13,14 +13,10 @@ public class Thread {
 	private Vector<Post> _posts;
 	static int _available_post_id=0;
 	
-	
-	
 	public Thread (int thread_id,String title){
 		this._posts=new Vector<Post>(0,1);
 		this._threadID=thread_id;
 		this._title=title;
-		
-		
 	}
 	
 	/**
@@ -59,8 +55,6 @@ public class Thread {
 		
 		 return new ErrorMessage("post doesn't exists.");
 	}
-
-	
 	
 	//*************************** GETTERS AND SETTERS ***********************************
 	public int getThread_id() {
@@ -86,7 +80,4 @@ public class Thread {
 	public void setPosts(Vector<Post> posts) {
 		this._posts = posts;
 	}
-	
-	
-	
 }
