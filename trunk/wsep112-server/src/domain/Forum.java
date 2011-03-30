@@ -15,7 +15,6 @@ public class Forum {
 	private Vector<Forum> _subForums;
 	static int _threadAvailableID=0;
 	
-	
 	public Forum (String name,int forumId){
 		this._name=name;
 		this._threads=new Vector<Thread>(0,1);
@@ -23,6 +22,14 @@ public class Forum {
 		setForumId(forumId);
 	}
 	
+	/**
+	 * 
+	 * @param title
+	 * @param body
+	 * @param threadId
+	 * @param owner
+	 * @return
+	 */
 	public Message reaplyToThread(String title, String body, int threadId,User owner) {
 		
 		for(int i=0;i<this._threads.size();i++){
@@ -36,6 +43,10 @@ public class Forum {
 		
 	}
 	
+	/**
+	 * 
+	 * @param threadId
+	 */
 	//removing the given specific thread from the forum
 	public void deleteThread(int threadId){
 		for(int i=0;i<this._threads.size();i++){
@@ -45,6 +56,13 @@ public class Forum {
 		
 	}
 	
+	/**
+	 * 
+	 * @param title
+	 * @param body
+	 * @param owner
+	 * @return
+	 */
 	//add new thread to the forum , and filling the thread with the given massage
 	public Message add_thread (String title,String body,User owner){
 		Thread new_thread=new Thread(_threadAvailableID,title);
@@ -55,13 +73,11 @@ public class Forum {
 		
 	}
 	
-	
 	/**
 	 * returns list of posts of given thread id
 	 * @param threadID
 	 * @return list of posts related to the given thread
 	 */
-	
 	public  Vector<Post> getPostsList (int threadID){
 		for(int i=0;i<this._threads.size();i++){
 			if(_threads.elementAt(i).getThread_id()==threadID)
@@ -72,38 +88,67 @@ public class Forum {
 		
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public Vector<Forum> getSub_forums() {
 		return _subForums;
 	}
 
+	/**
+	 * 
+	 * @param sub_forums
+	 */
 	public void setSub_forums(Vector<Forum> sub_forums) {
 		this._subForums = sub_forums;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getName() {
 		return _name;
 	}
 
+	/**
+	 * 
+	 * @param name
+	 */
 	public void setName(String name) {
 		this._name = name;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public Vector<Thread> getThreads() {
 		return _threads;
 	}
 
+	/**
+	 * 
+	 * @param threads
+	 */
 	public void setThreads(Vector<Thread> threads) {
 		this._threads = threads;
 	}
 
+	/**
+	 * 
+	 * @param _forumId
+	 */
 	public void setForumId(int _forumId) {
 		this._forumId = _forumId;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getForumId() {
 		return _forumId;
 	}
-
-	
-	
 }

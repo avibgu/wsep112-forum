@@ -72,7 +72,6 @@ public class ForumController {
 			if ((_registerdUsers.get(i).getUserName()).equals(username))
 				return true;
 		}
-
 		return false;
 	}
 
@@ -98,7 +97,6 @@ public class ForumController {
 
 		loginUser.setStatus(Status.ONLINE);
 		_loginUsers.add(username);
-
 		return new OKMessage();
 	}
 
@@ -126,13 +124,12 @@ public class ForumController {
 
 		// Check is username exists.
 		if (!isExist(username))
-			return new ErrorMessage("Username doesn't exists.");
+			return new ErrorMessage("Username doesn't exists.Shjran");
 
 		User logoutUser = getUser(username);
 		logoutUser.setStatus(Status.OFFLINE);
 
 		_loginUsers.remove(username);
-
 		return new OKMessage();
 	}
 
@@ -222,13 +219,11 @@ public class ForumController {
     public Message getForumsList(SeeForumsListMessage sflm) {
 
             Vector<String> listOfForums = new Vector<String>();
-
             for (int i=0; i < _forums.size() ; ++i){
             	listOfForums.add(_forums.get(i).getName());
             }
 
             sflm.setListOfForums(listOfForums);
-
             return sflm;
     }
 
@@ -247,7 +242,6 @@ public class ForumController {
 		}
 		
 		sftm.setListOfThreads(tListOfThreads);
-
 		return sftm;
 	}
 
@@ -266,20 +260,28 @@ public class ForumController {
 			tListOfPosts.add("Title:   " + tcurrPost.get_title() +"\n  Date:    " + tcurrPost.getDateTime() + "\n  Message: " + tcurrPost.get_body());
 		}
 		
-
 		stpm.setListOfPosts(tListOfPosts);
 
 		return stpm;
 	}
-
+	/**
+	 * 
+	 * @param logger
+	 */
 	public void setLogger(Logger logger) {
 		this.logger = logger;
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public Logger getLogger() {
 		return logger;
 	}
-
+	/**
+	 * 
+	 * @param msg
+	 */
 	public void log(String msg){
 		getLogger().info(msg);
 	}
