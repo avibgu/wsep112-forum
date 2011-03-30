@@ -48,7 +48,9 @@ public class CLI {
 		while (!(key.equals("3"))){//loop until user press '3. Exit'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 			System.out.println("****************************************");
+			System.out.println("*                                      *");
 			System.out.println("*     Welcome to Forum System 2011     *");
+			System.out.println("*                                      *");
 			System.out.println("****************************************");
 			System.out.println();
 			key = readFromUser();
