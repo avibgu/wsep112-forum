@@ -72,6 +72,11 @@ public class CLI {
 		}
        }
 
+	/**
+	 * Reads data from the user- Main menu
+	 * @return
+	 * @throws IOException
+	 */
 	public String readFromUser() throws IOException {
 		String str ="";
 		while ( !(str.equals("1")) &  !(str.equals("2")) &  !(str.equals("3"))){
@@ -85,6 +90,10 @@ public class CLI {
 		return str;
 	}
 	
+	/**
+	 * Sub Menu
+	 * @throws IOException
+	 */
 	public void subMenu() throws IOException{
 		String str="";
         while (!str.equals("4")){ //loop until press '4. Back'
@@ -105,6 +114,11 @@ public class CLI {
         }
 	}
 	
+	/**
+	 * 
+	 * @return
+	 * @throws IOException
+	 */
 	public String forumSystem() throws IOException {
 		String str = "";
 		while ( !(str.equals("1")) &  !(str.equals("2")) & !(str.equals("3")) ){
@@ -118,6 +132,10 @@ public class CLI {
 		return str;
     }
 
+	/**
+	 * View all forums
+	 * @throws IOException
+	 */
 	private void viewForums() throws IOException {
 		String str = "";
 		Message answer = clientController.getForumsList();
@@ -139,10 +157,17 @@ public class CLI {
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
-				n = Integer.parseInt(str);
-				int tnumInArray= n-1;
-				strArr= Integer.toString(tnumInArray);
-				if (n==i) break;
+				if (!str.equals("")){
+					if (validInput(i,str)){
+						n = Integer.parseInt(str);
+						System.out.println("n is"+n);
+						int tnumInArray= n-1;
+						strArr= Integer.toString(tnumInArray);
+						if (n==i) break;
+					}
+					else System.out.println("Incorrect input!");
+					
+				}
 			}
 	    	if ((n<=length) | (n>0) && (n!=i)) { //choose valid forum
 				forumOption(strArr);
@@ -151,7 +176,26 @@ public class CLI {
 			}
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param num
+	 * @param input
+	 * @return true if the str input is valid in menu according to num choice
+	 */
+	public boolean validInput(int num, String input){
+		for (int i=1; i<=num; i++){
+			if (input.equals(Integer.toString(i)))
+				return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Forum Menu
+	 * @param forumID
+	 * @throws IOException
+	 */
 	public void forumOption(String forumID) throws IOException {
 		String str = "";
 		while (!(str.equals("3"))) { //loop until press '3. Back'
@@ -175,6 +219,11 @@ public class CLI {
 		}
 	}
 
+	/**
+	 * Add Thread menu
+	 * @param forumID
+	 * @throws IOException
+	 */
 	public void addThread(String forumID) throws IOException {
 		System.out.println("Please insert the title of the thread");
 		String title = buf.readLine();
@@ -187,6 +236,11 @@ public class CLI {
 		}
 	}
 
+	/**
+	 * View all threads
+	 * @param forumID
+	 * @throws IOException
+	 */
 	private void ViewThreads(String forumID) throws IOException {
 		String str = "";
 		Message answer = clientController.getThreadsList(forumID);
@@ -209,9 +263,14 @@ public class CLI {
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
-				n = Integer.parseInt(str);
-				int tnumInArray= n-1;
-				strArr= Integer.toString(tnumInArray);
+				if (!str.equals("")){
+					if (validInput(i,str)){
+						n = Integer.parseInt(str);
+						int tnumInArray= n-1;
+						strArr= Integer.toString(tnumInArray);
+					}
+					else System.out.println("Incorrect input!");
+				}
 			}
 			if ((n<=length) | (n>0) && n!=i) { //choose valid forum
 				ThreadOption(forumID,strArr);
@@ -221,6 +280,12 @@ public class CLI {
 		}
 	}
 
+	/**
+	 * 
+	 * @param forumID
+	 * @param threadID
+	 * @throws IOException
+	 */
 	public void ThreadOption(String forumID, String threadID) throws IOException {
 		String str = "";
 		 while (!(str.equals("3"))){ //loop until press '3. Back'
@@ -244,6 +309,12 @@ public class CLI {
 	 	}
 	}
 
+	/**
+	 * Adding posts menu
+	 * @param forumID
+	 * @param threadId
+	 * @throws IOException
+	 */
 	public void addPost(String forumID,String threadId) throws IOException {
 		System.out.println("Please insert the title of the post");
 		String title = buf.readLine();
@@ -256,6 +327,12 @@ public class CLI {
 		
 	}
 
+	/**
+	 * View all posts
+	 * @param forumID
+	 * @param threadID
+	 * @throws IOException
+	 */
 	private void ViewPosts(String forumID,String threadID) throws IOException {
 		String str = "";
 		Message answer = clientController.getPostsList(forumID,threadID);
@@ -274,10 +351,20 @@ public class CLI {
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
-				n = Integer.parseInt(str);
+				if (!str.equals("")){
+					if (validInput(i,str)){
+						 n = Integer.parseInt(str);
+					}
+					else System.out.println("Incorrect input!");
+				}
 		}
 	}
 
+	/**
+	 * Registration menu
+	 * @return
+	 * @throws IOException
+	 */
 	public Message register() throws IOException {
 		System.out.println("Please insert your firstName");
 		String firstName = buf.readLine();
@@ -292,6 +379,11 @@ public class CLI {
 		return clientController.register(firstName, lastName, username, password, email);
 	}
 
+	/**
+	 * Login menu
+	 * @return
+	 * @throws IOException
+	 */
 	public Message login() throws IOException {
 		System.out.println("Please insert your username");
 		String username = buf.readLine();
@@ -300,6 +392,10 @@ public class CLI {
 		return clientController.login(username, password);
 	}
 
+	/**
+	 * Logout menu
+	 * @throws IOException
+	 */
 	public void logout() throws IOException {
 		Message answer = clientController.logout();
 		if (answer.getMessageType() == MessageType.ERROR){
@@ -307,6 +403,10 @@ public class CLI {
 		}
 	}
 
+	/**
+	 * Manage friends menu
+	 * @throws IOException
+	 */
 	public void manageFriends() throws IOException {
 		String str = "";
 		while (!(str.equals("3"))) { //loop until press '3. Back'
@@ -345,23 +445,43 @@ public class CLI {
 			}
 		}
     }
-
+	
+	/**
+	 * 
+	 * @param clientController
+	 */
 	public void setClientController(ClientController clientController) {
 		this.clientController = clientController;
 	}
 
+	/**
+	 * 
+	 * @return clientController
+	 */
 	public ClientController getClientController() {
 		return clientController;
 	}
 
+	/**
+	 * Sets logger
+	 * @param logger
+	 */
 	public void setLogger(Logger logger) {
 		this.logger = logger;
 	}
-
+	
+	/**
+	 * 
+	 * @return logger
+	 */
 	public Logger getLogger() {
 		return logger;
 	}
 
+	/**
+	 * Logs message
+	 * @param msg
+	 */
 	public void log(String msg){
 		getLogger().info(msg);
 	}
