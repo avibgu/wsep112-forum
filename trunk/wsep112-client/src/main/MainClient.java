@@ -36,7 +36,7 @@ public class MainClient {
 		// creating log file
 		Handler logFileHandler = null;
 		
-		boolean error = false;
+		boolean tError = false;
 		
 		while(true){
 			
@@ -48,9 +48,9 @@ public class MainClient {
 			}
 			catch(IOException e){
 				
-		    	if (!error){
+		    	if (!tError){
 		    		
-		    		error = true;
+		    		tError = true;
 		    		System.err.println("unable to open file for logging, will try again..");
 		    	}
 			}
@@ -78,7 +78,7 @@ public class MainClient {
 		
 		ForumServer forumServerStub = null;
 		
-		error = false;
+		tError = false;
 
 		while(true){
 			
@@ -92,9 +92,9 @@ public class MainClient {
 		    }
 		    catch (Exception e){
 		    	
-		    	if (!error){
+		    	if (!tError){
 		    		
-		    		error = true;
+		    		tError = true;
 		    		logger.severe("ForumServer exception: cannot connect to the server, will try again..");
 		    	}
 		    }
