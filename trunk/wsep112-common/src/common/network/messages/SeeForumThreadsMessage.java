@@ -14,8 +14,8 @@ public class SeeForumThreadsMessage implements Message, Serializable {
 
 	private static final long serialVersionUID = -5130012869822490753L;
 
-	private String forumID;
-	private Vector<String> listOfThreads;
+	private String _forumID;
+	private Vector<String> _listOfThreads;
 	
 	/**
 	 * 
@@ -36,18 +36,18 @@ public class SeeForumThreadsMessage implements Message, Serializable {
 	}
 
 	public void setForumID(String forumdID) {
-		this.forumID = forumdID;
+		this._forumID = forumdID;
 	}
 
 	public String getForumID() {
-		return forumID;
+		return _forumID;
 	}
 
 	public void setListOfThreads(Vector<String> listOfThreads) {
-		this.listOfThreads = listOfThreads;
+		this._listOfThreads = listOfThreads;
 	}
 
 	public Vector<String> getListOfThreads() {
-		return listOfThreads;
+		return _listOfThreads;
 	}
 }

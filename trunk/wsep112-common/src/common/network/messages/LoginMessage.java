@@ -14,8 +14,8 @@ public class LoginMessage implements Message ,Serializable {
 
 	private static final long serialVersionUID = -6144281381240070187L;
 
-	private String username;
-	private String password;
+	private String _username;
+	private String _password;
 
 	/**
 	 * @param username
@@ -37,18 +37,18 @@ public class LoginMessage implements Message ,Serializable {
 	}
 
 	public String getUsername() {
-		return username;
+		return _username;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this._username = username;
 	}
 
 	public String getPassword() {
-		return password;
+		return _password;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this._password = password;
 	}
 }

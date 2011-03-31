@@ -13,7 +13,7 @@ public class LogoutMessage implements Message, Serializable{
 
 	private static final long serialVersionUID = 8498004073663790243L;
 
-	private String username;
+	private String _username;
 	
 	/**
 	 * @param username
@@ -34,10 +34,10 @@ public class LogoutMessage implements Message, Serializable{
 	}
 
 	public String getUsername() {
-		return username;
+		return _username;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this._username = username;
 	}
 }

@@ -14,7 +14,7 @@ public class SeeForumsListMessage implements Message, Serializable {
 
 	private static final long serialVersionUID = 6946360701823648687L;
 
-	private Vector<String> listOfForums;
+	private Vector<String> _listOfForums;
 	
 	/**
 	 * 
@@ -32,10 +32,10 @@ public class SeeForumsListMessage implements Message, Serializable {
 	}
 
 	public void setListOfForums(Vector<String> listOfForums) {
-		this.listOfForums = listOfForums;
+		this._listOfForums = listOfForums;
 	}
 
 	public Vector<String> getListOfForums() {
-		return listOfForums;
+		return _listOfForums;
 	}
 }

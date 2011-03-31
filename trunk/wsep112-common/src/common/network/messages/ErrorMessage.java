@@ -13,7 +13,7 @@ public class ErrorMessage implements Message, Serializable {
 
 	private static final long serialVersionUID = 5203913683848654373L;
 
-	private String reason;
+	private String _reason;
 
 	/**
 	 * @param reason
@@ -33,10 +33,10 @@ public class ErrorMessage implements Message, Serializable {
 	}
 
 	public String getReason() {
-		return reason;
+		return _reason;
 	}
 	
 	public void setReason(String reason) {
-		this.reason = reason;
+		this._reason = reason;
 	}
 }
