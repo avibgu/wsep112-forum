@@ -18,12 +18,12 @@ public class VerySimpleLogFormatter extends SimpleFormatter {
 	 * an instance of a DateFormatter that is used for formatting the time of a log record into a human-readable
 	 * string
 	 */
-	private final DateFormat dateFormat;
+	private final DateFormat _dateFormat;
 
 	/**
 	 * the character sequence that is used to separate lines in the generated stream
 	 */
-	private final String lineSep;
+	private final String _lineSep;
 
 	 /**
 	  * The constructor of VerySimpleFormatter (contains call to the super's constructor)
@@ -31,8 +31,8 @@ public class VerySimpleLogFormatter extends SimpleFormatter {
 	public VerySimpleLogFormatter() {
 
 		super();
-		this.dateFormat = new SimpleDateFormat ("dd/MM/yyyy HH:mm:ss");
-		this.lineSep = System.getProperty("line.separator");
+		this._dateFormat = new SimpleDateFormat ("dd/MM/yyyy HH:mm:ss");
+		this._lineSep = System.getProperty("line.separator");
 	}
 
 	/**
@@ -45,10 +45,10 @@ public class VerySimpleLogFormatter extends SimpleFormatter {
 
 		String message = "";
 
-		message += this.dateFormat.format(new Date());
+		message += this._dateFormat.format(new Date());
 		message += " ";
 		message += this.formatMessage(record);
-		message += this.lineSep;
+		message += this._lineSep;
 
 		return message;
 	}
