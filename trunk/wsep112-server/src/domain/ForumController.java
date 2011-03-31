@@ -20,9 +20,9 @@ public class ForumController {
 
 	private Vector<User> _registerdUsers;
 	private Set<String> _loginUsers;
-	private Logger logger;
+	private Logger _logger;
 	private Vector<Forum> _forums;
-	static int _availableForumId=0;
+	static int _availableForumId = 0;
 	
 	public ForumController(Logger logger){
 		_registerdUsers = new Vector<User>();
@@ -269,14 +269,14 @@ public class ForumController {
 	 * @param logger
 	 */
 	public void setLogger(Logger logger) {
-		this.logger = logger;
+		this._logger = logger;
 	}
 	/**
 	 * 
 	 * @return
 	 */
 	public Logger getLogger() {
-		return logger;
+		return _logger;
 	}
 	/**
 	 * 
