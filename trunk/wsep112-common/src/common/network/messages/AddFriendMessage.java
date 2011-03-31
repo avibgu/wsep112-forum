@@ -13,8 +13,8 @@ public class AddFriendMessage implements Message, Serializable{
 
 	private static final long serialVersionUID = -2134597089758169161L;
 
-	private String username;
-	private String friendUsername;
+	private String _username;
+	private String _friendUsername;
 
 	/**
 	 * @param username
@@ -33,18 +33,18 @@ public class AddFriendMessage implements Message, Serializable{
 	}
 	
 	public String getUsername() {
-		return username;
+		return _username;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this._username = username;
 	}
 
 	public String getFriendUsername() {
-		return friendUsername;
+		return _friendUsername;
 	}
 
 	public void setFriendUsername(String friendUsername) {
-		this.friendUsername = friendUsername;
+		this._friendUsername = friendUsername;
 	}
 }
