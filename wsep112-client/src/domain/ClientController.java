@@ -28,9 +28,9 @@ import common.network.messages.SeeThreadPostsMessage;
  */
 public class ClientController {
 
-	private ForumServer forumServerStub;
-	private Logger logger;
-	private String currentLogedInUsername;
+	private ForumServer _forumServerStub;
+	private Logger _logger;
+	private String _currentLogedInUsername;
 
 	public ClientController(ForumServer forumServerStub, Logger logger) {
 
@@ -309,19 +309,19 @@ public class ClientController {
 	}
 	
 	public void setForumServerStub(ForumServer forumServerStub) {
-		this.forumServerStub = forumServerStub;
+		this._forumServerStub = forumServerStub;
 	}
 
 	public ForumServer getForumServerStub() {
-		return forumServerStub;
+		return _forumServerStub;
 	}
 
 	public void setLogger(Logger logger) {
-		this.logger = logger;
+		this._logger = logger;
 	}
 
 	public Logger getLogger() {
-		return logger;
+		return _logger;
 	}
 
 	public void log(String msg){
@@ -329,10 +329,10 @@ public class ClientController {
 	}
 
 	public void setCurrentLogedInUsername(String currentLogedInUsername) {
-		this.currentLogedInUsername = currentLogedInUsername;
+		this._currentLogedInUsername = currentLogedInUsername;
 	}
 
 	public String getCurrentLogedInUsername() {
-		return currentLogedInUsername;
+		return _currentLogedInUsername;
 	}
 }
