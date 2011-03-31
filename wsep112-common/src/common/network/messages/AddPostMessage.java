@@ -13,11 +13,11 @@ public class AddPostMessage implements Message, Serializable {
 
 	private static final long serialVersionUID = 4205576880359045229L;
  
-	private String title;
-	private String body;
-	private String threadId;
-	private String forumId;
-	private String ownerUsername;
+	private String _title;
+	private String _body;
+	private String _threadId;
+	private String _forumId;
+	private String _ownerUsername;
 
 	/**
 	 * @param title
@@ -42,42 +42,42 @@ public class AddPostMessage implements Message, Serializable {
 	}
 
 	public String getTitle() {
-		return title;
+		return _title;
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		this._title = title;
 	}
 
 	public String getBody() {
-		return body;
+		return _body;
 	}
 
 	public void setBody(String body) {
-		this.body = body;
+		this._body = body;
 	}
 
 	public String getThreadId() {
-		return threadId;
+		return _threadId;
 	}
 
 	public void setThreadId(String threadId) {
-		this.threadId = threadId;
+		this._threadId = threadId;
 	}
 
 	public void setOwnerUsername(String ownerUsername) {
-		this.ownerUsername = ownerUsername;
+		this._ownerUsername = ownerUsername;
 	}
 
 	public String getOwnerUsername() {
-		return ownerUsername;
+		return _ownerUsername;
 	}
 
 	public void setForumId(String forumId) {
-		this.forumId = forumId;
+		this._forumId = forumId;
 	}
 
 	public String getForumId() {
-		return forumId;
+		return _forumId;
 	}
 }
