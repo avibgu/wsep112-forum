@@ -13,11 +13,11 @@ public class RegMessage implements Message, Serializable {
 
 	private static final long serialVersionUID = 1611363039710110042L;
 
-	private String firstName;
-	private String lastName;
-	private String username;
-	private String password;
-	private String email;
+	private String _firstName;
+	private String _lastName;
+	private String _username;
+	private String _password;
+	private String _email;
 	
 	/**
 	 * @param firstName
@@ -46,42 +46,42 @@ public class RegMessage implements Message, Serializable {
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return _firstName;
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this._firstName = firstName;
 	}
 
 	public String getLastName() {
-		return lastName;
+		return _lastName;
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this._lastName = lastName;
 	}
 
 	public String getUsername() {
-		return username;
+		return _username;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this._username = username;
 	}
 
 	public String getPassword() {
-		return password;
+		return _password;
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this._password = password;
 	}
 
 	public String getEmail() {
-		return email;
+		return _email;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this._email = email;
 	}
 }
