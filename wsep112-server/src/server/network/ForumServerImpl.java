@@ -34,11 +34,11 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 
 	private static final long serialVersionUID = 2555939371339195609L;
 
-	private ForumController forumController;
-	private ReentrantReadWriteLock rwLock;
-	private ReadLock rdLock;
-	private WriteLock wrLock;
-	private Logger logger;
+	private ForumController _forumController;
+	private ReentrantReadWriteLock _rwLock;
+	private ReadLock _rdLock;
+	private WriteLock _wrLock;
+	private Logger _logger;
 
 	public ForumServerImpl(ForumController forumController, Logger logger) throws RemoteException {
 
@@ -177,43 +177,43 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	}
 
 	private void setForumController(ForumController forumController) {
-		this.forumController = forumController;
+		this._forumController = forumController;
 	}
 
 	private ForumController getForumController() {
-		return forumController;
+		return _forumController;
 	}
 
 	private void setRwLock(ReentrantReadWriteLock rwLock) {
-		this.rwLock = rwLock;
+		this._rwLock = rwLock;
 	}
 
 	private ReentrantReadWriteLock getRwLock() {
-		return rwLock;
+		return _rwLock;
 	}
 
 	private void setRdLock(ReadLock rdLock) {
-		this.rdLock = rdLock;
+		this._rdLock = rdLock;
 	}
 
 	private ReadLock getRdLock() {
-		return rdLock;
+		return _rdLock;
 	}
 
 	private void setWrLock(WriteLock wrLock) {
-		this.wrLock = wrLock;
+		this._wrLock = wrLock;
 	}
 
 	private WriteLock getWrLock() {
-		return wrLock;
+		return _wrLock;
 	}
 
 	private void setLogger(Logger logger) {
-		this.logger = logger;
+		this._logger = logger;
 	}
 
 	private Logger getLogger() {
-		return logger;
+		return _logger;
 	}
 
 	private void log(String msg){
