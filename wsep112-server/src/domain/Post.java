@@ -21,24 +21,27 @@ public class Post {
 		this._date = new Date();
 	}
 	
-	/* 
+	/**
 	 * editing only the title
-	 * */
+	 * @param title the title to be edited
+	 */
 	public void edit_titel(String title){
 		set_title(title);
 	
 	}
-	
-	/*
+	/**
 	 * editing only the body
-	 * */
+	 * @param body the body of the post to be edited
+	 */
 	public void edit_body(String body){
 		set_body(body);
 	}
 	
-	/*
+	/**
 	 * editing the whole post
-	 * */
+	 * @param title  the title to be edited
+	 * @param body the body of the post to be edited
+	 */
 	public void edit_post(String title, String body){
 		set_title(title);
 		set_body(body);
