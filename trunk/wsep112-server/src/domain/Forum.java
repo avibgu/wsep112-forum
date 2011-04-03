@@ -24,10 +24,10 @@ public class Forum {
 	
 	/**
 	 * 
-	 * @param title
-	 * @param body
-	 * @param threadId
-	 * @param owner
+	 * @param title title of the reply
+	 * @param body body of the replay
+	 * @param threadId id of the thread
+	 * @param owner the owner of the post
 	 * @return
 	 */
 	public Message reaplyToThread(String title, String body, int threadId,User owner) {
@@ -44,8 +44,8 @@ public class Forum {
 	}
 	
 	/**
-	 * 
-	 * @param threadId
+	 * deletes the given thread from the list of forums threads 
+	 * @param threadId the id of the thread
 	 */
 	//removing the given specific thread from the forum
 	public void deleteThread(int threadId){
@@ -57,13 +57,13 @@ public class Forum {
 	}
 	
 	/**
-	 * 
-	 * @param title
-	 * @param body
-	 * @param owner
+	 * add new thread to the forum , and filling the thread with the given massage
+	 * @param title title of the new thread and the post creating in it
+	 * @param body the body of the post
+	 * @param owner the owner of the post
 	 * @return
 	 */
-	//add new thread to the forum , and filling the thread with the given massage
+	
 	public Message add_thread (String title,String body,User owner){
 		Thread new_thread=new Thread(_threadAvailableID,title);
 		this._threads.add(new_thread);
@@ -88,9 +88,10 @@ public class Forum {
 		
 	}
 	
+	//***************************************** GETTERS AND SETTERS ************************************8
 	/**
 	 * 
-	 * @return
+	 * @return sub forums list
 	 */
 	public Vector<Forum> getSub_forums() {
 		return _subForums;
@@ -98,7 +99,7 @@ public class Forum {
 
 	/**
 	 * 
-	 * @param sub_forums
+	 * @param sub_forums sub forums list
 	 */
 	public void setSub_forums(Vector<Forum> sub_forums) {
 		this._subForums = sub_forums;
@@ -106,7 +107,7 @@ public class Forum {
 	
 	/**
 	 * 
-	 * @return
+	 * @return the name of the forum
 	 */
 	public String getName() {
 		return _name;
@@ -114,7 +115,7 @@ public class Forum {
 
 	/**
 	 * 
-	 * @param name
+	 * @param name name of the forum
 	 */
 	public void setName(String name) {
 		this._name = name;
@@ -122,7 +123,7 @@ public class Forum {
 	
 	/**
 	 * 
-	 * @return
+	 * @return list of forum's threads
 	 */
 	public Vector<Thread> getThreads() {
 		return _threads;
@@ -130,7 +131,7 @@ public class Forum {
 
 	/**
 	 * 
-	 * @param threads
+	 * @param threads list of forum's threads
 	 */
 	public void setThreads(Vector<Thread> threads) {
 		this._threads = threads;
