@@ -57,6 +57,12 @@ public class ClientController {
 			return new ErrorMessage("Password is too weak.");
 		}
 		
+		// Check if the mail is valid.
+		if (!validMail(email)){
+			return new ErrorMessage("Mail address is invalid.");
+		}
+		
+		
 		// Encrypt the password using SHA1 algorithm.
 		String tEncrypted_Password = SHA1.hash(password);
 
@@ -268,7 +274,7 @@ public class ClientController {
 	}
 
 	/**
-	 *
+	 * Check if the word contains upper letter.
 	 * @param word
 	 * @return
 	 */
@@ -280,7 +286,17 @@ public class ClientController {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * Check if the mail address is valid.
+	 * @param word 
+	 * @return true if the word is valid, false otherwise.
+	 */
+	public Boolean validMail(String word){
+		
+		return (word.contains("@") && word.contains("."));
+	}
+	
 	/**
 	 *
 	 * @param word
