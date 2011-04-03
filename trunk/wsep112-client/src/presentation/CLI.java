@@ -256,7 +256,6 @@ public class CLI {
 		while (n!=i) { //loop until press 'Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 			while ((n>length+1) | (n<=0)) {
-				if (!(str.equals(""))) System.out.println("Incorrect input!");
 				System.out.println("Please choose one of the following threads:");
 				for (i=1; i<=length; i++){
 					System.out.println(i + ". " + threadList.get(i-1));
@@ -268,6 +267,7 @@ public class CLI {
 						n = Integer.parseInt(str);
 						int tnumInArray= n-1;
 						strArr= Integer.toString(tnumInArray);
+						if (n==i) break;
 					}
 					else System.out.println("Incorrect input!");
 				}
