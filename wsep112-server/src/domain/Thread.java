@@ -21,10 +21,10 @@ public class Thread {
 	
 	/**
 	 * adding new post to topic
-	 * @param title
-	 * @param body
-	 * @param owner
-	 * @return
+	 * @param title the title of the new post
+	 * @param body the body of the new post
+	 * @param owner the owner of the post
+	 * @return  massage of success 
 	 */
 	//return the new post created un order the user to store it on his list
 	public Message reaply(String title, String body,User owner){
@@ -40,7 +40,7 @@ public class Thread {
 	/**
 	 * delete post from thread
 	 * side effect : deleting the post from the post list of the owner
-	 * @param post_id
+	 * @param post_id the id of post to be deleted
 	 * @param owner the owner of the post
 	 */
 	public Message delete (int post_id,User owner){
