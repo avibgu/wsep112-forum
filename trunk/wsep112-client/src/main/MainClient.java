@@ -11,7 +11,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import presentation.CLI;
+import presentation.cli.CLI;
 
 import common.logging.VerySimpleLogFormatter;
 import common.network.ForumServer;
@@ -36,7 +36,7 @@ public class MainClient {
 		// creating log file
 		Handler logFileHandler = null;
 		
-		boolean tError = false;
+		int tError = 10;
 		
 		while(true){
 			
@@ -48,11 +48,16 @@ public class MainClient {
 			}
 			catch(IOException e){
 				
-		    	if (!tError){
+				if (tError == 10)
+					System.err.println("unable to open file for logging, will try again..");
+
+		    	else if (tError == 0){
 		    		
-		    		tError = true;
-		    		System.err.println("unable to open file for logging, will try again..");
+		    		System.err.println("giving up.. exiting..");
+		    		return;
 		    	}
+		    	
+	    		tError--;
 			}
 		}
 		
@@ -78,7 +83,7 @@ public class MainClient {
 		
 		ForumServer forumServerStub = null;
 		
-		tError = false;
+		tError = 10;
 
 		while(true){
 			
@@ -92,11 +97,16 @@ public class MainClient {
 		    }
 		    catch (Exception e){
 		    	
-		    	if (!tError){
+				if (tError == 10)
+					logger.severe("ForumServer exception: cannot connect to the server, will try again..");
+
+		    	else if (tError == 0){
 		    		
-		    		tError = true;
-		    		logger.severe("ForumServer exception: cannot connect to the server, will try again..");
+		    		logger.severe("giving up.. exiting..");
+		    		return;
 		    	}
+		    	
+	    		tError--;
 		    }
 		}
         
