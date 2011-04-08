@@ -11,7 +11,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import presentation.cli.CLI;
+import presentation.CLI;
 
 import common.logging.VerySimpleLogFormatter;
 import common.network.ForumServer;
