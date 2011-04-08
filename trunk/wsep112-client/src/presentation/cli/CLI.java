@@ -1,7 +1,7 @@
 /**
  *
  */
-package presentation;
+package presentation.cli;
 
 import java.io.BufferedReader;
 import java.io.IOException;
