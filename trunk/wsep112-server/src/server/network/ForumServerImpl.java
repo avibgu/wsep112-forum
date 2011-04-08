@@ -5,13 +5,13 @@ package server.network;
 
 import java.rmi.RemoteException;
 import java.rmi.server.RemoteStub;
-import java.util.Observer;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 import java.util.logging.Logger;
 
 import common.network.ForumServer;
+import common.network.RemoteObserver;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.AddPostMessage;
 import common.network.messages.AddThreadMessage;
@@ -177,10 +177,13 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 		return answer;
 	}
 	
-	public void addObserver(Observer o){
-		
+	@Override
+	public void addObserver(RemoteObserver o) throws RemoteException {
+
+		WrappedObserver mo = new WrappedObserver(o);
+        
 		getWrLock().lock();
-		getForumController().addObserver(o);
+		getForumController().addObserver(mo);
 		getWrLock().unlock();
 	}
 

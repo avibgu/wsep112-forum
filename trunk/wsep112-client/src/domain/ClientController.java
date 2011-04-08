@@ -4,6 +4,7 @@
 package domain;
 
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Vector;
@@ -11,6 +12,7 @@ import java.util.logging.Logger;
 
 import common.encryption.SHA1;
 import common.network.ForumServer;
+import common.network.RemoteObserver;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.AddPostMessage;
 import common.network.messages.AddThreadMessage;
@@ -29,13 +31,16 @@ import common.network.messages.SeeThreadPostsMessage;
  * @author Avi Digmi
  *
  */
-public class ClientController extends Observable implements Observer{
+public class ClientController extends UnicastRemoteObject implements RemoteObserver{
 
+	private static final long serialVersionUID = 4717931904659119985L;
+	
 	private ForumServer _forumServerStub;
 	private Logger _logger;
 	private String _currentLogedInUsername;
+	private Observable _observable;
 
-	public ClientController(ForumServer forumServerStub, Logger logger) {
+	public ClientController(ForumServer forumServerStub, Logger logger)  throws RemoteException {
 
 		setForumServerStub(forumServerStub);
 		setLogger(logger);
@@ -379,6 +384,38 @@ public class ClientController extends Observable implements Observer{
 		return true;
 	}
 	
+	@Override
+	public void update(Object observable, Object arg){
+
+		// notification about some error
+		if (arg instanceof ErrorMessage){
+		
+			setChanged();
+			notifyObservers(arg);
+			clearChanged();
+		}
+	}
+
+	public void addObserver(Observer o) {
+
+		getObservable().addObserver(o);
+	}
+	
+	private void notifyObservers(Object arg) {
+
+		getObservable().notifyObservers(arg);
+	}
+
+	private void setChanged() {
+
+		//TODO
+	}
+	
+	private void clearChanged(){
+
+		//TODO
+	}
+	
 	public void setForumServerStub(ForumServer forumServerStub) {
 		this._forumServerStub = forumServerStub;
 	}
@@ -407,15 +444,11 @@ public class ClientController extends Observable implements Observer{
 		return _currentLogedInUsername;
 	}
 
-	@Override
-	public void update(Observable o, Object arg) {
+	public void setObservable(Observable _observable) {
+		this._observable = _observable;
+	}
 
-		// notification about some error
-		if (arg instanceof ErrorMessage){
-		
-			setChanged();
-			notifyObservers(arg);
-			clearChanged();
-		}
+	public Observable getObservable() {
+		return _observable;
 	}
 }
