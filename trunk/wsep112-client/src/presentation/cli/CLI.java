@@ -14,9 +14,6 @@ import java.util.logging.Logger;
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.MessageType;
-import common.network.messages.SeeForumThreadsMessage;
-import common.network.messages.SeeForumsListMessage;
-import common.network.messages.SeeThreadPostsMessage;
 
 import domain.ClientController;
 
@@ -34,6 +31,7 @@ public class CLI implements Observer{
 	public CLI(ClientController clientController, Logger logger) {
 
 		setClientController(clientController);
+		getClientController().addObserver(this);
 		setLogger(logger);
 	}
 
@@ -140,13 +138,12 @@ public class CLI implements Observer{
 	 * @throws IOException
 	 */
 	private void viewForums() throws IOException {
+		
 		String str = "";
-		Message answer = clientController.getForumsList();
-		if (answer.getMessageType() == MessageType.ERROR){
-			System.out.println( ((ErrorMessage)answer).getReason() );
-			return;
-		}
-		Vector<String> forumList = ((SeeForumsListMessage)answer).getListOfForums(); 
+		
+		Vector<String> forumList = clientController.getForumsList();
+		if (forumList == null) return;
+		 
 		int length = forumList.size();
 		int n = 0;
 		int i = 1;
@@ -245,12 +242,11 @@ public class CLI implements Observer{
 	 */
 	private void ViewThreads(String forumID) throws IOException {
 		String str = "";
-		Message answer = clientController.getThreadsList(forumID);
-		if (answer.getMessageType() == MessageType.ERROR){
-			System.out.println( ((ErrorMessage)answer).getReason() );
-			return;
-		}
-		Vector<String> threadList = ((SeeForumThreadsMessage)answer).getListOfThreads();
+
+		Vector<String> threadList = clientController.getThreadsList(forumID);
+		
+		if (threadList == null) return;		
+		
 		int length = threadList.size();
 		int n = 0;
 		int i = 1;
@@ -337,12 +333,11 @@ public class CLI implements Observer{
 	 */
 	private void ViewPosts(String forumID,String threadID) throws IOException {
 		String str = "";
-		Message answer = clientController.getPostsList(forumID,threadID);
-		if (answer.getMessageType() == MessageType.ERROR){
-			System.out.println( ((ErrorMessage)answer).getReason() );
-			return;
-		}
-		Vector<String> postsList = ((SeeThreadPostsMessage)answer).getListOfPosts();
+		
+		Vector<String> postsList = clientController.getPostsList(forumID,threadID);
+		
+		if (postsList == null) return;
+
 		int length = postsList.size();
 		int n = 0;
 		int i = 1;
@@ -490,10 +485,9 @@ public class CLI implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-//		if (o instanceof ClientController)
-//			;
-		
-		
+
+		// notification about some error
+		if (arg instanceof ErrorMessage)
+			System.err.println(((ErrorMessage)arg).getReason());
 	}
 }

@@ -6,6 +6,7 @@ package domain;
 import java.rmi.RemoteException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Vector;
 import java.util.logging.Logger;
 
 import common.encryption.SHA1;
@@ -221,19 +222,34 @@ public class ClientController extends Observable implements Observer{
      *
      * @param sflm
      *
-     * @return list of Forums inside the given message, or ErrorMessage (with reason) on failure
+     * @return list of Forums, or null on failure
      */
-    public Message getForumsList() {
+    public Vector<String> getForumsList() {
 
+    	ErrorMessage errorMessage;
+    	
     	SeeForumsListMessage sflm = new SeeForumsListMessage();
 
 		try {
-
-			return getForumServerStub().getInformation(sflm);
+			
+			Message answer = getForumServerStub().getInformation(sflm);
+			
+			if (answer.getMessageType() != MessageType.ERROR)
+				return ((SeeForumsListMessage)answer).getListOfForums();
+			
+			errorMessage = (ErrorMessage)answer;
 		}
-		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
 
-		return new ErrorMessage("Connection Error - can't connect with the server");
+		notifyObservers(errorMessage);
+
+		return null;
     }
 
 	/**
@@ -242,17 +258,32 @@ public class ClientController extends Observable implements Observer{
 	 *
 	 * @return list of Threads inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Message getThreadsList(String forumID) {
+	public Vector<String> getThreadsList(String forumID) {
 
+		ErrorMessage errorMessage;
+		
     	SeeForumThreadsMessage sftm = new SeeForumThreadsMessage(forumID);
 
 		try {
 
-			return getForumServerStub().getInformation(sftm);
+			Message answer = getForumServerStub().getInformation(sftm);
+			
+			if (answer.getMessageType() != MessageType.ERROR)
+				return ((SeeForumThreadsMessage)answer).getListOfThreads();
+			
+			errorMessage = (ErrorMessage)answer;
 		}
-		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
 
-		return new ErrorMessage("Connection Error - can't connect with the server");
+		notifyObservers(errorMessage);
+
+		return null;
 	}
 
 	/**
@@ -262,17 +293,32 @@ public class ClientController extends Observable implements Observer{
 	 *
 	 * @return list of Posts inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Message getPostsList(String forumID,String threadID) {
+	public Vector<String> getPostsList(String forumID,String threadID) {
+
+		ErrorMessage errorMessage;
 
     	SeeThreadPostsMessage stpm = new SeeThreadPostsMessage(forumID,threadID);
 
 		try {
 
-			return getForumServerStub().getInformation(stpm);
+			Message answer = getForumServerStub().getInformation(stpm);
+			
+			if (answer.getMessageType() != MessageType.ERROR)
+				return ((SeeThreadPostsMessage)answer).getListOfPosts();
+			
+			errorMessage = (ErrorMessage)answer;
 		}
-		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
 
-		return new ErrorMessage("Connection Error - can't connect with the server");
+		notifyObservers(errorMessage);
+
+		return null;
 	}
 
 	/**

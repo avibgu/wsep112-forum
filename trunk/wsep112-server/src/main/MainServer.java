@@ -108,6 +108,7 @@ public class MainServer {
 				break;
 			}
 			catch (Exception e){
+
 		    	
 				if (tError == 10)
 					logger.severe("ForumServer exception: cannot connect to the server, will try again..");
@@ -115,6 +116,7 @@ public class MainServer {
 		    	else if (tError == 0){
 		    		
 		    		logger.severe("giving up.. exiting..");
+		    		e.printStackTrace();
 		    		return;
 		    	}
 		    	
