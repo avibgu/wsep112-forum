@@ -211,6 +211,8 @@ public class ClientController extends Observable implements Observer{
 
 		try {
 
+			getForumServerStub().addObserver(this); //TODO: refactoring.. (maybe inside setInformation..)
+			
 			return getForumServerStub().setInformation(atm);
 		}
 		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
@@ -407,7 +409,13 @@ public class ClientController extends Observable implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+
+		// notification about some error
+		if (arg instanceof ErrorMessage){
 		
+			setChanged();
+			notifyObservers(arg);
+			clearChanged();
+		}
 	}
 }

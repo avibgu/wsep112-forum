@@ -5,6 +5,7 @@ package server.network;
 
 import java.rmi.RemoteException;
 import java.rmi.server.RemoteStub;
+import java.util.Observer;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
@@ -174,6 +175,13 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 		getWrLock().unlock();
 
 		return answer;
+	}
+	
+	public void addObserver(Observer o){
+		
+		getWrLock().lock();
+		getForumController().addObserver(o);
+		getWrLock().unlock();
 	}
 
 	private void setForumController(ForumController forumController) {

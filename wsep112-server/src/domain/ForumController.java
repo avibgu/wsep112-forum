@@ -188,6 +188,11 @@ public class ForumController extends Observable{
     	 // Find the owner
 		User user = getUser(ownerUsername);
 		
+		// TODO: just for testing.. need to improve it..
+		setChanged();
+		notifyObservers(new ErrorMessage("TEST"));
+		clearChanged();
+		
 		// find the forum
 		return _forums.get(Integer.parseInt(forumId)).reaplyToThread(title, body, Integer.parseInt(threadId), user);
     }

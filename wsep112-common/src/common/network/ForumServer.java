@@ -5,6 +5,7 @@ package common.network;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.Observer;
 
 import common.network.messages.Message;
 
@@ -18,4 +19,6 @@ public interface ForumServer extends Remote{
 	Message getInformation(Message whatToGet) throws RemoteException;
 	
 	Message setInformation(Message whatToSet) throws RemoteException;
+	
+	void addObserver(Observer o) throws RemoteException;
 }
