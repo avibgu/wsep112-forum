@@ -485,7 +485,7 @@ public class CLI implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-
+		
 		// notification about some error
 		if (arg instanceof ErrorMessage)
 			System.err.println(((ErrorMessage)arg).getReason());

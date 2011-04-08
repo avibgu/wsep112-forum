@@ -246,8 +246,9 @@ public class ClientController extends Observable implements Observer{
 			log(reason);
 			errorMessage = new ErrorMessage(reason);
 		}
-
+		setChanged();
 		notifyObservers(errorMessage);
+		clearChanged();
 
 		return null;
     }
@@ -281,7 +282,9 @@ public class ClientController extends Observable implements Observer{
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		setChanged();
 		notifyObservers(errorMessage);
+		clearChanged();
 
 		return null;
 	}
@@ -316,7 +319,9 @@ public class ClientController extends Observable implements Observer{
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		setChanged();
 		notifyObservers(errorMessage);
+		clearChanged();
 
 		return null;
 	}
@@ -326,7 +331,7 @@ public class ClientController extends Observable implements Observer{
 	 * @param word
 	 * @return
 	 */
-	public Boolean containUpper(String word){
+	private Boolean containUpper(String word){
 
 		for (char c : word.toCharArray()) {
 		    if (Character.isUpperCase(c))
@@ -340,7 +345,7 @@ public class ClientController extends Observable implements Observer{
 	 * @param word 
 	 * @return true if the word is valid, false otherwise.
 	 */
-	public Boolean validMail(String word){
+	private Boolean validMail(String word){
 		
 		return (word.contains("@") && word.contains("."));
 	}
@@ -350,7 +355,7 @@ public class ClientController extends Observable implements Observer{
 	 * @param word
 	 * @return
 	 */
-	public Boolean containDigit(String word){
+	private Boolean containDigit(String word){
 
 		for (char c : word.toCharArray()) {
 		    if (Character.isDigit(c))
@@ -364,7 +369,7 @@ public class ClientController extends Observable implements Observer{
 	 * @param password
 	 * @return
 	 */
-	public Boolean validPassword(String password){
+	private Boolean validPassword(String password){
 		if ((password.length() < 6) || !(containUpper(password)) || !(containDigit(password)) ){
 			return false;
 		}
@@ -388,7 +393,7 @@ public class ClientController extends Observable implements Observer{
 		return _logger;
 	}
 
-	public void log(String msg){
+	private void log(String msg){
 		getLogger().info(msg);
 	}
 
