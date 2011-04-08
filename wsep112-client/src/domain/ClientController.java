@@ -5,6 +5,7 @@ package domain;
 
 import java.rmi.RemoteException;
 import java.util.Observable;
+import java.util.Observer;
 import java.util.logging.Logger;
 
 import common.encryption.SHA1;
@@ -27,7 +28,7 @@ import common.network.messages.SeeThreadPostsMessage;
  * @author Avi Digmi
  *
  */
-public class ClientController extends Observable{
+public class ClientController extends Observable implements Observer{
 
 	private ForumServer _forumServerStub;
 	private Logger _logger;
@@ -351,5 +352,11 @@ public class ClientController extends Observable{
 
 	public String getCurrentLogedInUsername() {
 		return _currentLogedInUsername;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }
