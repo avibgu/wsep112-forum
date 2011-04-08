@@ -4,6 +4,7 @@
 package domain;
 
 import java.rmi.RemoteException;
+import java.util.Observable;
 import java.util.logging.Logger;
 
 import common.encryption.SHA1;
@@ -26,7 +27,7 @@ import common.network.messages.SeeThreadPostsMessage;
  * @author Avi Digmi
  *
  */
-public class ClientController {
+public class ClientController extends Observable{
 
 	private ForumServer _forumServerStub;
 	private Logger _logger;
