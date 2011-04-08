@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.HashSet;
+import java.util.Observable;
 import java.util.Set;
 import java.util.Vector;
 import java.util.logging.Logger;
@@ -16,7 +17,7 @@ import domain.User.Status;
 /**
  *
  */
-public class ForumController {
+public class ForumController extends Observable{
 
 	private Vector<User> _registerdUsers;
 	private Set<String> _loginUsers;
