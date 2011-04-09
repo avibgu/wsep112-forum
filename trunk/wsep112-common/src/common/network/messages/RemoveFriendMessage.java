@@ -5,6 +5,8 @@ package common.network.messages;
 
 import java.io.Serializable;
 
+import common.network.RemoteObserver;
+
 /**
  * @author Avi Digmi
  *
@@ -15,16 +17,18 @@ public class RemoveFriendMessage implements Message, Serializable {
 
 	private String _username;
 	private String _friendUsername;
+	private RemoteObserver _remoteObserver;
 
 	/**
 	 * @param username
 	 * @param friendUsername
 	 */
-	public RemoveFriendMessage(String username, String friendUsername) {
+	public RemoveFriendMessage(String username, String friendUsername, RemoteObserver ro) {
 		
 		super();
 		setUsername(username);
 		setFriendUsername(friendUsername);
+		setRemoteObserver(ro);
 	}
 	
 	/* (non-Javadoc)
@@ -49,5 +53,13 @@ public class RemoveFriendMessage implements Message, Serializable {
 
 	public void setFriendUsername(String friendUsername) {
 		this._friendUsername = friendUsername;
+	}
+
+	public void setRemoteObserver(RemoteObserver _remoteObserver) {
+		this._remoteObserver = _remoteObserver;
+	}
+	
+	public RemoteObserver getRemoteObserver() {
+		return this._remoteObserver;
 	}
 }

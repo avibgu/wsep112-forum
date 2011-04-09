@@ -38,6 +38,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	private ForumServer _forumServerStub;
 	private Logger _logger;
 	private String _currentLogedInUsername;
+	private String _currentShownForum;			//AVID: use this variable..
+	private String _currentShownThread;			//AVID: use this variable..
 	private ArrayList<Observer> _observers;
 
 	public ClientController(ForumServer forumServerStub, Logger logger)  throws RemoteException {
@@ -120,7 +122,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		// Encrypt the password using SHA1 algorithm.
 		String tEncrypted_Password = SHA1.hash(password);
 
-		LoginMessage lm = new LoginMessage(username, tEncrypted_Password);
+		LoginMessage lm = new LoginMessage(username, tEncrypted_Password, this);
 
 		try {
 
@@ -157,7 +159,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		
 		ErrorMessage errorMessage;
 
-		LogoutMessage lm = new LogoutMessage(getCurrentLogedInUsername());
+		LogoutMessage lm = new LogoutMessage(getCurrentLogedInUsername(), this);
 
 		setCurrentLogedInUsername("");
 		
@@ -195,7 +197,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
     	ErrorMessage errorMessage;
     	
-    	AddFriendMessage afm = new AddFriendMessage(getCurrentLogedInUsername(), friendUsername);
+    	AddFriendMessage afm = new AddFriendMessage(getCurrentLogedInUsername(),
+    			friendUsername, this);
 
 		try {
 
@@ -229,7 +232,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
     	ErrorMessage errorMessage;
     	
-    	RemoveFriendMessage rfm = new RemoveFriendMessage(getCurrentLogedInUsername(), friendUsername);
+    	RemoveFriendMessage rfm = new RemoveFriendMessage(getCurrentLogedInUsername(),
+    			friendUsername, this);
 
 		try {
 
@@ -264,7 +268,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
     	ErrorMessage errorMessage;
     	
-    	AddPostMessage apm = new AddPostMessage(forumID,title, body, threadId, getCurrentLogedInUsername());
+    	AddPostMessage apm = new AddPostMessage(forumID,title, body, threadId,
+    			getCurrentLogedInUsername(), this);
 
 		try {
 
@@ -296,11 +301,10 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
     	ErrorMessage errorMessage;
     	
-    	AddThreadMessage atm = new AddThreadMessage(forumID,title, body, getCurrentLogedInUsername());
+    	AddThreadMessage atm = new AddThreadMessage(forumID,title, body,
+    			getCurrentLogedInUsername(), this);
 
 		try {
-
-			getForumServerStub().addObserver(this); //TODO: refactoring.. (maybe inside setInformation..)
 			
 			Message answer = getForumServerStub().setInformation(atm);
 			
@@ -398,7 +402,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
 		ErrorMessage errorMessage;
 
-    	SeeThreadPostsMessage stpm = new SeeThreadPostsMessage(forumID,threadID);
+    	SeeThreadPostsMessage stpm = new SeeThreadPostsMessage(forumID,threadID, this);
 
 		try {
 
@@ -521,6 +525,22 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
 	public String getCurrentLogedInUsername() {
 		return _currentLogedInUsername;
+	}
+
+	public void setCurrentShownForum(String _currentShownForum) {
+		this._currentShownForum = _currentShownForum;
+	}
+
+	public String getCurrentShownForum() {
+		return _currentShownForum;
+	}
+
+	public void setCurrentShownThread(String _currentShownThread) {
+		this._currentShownThread = _currentShownThread;
+	}
+
+	public String getCurrentShownThread() {
+		return _currentShownThread;
 	}
 
 	public void setObservers(ArrayList<Observer> _observers) {

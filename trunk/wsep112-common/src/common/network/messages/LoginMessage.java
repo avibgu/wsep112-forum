@@ -5,6 +5,8 @@ package common.network.messages;
 
 import java.io.Serializable;
 
+import common.network.RemoteObserver;
+
 
 /**
  * @author avi
@@ -16,16 +18,18 @@ public class LoginMessage implements Message ,Serializable {
 
 	private String _username;
 	private String _password;
+	private RemoteObserver _remoteObserver;
 
 	/**
 	 * @param username
 	 * @param password
 	 */
-	public LoginMessage(String username, String password) {
+	public LoginMessage(String username, String password, RemoteObserver ro) {
 		
 		super();
 		setUsername(username);
 		setPassword(password);
+		setRemoteObserver(ro);
 	}
 
 	/* (non-Javadoc)
@@ -50,5 +54,13 @@ public class LoginMessage implements Message ,Serializable {
 
 	public void setPassword(String password) {
 		this._password = password;
+	}
+
+	public void setRemoteObserver(RemoteObserver _remoteObserver) {
+		this._remoteObserver = _remoteObserver;
+	}
+	
+	public RemoteObserver getRemoteObserver() {
+		return this._remoteObserver;
 	}
 }

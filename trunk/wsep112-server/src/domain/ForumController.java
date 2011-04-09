@@ -2,10 +2,11 @@ package domain;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Observable;
 import java.util.Set;
 import java.util.Vector;
 import java.util.logging.Logger;
+
+import server.network.WrappedObserver;
 
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
@@ -18,7 +19,7 @@ import domain.User.Status;
 /**
  *
  */
-public class ForumController extends Observable implements Serializable{
+public class ForumController implements Serializable{
 
 	private static final long serialVersionUID = -6364114409567569573L;
 
@@ -87,7 +88,9 @@ public class ForumController extends Observable implements Serializable{
 	 *
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
-	public Message login(String username, String password) {
+	public Message login(String username, String password, WrappedObserver wo) {
+		
+		//AVID: notify user about things that happened when he was offline?..
 
 		// Check is username exists.
 		if (!isExist(username))
@@ -124,8 +127,10 @@ public class ForumController extends Observable implements Serializable{
 	 *
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
-	public Message logout(String username) {
+	public Message logout(String username, WrappedObserver wo) {
 
+		//AVID: what to do about offline observers?..
+		
 		// Check is username exists.
 		if (!isExist(username))
 			return new ErrorMessage("Username doesn't exists.Shjran");
@@ -144,7 +149,10 @@ public class ForumController extends Observable implements Serializable{
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message AddFriend(String username, String friendUsername) {
+    public Message AddFriend(String username, String friendUsername, WrappedObserver wo) {
+    	
+    	//AVID: add this user to friend's observers..
+    	
 		// Check is username exists.
 		if (!isExist(username))
 			return new ErrorMessage("Username doesn't exists.");
@@ -164,7 +172,10 @@ public class ForumController extends Observable implements Serializable{
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message RemoveFriend(String username, String friendUsername) {
+    public Message RemoveFriend(String username, String friendUsername, WrappedObserver wo) {
+    	
+    	//AVID: remove this user from friend's observers..
+    	
 		// Check is username exists.
 		if (!isExist(username))
 			return new ErrorMessage("Username doesn't exists.");
@@ -180,21 +191,21 @@ public class ForumController extends Observable implements Serializable{
      *
      * @param title
      * @param body
-     * @param threadId
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message replyToThread(String forumId, String title, String body, String threadId, String ownerUsername) {
+    public Message replyToThread(String forumId, String title, String body,
+    		String threadId, String ownerUsername, WrappedObserver wo) {
+    	
+    	//AVID: notify to friends and thread's observers..
+		//AVID: add this user as observer on this thread..
+    	//		(nobody can remove him from observation..)
+    	
     	if (!isExist(ownerUsername))
 			return new ErrorMessage("Username doesn't exists.");
     	
     	 // Find the owner
 		User user = getUser(ownerUsername);
-		
-		// TODO: just for testing.. need to improve it..
-		setChanged();
-		notifyObservers(new ErrorMessage("TEST"));
-		clearChanged();
 		
 		// find the forum
 		return _forums.get(Integer.parseInt(forumId)).reaplyToThread(title, body, Integer.parseInt(threadId), user);
@@ -207,7 +218,12 @@ public class ForumController extends Observable implements Serializable{
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message addThread(String forumId,String title, String body, String ownerUsername) {
+    public Message addThread(String forumId,String title, String body,
+    		String ownerUsername, WrappedObserver wo) {
+    	
+		//AVID: add this user as observer on this thread..
+    	//		(nobody can remove him from observation..)
+    	
     	if (!isExist(ownerUsername))
 			return new ErrorMessage("Username doesn't exists.");
     	
@@ -261,7 +277,13 @@ public class ForumController extends Observable implements Serializable{
 	 *
 	 * @return list of Posts inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Message getPostsList(String forumID, String threadID, SeeThreadPostsMessage stpm) {
+	public Message getPostsList(String forumID, String threadID,
+			SeeThreadPostsMessage stpm, WrappedObserver wo) {
+		
+		//AVID: add this user as observer on this thread..
+		//AVID: remove this user from observation on other threads
+		//		(just in case he is not their owner or replyer)
+		
 		Vector<String> tListOfPosts = new Vector<String>();
 		Vector<Post> tPost = _forums.get(Integer.parseInt(forumID)).getThreads().get(Integer.parseInt(threadID)).getPosts();
 		for (int i=0; i < tPost.size(); ++i){
