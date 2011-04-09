@@ -22,7 +22,7 @@ public class WrappedObserver implements Observer, Serializable {
         
     	try {
     		
-    		getRemoteObserver().update(o, arg);
+    		getRemoteObserver().update(null, arg);
         }
     	catch (RemoteException e) {
             e.printStackTrace(); // TODO
