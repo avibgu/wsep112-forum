@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Observable;
 import java.util.Set;
@@ -17,7 +18,9 @@ import domain.User.Status;
 /**
  *
  */
-public class ForumController extends Observable{
+public class ForumController extends Observable implements Serializable{
+
+	private static final long serialVersionUID = -6364114409567569573L;
 
 	private Vector<User> _registerdUsers;
 	private Set<String> _loginUsers;
