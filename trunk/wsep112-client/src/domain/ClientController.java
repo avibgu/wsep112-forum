@@ -5,7 +5,7 @@ package domain;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Observable;
+import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Vector;
 import java.util.logging.Logger;
@@ -38,13 +38,14 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	private ForumServer _forumServerStub;
 	private Logger _logger;
 	private String _currentLogedInUsername;
-	private Observable _observable;
+	private ArrayList<Observer> _observers;
 
 	public ClientController(ForumServer forumServerStub, Logger logger)  throws RemoteException {
 
 		setForumServerStub(forumServerStub);
 		setLogger(logger);
 		setCurrentLogedInUsername("");
+		setObservers(new ArrayList<Observer>());
 	}
 
 	/**
@@ -253,9 +254,9 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			log(reason);
 			errorMessage = new ErrorMessage(reason);
 		}
-		setChanged();
+		//setChanged();
 		notifyObservers(errorMessage);
-		clearChanged();
+		//clearChanged();
 
 		return null;
     }
@@ -289,9 +290,9 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
-		setChanged();
+		//setChanged();
 		notifyObservers(errorMessage);
-		clearChanged();
+		//clearChanged();
 
 		return null;
 	}
@@ -326,9 +327,9 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
-		setChanged();
+		//setChanged();
 		notifyObservers(errorMessage);
-		clearChanged();
+		//clearChanged();
 
 		return null;
 	}
@@ -390,30 +391,24 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		// notification about some error
 		if (arg instanceof ErrorMessage){
 		
-			setChanged();
+			//setChanged();
 			notifyObservers(arg);
-			clearChanged();
+			//clearChanged();
 		}
 	}
 
 	public void addObserver(Observer o) {
 
-		getObservable().addObserver(o);
+		getObservers().add(o);
 	}
 	
 	private void notifyObservers(Object arg) {
 
-		getObservable().notifyObservers(arg);
-	}
-
-	private void setChanged() {
-
-		//TODO
-	}
-	
-	private void clearChanged(){
-
-		//TODO
+		ArrayList<Observer> list = getObservers();
+		
+		for (Observer observer : list) {
+			observer.update(null, arg);
+		}
 	}
 	
 	public void setForumServerStub(ForumServer forumServerStub) {
@@ -444,11 +439,11 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		return _currentLogedInUsername;
 	}
 
-	public void setObservable(Observable _observable) {
-		this._observable = _observable;
+	public void setObservers(ArrayList<Observer> _observers) {
+		this._observers = _observers;
 	}
 
-	public Observable getObservable() {
-		return _observable;
+	public ArrayList<Observer> getObservers() {
+		return _observers;
 	}
 }
