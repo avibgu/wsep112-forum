@@ -25,7 +25,7 @@ public class WrappedObserver implements Observer, Serializable {
     		getRemoteObserver().update(null, arg);
         }
     	catch (RemoteException e) {
-            e.printStackTrace(); // TODO
+
     		System.out.println("Remote exception removing observer:" + this);
             o.deleteObserver(this);
         }

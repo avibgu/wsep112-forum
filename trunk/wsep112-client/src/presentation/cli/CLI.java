@@ -12,8 +12,6 @@ import java.util.Vector;
 import java.util.logging.Logger;
 
 import common.network.messages.ErrorMessage;
-import common.network.messages.Message;
-import common.network.messages.MessageType;
 
 import domain.ClientController;
 
@@ -55,20 +53,10 @@ public class CLI implements Observer{
 			System.out.println();
 			key = readFromUser();
 	        if (key.equals("1")) {
-	        	Message answer= register();
-	        	if (answer.getMessageType() == MessageType.ERROR){
-	    			System.out.println( ((ErrorMessage)answer).getReason() );
-	    		}
-	        	else subMenu();
+	        	if(register()) subMenu();
 	        }
-	        else {
-	        	if (key.equals("2")){
-	        		Message answer= login();
-	        		if (answer.getMessageType() == MessageType.ERROR){
-	        			System.out.println( ((ErrorMessage)answer).getReason() );
-	        		}
-	        		else subMenu();
-	        	}
+	        else if (key.equals("2")){
+	        	if (login()) subMenu();
 	        }
 		}
        }
@@ -141,7 +129,7 @@ public class CLI implements Observer{
 		
 		String str = "";
 		
-		Vector<String> forumList = clientController.getForumsList();
+		Vector<String> forumList = getClientController().getForumsList();
 		if (forumList == null) return;
 		 
 		int length = forumList.size();
@@ -228,11 +216,7 @@ public class CLI implements Observer{
 		String title = buf.readLine();
 		System.out.println("Please insert the body of the thread");
 		String body = buf.readLine();
-       	Message answer = clientController.addThread(forumID,title, body);
-		if (answer.getMessageType() == MessageType.ERROR){
-			System.out.println( ((ErrorMessage)answer).getReason() );
-			return;
-		}
+       	getClientController().addThread(forumID,title, body);
 	}
 
 	/**
@@ -243,7 +227,7 @@ public class CLI implements Observer{
 	private void ViewThreads(String forumID) throws IOException {
 		String str = "";
 
-		Vector<String> threadList = clientController.getThreadsList(forumID);
+		Vector<String> threadList = getClientController().getThreadsList(forumID);
 		
 		if (threadList == null) return;		
 		
@@ -318,11 +302,7 @@ public class CLI implements Observer{
 		String title = buf.readLine();
 		System.out.println("Please insert the body of the post");
 		String body = buf.readLine();
-		Message answer = clientController.replyToThread(forumID,title, body, threadId);
-		if (answer.getMessageType() == MessageType.ERROR){
-			System.out.println( ((ErrorMessage)answer).getReason() );
-		}
-		
+		getClientController().replyToThread(forumID,title, body, threadId);
 	}
 
 	/**
@@ -334,7 +314,7 @@ public class CLI implements Observer{
 	private void ViewPosts(String forumID,String threadID) throws IOException {
 		String str = "";
 		
-		Vector<String> postsList = clientController.getPostsList(forumID,threadID);
+		Vector<String> postsList = getClientController().getPostsList(forumID,threadID);
 		
 		if (postsList == null) return;
 
@@ -362,7 +342,7 @@ public class CLI implements Observer{
 	 * @return
 	 * @throws IOException
 	 */
-	public Message register() throws IOException {
+	public boolean register() throws IOException {
 		System.out.println("Please insert your firstName");
 		String firstName = buf.readLine();
 		System.out.println("Please insert your lastName");
@@ -373,7 +353,7 @@ public class CLI implements Observer{
 		String password = buf.readLine();
 		System.out.println("Please insert your email");
 		String email = buf.readLine();
-		return clientController.register(firstName, lastName, username, password, email);
+		return getClientController().register(firstName, lastName, username, password, email);
 	}
 
 	/**
@@ -381,12 +361,12 @@ public class CLI implements Observer{
 	 * @return
 	 * @throws IOException
 	 */
-	public Message login() throws IOException {
+	public boolean login() throws IOException {
 		System.out.println("Please insert your username");
 		String username = buf.readLine();
 		System.out.println("Please insert your password");
 		String password = buf.readLine();
-		return clientController.login(username, password);
+		return getClientController().login(username, password);
 	}
 
 	/**
@@ -394,10 +374,7 @@ public class CLI implements Observer{
 	 * @throws IOException
 	 */
 	public void logout() throws IOException {
-		Message answer = clientController.logout();
-		if (answer.getMessageType() == MessageType.ERROR){
-			System.out.println( ((ErrorMessage)answer).getReason() );
-		}
+		getClientController().logout();
 	}
 
 	/**
@@ -420,11 +397,9 @@ public class CLI implements Observer{
 			if (str.equals("1")){//add friend
 				System.out.println("Please insert friend username");
 				String friendUsername = buf.readLine();
-				Message answer = clientController.AddFriend(friendUsername);
-				if (answer.getMessageType() == MessageType.ERROR){
-					System.out.println( ((ErrorMessage)answer).getReason() );
-					return;
-				}
+				
+				if(!getClientController().AddFriend(friendUsername)) return;
+				
 				System.out.println("Friend "+friendUsername+ " added successfully.");
 				str = "";
 			}
@@ -432,11 +407,9 @@ public class CLI implements Observer{
 			if (str.equals("2")){//remove friend
 				System.out.println("Please insert friend username");
 				String friendUsername = buf.readLine();
-				Message answer = clientController.RemoveFriend(friendUsername);
-				if (answer.getMessageType() == MessageType.ERROR){
-					System.out.println( ((ErrorMessage)answer).getReason() );
-					return;
-				}
+
+				if(!getClientController().RemoveFriend(friendUsername)) return;
+				
 				System.out.println("Friend "+friendUsername+ " removed successfully.");
 				str = "";
 			}
