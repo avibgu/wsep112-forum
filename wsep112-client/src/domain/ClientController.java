@@ -58,36 +58,52 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 *
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
-	public Message register(String firstName, String lastName, String username,
+	public boolean register(String firstName, String lastName, String username,
 			String password, String email) {
+		
+		ErrorMessage errorMessage;
 		
 		// Check if the password is strong enough.
 		if (!validPassword(password)){
-			return new ErrorMessage("Password is too weak.");
+			errorMessage = new ErrorMessage("Password is too weak.");
 		}
 		
 		// Check if the mail is valid.
-		if (!validMail(email)){
-			return new ErrorMessage("Mail address is invalid.");
+		else if (!validMail(email)){
+			errorMessage = new ErrorMessage("Mail address is invalid.");
 		}
 		
-		
-		// Encrypt the password using SHA1 algorithm.
-		String tEncrypted_Password = SHA1.hash(password);
+		else{
 
-		RegMessage rm = new RegMessage(firstName, lastName, username, tEncrypted_Password, email);
+			// Encrypt the password using SHA1 algorithm.
+			String tEncrypted_Password = SHA1.hash(password);
+	
+			RegMessage rm = new RegMessage(firstName, lastName, username, tEncrypted_Password, email);
+	
+			try {
+	
+				Message answer = getForumServerStub().setInformation(rm);
 
-		try {
+				if (answer.getMessageType() == MessageType.OK){
+					
+					setCurrentLogedInUsername(username);
+					return true;
+				}
 
-			Message answer = getForumServerStub().setInformation(rm);
-			
-			if (answer.getMessageType() == MessageType.OK) setCurrentLogedInUsername(username);
-			
-			return answer;
+				errorMessage = (ErrorMessage)answer;
+			}
+			catch (RemoteException e) {
+				
+				String reason = "Connection Error - can't connect with the server";
+				
+				log(reason);
+				errorMessage = new ErrorMessage(reason);
+			}
 		}
-		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
 
-		return new ErrorMessage("Connection Error - can't connect with the server");
+		notifyObservers(errorMessage);
+		
+		return false;
 	}
 
 	/**
@@ -97,8 +113,10 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 *
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
-	public Message login(String username, String password) {
+	public boolean login(String username, String password) {
 
+		ErrorMessage errorMessage;
+		
 		// Encrypt the password using SHA1 algorithm.
 		String tEncrypted_Password = SHA1.hash(password);
 
@@ -108,13 +126,25 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
 			Message answer = getForumServerStub().setInformation(lm);
 			
-			if (answer.getMessageType() == MessageType.OK) setCurrentLogedInUsername(username);
-			
-			return answer;
-		}
-		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
+			if (answer.getMessageType() == MessageType.OK){
+				
+				setCurrentLogedInUsername(username);
+				return true;
+			}
 
-		return new ErrorMessage("Connection Error - can't connect with the server");
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		notifyObservers(errorMessage);
+		
+		return false;
 	}
 
 	/**
@@ -123,8 +153,9 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 *
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
-	public Message logout() {
+	public void logout() {
 		
+		ErrorMessage errorMessage;
 
 		LogoutMessage lm = new LogoutMessage(getCurrentLogedInUsername());
 
@@ -134,13 +165,23 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			
 			Message answer = getForumServerStub().setInformation(lm);
 			
-			if (answer.getMessageType() == MessageType.OK) setCurrentLogedInUsername("");
-			
-			return answer;
-		}
-		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
+			if (answer.getMessageType() == MessageType.OK){
+				
+				setCurrentLogedInUsername("");
+				return;
+			}
 
-		return new ErrorMessage("Connection Error - can't connect with the server");
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		notifyObservers(errorMessage);
 	}
 
     /**
@@ -150,17 +191,31 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message AddFriend(String friendUsername) {
+    public boolean AddFriend(String friendUsername) {
 
+    	ErrorMessage errorMessage;
+    	
     	AddFriendMessage afm = new AddFriendMessage(getCurrentLogedInUsername(), friendUsername);
 
 		try {
 
-			return getForumServerStub().setInformation(afm);
-		}
-		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
+			Message answer = getForumServerStub().setInformation(afm);
+			
+			if (answer.getMessageType() != MessageType.ERROR) return true;
 
-		return new ErrorMessage("Connection Error - can't connect with the server");
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		notifyObservers(errorMessage);
+		
+		return false;
     }
 
     /**
@@ -170,17 +225,31 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message RemoveFriend(String friendUsername) {
+    public boolean RemoveFriend(String friendUsername) {
 
+    	ErrorMessage errorMessage;
+    	
     	RemoveFriendMessage rfm = new RemoveFriendMessage(getCurrentLogedInUsername(), friendUsername);
 
 		try {
 
-			return getForumServerStub().setInformation(rfm);
-		}
-		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
+			Message answer = getForumServerStub().setInformation(rfm);
 
-		return new ErrorMessage("Connection Error - can't connect with the server");
+			if (answer.getMessageType() != MessageType.ERROR) return true;
+
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		notifyObservers(errorMessage);
+		
+		return false;
     }
 
     /**
@@ -191,17 +260,29 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message replyToThread(String forumID, String title, String body, String threadId) {
+    public void replyToThread(String forumID, String title, String body, String threadId) {
 
+    	ErrorMessage errorMessage;
+    	
     	AddPostMessage apm = new AddPostMessage(forumID,title, body, threadId, getCurrentLogedInUsername());
 
 		try {
 
-			return getForumServerStub().setInformation(apm);
-		}
-		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
+			Message answer = getForumServerStub().setInformation(apm);
 
-		return new ErrorMessage("Connection Error - can't connect with the server");
+			if (answer.getMessageType() != MessageType.ERROR) return;
+			
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		notifyObservers(errorMessage);
     }
 
     /**
@@ -211,19 +292,31 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public Message addThread(String forumID,String title, String body) {
+    public void addThread(String forumID,String title, String body) {
 
+    	ErrorMessage errorMessage;
+    	
     	AddThreadMessage atm = new AddThreadMessage(forumID,title, body, getCurrentLogedInUsername());
 
 		try {
 
 			getForumServerStub().addObserver(this); //TODO: refactoring.. (maybe inside setInformation..)
 			
-			return getForumServerStub().setInformation(atm);
+			Message answer = getForumServerStub().setInformation(atm);
+			
+			if (answer.getMessageType() != MessageType.ERROR) return;
+			
+			errorMessage = (ErrorMessage)answer;
 		}
-		catch (RemoteException e) { log("Connection Error - can't connect with the server"); }
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
 
-		return new ErrorMessage("Connection Error - can't connect with the server");
+		notifyObservers(errorMessage);
     }
 
     /**
@@ -254,9 +347,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			log(reason);
 			errorMessage = new ErrorMessage(reason);
 		}
-		//setChanged();
+
 		notifyObservers(errorMessage);
-		//clearChanged();
 
 		return null;
     }
@@ -290,9 +382,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
-		//setChanged();
 		notifyObservers(errorMessage);
-		//clearChanged();
 
 		return null;
 	}
@@ -327,9 +417,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
-		//setChanged();
 		notifyObservers(errorMessage);
-		//clearChanged();
 
 		return null;
 	}
@@ -389,12 +477,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	public void update(Object observable, Object arg){
 
 		// notification about some error
-		if (arg instanceof ErrorMessage){
-		
-			//setChanged();
+		if (arg instanceof ErrorMessage)
 			notifyObservers(arg);
-			//clearChanged();
-		}
 	}
 
 	public void addObserver(Observer o) {
