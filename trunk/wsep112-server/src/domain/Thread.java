@@ -1,13 +1,14 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Observable;
 import java.util.Vector;
 
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
 
-public class Thread implements Serializable{
+public class Thread extends Observable implements Serializable{
 
 	private static final long serialVersionUID = 3069041512726662410L;
 
