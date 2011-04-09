@@ -5,6 +5,7 @@ package domain;
 
 import static org.junit.Assert.*;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -14,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import common.network.ForumServer;
+import common.network.RemoteObserver;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.LoginMessage;
 import common.network.messages.LogoutMessage;
@@ -33,7 +35,9 @@ import common.network.messages.SeeThreadPostsMessage;
  * @author Avi Digmi
  *
  */
-public class ClientControllerTests {
+public class ClientControllerTests implements RemoteObserver, Serializable{
+
+	private static final long serialVersionUID = 7654546365982223288L;
 
 	private ForumServer forumServerStub;
 	
@@ -103,7 +107,7 @@ public class ClientControllerTests {
 	public void testLogin() {
 
 		RegMessage regMessage = new RegMessage("Shiran", "Gabay", "gshir", "Aa1234", "gshir@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("gshir", "Aa1234");
+		LoginMessage loginMessage = new LoginMessage("gshir", "Aa1234", this);
 		
 		try {
 
@@ -120,8 +124,8 @@ public class ClientControllerTests {
 	public void testLogout() {
 
 		RegMessage regMessage = new RegMessage("Miri", "Peretz", "miripe", "Miri1234", "miripe@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("miripe", "Miri1234");
-		LogoutMessage logoutMessage = new LogoutMessage("miripe");
+		LoginMessage loginMessage = new LoginMessage("miripe", "Miri1234", this);
+		LogoutMessage logoutMessage = new LogoutMessage("miripe", this);
 		
 		try {
 			
@@ -140,9 +144,9 @@ public class ClientControllerTests {
 
 		RegMessage regMessage1 = new RegMessage("ghi", "ghi", "ghi", "ab1234", "ghi@bgu.ac.il");
 		RegMessage regMessage2 = new RegMessage("jkl", "jkl", "jkl", "ab1234", "jkl@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("ghi", "ab1234");
-		AddFriendMessage addFriendMessage = new AddFriendMessage("ghi", "jkl");
-		LogoutMessage logoutMessage = new LogoutMessage("ghi");
+		LoginMessage loginMessage = new LoginMessage("ghi", "ab1234", this);
+		AddFriendMessage addFriendMessage = new AddFriendMessage("ghi", "jkl", this);
+		LogoutMessage logoutMessage = new LogoutMessage("ghi", this);
 		
 		try {
 			
@@ -163,10 +167,10 @@ public class ClientControllerTests {
 		
 		RegMessage regMessage1 = new RegMessage("asghi", "asghi", "asghi", "ab1234", "asghi@bgu.ac.il");
 		RegMessage regMessage2 = new RegMessage("asjkl", "asjkl", "asjkl", "ab1234", "asjkl@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("asghi", "ab1234");
-		AddFriendMessage addFriendMessage = new AddFriendMessage("asghi", "asjkl");
-		RemoveFriendMessage removeFriendMessage = new RemoveFriendMessage("asghi", "asjkl");
-		LogoutMessage logoutMessage = new LogoutMessage("asghi");
+		LoginMessage loginMessage = new LoginMessage("asghi", "ab1234", this);
+		AddFriendMessage addFriendMessage = new AddFriendMessage("asghi", "asjkl", this);
+		RemoveFriendMessage removeFriendMessage = new RemoveFriendMessage("asghi", "asjkl", this);
+		LogoutMessage logoutMessage = new LogoutMessage("asghi", this);
 		
 		try {
 			
@@ -186,10 +190,10 @@ public class ClientControllerTests {
 	@Test
 	public void testReplyToThread() {
 		RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234");
-		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay");
-		AddPostMessage add_post_msg=new AddPostMessage("0","new post", "shalom shalom","0","avishay");
-		LogoutMessage logoutMessage = new LogoutMessage("avishay");
+		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234", this);
+		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay", this);
+		AddPostMessage add_post_msg=new AddPostMessage("0","new post", "shalom shalom","0","avishay", this);
+		LogoutMessage logoutMessage = new LogoutMessage("avishay", this);
 		try {
 			
 			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
@@ -207,9 +211,9 @@ public class ClientControllerTests {
 	@Test
 	public void testAddThread() {
 		//RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234");
-		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay");
-		LogoutMessage logoutMessage = new LogoutMessage("avishay");
+		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234", this);
+		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay", this);
+		LogoutMessage logoutMessage = new LogoutMessage("avishay", this);
 		
 		try {
 			
@@ -228,11 +232,11 @@ public class ClientControllerTests {
 	public void testGetForumsList() {
 		
 		RegMessage regMessage = new RegMessage("dagsd", "asdgas", "wrgsd", "asdgasdg", "asdgasdf@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("wrgsd", "asdgasdg");
+		LoginMessage loginMessage = new LoginMessage("wrgsd", "asdgasdg", this);
 		
 		SeeForumsListMessage seeForumThreadsMsg = new SeeForumsListMessage();
 		
-		LogoutMessage logoutMessage = new LogoutMessage("wrgsd");
+		LogoutMessage logoutMessage = new LogoutMessage("wrgsd", this);
 		
 		try {
 			
@@ -255,11 +259,11 @@ public class ClientControllerTests {
 	@Test
 	public void testGetThreadsList() {
 		//RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234");
-		AddThreadMessage add_thread_msg1=new AddThreadMessage("0","new thread1","shalom shalom","avishay");
-		AddThreadMessage add_thread_msg2=new AddThreadMessage("0","new thread2","shalom shalom","avishay");
+		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234", this);
+		AddThreadMessage add_thread_msg1=new AddThreadMessage("0","new thread1","shalom shalom","avishay", this);
+		AddThreadMessage add_thread_msg2=new AddThreadMessage("0","new thread2","shalom shalom","avishay", this);
 		SeeForumThreadsMessage seeForumThreadsMsg= new SeeForumThreadsMessage("0");
-		LogoutMessage logoutMessage = new LogoutMessage("avishay");
+		LogoutMessage logoutMessage = new LogoutMessage("avishay", this);
 		
 		try {
 			
@@ -279,12 +283,12 @@ public class ClientControllerTests {
 	@Test
 	public void testGetPostsList() {
 		//RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234");
-		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay");
-		AddPostMessage add_post_msg1=new AddPostMessage("0","new post1", "shalom shalom","0","avishay");
-		AddPostMessage add_post_msg2=new AddPostMessage("0","new post2", "shalom shalom","0","avishay");
-		SeeThreadPostsMessage seeThreadPostMsg= new SeeThreadPostsMessage("0","0");
-		LogoutMessage logoutMessage = new LogoutMessage("avishay");
+		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234", this);
+		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay", this);
+		AddPostMessage add_post_msg1=new AddPostMessage("0","new post1", "shalom shalom","0","avishay", this);
+		AddPostMessage add_post_msg2=new AddPostMessage("0","new post2", "shalom shalom","0","avishay", this);
+		SeeThreadPostsMessage seeThreadPostMsg= new SeeThreadPostsMessage("0","0", this);
+		LogoutMessage logoutMessage = new LogoutMessage("avishay", this);
 		try {
 			
 			//assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
@@ -296,5 +300,10 @@ public class ClientControllerTests {
 			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
 		}
 		catch (RemoteException e) { e.printStackTrace(); }
+	}
+
+	@Override
+	public void update(Object observable, Object arg) throws RemoteException {
+		// TODO Auto-generated method stub
 	}
 }

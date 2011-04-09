@@ -18,6 +18,4 @@ public interface ForumServer extends Remote{
 	Message getInformation(Message whatToGet) throws RemoteException;
 	
 	Message setInformation(Message whatToSet) throws RemoteException;
-	
-	void addObserver(RemoteObserver o) throws RemoteException;
 }

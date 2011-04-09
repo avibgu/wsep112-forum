@@ -5,6 +5,8 @@ package common.network.messages;
 
 import java.io.Serializable;
 
+import common.network.RemoteObserver;
+
 /**
  * @author Avi Digmi
  *
@@ -17,19 +19,22 @@ public class AddThreadMessage implements Message, Serializable {
 	private String _title;
 	private String _body;
 	private String _ownerUsername;
+	private RemoteObserver _remoteObserver;
 	
 	/**
 	 * 
 	 * @param title
 	 * @param body
 	 */
-	public AddThreadMessage(String forumID,String title, String body, String ownerUsername) {
+	public AddThreadMessage(String forumID,String title, String body,
+			String ownerUsername, RemoteObserver ro) {
 		
 		super();
 		setForumId(forumID);
 		setTitle(title);
 		setBody(body);
 		setOwnerUsername(ownerUsername);
+		setRemoteObserver(ro);
 	}
 
 	/* (non-Javadoc)
@@ -70,5 +75,13 @@ public class AddThreadMessage implements Message, Serializable {
 
 	public String getForumId() {
 		return _forumId;
+	}
+
+	public void setRemoteObserver(RemoteObserver _remoteObserver) {
+		this._remoteObserver = _remoteObserver;
+	}
+
+	public RemoteObserver getRemoteObserver() {
+		return _remoteObserver;
 	}
 }

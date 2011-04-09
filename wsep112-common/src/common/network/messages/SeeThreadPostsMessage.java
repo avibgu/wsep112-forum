@@ -6,6 +6,8 @@ package common.network.messages;
 import java.io.Serializable;
 import java.util.Vector;
 
+import common.network.RemoteObserver;
+
 /**
  * @author Avi Digmi
  *
@@ -17,14 +19,16 @@ public class SeeThreadPostsMessage implements Message, Serializable {
 	private String _forumID;
 	private String _threadID;
 	private Vector<String> _listOfPosts;
+	private RemoteObserver _remoteObserver;
 	
 	/**
 	 * @param threadId
 	 */
-	public SeeThreadPostsMessage(String forumID, String threadID) {
+	public SeeThreadPostsMessage(String forumID, String threadID, RemoteObserver ro) {
 		super();
 		setForumID(forumID);
 		setThreadID(threadID);
+		setRemoteObserver(ro);
 	}
 
 	/* (non-Javadoc)
@@ -57,5 +61,13 @@ public class SeeThreadPostsMessage implements Message, Serializable {
 
 	public String getForumID() {
 		return _forumID;
+	}
+
+	public void setRemoteObserver(RemoteObserver _remoteObserver) {
+		this._remoteObserver = _remoteObserver;
+	}
+	
+	public RemoteObserver getRemoteObserver() {
+		return this._remoteObserver;
 	}
 }

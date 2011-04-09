@@ -11,7 +11,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 import java.util.logging.Logger;
 
 import common.network.ForumServer;
-import common.network.RemoteObserver;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.AddPostMessage;
 import common.network.messages.AddThreadMessage;
@@ -60,6 +59,8 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 		log("got a " + whatToGet.getMessageType() + " message");
 
 		Message answer;
+		
+		WrappedObserver wo;
 
 		getRdLock().lock();
 
@@ -84,8 +85,10 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 			case SEE_POSTS_OF_SOME_THREAD:
 
 				SeeThreadPostsMessage stpm = (SeeThreadPostsMessage)whatToGet;
+				
+				wo = new WrappedObserver(stpm.getRemoteObserver());
 
-				answer = getForumController().getPostsList(stpm.getForumID(),stpm.getThreadID(), stpm);
+				answer = getForumController().getPostsList(stpm.getForumID(),stpm.getThreadID(), stpm, wo);
 
 				break;
 
@@ -105,6 +108,8 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 		log("got a " + whatToSet.getMessageType() + " message");
 
 		Message answer;
+		
+		WrappedObserver wo;
 
 		getWrLock().lock();
 
@@ -122,40 +127,55 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 			case LOGIN:
 
 				LoginMessage lim = (LoginMessage)whatToSet;
+				
+				wo = new WrappedObserver(lim.getRemoteObserver());
 
-				answer = getForumController().login(lim.getUsername(), lim.getPassword());
+				answer = getForumController().login(lim.getUsername(),
+						lim.getPassword(), wo);
 
 				break;
 
 			case LOGOUT:
 
 				LogoutMessage lom = (LogoutMessage)whatToSet;
+				
+				wo = new WrappedObserver(lom.getRemoteObserver());
 
-				answer = getForumController().logout(lom.getUsername());
+				answer = getForumController().logout(lom.getUsername(), wo);
 
 				break;
 
 			case ADD_FRIEND:
 
 				AddFriendMessage afm = (AddFriendMessage)whatToSet;
+				
+				wo = new WrappedObserver(afm.getRemoteObserver());
 
-				answer = getForumController().AddFriend(afm.getUsername(), afm.getFriendUsername());
+				answer = getForumController().AddFriend(afm.getUsername(),
+						afm.getFriendUsername(), wo);
 
 				break;
 
 			case REMOVE_FRIEND:
 
 				RemoveFriendMessage rfm = (RemoveFriendMessage)whatToSet;
+				
+				wo = new WrappedObserver(rfm.getRemoteObserver());
 
-				answer = getForumController().RemoveFriend(rfm.getUsername(), rfm.getFriendUsername());
+				answer = getForumController().RemoveFriend(rfm.getUsername(),
+						rfm.getFriendUsername(), wo);
 
 				break;
 
 			case ADD_POST_TO_THREAD:
 
 				AddPostMessage apttm = (AddPostMessage)whatToSet;
+				
+				wo = new WrappedObserver(apttm.getRemoteObserver());
 
-				answer = getForumController().replyToThread(apttm.getForumId(),apttm.getTitle(), apttm.getBody(), apttm.getThreadId(), apttm.getOwnerUsername());
+				answer = getForumController().replyToThread(apttm.getForumId(),
+						apttm.getTitle(), apttm.getBody(), apttm.getThreadId(),
+						apttm.getOwnerUsername(), wo);
 
 				break;
 
@@ -163,7 +183,9 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 
 				AddThreadMessage athm = (AddThreadMessage)whatToSet;
 
-				answer = getForumController().addThread(athm.getForumId(),athm.getTitle(), athm.getBody(), athm.getOwnerUsername());
+				wo = new WrappedObserver(athm.getRemoteObserver());
+				
+				answer = getForumController().addThread(athm.getForumId(),athm.getTitle(), athm.getBody(), athm.getOwnerUsername(), wo);
 
 				break;
 
@@ -175,16 +197,6 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 		getWrLock().unlock();
 
 		return answer;
-	}
-	
-	@Override
-	public void addObserver(RemoteObserver o) throws RemoteException {
-
-		WrappedObserver mo = new WrappedObserver(o);
-        
-		getWrLock().lock();
-		getForumController().addObserver(mo);
-		getWrLock().unlock();
 	}
 
 	private void setForumController(ForumController forumController) {
