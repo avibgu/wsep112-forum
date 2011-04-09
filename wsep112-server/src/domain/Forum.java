@@ -1,5 +1,6 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Vector;
 import common.network.messages.ErrorMessage;
 
@@ -7,7 +8,9 @@ import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 
 
-public class Forum {
+public class Forum implements Serializable{
+
+	private static final long serialVersionUID = 8391028464314667274L;
 
 	private String _name;
 	private int _forumId;

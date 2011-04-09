@@ -1,10 +1,14 @@
 package domain;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Post {
+public class Post implements Serializable{
+	
+	private static final long serialVersionUID = 729804992404516644L;
+	
 	private int _post_id;
 	private int _threadID;
 	private String _title;

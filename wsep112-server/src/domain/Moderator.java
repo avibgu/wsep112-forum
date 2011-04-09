@@ -1,6 +1,11 @@
  package domain;
 
-public class Moderator extends User {
+import java.io.Serializable;
+
+public class Moderator extends User implements Serializable{
+
+	private static final long serialVersionUID = 2600587664509975934L;
+
 	/**
 	 * 
 	 * @param firstName
