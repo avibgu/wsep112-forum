@@ -31,7 +31,7 @@ import common.network.messages.SeeThreadPostsMessage;
  * @author Avi Digmi
  *
  */
-public class ClientController extends UnicastRemoteObject implements RemoteObserver{
+public class ClientController extends UnicastRemoteObject implements RemoteObserver, Observable{
 
 	private static final long serialVersionUID = 4717931904659119985L;
 	
@@ -490,7 +490,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		getObservers().add(o);
 	}
 	
-	private void notifyObservers(Object arg) {
+	public void notifyObservers(Object arg) {
 
 		ArrayList<Observer> list = getObservers();
 		
