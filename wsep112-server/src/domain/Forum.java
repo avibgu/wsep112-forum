@@ -1,11 +1,18 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import common.network.messages.ErrorMessage;
 
 
 import common.network.messages.Message;
+import database.HibernateUtil;
 
 
 public class Forum implements Serializable{
@@ -14,14 +21,18 @@ public class Forum implements Serializable{
 
 	private String _name;
 	private int _forumId;
-	private Vector<Thread> _threads;
-	private Vector<Forum> _subForums;
+	private List<Thread> _threads;
+	private List<Forum> _subForums;
 	static int _threadAvailableID=0;
+	
+	public Forum(){
+		
+	}
 	
 	public Forum (String name,int forumId){
 		this._name=name;
-		this._threads=new Vector<Thread>(0,1);
-		this._subForums=new Vector<Forum>(0,1);
+		this._threads=new ArrayList<Thread>();
+		this._subForums=new ArrayList<Forum>();
 		setForumId(forumId);
 	}
 	
@@ -35,8 +46,9 @@ public class Forum implements Serializable{
 	 */
 	public Message reaplyToThread(String title, String body, int threadId,User owner) {
 		
-		for(int i=0;i<this._threads.size();i++){
-			Thread thread=_threads.elementAt(i);
+		List<Thread> tThreadList = HibernateUtil.retrieveThreadList(_forumId);
+		for(int i=0;i<tThreadList.size();i++){
+			Thread thread=tThreadList.get(i);
 			if(thread.getThread_id()==threadId){
 				return thread.reaply(title, body, owner);
 			}
@@ -52,9 +64,10 @@ public class Forum implements Serializable{
 	 */
 	//removing the given specific thread from the forum
 	public void deleteThread(int threadId){
-		for(int i=0;i<this._threads.size();i++){
-			if(_threads.elementAt(i).getThread_id()==threadId)
-				 _threads.remove(i);
+		List<Thread> tThreadList = HibernateUtil.retrieveThreadList(_forumId);
+		for(int i=0;i<tThreadList.size();i++){
+			//if(tThreadList.get(i).getThread_id()==threadId)
+				// _threads.remove(i); // TODO:: remove thread
 		}
 		
 	}
@@ -68,9 +81,18 @@ public class Forum implements Serializable{
 	 */
 	
 	public Message add_thread (String title,String body,User owner){
-		Thread new_thread=new Thread(_threadAvailableID,title);
-		this._threads.add(new_thread);
-		_threadAvailableID++;
+		
+		Thread new_thread=new Thread(title,this._forumId);
+		Integer ans = (Integer) HibernateUtil.insertDB(new_thread);
+		try {
+			Session session = HibernateUtil.getSession();
+			Transaction t = session.beginTransaction();
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		new_thread.setThread_id(ans.intValue());
+	
 		return new_thread.reaply(title, body,owner);
 		
 		
@@ -81,14 +103,8 @@ public class Forum implements Serializable{
 	 * @param threadID
 	 * @return list of posts related to the given thread
 	 */
-	public  Vector<Post> getPostsList (int threadID){
-		for(int i=0;i<this._threads.size();i++){
-			if(_threads.elementAt(i).getThread_id()==threadID)
-				return _threads.elementAt(i).getPosts();
-		}
-		
-		return null; //meaning that we don't found the thread by the given id;
-		
+	public  List<Post> getPostsList (int threadID){
+		return HibernateUtil.retrievePostList(threadID);
 	}
 	
 	//***************************************** GETTERS AND SETTERS ************************************8
@@ -96,7 +112,7 @@ public class Forum implements Serializable{
 	 * 
 	 * @return sub forums list
 	 */
-	public Vector<Forum> getSub_forums() {
+	public List<Forum> getSub_forums() {
 		return _subForums;
 	}
 
@@ -128,7 +144,7 @@ public class Forum implements Serializable{
 	 * 
 	 * @return list of forum's threads
 	 */
-	public Vector<Thread> getThreads() {
+	public List<Thread> getThreads() {
 		return _threads;
 	}
 

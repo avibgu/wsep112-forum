@@ -16,8 +16,10 @@ public class Post implements Serializable{
 	private User _owner;
 	private Date _date;
 	
-	public Post(int thread_id,int id ,String title ,String body,User owner){
-		this._post_id=id;
+	public Post(){
+		
+	}
+	public Post(int thread_id ,String title ,String body,User owner){
 		this._title=title;
 		this._body=body;
 		this._owner=owner;
@@ -31,6 +33,8 @@ public class Post implements Serializable{
 	 */
 	public void edit_titel(String title){
 		set_title(title);
+		
+		// TODO: database
 	
 	}
 	/**
@@ -39,6 +43,7 @@ public class Post implements Serializable{
 	 */
 	public void edit_body(String body){
 		set_body(body);
+		// TODO: database
 	}
 	
 	/**
