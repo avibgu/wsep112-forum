@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10:03:20 10/04/2011 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="domain.User" table="USERS">
+  <id access="field" name="_username" type="java.lang.String">
+   <column name="username"/>
+   <generator class="assigned"/>
+  </id>
+  <property access="field" generated="never" lazy="false"
+   name="_firstName" type="java.lang.String">
+   <column name="FIRSTNAME"/>
+  </property>
+  <property access="field" generated="never" lazy="false"
+   name="_lastName" type="java.lang.String">
+   <column name="LASTNAME"/>
+  </property>
+  <property access="field" generated="never" lazy="false"
+   name="_password" type="java.lang.String">
+   <column name="PASSWORD"/>
+  </property>
+  <property access="field" generated="never" lazy="false" name="_email" type="java.lang.String">
+   <column name="EMAIL"/>
+  </property>
+  <property access="field" generated="never" lazy="false" name="_status">
+   <column name="STATUS"/>
+   <type name="org.hibernate.type.EnumType">
+    <param name="type">12</param>
+    <param name="enumClass">domain.User$Status</param>
+   </type>
+  </property>
+  <list access="field" lazy="false" name="_friends" table="FRIENDS">
+   <key>
+    <column name="USERNAME"/>
+   </key>
+   <list-index base="0"/>
+   <element type="java.lang.String">
+    <column name="FRIEND_USERNAME"/>
+   </element>
+  </list>
+  <list access="field" lazy="false" name="_posts" table="USER_POSTS">
+   <key>
+    <column name="USERNAME"/>
+   </key>
+   <index column="idx"/>
+   <many-to-many class="domain.Post" column="POST_ID" unique="false"/>
+  </list>
+  </class>
+</hibernate-mapping>
