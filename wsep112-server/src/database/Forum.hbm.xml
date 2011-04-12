@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01:02:15 10/04/2011 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="domain.Forum" table="FORUM">
+  <id access="field" name="_forumId" type="int">
+   <column name="FORUM_ID"/>
+   <generator class="assigned"/>
+  </id>
+  <property access="field" generated="never" lazy="false" name="_name" type="java.lang.String">
+   <column name="FORUM_NAME"/>
+  </property>
+  <list access="field" lazy="false" name="_threads" table="THREADS">
+   <key>
+    <column name="FORUM_ID"/>
+   </key>
+   <list-index column="THREAD_ID"/>
+   <one-to-many class="domain.Thread"/>
+  </list>
+  </class>
+</hibernate-mapping>

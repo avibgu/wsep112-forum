@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 10:03:20 10/04/2011 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="domain.Post" table="POSTS">
+  <id access="field" name="_post_id" type="int">
+   <column name="POST_ID" unique="true"/>
+   <generator class="increment"/>
+  </id>
+  <property access="field" generated="never" lazy="false"
+   name="_threadID" type="int">
+   <column name="THREAD_ID"/>
+  </property>
+  <property generated="never" lazy="false" name="_title" type="java.lang.String">
+   <column name="TITLE"/>
+  </property>
+  <property generated="never" lazy="false" name="_body" type="java.lang.String">
+   <column name="BODY"/>
+  </property>
+  <many-to-one access="field" class="domain.User" fetch="join" name="_owner">
+   <column name="OWNER"/>
+  </many-to-one>
+  <property access="field" generated="never" lazy="false" name="_date" type="java.util.Date">
+   <column name="POST_DATE"/>
+  </property>
+ </class>
+</hibernate-mapping>
