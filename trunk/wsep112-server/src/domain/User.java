@@ -1,11 +1,16 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Observable;
 import java.util.Vector;
+
+import org.hibernate.Hibernate;
+
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
+import database.HibernateUtil;
 
 public class User extends Observable implements Serializable{
 
@@ -19,9 +24,13 @@ public class User extends Observable implements Serializable{
 	private String _password;
 	private String _email;
 	private Status _status;
-	private Vector<String> _friends;
-	private Vector<Post> _posts;
+	private List<String> _friends;
+	private List<Post> _posts;
 
+	
+	public User(){
+		
+	}
 	/**
 	 * Constructor of User
 	 *  @param firstName
@@ -146,7 +155,7 @@ public class User extends Observable implements Serializable{
 		if (isExistUser(userNameFriend.toLowerCase())){
 			return new ErrorMessage("Friend is already exists in user's list.");
 		}
-
+		
 		_friends.add(userNameFriend);
 		return new OKMessage();
 	}
@@ -160,7 +169,8 @@ public class User extends Observable implements Serializable{
 
 		// Check if the userName is in user's list of friends
 		if (isExistUser(userNameFriend.toLowerCase())){
-			_friends.removeElementAt(this.getFriendIndex(userNameFriend));
+		//	_friends.remove(this.getFriendIndex(userNameFriend));
+			//HibernateUtil.deletefriend(userNameFriend); //TODO: delete user
 			return new OKMessage();
 		}
 		return new ErrorMessage("Friend is not exists in user's list.");
@@ -169,7 +179,7 @@ public class User extends Observable implements Serializable{
 	/**
 	 * @return Vector<Post> - posts of User (Owner)
 	 */
-	public Vector<Post> getPosts(){
+	public List<Post> getPosts(){
 		return _posts;
 	}
 
@@ -198,11 +208,10 @@ public class User extends Observable implements Serializable{
 	 * @return true if the userName exist, and false otherwise.
 	 */
 	public Boolean isExistUser(String username){
-		for (int i=0; i < _friends.size() ; i++){
-			if (_friends.get(i).equals(username))
-				return true;
-		}
-		return false;
+	    if (getFriends().contains(username))
+			return true;
+		else
+			return false;
 	}
 
 	/**
@@ -245,4 +254,10 @@ public class User extends Observable implements Serializable{
 		}
 		return -1;
 	}
+	
+	public List<String> getFriends(){
+		return _friends;
+	}
+	
+	
 }

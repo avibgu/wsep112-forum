@@ -1,26 +1,32 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Vector;
 
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
+import database.HibernateUtil;
 
 public class Thread extends Observable implements Serializable{
 
 	private static final long serialVersionUID = 3069041512726662410L;
-
+	private int _forumId;
 	private int _threadID;
 	private String _title;
-	private Vector<Post> _posts;
+	private List<Post> _posts;
 	static int _available_post_id=0;
 	
-	public Thread (int thread_id,String title){
-		this._posts=new Vector<Post>(0,1);
-		this._threadID=thread_id;
+	public Thread(){
+		
+	}
+	public Thread (String title,int forumId){
+		this._posts=new ArrayList<Post>();
 		this._title=title;
+		this.set_forumId(forumId);
 	}
 	
 	/**
@@ -32,12 +38,10 @@ public class Thread extends Observable implements Serializable{
 	 */
 	//return the new post created un order the user to store it on his list
 	public Message reaply(String title, String body,User owner){
-		
-		Post new_post=new Post(this._threadID,_available_post_id, title, body,owner);
-		_available_post_id+=1;//updating the next available post id
-		_posts.add(new_post);
+		Post new_post=new Post(getThread_id(), title, body,owner);
 		owner.addPostToOwnerUser(new_post);//adding the post to owner
-		
+		HibernateUtil.insertDB(new_post);
+		HibernateUtil.updateDB(owner);
 		return new OKMessage();
 	}
 	
@@ -50,13 +54,13 @@ public class Thread extends Observable implements Serializable{
 	public Message delete (int post_id,User owner){
 		
 		for(int i=0;i<this._posts.size();i++){
-			if(_posts.elementAt(i).get_post_id()==post_id){
+			if(_posts.get(i).get_post_id()==post_id){
 				_posts.remove(i);
 				owner.removePost(this._threadID,post_id);
 				return new OKMessage();
 			}
 		}
-		
+		// TODO: add delete from database.
 		 return new ErrorMessage("post doesn't exists.");
 	}
 	
@@ -77,11 +81,19 @@ public class Thread extends Observable implements Serializable{
 		this._title = title;
 	}
 
-	public Vector<Post> getPosts() {
-		return _posts;
+	public List<Post> getPosts() {
+		return HibernateUtil.retrievePostList(_threadID);
 	}
 
 	public void setPosts(Vector<Post> posts) {
 		this._posts = posts;
+	}
+
+	public void set_forumId(int _forumID) {
+		this._forumId = _forumID;
+	}
+
+	public int get_forumId() {
+		return _forumId;
 	}
 }

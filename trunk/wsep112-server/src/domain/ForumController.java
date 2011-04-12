@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import common.network.messages.OKMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeThreadPostsMessage;
+import database.HibernateUtil;
 import domain.User.Status;
 
 /**
@@ -22,7 +24,8 @@ import domain.User.Status;
 public class ForumController implements Serializable{
 
 	private static final long serialVersionUID = -6364114409567569573L;
-
+	
+	private HibernateUtil _database;
 	private Vector<User> _registerdUsers;
 	private Set<String> _loginUsers;
 	private Logger _logger;
@@ -36,6 +39,8 @@ public class ForumController implements Serializable{
 		setLogger(logger);
 		Forum initialForum = new Forum("Initial forum",_availableForumId);
 		_forums.add(initialForum);
+		_database = new HibernateUtil();
+		
 	}
 	/**
 	 *
@@ -62,8 +67,8 @@ public class ForumController implements Serializable{
 
 		// Add the user.
 		User newUser = new User(firstName,lastName,username,password,email);
-		_registerdUsers.add(newUser);
-		_loginUsers.add(username);
+		newUser.setStatus(Status.ONLINE);
+		_database.insertDB(newUser);
 		return new OKMessage();
 	}
 
@@ -73,11 +78,10 @@ public class ForumController implements Serializable{
 	 * @return true if the username exist, and false otherwise.
 	 */
 	public Boolean isExist(String username){
-		for (int i=0; i < _registerdUsers.size() ; ++i){
-			if ((_registerdUsers.get(i).getUserName()).equals(username))
-				return true;
-		}
-		return false;
+		User user = _database.retrieveUser(username);
+		if (user == null)
+			return false;
+		return true;
 	}
 
 	
@@ -103,7 +107,8 @@ public class ForumController implements Serializable{
 			return new ErrorMessage("Invalid password.");
 
 		loginUser.setStatus(Status.ONLINE);
-		_loginUsers.add(username);
+		//_loginUsers.add(username);
+		_database.updateDB(loginUser);
 		return new OKMessage();
 	}
 
@@ -113,12 +118,7 @@ public class ForumController implements Serializable{
 	 * @return the user object.
 	 */
 	public User getUser(String username){
-		for (int i=0; i< _registerdUsers.size(); ++i){
-			User user = _registerdUsers.get(i);
-			if (user.getUserName().equals(username.toLowerCase()))
-				return user;
-		}
-		return null;
+		return _database.retrieveUser(username);
 	}
 
 	/**
@@ -133,12 +133,13 @@ public class ForumController implements Serializable{
 		
 		// Check is username exists.
 		if (!isExist(username))
-			return new ErrorMessage("Username doesn't exists.Shjran");
+			return new ErrorMessage("Username doesn't exists.");
 
 		User logoutUser = getUser(username);
 		logoutUser.setStatus(Status.OFFLINE);
 
 		_loginUsers.remove(username);
+		_database.updateDB(logoutUser);
 		return new OKMessage();
 	}
 
@@ -160,9 +161,12 @@ public class ForumController implements Serializable{
 		if (!isExist(friendUsername))
 			return new ErrorMessage("Friend Username doesn't exists.");
 
-
 		User user = getUser(username);
-		return user.addFriend(friendUsername);
+		Message msg =  user.addFriend(friendUsername);
+		
+		_database.updateDB(user);
+		
+		return msg;
     }
 
     /**
@@ -184,7 +188,11 @@ public class ForumController implements Serializable{
 			return new ErrorMessage("Friend Username doesn't exists.");
 
 		User user = getUser(username);
-		return user.removeFriend(friendUsername);
+		Message msg = user.removeFriend(friendUsername);
+		
+		_database.updateDB(user);
+		
+		return msg;
     }
 
     /**
@@ -208,7 +216,8 @@ public class ForumController implements Serializable{
 		User user = getUser(ownerUsername);
 		
 		// find the forum
-		return _forums.get(Integer.parseInt(forumId)).reaplyToThread(title, body, Integer.parseInt(threadId), user);
+		//return _forums.get(Integer.parseInt(forumId)).reaplyToThread(title, body, Integer.parseInt(threadId), user);
+		return _database.retrieveForum(Integer.valueOf(forumId)).reaplyToThread(title, body,  Integer.parseInt(threadId), user);
     }
 
     /**
@@ -231,7 +240,7 @@ public class ForumController implements Serializable{
 		User user = getUser(ownerUsername);
 		
 		// find the forum
-		return _forums.get(Integer.parseInt(forumId)).add_thread(title, body, user);
+		return _database.retrieveForum(Integer.parseInt(forumId)).add_thread(title, body, user);
 		
     }
 
@@ -242,12 +251,11 @@ public class ForumController implements Serializable{
      * @return list of Forums inside the given message, or ErrorMessage (with reason) on failure
      */
     public Message getForumsList(SeeForumsListMessage sflm) {
-
-            Vector<String> listOfForums = new Vector<String>();
-            for (int i=0; i < _forums.size() ; ++i){
-            	listOfForums.add(_forums.get(i).getName());
+    		List<Forum> forums = _database.retrieveForumsList();
+    		Vector<String> listOfForums = new Vector<String>();
+    	    for (int i=0; i < forums.size() ; ++i){
+            	listOfForums.add(forums.get(i).getName());
             }
-
             sflm.setListOfForums(listOfForums);
             return sflm;
     }
@@ -259,13 +267,13 @@ public class ForumController implements Serializable{
 	 * @return list of Threads inside the given message, or ErrorMessage (with reason) on failure
 	 */
 	public Message getThreadsList(String forumID, SeeForumThreadsMessage sftm) {
-
+		List<Thread> threads = _database.retrieveThreadList(Integer.parseInt(forumID));
 		Vector<String> tListOfThreads = new Vector<String>();
-		Vector<Thread> tThread = _forums.get(Integer.parseInt(forumID)).getThreads(); 
-		for (int i=0; i < tThread.size(); ++i){
-			tListOfThreads.add(tThread.get(i).getTitle());
+		for (int i=0; i < threads.size(); ++i){
+			tListOfThreads.add(threads.get(i).getTitle());
+			
 		}
-		
+	
 		sftm.setListOfThreads(tListOfThreads);
 		return sftm;
 	}
@@ -285,7 +293,7 @@ public class ForumController implements Serializable{
 		//		(just in case he is not their owner or replyer)
 		
 		Vector<String> tListOfPosts = new Vector<String>();
-		Vector<Post> tPost = _forums.get(Integer.parseInt(forumID)).getThreads().get(Integer.parseInt(threadID)).getPosts();
+		List<Post> tPost = _database.retrievePostList(Integer.parseInt(threadID));
 		for (int i=0; i < tPost.size(); ++i){
 			Post tcurrPost = tPost.get(i);
 			tListOfPosts.add("Title:   " + tcurrPost.get_title() +"\n  Date:    " + tcurrPost.getDateTime() + "\n  Message: " + tcurrPost.get_body());
