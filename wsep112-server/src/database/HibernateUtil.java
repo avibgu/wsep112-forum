@@ -183,18 +183,4 @@ public class HibernateUtil {
 			   return null;
 		   }
 	  }
-	   
-	   public static void deletefriend(String username){
-		   try{
-			   Session session = getSession();
-			   Transaction transaction = session.beginTransaction();
-			   //return session.createQuery("from Post where forum_id="+ForumId +"and thread_id="+ threadId).list();
-			   String tString = "delete from User._friends where friend_username=:username"; 
-			   session.createQuery(tString);
-			 }catch (Exception e){
-			   e.printStackTrace();
-	
-		   }
-	   }
-	   
 }
