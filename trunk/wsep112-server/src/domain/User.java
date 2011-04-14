@@ -169,8 +169,8 @@ public class User extends Observable implements Serializable{
 
 		// Check if the userName is in user's list of friends
 		if (isExistUser(userNameFriend.toLowerCase())){
-		//	_friends.remove(this.getFriendIndex(userNameFriend));
-			//HibernateUtil.deletefriend(userNameFriend); //TODO: delete user
+			_friends.remove(userNameFriend);
+		
 			return new OKMessage();
 		}
 		return new ErrorMessage("Friend is not exists in user's list.");
