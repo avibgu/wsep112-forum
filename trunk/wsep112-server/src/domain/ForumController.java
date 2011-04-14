@@ -25,7 +25,6 @@ public class ForumController implements Serializable{
 
 	private static final long serialVersionUID = -6364114409567569573L;
 	
-	private HibernateUtil _database;
 	private Vector<User> _registerdUsers;
 	private Set<String> _loginUsers;
 	private Logger _logger;
@@ -39,8 +38,6 @@ public class ForumController implements Serializable{
 		setLogger(logger);
 		Forum initialForum = new Forum("Initial forum",_availableForumId);
 		_forums.add(initialForum);
-		_database = new HibernateUtil();
-		
 	}
 	/**
 	 *
@@ -68,7 +65,7 @@ public class ForumController implements Serializable{
 		// Add the user.
 		User newUser = new User(firstName,lastName,username,password,email);
 		newUser.setStatus(Status.ONLINE);
-		_database.insertDB(newUser);
+		HibernateUtil.insertDB(newUser);
 		return new OKMessage();
 	}
 
@@ -78,7 +75,7 @@ public class ForumController implements Serializable{
 	 * @return true if the username exist, and false otherwise.
 	 */
 	public Boolean isExist(String username){
-		User user = _database.retrieveUser(username);
+		User user = HibernateUtil.retrieveUser(username);
 		if (user == null)
 			return false;
 		return true;
@@ -107,8 +104,7 @@ public class ForumController implements Serializable{
 			return new ErrorMessage("Invalid password.");
 
 		loginUser.setStatus(Status.ONLINE);
-		//_loginUsers.add(username);
-		_database.updateDB(loginUser);
+		HibernateUtil.updateDB(loginUser);
 		return new OKMessage();
 	}
 
@@ -118,7 +114,7 @@ public class ForumController implements Serializable{
 	 * @return the user object.
 	 */
 	public User getUser(String username){
-		return _database.retrieveUser(username);
+		return HibernateUtil.retrieveUser(username);
 	}
 
 	/**
@@ -139,7 +135,7 @@ public class ForumController implements Serializable{
 		logoutUser.setStatus(Status.OFFLINE);
 
 		_loginUsers.remove(username);
-		_database.updateDB(logoutUser);
+		HibernateUtil.updateDB(logoutUser);
 		return new OKMessage();
 	}
 
@@ -164,7 +160,7 @@ public class ForumController implements Serializable{
 		User user = getUser(username);
 		Message msg =  user.addFriend(friendUsername);
 		
-		_database.updateDB(user);
+		HibernateUtil.updateDB(user);
 		
 		return msg;
     }
@@ -190,7 +186,7 @@ public class ForumController implements Serializable{
 		User user = getUser(username);
 		Message msg = user.removeFriend(friendUsername);
 		
-		_database.updateDB(user);
+		HibernateUtil.updateDB(user);
 		
 		return msg;
     }
@@ -217,7 +213,7 @@ public class ForumController implements Serializable{
 		
 		// find the forum
 		//return _forums.get(Integer.parseInt(forumId)).reaplyToThread(title, body, Integer.parseInt(threadId), user);
-		return _database.retrieveForum(Integer.valueOf(forumId)).reaplyToThread(title, body,  Integer.parseInt(threadId), user);
+		return HibernateUtil.retrieveForum(Integer.valueOf(forumId)).reaplyToThread(title, body,  Integer.parseInt(threadId), user);
     }
 
     /**
@@ -240,7 +236,7 @@ public class ForumController implements Serializable{
 		User user = getUser(ownerUsername);
 		
 		// find the forum
-		return _database.retrieveForum(Integer.parseInt(forumId)).add_thread(title, body, user);
+		return HibernateUtil.retrieveForum(Integer.parseInt(forumId)).add_thread(title, body, user);
 		
     }
 
@@ -251,7 +247,7 @@ public class ForumController implements Serializable{
      * @return list of Forums inside the given message, or ErrorMessage (with reason) on failure
      */
     public Message getForumsList(SeeForumsListMessage sflm) {
-    		List<Forum> forums = _database.retrieveForumsList();
+    		List<Forum> forums = HibernateUtil.retrieveForumsList();
     		Vector<String> listOfForums = new Vector<String>();
     	    for (int i=0; i < forums.size() ; ++i){
             	listOfForums.add(forums.get(i).getName());
@@ -267,7 +263,7 @@ public class ForumController implements Serializable{
 	 * @return list of Threads inside the given message, or ErrorMessage (with reason) on failure
 	 */
 	public Message getThreadsList(String forumID, SeeForumThreadsMessage sftm) {
-		List<Thread> threads = _database.retrieveThreadList(Integer.parseInt(forumID));
+		List<Thread> threads = HibernateUtil.retrieveThreadList(Integer.parseInt(forumID));
 		Vector<String> tListOfThreads = new Vector<String>();
 		for (int i=0; i < threads.size(); ++i){
 			tListOfThreads.add(threads.get(i).getTitle());
@@ -293,7 +289,7 @@ public class ForumController implements Serializable{
 		//		(just in case he is not their owner or replyer)
 		
 		Vector<String> tListOfPosts = new Vector<String>();
-		List<Post> tPost = _database.retrievePostList(Integer.parseInt(threadID));
+		List<Post> tPost = HibernateUtil.retrievePostList(Integer.parseInt(threadID));
 		for (int i=0; i < tPost.size(); ++i){
 			Post tcurrPost = tPost.get(i);
 			tListOfPosts.add("Title:   " + tcurrPost.get_title() +"\n  Date:    " + tcurrPost.getDateTime() + "\n  Message: " + tcurrPost.get_body());
