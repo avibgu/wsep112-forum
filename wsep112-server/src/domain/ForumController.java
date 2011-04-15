@@ -14,6 +14,7 @@ import common.network.messages.Message;
 import common.network.messages.OKMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
+import common.network.messages.SeeFriendsMessage;
 import common.network.messages.SeeThreadPostsMessage;
 import database.HibernateUtil;
 import domain.User.Status;
@@ -32,7 +33,7 @@ public class ForumController implements Serializable{
 	static int _availableForumId = 0;
 	
 	public ForumController(Logger logger){
-		_registerdUsers = new Vector<User>();
+		setRegisterdUsers(new Vector<User>());
 		_loginUsers = new HashSet<String>();
 		_forums = new Vector<Forum>();
 		setLogger(logger);
@@ -299,6 +300,41 @@ public class ForumController implements Serializable{
 
 		return stpm;
 	}
+	
+	/**
+	 * 
+	 * @param username
+	 * @param sfm
+	 * 
+	 * @return list of Friends inside the given message, or ErrorMessage (with reason) on failure
+	 */
+	public Message getFriendsList(String username, SeeFriendsMessage sfm) {
+		
+		Vector<String> tListOfFriends = new Vector<String>();
+		
+		// TODO need to get all the friends of 'username' from the DB..
+		
+		sfm.setListOfFriends(tListOfFriends);
+		
+		return sfm;
+	}
+	
+	/**
+	 * 
+	 * @param sum
+	 * @return
+	 */
+	public Message getUsersList(SeeFriendsMessage sum) {
+
+		Vector<String> tListOfUsers = new Vector<String>();
+		
+		// TODO need to get all the users from the DB..
+		
+		sum.setListOfFriends(tListOfUsers);
+		
+		return sum;
+	}
+	
 	/**
 	 * 
 	 * @param logger
@@ -306,6 +342,7 @@ public class ForumController implements Serializable{
 	public void setLogger(Logger logger) {
 		this._logger = logger;
 	}
+	
 	/**
 	 * 
 	 * @return
@@ -313,11 +350,20 @@ public class ForumController implements Serializable{
 	public Logger getLogger() {
 		return _logger;
 	}
+	
 	/**
 	 * 
 	 * @param msg
 	 */
 	public void log(String msg){
 		getLogger().info(msg);
+	}
+	
+	public void setRegisterdUsers(Vector<User> _registerdUsers) {
+		this._registerdUsers = _registerdUsers;
+	}
+	
+	public Vector<User> getRegisterdUsers() {
+		return _registerdUsers;
 	}
 }
