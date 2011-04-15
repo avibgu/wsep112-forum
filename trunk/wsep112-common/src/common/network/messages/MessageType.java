@@ -20,5 +20,7 @@ public enum MessageType {
     ADD_POST_TO_THREAD,
     ADD_THREAD,
     OK,
-    ERROR
+    ERROR,
+    SEE_FRIENDS_LIST,
+    SEE_USERS_LIST
 }
