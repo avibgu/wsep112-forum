@@ -17,6 +17,7 @@ import common.logging.VerySimpleLogFormatter;
 import common.network.ForumServer;
 
 import domain.ClientController;
+import presentation.gui.StartWindow;
 
 /**
  * @author Avi Digmi
@@ -111,7 +112,8 @@ public class MainClient {
 		}
         
         ClientController clientController = new ClientController(forumServerStub, logger);
-        
-        new CLI(clientController, logger).start();
+
+     new StartWindow(clientController).setSize(546,465);
+     //   new CLI(clientController, logger).start();
 	}
 }
