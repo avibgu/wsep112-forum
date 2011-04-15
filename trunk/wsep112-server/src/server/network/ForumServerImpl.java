@@ -22,6 +22,7 @@ import common.network.messages.RegMessage;
 import common.network.messages.RemoveFriendMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
+import common.network.messages.SeeFriendsMessage;
 import common.network.messages.SeeThreadPostsMessage;
 
 import domain.ForumController;
@@ -90,6 +91,22 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 
 				answer = getForumController().getPostsList(stpm.getForumID(),stpm.getThreadID(), stpm, wo);
 
+				break;
+				
+			case SEE_FRIENDS_LIST:
+				
+				SeeFriendsMessage sfm = (SeeFriendsMessage)whatToGet;
+
+				answer = getForumController().getFriendsList(sfm.getUsername(), sfm);
+
+				break;
+				
+			case SEE_USERS_LIST:
+				
+				SeeFriendsMessage sum = (SeeFriendsMessage)whatToGet;
+
+				answer = getForumController().getUsersList(sum);
+				
 				break;
 
 			default:
