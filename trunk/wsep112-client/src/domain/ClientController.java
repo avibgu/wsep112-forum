@@ -25,7 +25,9 @@ import common.network.messages.RegMessage;
 import common.network.messages.RemoveFriendMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
+import common.network.messages.SeeFriendsMessage;
 import common.network.messages.SeeThreadPostsMessage;
+import common.network.messages.SeeUsersMessage;
 
 /**
  * @author Avi Digmi
@@ -430,7 +432,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 * 
 	 * @param forumID
 	 * @param threadID
-	 * @return
+	 * 
+	 * @return list of Friends inside the given message, or ErrorMessage (with reason) on failure
 	 */
 	public Vector<String> getFriendList() {
 
@@ -462,17 +465,17 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	
 	/**
 	 * 
-	 * @return
+	 * @return list of Users inside the given message, or ErrorMessage (with reason) on failure
 	 */
 	public Vector<String> getUsersList() {
 
 		ErrorMessage errorMessage;
 
-    	SeeUsersMessage sfm = new SeeUsersMessage();
+    	SeeUsersMessage sum = new SeeUsersMessage();
 
 		try {
 
-			Message answer = getForumServerStub().getInformation(sfm);
+			Message answer = getForumServerStub().getInformation(sum);
 			
 			if (answer.getMessageType() != MessageType.ERROR)
 				return ((SeeUsersMessage)answer).getListOfUsers();
