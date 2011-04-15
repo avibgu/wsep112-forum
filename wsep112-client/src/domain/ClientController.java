@@ -427,6 +427,72 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	}
 
 	/**
+	 * 
+	 * @param forumID
+	 * @param threadID
+	 * @return
+	 */
+	public Vector<String> getFriendList() {
+
+		ErrorMessage errorMessage;
+
+    	SeeFriendsMessage sfm = new SeeFriendsMessage(getCurrentLogedInUsername());
+
+		try {
+
+			Message answer = getForumServerStub().getInformation(sfm);
+			
+			if (answer.getMessageType() != MessageType.ERROR)
+				return ((SeeFriendsMessage)answer).getListOfFriends();
+			
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		notifyObservers(errorMessage);
+
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Vector<String> getUsersList() {
+
+		ErrorMessage errorMessage;
+
+    	SeeUsersMessage sfm = new SeeUsersMessage();
+
+		try {
+
+			Message answer = getForumServerStub().getInformation(sfm);
+			
+			if (answer.getMessageType() != MessageType.ERROR)
+				return ((SeeUsersMessage)answer).getListOfUsers();
+			
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		notifyObservers(errorMessage);
+
+		return null;
+	}
+	
+	/**
 	 * Check if the word contains upper letter.
 	 * @param word
 	 * @return
