@@ -313,6 +313,8 @@ public class ForumController implements Serializable{
 		Vector<String> tListOfFriends = new Vector<String>();
 		
 		// TODO need to get all the friends of 'username' from the DB..
+		tListOfFriends.add("TODO: get list of friends from the db..");
+		///////////////////////////////////////////////////////////////
 		
 		sfm.setListOfFriends(tListOfFriends);
 		
@@ -329,6 +331,8 @@ public class ForumController implements Serializable{
 		Vector<String> tListOfUsers = new Vector<String>();
 		
 		// TODO need to get all the users from the DB..
+		tListOfUsers.add("TODO: get list of users from the db..");
+		///////////////////////////////////////////////////////////////
 		
 		sum.setListOfFriends(tListOfUsers);
 		
