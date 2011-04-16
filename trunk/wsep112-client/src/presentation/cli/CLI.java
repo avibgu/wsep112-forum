@@ -11,6 +11,9 @@ import java.util.Observer;
 import java.util.Vector;
 import java.util.logging.Logger;
 
+import common.forum.items.ForumInfo;
+import common.forum.items.PostInfo;
+import common.forum.items.ThreadInfo;
 import common.network.messages.ErrorMessage;
 
 import domain.ClientController;
@@ -129,7 +132,7 @@ public class CLI implements Observer{
 		
 		String str = "";
 		
-		Vector<String> forumList = getClientController().getForumsList();
+		Vector<ForumInfo> forumList = getClientController().getForumsList();
 		if (forumList == null) return;
 		 
 		int length = forumList.size();
@@ -141,7 +144,7 @@ public class CLI implements Observer{
 			while ((n>length+1) | (n<=0)) {
 				System.out.println("Please choose one of the following fourms:");
 				for (i=1; i<=length; i++){
-					System.out.println(i + ". " + forumList.get(i-1));
+					System.out.println(i + ". " + forumList.get(i-1).getName());
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
@@ -227,7 +230,7 @@ public class CLI implements Observer{
 	private void ViewThreads(String forumID) throws IOException {
 		String str = "";
 
-		Vector<String> threadList = getClientController().getThreadsList(forumID);
+		Vector<ThreadInfo> threadList = getClientController().getThreadsList(forumID);
 		
 		if (threadList == null) return;		
 		
@@ -240,7 +243,7 @@ public class CLI implements Observer{
 			while ((n>length+1) | (n<=0)) {
 				System.out.println("Please choose one of the following threads:");
 				for (i=1; i<=length; i++){
-					System.out.println(i + ". " + threadList.get(i-1));
+					System.out.println(i + ". " + threadList.get(i-1).getTitle());
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
@@ -314,7 +317,7 @@ public class CLI implements Observer{
 	private void ViewPosts(String forumID,String threadID) throws IOException {
 		String str = "";
 		
-		Vector<String> postsList = getClientController().getPostsList(forumID,threadID);
+		Vector<PostInfo> postsList = getClientController().getPostsList(forumID,threadID);
 		
 		if (postsList == null) return;
 
@@ -324,7 +327,12 @@ public class CLI implements Observer{
 		while (n!=i) { //loop until press 'Back'
 			System.out.println(((char) 27)+"[2J"); //clear screen
 				for (i=1; i<=length; i++){
-					System.out.println(i + "." + postsList.get(i-1));
+					System.out.println(	i + "." + "Title:   " +
+										postsList.get(i-1).get_title() +
+										"\n  Date:    " +
+										postsList.get(i-1).getDateTime() +
+										"\n  Message: " +
+										postsList.get(i-1).get_body() );
 				}
 				System.out.println(i + ". Back");
 				str = buf.readLine();
