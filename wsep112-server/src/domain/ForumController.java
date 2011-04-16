@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +21,8 @@ import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeFriendsMessage;
 import common.network.messages.SeeThreadPostsMessage;
+import common.notifications.FriendAddedPostNotification;
+import common.notifications.ThreadChangedNotification;
 import database.HibernateUtil;
 import domain.User.Status;
 
@@ -36,6 +39,9 @@ public class ForumController implements Serializable{
 	private Vector<Forum> _forums;
 	static int _availableForumId = 0;
 	
+	// AVID: manage this map.. SHIRAN: save this as table in the DB?..
+	private HashMap<String, WrappedObserver> _usersToObserversMap;
+	
 	public ForumController(Logger logger){
 		setRegisterdUsers(new Vector<User>());
 		_loginUsers = new HashSet<String>();
@@ -43,6 +49,7 @@ public class ForumController implements Serializable{
 		setLogger(logger);
 		Forum initialForum = new Forum("Initial forum",_availableForumId);
 		_forums.add(initialForum);
+		set_usersToObserversMap(new HashMap<String, WrappedObserver>());
 	}
 	/**
 	 *
@@ -96,7 +103,7 @@ public class ForumController implements Serializable{
 	 */
 	public Message login(String username, String password, WrappedObserver wo) {
 		
-		//AVID: notify user about things that happened when he was offline?..
+		//AVID: notify user about things that happened when he was offline.. ????
 
 		// Check is username exists.
 		if (!isExist(username))
@@ -130,7 +137,7 @@ public class ForumController implements Serializable{
 	 */
 	public Message logout(String username, WrappedObserver wo) {
 
-		//AVID: what to do about offline observers?..
+		//AVID: what to do about offline observers?.. ????
 		
 		// Check is username exists.
 		if (!isExist(username))
@@ -153,8 +160,6 @@ public class ForumController implements Serializable{
      */
     public Message AddFriend(String username, String friendUsername, WrappedObserver wo) {
     	
-    	//AVID: add this user to friend's observers..
-    	
 		// Check is username exists.
 		if (!isExist(username))
 			return new ErrorMessage("Username doesn't exists.");
@@ -164,6 +169,14 @@ public class ForumController implements Serializable{
 
 		User user = getUser(username);
 		Message msg =  user.addFriend(friendUsername);
+		
+    	//AVID_DONE: add this user to friend's observers..
+		
+		User friend = getUser(friendUsername);
+		friend.addObserver(wo);
+		user.addObserver(get_usersToObserversMap().get(friendUsername));
+
+		//SHIRAN: update friend in DB?..
 		
 		HibernateUtil.updateDB(user);
 		
@@ -179,8 +192,6 @@ public class ForumController implements Serializable{
      */
     public Message RemoveFriend(String username, String friendUsername, WrappedObserver wo) {
     	
-    	//AVID: remove this user from friend's observers..
-    	
 		// Check is username exists.
 		if (!isExist(username))
 			return new ErrorMessage("Username doesn't exists.");
@@ -190,6 +201,14 @@ public class ForumController implements Serializable{
 
 		User user = getUser(username);
 		Message msg = user.removeFriend(friendUsername);
+		
+		//AVID_DONE: remove this user from friend's observers..
+		
+		User friend = getUser(friendUsername);
+		friend.deleteObserver(wo);
+		user.deleteObserver(get_usersToObserversMap().get(friendUsername));
+
+		//SHIRAN: update friend in DB?..
 		
 		HibernateUtil.updateDB(user);
 		
@@ -204,18 +223,29 @@ public class ForumController implements Serializable{
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
     public Message replyToThread(String forumId, String title, String body,
-    		String threadId, String ownerUsername, WrappedObserver wo) {
+    		String threadId, String username, WrappedObserver wo) {
     	
-    	//AVID: notify to friends and thread's observers..
 		//AVID: add this user as observer on this thread.. ????
     	//		(nobody can remove him from observation..)
     	
-    	if (!isExist(ownerUsername))
+    	if (!isExist(username))
 			return new ErrorMessage("Username doesn't exists.");
     	
     	 // Find the owner
-		User user = getUser(ownerUsername);
+		User user = getUser(username);
 		
+		//AVID_DONE: notify to thread's observers..
+		Thread thread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
+		
+		ThreadInfo threadInfo = new ThreadInfo(
+				thread.getThread_id(), thread.getTitle(), thread.get_forumId());
+		
+		thread.notifyObservers(new ThreadChangedNotification(threadInfo));
+		
+    	//AVID_DONE: notify to friends
+		user.notifyObservers(new FriendAddedPostNotification(
+				threadInfo, new UserInfo(user.getStatusAsString(), user.getUserName())));
+
 		// find the forum
 		//return _forums.get(Integer.parseInt(forumId)).reaplyToThread(title, body, Integer.parseInt(threadId), user);
 		return HibernateUtil.retrieveForum(Integer.valueOf(forumId)).reaplyToThread(title, body,  Integer.parseInt(threadId), user);
@@ -231,9 +261,6 @@ public class ForumController implements Serializable{
     public Message addThread(String forumId,String title, String body,
     		String ownerUsername, WrappedObserver wo) {
     	
-		//AVID: add this user as observer on this thread..
-    	//		(nobody can remove him from observation..)
-    	
     	if (!isExist(ownerUsername))
 			return new ErrorMessage("Username doesn't exists.");
     	
@@ -241,8 +268,8 @@ public class ForumController implements Serializable{
 		User user = getUser(ownerUsername);
 		
 		// find the forum
-		return HibernateUtil.retrieveForum(Integer.parseInt(forumId)).add_thread(title, body, user);
-		
+		return HibernateUtil.retrieveForum(Integer.parseInt(forumId))
+												.add_thread(title, body, user, wo);
     }
 
     /**
@@ -296,10 +323,17 @@ public class ForumController implements Serializable{
 	public Message getPostsList(String forumID, String threadID,
 			SeeThreadPostsMessage stpm, WrappedObserver wo) {
 		
-		//AVID: add this user as observer on this thread..
-		//AVID: remove this user from observation on other threads
-		//		(just in case he is not their owner or replyer)
+		//AVID_DONE: remove this user from observation on other threads
+		//			(just in case he is not their owner (or replyer ??))
+		removeThisUserFromObservingOnThreads(wo);
 		
+		//AVID_DONE: add this user as observer on this thread..
+		
+		Thread thread = HibernateUtil.retrieveThread(Integer.parseInt(threadID));
+		thread.addObserver(wo);
+		
+		// SHIRAN: save it back in the DB?..
+
 		Vector<PostInfo> tListOfPosts = new Vector<PostInfo>();
 		
 		List<Post> tPost = HibernateUtil.retrievePostList(Integer.parseInt(threadID));
@@ -309,7 +343,7 @@ public class ForumController implements Serializable{
 			UserInfo ui = new UserInfo(post.getOwner().getStatusAsString(),
 					post.getOwner().getUserName());
 			
-			tListOfPosts.add( new PostInfo(post.get_post_id(), post.get_title(),
+			tListOfPosts.add(new PostInfo(post.get_post_id(), post.get_title(),
 					post.get_body(), ui, post.getThread_id(), post.getDateTime()));
 		}
 		
@@ -317,7 +351,7 @@ public class ForumController implements Serializable{
 
 		return stpm;
 	}
-	
+
 	/**
 	 * 
 	 * @param username
@@ -369,11 +403,6 @@ public class ForumController implements Serializable{
 		// TODO: need to remove this thread from the DB..
 		//		 should delete also its observers and posts..
 		
-		Forum tForum = HibernateUtil.retrieveForum(Integer.parseInt(forumId));
-		tForum.deleteThread(Integer.parseInt(threadId));
-		
-		// Update database
-		HibernateUtil.updateDB(tForum);
     	// AVID: verify that there is no observers on this thread after deletion
 		
 		// TODO: return real answer..
@@ -390,16 +419,22 @@ public class ForumController implements Serializable{
 	 */
 	public Message RemovePost(String threadId, String postId, WrappedObserver wo) {
 		
-		// delete the post
-		Thread tThread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
-		User tPostOwner = HibernateUtil.getPostOwner(Integer.parseInt(postId));
-		tThread.delete(Integer.parseInt(postId),tPostOwner);
-		
-		// Update database
-		HibernateUtil.updateDB(tThread);
+		// TODO: need to remove this post from the DB..
 		
 		// TODO: return real answer..
 		return new OKMessage();
+	}
+	
+	/**
+	 * 
+	 * @param wo
+	 */
+	private void removeThisUserFromObservingOnThreads(WrappedObserver wo) {
+
+		List<Thread> threads = HibernateUtil.retrieveAllThreadsList();
+		
+		for (Thread thread : threads)
+			thread.deleteObserver(wo);
 	}
 	
 	/**
@@ -432,5 +467,11 @@ public class ForumController implements Serializable{
 	
 	public Vector<User> getRegisterdUsers() {
 		return _registerdUsers;
+	}
+	public void set_usersToObserversMap(HashMap<String, WrappedObserver> _usersToObserversMap) {
+		this._usersToObserversMap = _usersToObserversMap;
+	}
+	public HashMap<String, WrappedObserver> get_usersToObserversMap() {
+		return _usersToObserversMap;
 	}
 }
