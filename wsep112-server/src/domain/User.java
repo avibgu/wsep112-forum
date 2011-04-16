@@ -290,7 +290,8 @@ public class User implements Observable, Serializable{
     
 	public synchronized void deleteObserver(WrappedObserver wo) {
 
-		get_observers().remove(wo);
+		if (get_observers().contains(wo))
+			get_observers().remove(wo);
 	}
 	
 	@Override
