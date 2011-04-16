@@ -258,7 +258,7 @@ public class ForumController implements Serializable{
     		Vector<ForumInfo> listOfForums = new Vector<ForumInfo>();
     		
     		for (Forum forum : forums)
-    			listOfForums.add(forum);
+    			listOfForums.add(new ForumInfo(forum.getName(), forum.getForumId()));
 
 //    	    for (int i=0; i < forums.size() ; ++i)
 //            	listOfForums.add(forums.get(i).getName());
