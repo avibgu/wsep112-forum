@@ -229,11 +229,8 @@ public class CLI implements Observer{
 	 */
 	private void ViewThreads(String forumID) throws IOException {
 		String str = "";
-
 		Vector<ThreadInfo> threadList = getClientController().getThreadsList(forumID);
-		
 		if (threadList == null) return;		
-		
 		int length = threadList.size();
 		int n = 0;
 		int i = 1;
@@ -251,7 +248,7 @@ public class CLI implements Observer{
 					if (validInput(i,str)){
 						n = Integer.parseInt(str);
 						int tnumInArray= n-1;
-						strArr= Integer.toString(tnumInArray);
+						strArr= Integer.toString(tnumInArray+1);
 						if (n==i) break;
 					}
 					else System.out.println("Incorrect input!");
