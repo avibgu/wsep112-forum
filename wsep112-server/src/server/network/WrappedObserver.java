@@ -19,7 +19,7 @@ public class WrappedObserver implements Observer, Serializable {
 
     @Override
     public void update(Observable o, Object arg) {
-        
+
     	try {
     		
     		getRemoteObserver().update(null, arg);
@@ -29,6 +29,15 @@ public class WrappedObserver implements Observer, Serializable {
     		System.out.println("Remote exception removing observer:" + this);
             o.deleteObserver(this);
         }
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+    	
+    	if ( !(obj instanceof WrappedObserver))
+    		return false;
+    	
+    	return ((WrappedObserver)obj).getRemoteObserver().equals(_remoteObserver);
     }
 
 	public void setRemoteObserver(RemoteObserver _remoteObserver) {
