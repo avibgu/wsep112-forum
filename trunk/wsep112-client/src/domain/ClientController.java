@@ -11,6 +11,10 @@ import java.util.Vector;
 import java.util.logging.Logger;
 
 import common.encryption.SHA1;
+import common.forum.items.ForumInfo;
+import common.forum.items.PostInfo;
+import common.forum.items.ThreadInfo;
+import common.forum.items.UserInfo;
 import common.network.ForumServer;
 import common.network.RemoteObserver;
 import common.network.messages.AddFriendMessage;
@@ -333,7 +337,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
      *
      * @return list of Forums, or null on failure
      */
-    public Vector<String> getForumsList() {
+    public Vector<ForumInfo> getForumsList() {
 
     	ErrorMessage errorMessage;
     	
@@ -367,7 +371,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 *
 	 * @return list of Threads inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Vector<String> getThreadsList(String forumID) {
+	public Vector<ThreadInfo> getThreadsList(String forumID) {
 
 		ErrorMessage errorMessage;
 		
@@ -402,7 +406,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 *
 	 * @return list of Posts inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Vector<String> getPostsList(String forumID,String threadID) {
+	public Vector<PostInfo> getPostsList(String forumID,String threadID) {
 
 		ErrorMessage errorMessage;
 
@@ -437,7 +441,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 * 
 	 * @return list of Friends inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Vector<String> getFriendList() {
+	public Vector<UserInfo> getFriendList() {
 
 		ErrorMessage errorMessage;
 
@@ -469,7 +473,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 * 
 	 * @return list of Users inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Vector<String> getUsersList() {
+	public Vector<UserInfo> getUsersList() {
 
 		ErrorMessage errorMessage;
 
