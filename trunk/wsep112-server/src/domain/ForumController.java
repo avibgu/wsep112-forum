@@ -259,9 +259,6 @@ public class ForumController implements Serializable{
     		
     		for (Forum forum : forums)
     			listOfForums.add(new ForumInfo(forum.getName(), forum.getForumId()));
-
-//    	    for (int i=0; i < forums.size() ; ++i)
-//            	listOfForums.add(forums.get(i).getName());
     	    
             sflm.setListOfForums(listOfForums);
             return sflm;
@@ -281,10 +278,8 @@ public class ForumController implements Serializable{
 		Vector<ThreadInfo> tListOfThreads = new Vector<ThreadInfo>();
 		
 		for (Thread thread : threads)
-			tListOfThreads.add(thread);
-
-//		for (int i=0; i < threads.size(); ++i)
-//			tListOfThreads.add(threads.get(i).getTitle());
+			tListOfThreads.add(new ThreadInfo(
+					thread.getThread_id(), thread.getTitle(), thread.get_forumId()));
 
 		sftm.setListOfThreads(tListOfThreads);
 		
@@ -309,18 +304,14 @@ public class ForumController implements Serializable{
 		
 		List<Post> tPost = HibernateUtil.retrievePostList(Integer.parseInt(threadID));
 		
-		for (Post post : tPost)
-			tListOfPosts.add(post);
-		
-//		for (int i=0; i < tPost.size(); ++i){
-//			Post tcurrPost = tPost.get(i);
-//			tListOfPosts.add(	"Title:   " +
-//								tcurrPost.get_title() +
-//								"\n  Date:    " +
-//								tcurrPost.getDateTime() +
-//								"\n  Message: " +
-//								tcurrPost.get_body());
-//		}
+		for (Post post : tPost){
+			
+			UserInfo ui = new UserInfo(post.getOwner().getStatusAsString(),
+					post.getOwner().getUserName());
+			
+			tListOfPosts.add( new PostInfo(post.get_post_id(), post.get_title(),
+					post.get_body(), ui, post.getThread_id(), post.getDateTime()));
+		}
 		
 		stpm.setListOfPosts(tListOfPosts);
 
@@ -339,7 +330,7 @@ public class ForumController implements Serializable{
 		Vector<UserInfo> tListOfFriends = new Vector<UserInfo>();
 		
 		// TODO need to get all the friends of 'username' from the DB..
-		tListOfFriends.add(new User("","","TODO: get list of friends from the db..","",""));
+		tListOfFriends.add(new UserInfo("OFFLINE", "TODO: get list of friends from the db.."));
 		///////////////////////////////////////////////////////////////
 		
 		sfm.setListOfFriends(tListOfFriends);
@@ -358,7 +349,7 @@ public class ForumController implements Serializable{
 		Vector<UserInfo> tListOfUsers = new Vector<UserInfo>();
 		
 		// TODO need to get all the users from the DB..
-		tListOfUsers.add(new User("","","TODO: get list of users from the db..","",""));
+		tListOfUsers.add(new UserInfo("OFFLINE", "TODO: get list of users from the db.."));
 		///////////////////////////////////////////////////////////////
 		
 		sum.setListOfFriends(tListOfUsers);
