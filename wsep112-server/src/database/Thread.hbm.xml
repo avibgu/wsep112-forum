@@ -5,16 +5,16 @@
 <hibernate-mapping>
  <class name="domain.Thread" table="THREADS">
   <id access="field" name="_threadID" type="int">
-   <column name="THREAD_ID"/>
+   <column name="THREAD_ID" not-null="true"/>
    <generator class="increment"/>
   </id>
   <property access="field" generated="never" lazy="false" name="_title" type="java.lang.String">
    <column name="TITLE"/>
   </property>
-  <list access="field" cascade="all-delete-orphan" lazy="false"
-   name="_posts" table="POSTS">
+  <list access="field" cascade="all-delete-orphan" inverse="true"
+   lazy="false" name="_posts" table="POSTS">
    <key not-null="false">
-    <column name="THREAD_ID"/>
+    <column name="THREAD_ID" not-null="true"/>
    </key>
    <index column="POST_ID"/>
    <one-to-many class="domain.Post"/>

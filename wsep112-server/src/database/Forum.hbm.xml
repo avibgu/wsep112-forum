@@ -11,12 +11,12 @@
   <property access="field" generated="never" lazy="false" name="_name" type="java.lang.String">
    <column name="FORUM_NAME"/>
   </property>
-  <list access="field" lazy="false" name="_threads" table="THREADS">
+  <list access="field" inverse="true" lazy="false" name="_threads" table="THREADS">
    <key>
-    <column name="FORUM_ID"/>
+    <column name="FORUM_ID" not-null="true"/>
    </key>
-   <list-index column="THREAD_ID"/>
+   <list-index base="0" column="THREAD_ID"/>
    <one-to-many class="domain.Thread"/>
   </list>
-  </class>
+ </class>
 </hibernate-mapping>

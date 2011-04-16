@@ -88,11 +88,11 @@ public class Forum implements Serializable{
 	public Message add_thread (String title, String body, User owner, WrappedObserver wo){
 		
 		Thread new_thread=new Thread(title,this._forumId);
-		
+		System.out.println("num of threads before  = " + getThreads().size());
 		//AVID_DONE: add this user as owner observer on this thread..
     	//			(nobody can remove him from observation..)
 		new_thread.set_ownerObserver(wo);
-		
+		getThreads().add(new_thread);
 		Integer ans = (Integer) HibernateUtil.insertDB(new_thread);
 		
 		try {
@@ -103,7 +103,8 @@ public class Forum implements Serializable{
 		catch(Exception e){ e.printStackTrace(); }
 		
 		new_thread.setThread_id(ans.intValue());
-	
+		HibernateUtil.updateDB(new_thread);
+		System.out.println("num of threads after  = " + getThreads().size());
 		return new_thread.reaply(title, body, owner);
 	}
 	
@@ -154,7 +155,9 @@ public class Forum implements Serializable{
 	 * @return list of forum's threads
 	 */
 	public List<Thread> getThreads() {
-		return _threads;
+		if (_threads.size() > 0)
+			_threads.remove(0);
+			return _threads;
 	}
 
 	/**

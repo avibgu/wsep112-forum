@@ -174,7 +174,7 @@ public class ForumController implements Serializable{
 		
 		User friend = getUser(friendUsername);
 		friend.addObserver(wo);
-		user.addObserver(get_usersToObserversMap().get(friendUsername));
+//		user.addObserver(get_usersToObserversMap().get(friendUsername));
 
 		//SHIRAN: update friend in DB?..
 		
@@ -250,7 +250,10 @@ public class ForumController implements Serializable{
 
 		// find the forum
 		//return _forums.get(Integer.parseInt(forumId)).reaplyToThread(title, body, Integer.parseInt(threadId), user);
-		return HibernateUtil.retrieveForum(Integer.valueOf(forumId)).reaplyToThread(title, body,  Integer.parseInt(threadId), user);
+		Message msg = HibernateUtil.retrieveForum(Integer.valueOf(forumId)).reaplyToThread(title, body,  Integer.parseInt(threadId), user);
+		
+		HibernateUtil.updateDB(thread);
+		return msg;
     }
 
     /**
@@ -270,8 +273,11 @@ public class ForumController implements Serializable{
 		User user = getUser(ownerUsername);
 		
 		// find the forum
-		return HibernateUtil.retrieveForum(Integer.parseInt(forumId))
-												.add_thread(title, body, user, wo);
+		Forum tForum =  HibernateUtil.retrieveForum(Integer.parseInt(forumId));
+		Message tMsg = tForum.add_thread(title, body, user, wo); 
+	
+		HibernateUtil.updateDB(tForum);
+		return tMsg;
     }
 
     /**
@@ -425,8 +431,6 @@ public class ForumController implements Serializable{
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
 	public Message RemovePost(String threadId, String postId, WrappedObserver wo) {
-		
-		// TODO: need to remove this post from the DB..
 		
 		Thread tThread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
 		User tUser = HibernateUtil.retrievePostOwner(Integer.parseInt(postId));

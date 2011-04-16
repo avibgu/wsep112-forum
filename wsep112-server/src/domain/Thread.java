@@ -62,16 +62,16 @@ public class Thread implements Observable, Serializable{
 	 * @param owner the owner of the post
 	 */
 	public Message delete (int post_id,User owner){
-		
-		for(int i=0;i<this._posts.size();i++){
-			if(_posts.get(i).get_post_id()==post_id){
-				_posts.remove(i);
-				owner.removePost(this._threadID,post_id);
+		System.out.println("size1 = " + getPosts().size());
+		for(int i=0;i<getPosts().size();i++){
+			if(getPosts().get(i).get_post_id() == post_id){
+				getPosts().remove(i);
+				owner.removePost(getThread_id(),post_id);
+				System.out.println("size2 = " + getPosts().size());
 				return new OKMessage();
 			}
 		}
-		// TODO: add delete from database.
-		 return new ErrorMessage("post doesn't exists.");
+		return new ErrorMessage("post doesn't exists.");
 	}
 	
 	//*************************** GETTERS AND SETTERS ***********************************
@@ -92,7 +92,8 @@ public class Thread implements Observable, Serializable{
 	}
 
 	public List<Post> getPosts() {
-		return HibernateUtil.retrievePostList(_threadID);
+		return _posts;
+		//return HibernateUtil.retrievePostList(_threadID);
 	}
 
 	public void setPosts(Vector<Post> posts) {
