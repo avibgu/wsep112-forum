@@ -8,6 +8,7 @@ import java.util.Vector;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import common.forum.items.ForumInfo;
 import common.network.messages.ErrorMessage;
 
 
@@ -15,7 +16,7 @@ import common.network.messages.Message;
 import database.HibernateUtil;
 
 
-public class Forum implements Serializable{
+public class Forum implements ForumInfo, Serializable{
 
 	private static final long serialVersionUID = 8391028464314667274L;
 

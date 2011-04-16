@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Vector;
 
+import common.forum.items.ThreadInfo;
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
 import database.HibernateUtil;
 
-public class Thread extends Observable implements Serializable{
+public class Thread extends Observable implements ThreadInfo, Serializable{
 
 	private static final long serialVersionUID = 3069041512726662410L;
 	private int _forumId;
