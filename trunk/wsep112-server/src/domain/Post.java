@@ -5,9 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import common.forum.items.PostInfo;
-
-public class Post implements PostInfo, Serializable{
+public class Post implements Serializable{
 	
 	private static final long serialVersionUID = 729804992404516644L;
 	
