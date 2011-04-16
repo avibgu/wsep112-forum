@@ -369,6 +369,11 @@ public class ForumController implements Serializable{
 		// TODO: need to remove this thread from the DB..
 		//		 should delete also its observers and posts..
 		
+		Forum tForum = HibernateUtil.retrieveForum(Integer.parseInt(forumId));
+		tForum.deleteThread(Integer.parseInt(threadId));
+		
+		// Update database
+		HibernateUtil.updateDB(tForum);
     	// AVID: verify that there is no observers on this thread after deletion
 		
 		// TODO: return real answer..
@@ -385,7 +390,13 @@ public class ForumController implements Serializable{
 	 */
 	public Message RemovePost(String threadId, String postId, WrappedObserver wo) {
 		
-		// TODO: need to remove this post from the DB..
+		// delete the post
+		Thread tThread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
+		User tPostOwner = HibernateUtil.getPostOwner(Integer.parseInt(postId));
+		tThread.delete(Integer.parseInt(postId),tPostOwner);
+		
+		// Update database
+		HibernateUtil.updateDB(tThread);
 		
 		// TODO: return real answer..
 		return new OKMessage();
