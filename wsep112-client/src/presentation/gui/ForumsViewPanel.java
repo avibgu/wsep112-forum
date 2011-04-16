@@ -89,14 +89,14 @@ public class ForumsViewPanel extends javax.swing.JPanel {
         jButton4.setBounds(10, 20, 40, 30);
         jLayeredPane4.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jButton1.setText("Enter Forum");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(190, 350, 130, 29);
+        jButton1.setBounds(190, 350, 130, -1);
         jLayeredPane4.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\משה\\Desktop\\icons\\forum.png")); // NOI18N
@@ -110,7 +110,7 @@ public class ForumsViewPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(595, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
