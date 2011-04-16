@@ -62,7 +62,8 @@ public class ForumController implements Serializable{
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
 	public Message register(String firstName, String lastName, String username,
-			String password, String email) {
+			String password, String email, WrappedObserver wo) {
+
 		// Check if the username is already in use.
 		if (isExist(username.toLowerCase())){
 			return new ErrorMessage("Username is already exists.");
@@ -74,6 +75,9 @@ public class ForumController implements Serializable{
 			return new ErrorMessage("Missing parameters.");
 		}
 
+		//AVID_DONE: relate between this user and his observer
+		get_usersToObserversMap().put(username, wo);
+		
 		// Add the user.
 		User newUser = new User(firstName,lastName,username,password,email);
 		newUser.setStatus(Status.ONLINE);
@@ -115,6 +119,9 @@ public class ForumController implements Serializable{
 		if (!(loginUser.getPassword().equals(password)))
 			return new ErrorMessage("Invalid password.");
 
+		//AVID_DONE: relate between this user and his observer
+		get_usersToObserversMap().put(username, wo);
+		
 		loginUser.setStatus(Status.ONLINE);
 		HibernateUtil.updateDB(loginUser);
 		return new OKMessage();
@@ -146,6 +153,8 @@ public class ForumController implements Serializable{
 		User logoutUser = getUser(username);
 		logoutUser.setStatus(Status.OFFLINE);
 
+		//AVID: should we unrelate between this user and his observer?.. ????
+		
 		_loginUsers.remove(username);
 		HibernateUtil.updateDB(logoutUser);
 		return new OKMessage();
@@ -174,8 +183,11 @@ public class ForumController implements Serializable{
 		
 		User friend = getUser(friendUsername);
 		friend.addObserver(wo);
-//		user.addObserver(get_usersToObserversMap().get(friendUsername));
+		user.addObserver(get_usersToObserversMap().get(friendUsername));
 
+		//AVID_DONE: relate between this user and his observer
+		get_usersToObserversMap().put(username, wo);
+		
 		//SHIRAN: update friend in DB?..
 		
 		HibernateUtil.updateDB(user);
@@ -208,6 +220,9 @@ public class ForumController implements Serializable{
 		friend.deleteObserver(wo);
 		user.deleteObserver(get_usersToObserversMap().get(friendUsername));
 
+		//AVID_DONE: relate between this user and his observer
+		get_usersToObserversMap().put(username, wo);
+		
 		//SHIRAN: update friend in DB?..
 		
 		HibernateUtil.updateDB(user);
@@ -225,8 +240,8 @@ public class ForumController implements Serializable{
     public Message replyToThread(String forumId, String title, String body,
     		String threadId, String username, WrappedObserver wo) {
     	
-		//AVID: add this user as observer on this thread.. ????
-    	//		(nobody can remove him from observation..)
+		//AVID_DONE: add this user as observer on this thread.. ???? no
+    	//			(nobody can remove him from observation..)
     	
     	if (!isExist(username))
 			return new ErrorMessage("Username doesn't exists.");
