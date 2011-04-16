@@ -11,6 +11,7 @@
 
 package presentation.gui;
 
+import common.forum.items.ThreadInfo;
 import domain.ClientController;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
@@ -35,10 +36,10 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
 
         /** Creates new form ChooseSpaceShip */
     public void fillListThreads( ) {
-        Vector<String> threads= _clientController.getThreadsList(_ForumId);
+         Vector <ThreadInfo> threads= _clientController.getThreadsList(_ForumId);
         //this.setVisible(true);
      for (int j=0; j<threads.size(); j++  ){
-               _threadsList.addElement(threads.get(j));
+               _threadsList.addElement(threads.get(j).getTitle());
              }
     }
 
