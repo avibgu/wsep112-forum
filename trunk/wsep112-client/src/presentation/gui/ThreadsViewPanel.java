@@ -57,27 +57,27 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane3 = new javax.swing.JLayeredPane();
+        jLayeredPane4 = new javax.swing.JLayeredPane();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        jLayeredPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jLayeredPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Please choose one of the Threads below", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        jList1.setModel(getThreadsListModel());
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
-
-        jScrollPane1.setBounds(10, 30, 470, 220);
-        jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLayeredPane2.setBounds(20, 40, 490, 260);
-        jLayeredPane3.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/Threadadd.png"))); // NOI18N
+        jButton2.setText("Add Thread");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.setBounds(315, 350, 190, 40);
+        jLayeredPane4.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/view_bottom.png"))); // NOI18N
@@ -87,19 +87,20 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(60, 300, 190, 40);
-        jLayeredPane3.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButton1.setBounds(20, 350, 170, 40);
+        jLayeredPane4.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/Threadadd.png"))); // NOI18N
-        jButton2.setText("Add new Thread");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jButton2.setBounds(260, 300, 215, 40);
-        jLayeredPane3.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Please choose one of the Threads below", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        jList1.setModel(getThreadsListModel());
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(jList1);
+
+        jScrollPane1.setBounds(10, 30, 470, 270);
+        jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLayeredPane2.setBounds(20, 30, 490, 310);
+        jLayeredPane4.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/go_back.png"))); // NOI18N
         jButton4.setBorder(null);
@@ -110,26 +111,27 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
             }
         });
         jButton4.setBounds(20, 20, 40, 30);
-        jLayeredPane3.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane4.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/kuser.png"))); // NOI18N
+        jLabel1.setBounds(190, 330, 140, 140);
+        jLayeredPane4.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 364, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -160,8 +162,9 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JLayeredPane jLayeredPane3;
+    private javax.swing.JLayeredPane jLayeredPane4;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
