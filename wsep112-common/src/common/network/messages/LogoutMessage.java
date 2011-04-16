@@ -33,7 +33,6 @@ public class LogoutMessage implements Message, Serializable{
 	 */
 	@Override
 	public MessageType getMessageType() {
-		// TODO Auto-generated method stub
 		return MessageType.LOGOUT;
 	}
 
