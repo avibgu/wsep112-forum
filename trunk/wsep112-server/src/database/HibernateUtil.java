@@ -1,13 +1,9 @@
 package database;
 
 import java.io.Serializable;
-import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.Vector;
+
 import domain.*;
 
 import org.hibernate.Query;
@@ -21,7 +17,6 @@ import common.network.messages.ErrorMessage;
 import domain.Forum;
 import domain.Thread;
 import domain.User;
-import java.util.HashSet;
 
 public class HibernateUtil {
 		
@@ -167,20 +162,79 @@ public class HibernateUtil {
 	  }
 	   
 	   public static List<Post> retrievePostList(int threadId){
-		   try{Session session = getSession();
-		   Transaction transaction = session.beginTransaction();
-		   //return session.createQuery("from Post where forum_id="+ForumId +"and thread_id="+ threadId).list();
-		   List<Post> tPostsList = session.createQuery("from Post").list();
-		   List<Post> tAns = new ArrayList<Post>();
-		  for (int i=0; i < tPostsList.size() ; ++i){
-			   Post tPost = tPostsList.get(i);
-			   if (tPost.getThread_id() == threadId)
-				   tAns.add(tPost);
+		   
+		   try{
+			   
+			   Session session = getSession();
+			   Transaction transaction = session.beginTransaction();
+
+			   //return session.createQuery("from Post where forum_id="+ForumId +"and thread_id="+ threadId).list();
+			   List<Post> tPostsList = session.createQuery("from Post").list();
+			   List<Post> tAns = new ArrayList<Post>();
+			   
+			   for (int i=0; i < tPostsList.size() ; ++i){
+				   Post tPost = tPostsList.get(i);
+				   if (tPost.getThread_id() == threadId)
+					   tAns.add(tPost);
+			   }
+			   
+			   return tAns;
 		   }
-		   return tAns;
-		   }catch (Exception e){
+		   catch (Exception e){
+			   
 			   e.printStackTrace();
 			   return null;
 		   }
 	  }
+
+	public static Thread retrieveThread(int threadId) {
+		
+		// SHIRAN:	is this function ok?..
+		//			can we change the db query to receive only one thread?
+		try{
+			   
+			Session session = getSession();
+			Transaction transaction = session.beginTransaction();
+
+			//return session.createQuery("from Thread where forum_id="+ForumId).list();
+		   
+			List<Thread> tThreadList = session.createQuery("from Thread").list();
+
+			for (Thread thread : tThreadList)
+				if(thread.getThread_id() == threadId)
+					return thread;
+
+			return null;
+		}
+		catch(Exception e){
+			   
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static List<Thread> retrieveAllThreadsList() {
+		
+		// SHIRAN: is this function ok?..
+		try{
+			   
+			Session session = getSession();
+			Transaction transaction = session.beginTransaction();
+
+			//return session.createQuery("from Thread where forum_id="+ForumId).list();
+		   
+			List<Thread> tThreadList = session.createQuery("from Thread").list();
+			List<Thread> tAns = new ArrayList<Thread>();
+
+			for (Thread thread : tThreadList)
+				tAns.add(thread);
+
+			return tAns;
+		}
+		catch(Exception e){
+			   
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
