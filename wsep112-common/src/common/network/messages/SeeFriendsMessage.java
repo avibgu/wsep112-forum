@@ -6,6 +6,8 @@ package common.network.messages;
 import java.io.Serializable;
 import java.util.Vector;
 
+import common.forum.items.UserInfo;
+
 /**
  * @author Avi Digmi
  *
@@ -15,7 +17,7 @@ public class SeeFriendsMessage implements Message, Serializable {
 	private static final long serialVersionUID = 6615560281665635565L;
 
 	private String _username;
-	private Vector<String> _listOfFriends;
+	private Vector<UserInfo> _listOfFriends;
 	
 	/**
 	 * 
@@ -44,11 +46,11 @@ public class SeeFriendsMessage implements Message, Serializable {
 		return _username;
 	}
 
-	public void setListOfFriends(Vector<String> _listOfFriends) {
+	public void setListOfFriends(Vector<UserInfo> _listOfFriends) {
 		this._listOfFriends = _listOfFriends;
 	}
 
-	public Vector<String> getListOfFriends() {
+	public Vector<UserInfo> getListOfFriends() {
 		return _listOfFriends;
 	}
 }
