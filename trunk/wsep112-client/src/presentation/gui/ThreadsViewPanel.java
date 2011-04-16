@@ -76,17 +76,19 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
         jLayeredPane2.setBounds(20, 40, 490, 260);
         jLayeredPane3.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/view_bottom.png"))); // NOI18N
         jButton1.setText("View Thread");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(150, 310, 100, 23);
+        jButton1.setBounds(113, 300, 127, 40);
         jLayeredPane3.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/Threadadd.png"))); // NOI18N
         jButton2.setText("Add new Thread");
-        jButton2.setBounds(270, 310, 120, 23);
+        jButton2.setBounds(260, 300, 170, 40);
         jLayeredPane3.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/go_back.png"))); // NOI18N
@@ -112,8 +114,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                    .addContainerGap()))
+                    .addComponent(jLayeredPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
