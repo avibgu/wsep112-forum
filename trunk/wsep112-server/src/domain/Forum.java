@@ -8,7 +8,6 @@ import java.util.Vector;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import common.forum.items.ForumInfo;
 import common.network.messages.ErrorMessage;
 
 
@@ -16,7 +15,7 @@ import common.network.messages.Message;
 import database.HibernateUtil;
 
 
-public class Forum implements ForumInfo, Serializable{
+public class Forum implements Serializable{
 
 	private static final long serialVersionUID = 8391028464314667274L;
 
@@ -24,16 +23,16 @@ public class Forum implements ForumInfo, Serializable{
 	private int _forumId;
 	private List<Thread> _threads;
 	private List<Forum> _subForums;
-	static int _threadAvailableID=0;
+	static int _threadAvailableID = 0;
 	
 	public Forum(){
 		
 	}
 	
 	public Forum (String name,int forumId){
-		this._name=name;
-		this._threads=new ArrayList<Thread>();
-		this._subForums=new ArrayList<Forum>();
+		this._name = name;
+		this._threads = new ArrayList<Thread>();
+		this._subForums = new ArrayList<Forum>();
 		setForumId(forumId);
 	}
 	
