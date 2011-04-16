@@ -189,7 +189,6 @@ public class HibernateUtil {
 
 	public static Thread retrieveThread(int threadId) {
 		
-		// SHIRAN:	is this function ok?..
 		//			can we change the db query to receive only one thread?
 		try{
 			   
@@ -215,7 +214,6 @@ public class HibernateUtil {
 
 	public static List<Thread> retrieveAllThreadsList() {
 		
-		// SHIRAN: is this function ok?..
 		try{
 			   
 			Session session = getSession();
@@ -224,12 +222,33 @@ public class HibernateUtil {
 			//return session.createQuery("from Thread where forum_id="+ForumId).list();
 		   
 			List<Thread> tThreadList = session.createQuery("from Thread").list();
-			List<Thread> tAns = new ArrayList<Thread>();
-
-			for (Thread thread : tThreadList)
-				tAns.add(thread);
-
-			return tAns;
+		
+			return tThreadList;
+		}
+		catch(Exception e){
+			   
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public static User retrievePostOwner(int postId){
+		try{
+			   
+			Session session = getSession();
+			Transaction transaction = session.beginTransaction();
+			
+		
+			List<Post> tPostList = session.createQuery("from Post").list();
+		
+			for (int i=0 ; i<tPostList.size();++i){
+				Post tCurrPost = tPostList.get(i);
+				if (tCurrPost.get_post_id() == postId){
+					return tCurrPost.getOwner();
+				}
+					
+			}
+			return null;
 		}
 		catch(Exception e){
 			   
