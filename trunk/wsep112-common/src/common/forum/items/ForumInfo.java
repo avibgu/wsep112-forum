@@ -1,6 +1,8 @@
 package common.forum.items;
 
-public interface ForumInfo {
+import java.io.Serializable;
+
+public interface ForumInfo extends Serializable  {
 
 	String getName();
 	int getForumId();

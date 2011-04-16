@@ -1,6 +1,8 @@
 package common.forum.items;
 
-public interface PostInfo {
+import java.io.Serializable;
+
+public interface PostInfo extends Serializable  {
 
 	int get_post_id();
 	String get_title();
