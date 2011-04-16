@@ -360,11 +360,11 @@ public class ForumController implements Serializable{
 	/**
 	 * 
 	 * @param threadId
-	 * @param wo
+	 * @param forumId
 	 * 
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
-	public Message RemoveThread(String threadId) {
+	public Message RemoveThread(String threadId, String forumId) {
 		
 		// TODO: need to remove this thread from the DB..
 		//		 should delete also its observers and posts..

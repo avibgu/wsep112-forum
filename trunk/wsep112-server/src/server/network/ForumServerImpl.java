@@ -212,7 +212,7 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 				
 				RemoveThreadMessage rtm = (RemoveThreadMessage)whatToSet;
 
-				answer = getForumController().RemoveThread(rtm.getThreadId());
+				answer = getForumController().RemoveThread(rtm.getThreadId(), rtm.getForumId());
 				
 				break;
 				
