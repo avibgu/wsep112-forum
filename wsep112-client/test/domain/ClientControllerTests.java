@@ -91,7 +91,7 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	@Test
 	public void testRegister() {
 		
-		RegMessage rm = new RegMessage("Avi", "Digmi", "digmia", "Aa1234", "digmia@bgu.ac.il");
+		RegMessage rm = new RegMessage("Avi", "Digmi", "digmia", "Aa1234", "digmia@bgu.ac.il", this);
 		
 		try {
 
@@ -106,7 +106,7 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	@Test
 	public void testLogin() {
 
-		RegMessage regMessage = new RegMessage("Shiran", "Gabay", "gshir", "Aa1234", "gshir@bgu.ac.il");
+		RegMessage regMessage = new RegMessage("Shiran", "Gabay", "gshir", "Aa1234", "gshir@bgu.ac.il", this);
 		LoginMessage loginMessage = new LoginMessage("gshir", "Aa1234", this);
 		
 		try {
@@ -123,7 +123,7 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	@Test
 	public void testLogout() {
 
-		RegMessage regMessage = new RegMessage("Miri", "Peretz", "miripe", "Miri1234", "miripe@bgu.ac.il");
+		RegMessage regMessage = new RegMessage("Miri", "Peretz", "miripe", "Miri1234", "miripe@bgu.ac.il", this);
 		LoginMessage loginMessage = new LoginMessage("miripe", "Miri1234", this);
 		LogoutMessage logoutMessage = new LogoutMessage("miripe", this);
 		
@@ -142,8 +142,8 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	@Test
 	public void testAddFriend() {
 
-		RegMessage regMessage1 = new RegMessage("ghi", "ghi", "ghi", "ab1234", "ghi@bgu.ac.il");
-		RegMessage regMessage2 = new RegMessage("jkl", "jkl", "jkl", "ab1234", "jkl@bgu.ac.il");
+		RegMessage regMessage1 = new RegMessage("ghi", "ghi", "ghi", "ab1234", "ghi@bgu.ac.il", this);
+		RegMessage regMessage2 = new RegMessage("jkl", "jkl", "jkl", "ab1234", "jkl@bgu.ac.il", this);
 		LoginMessage loginMessage = new LoginMessage("ghi", "ab1234", this);
 		AddFriendMessage addFriendMessage = new AddFriendMessage("ghi", "jkl", this);
 		LogoutMessage logoutMessage = new LogoutMessage("ghi", this);
@@ -165,8 +165,8 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	@Test
 	public void testRemoveFriend() {
 		
-		RegMessage regMessage1 = new RegMessage("asghi", "asghi", "asghi", "ab1234", "asghi@bgu.ac.il");
-		RegMessage regMessage2 = new RegMessage("asjkl", "asjkl", "asjkl", "ab1234", "asjkl@bgu.ac.il");
+		RegMessage regMessage1 = new RegMessage("asghi", "asghi", "asghi", "ab1234", "asghi@bgu.ac.il", this);
+		RegMessage regMessage2 = new RegMessage("asjkl", "asjkl", "asjkl", "ab1234", "asjkl@bgu.ac.il", this);
 		LoginMessage loginMessage = new LoginMessage("asghi", "ab1234", this);
 		AddFriendMessage addFriendMessage = new AddFriendMessage("asghi", "asjkl", this);
 		RemoveFriendMessage removeFriendMessage = new RemoveFriendMessage("asghi", "asjkl", this);
@@ -189,7 +189,7 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	 */
 	@Test
 	public void testReplyToThread() {
-		RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
+		RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il", this);
 		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234", this);
 		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay", this);
 		AddPostMessage add_post_msg=new AddPostMessage("0","new post", "shalom shalom","0","avishay", this);
@@ -231,7 +231,7 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	@Test
 	public void testGetForumsList() {
 		
-		RegMessage regMessage = new RegMessage("dagsd", "asdgas", "wrgsd", "asdgasdg", "asdgasdf@bgu.ac.il");
+		RegMessage regMessage = new RegMessage("dagsd", "asdgas", "wrgsd", "asdgasdg", "asdgasdf@bgu.ac.il", this);
 		LoginMessage loginMessage = new LoginMessage("wrgsd", "asdgasdg", this);
 		
 		SeeForumsListMessage seeForumThreadsMsg = new SeeForumsListMessage();

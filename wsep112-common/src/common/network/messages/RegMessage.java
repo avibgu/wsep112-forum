@@ -5,6 +5,8 @@ package common.network.messages;
 
 import java.io.Serializable;
 
+import common.observation.RemoteObserver;
+
 /**
  * @author Avi Digmi
  *
@@ -18,6 +20,7 @@ public class RegMessage implements Message, Serializable {
 	private String _username;
 	private String _password;
 	private String _email;
+	private RemoteObserver _remoteObserver;
 	
 	/**
 	 * @param firstName
@@ -27,7 +30,7 @@ public class RegMessage implements Message, Serializable {
 	 * @param email
 	 */
 	public RegMessage(String firstName, String lastName, String username,
-			String password, String email) {
+			String password, String email,  RemoteObserver ro) {
 		
 		super();
 		setFirstName(firstName);
@@ -35,6 +38,7 @@ public class RegMessage implements Message, Serializable {
 		setUsername(username);
 		setPassword(password);
 		setEmail(email);
+		setRemoteObserver(ro);
 	}
 
 	/* (non-Javadoc)
@@ -83,5 +87,13 @@ public class RegMessage implements Message, Serializable {
 
 	public void setEmail(String email) {
 		this._email = email;
+	}
+
+	public void setRemoteObserver(RemoteObserver _remoteObserver) {
+		this._remoteObserver = _remoteObserver;
+	}
+	
+	public RemoteObserver getRemoteObserver() {
+		return this._remoteObserver;
 	}
 }
