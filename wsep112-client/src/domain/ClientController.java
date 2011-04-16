@@ -89,7 +89,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			// Encrypt the password using SHA1 algorithm.
 			String tEncrypted_Password = SHA1.hash(password);
 	
-			RegMessage rm = new RegMessage(firstName, lastName, username, tEncrypted_Password, email);
+			RegMessage rm = new RegMessage(firstName, lastName, username,
+					tEncrypted_Password, email, this);
 	
 			try {
 	
