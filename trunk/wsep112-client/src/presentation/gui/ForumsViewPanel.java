@@ -77,18 +77,24 @@ public class ForumsViewPanel extends javax.swing.JPanel {
         jLayeredPane2.setBounds(10, 40, 490, 260);
         jLayeredPane3.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton1.setText("Enter Forum");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(220, 300, 100, 23);
+        jButton1.setBounds(200, 300, 130, 29);
         jLayeredPane3.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/go_back.png"))); // NOI18N
         jButton4.setBorder(null);
         jButton4.setBorderPainted(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jButton4.setBounds(20, 20, 40, 30);
         jLayeredPane3.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -109,8 +115,8 @@ public class ForumsViewPanel extends javax.swing.JPanel {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(126, Short.MAX_VALUE)))
+                    .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(116, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -123,6 +129,11 @@ public class ForumsViewPanel extends javax.swing.JPanel {
        else
                 JOptionPane.showMessageDialog(null, "Please select one of the forums above.", "Forum Selection  Error", 0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+                new Forum(_clientController).setSize(693,516);
+               this.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

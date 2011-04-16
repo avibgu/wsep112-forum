@@ -15,16 +15,18 @@ import common.forum.items.ThreadInfo;
 import domain.ClientController;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author משה
  */
 public class ThreadsViewPanel extends javax.swing.JPanel {
-    public  DefaultListModel _threadsList;
+    private  DefaultListModel _threadsList;
     private ClientController _clientController;
     private int _threadsIndexSelected;
     private String _ForumId;
+     DefaultListModel thread_list;
 
     /** Creates new form ForumsViewPanel */
     public ThreadsViewPanel(ClientController clientController, String forumId) {
@@ -77,6 +79,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
         jLayeredPane2.setBounds(20, 40, 490, 260);
         jLayeredPane3.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/view_bottom.png"))); // NOI18N
         jButton1.setText("View Thread");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -84,17 +87,28 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(113, 300, 127, 40);
+        jButton1.setBounds(60, 300, 190, 40);
         jLayeredPane3.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/Threadadd.png"))); // NOI18N
         jButton2.setText("Add new Thread");
-        jButton2.setBounds(260, 300, 170, 40);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.setBounds(260, 300, 215, 40);
         jLayeredPane3.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/go_back.png"))); // NOI18N
         jButton4.setBorder(null);
         jButton4.setBorderPainted(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jButton4.setBounds(20, 20, 40, 30);
         jLayeredPane3.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -120,8 +134,26 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+         this.thread_list=   (DefaultListModel)jList1.getModel();
+         _threadsIndexSelected= jList1.getSelectedIndex();
+         if (_threadsIndexSelected>=0  ){
+               //TODO: CALL FRAME OF VIEW POSTS OF THREAD
+                this.setVisible(false);
+        }
+       else
+                JOptionPane.showMessageDialog(null, "Please choose one of the threads above.", "Thread Selection  Error", 0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:               
+        new Forum(_clientController).setSize(693,516);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new AddThread(_clientController, _ForumId).setSize(693,516);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
