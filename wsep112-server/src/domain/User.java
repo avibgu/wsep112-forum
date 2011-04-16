@@ -1,15 +1,19 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
+import java.util.Observer;
 import java.util.Vector;
+
+import server.network.WrappedObserver;
 
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
+import common.observation.Observable;
 
-public class User extends Observable implements Serializable{
+public class User implements Observable, Serializable{
 
 	private static final long serialVersionUID = 3753192357127381924L;
 
@@ -23,6 +27,8 @@ public class User extends Observable implements Serializable{
 	private Status _status;
 	private List<String> _friends;
 	private List<Post> _posts;
+	
+	private List<WrappedObserver> _observers;
 
 	
 	public User(){
@@ -47,6 +53,7 @@ public class User extends Observable implements Serializable{
 			_status= Status.OFFLINE;
 			_friends = new Vector<String>();
 			_posts= new Vector<Post>();
+			_observers = new ArrayList<WrappedObserver>();
 	}
 
 	/**
@@ -265,8 +272,45 @@ public class User extends Observable implements Serializable{
 	
 	@Override
 	public void notifyObservers(Object arg){
-		setChanged();
-		super.notifyObservers(arg);
-		clearChanged();
+		
+		List<WrappedObserver> observers = get_observers();
+		
+		for (WrappedObserver wo : observers)
+			wo.update(null, arg);
+	}
+	
+	@Override
+	public synchronized void deleteObserver(Observer o){
+		
+		if (o == null) throw new NullPointerException();
+		
+		if (o instanceof WrappedObserver)
+			deleteObserver((WrappedObserver)o);
+    }
+    
+	public synchronized void deleteObserver(WrappedObserver wo) {
+
+		get_observers().remove(wo);
+	}
+	
+	@Override
+	public synchronized void addObserver(Observer o) {
+		
+		if (o == null) throw new NullPointerException();
+		
+		if (o instanceof WrappedObserver)
+			addObserver((WrappedObserver)o);
+	}
+	
+    public synchronized void addObserver(WrappedObserver wo) {
+		if (!get_observers().contains(wo)) get_observers().add(wo);
+    }
+    
+	public void set_observers(List<WrappedObserver> _observers) {
+		this._observers = _observers;
+	}
+	
+	public List<WrappedObserver> get_observers() {
+		return _observers;
 	}
 }
