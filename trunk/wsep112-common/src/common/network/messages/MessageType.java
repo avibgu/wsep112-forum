@@ -22,5 +22,7 @@ public enum MessageType {
     OK,
     ERROR,
     SEE_FRIENDS_LIST,
-    SEE_USERS_LIST
+    SEE_USERS_LIST,
+    REMOVE_THREAD,
+    REMOVE_POST
 }
