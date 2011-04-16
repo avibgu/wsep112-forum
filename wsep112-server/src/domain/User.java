@@ -263,5 +263,10 @@ public class User extends Observable implements Serializable{
 		return _friends;
 	}
 	
-	
+	@Override
+	public void notifyObservers(Object arg){
+		setChanged();
+		super.notifyObservers(arg);
+		clearChanged();
+	}
 }

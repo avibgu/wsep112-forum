@@ -38,10 +38,13 @@ public class Thread extends Observable implements Serializable{
 	 */
 	//return the new post created un order the user to store it on his list
 	public Message reaply(String title, String body,User owner){
+		
 		Post new_post=new Post(getThread_id(), title, body,owner);
 		owner.addPostToOwnerUser(new_post);//adding the post to owner
+		
 		HibernateUtil.insertDB(new_post);
 		HibernateUtil.updateDB(owner);
+		
 		return new OKMessage();
 	}
 	
@@ -95,5 +98,12 @@ public class Thread extends Observable implements Serializable{
 
 	public int get_forumId() {
 		return _forumId;
+	}
+	
+	@Override
+	public void notifyObservers(Object arg){
+		setChanged();
+		super.notifyObservers(arg);
+		clearChanged();
 	}
 }
