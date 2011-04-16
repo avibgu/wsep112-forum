@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import java.util.Observable;
 import java.util.Observer;
 
-import common.network.RemoteObserver;
+import common.observation.RemoteObserver;
 
 public class WrappedObserver implements Observer, Serializable {
 
