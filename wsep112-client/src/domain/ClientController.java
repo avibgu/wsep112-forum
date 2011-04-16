@@ -16,7 +16,6 @@ import common.forum.items.PostInfo;
 import common.forum.items.ThreadInfo;
 import common.forum.items.UserInfo;
 import common.network.ForumServer;
-import common.network.RemoteObserver;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.AddPostMessage;
 import common.network.messages.AddThreadMessage;
@@ -34,6 +33,8 @@ import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeFriendsMessage;
 import common.network.messages.SeeThreadPostsMessage;
 import common.network.messages.SeeUsersMessage;
+import common.observation.Observable;
+import common.observation.RemoteObserver;
 
 /**
  * @author Avi Digmi
@@ -627,11 +628,18 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			notifyObservers(arg);
 	}
 
-	public void addObserver(Observer o) {
+	@Override
+	public synchronized void addObserver(Observer o) {
 
 		getObservers().add(o);
 	}
 	
+	@Override
+	public synchronized void deleteObserver(Observer o) {
+		getObservers().remove(o);		
+	}
+	
+	@Override
 	public void notifyObservers(Object arg) {
 
 		ArrayList<Observer> list = getObservers();

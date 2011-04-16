@@ -15,7 +15,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import common.network.ForumServer;
-import common.network.RemoteObserver;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.LoginMessage;
 import common.network.messages.LogoutMessage;
@@ -29,6 +28,7 @@ import common.network.messages.AddPostMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeThreadPostsMessage;
+import common.observation.RemoteObserver;
 
 
 /**
