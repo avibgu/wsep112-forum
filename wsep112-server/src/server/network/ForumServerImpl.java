@@ -138,8 +138,10 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 
 				RegMessage rm = (RegMessage)whatToSet;
 
+				wo = new WrappedObserver(rm.getRemoteObserver());
+				
 				answer = getForumController().register(rm.getFirstName(), rm.getLastName(), rm.getUsername(),
-						rm.getPassword(), rm.getEmail());
+						rm.getPassword(), rm.getEmail(), wo);
 
 				break;
 
