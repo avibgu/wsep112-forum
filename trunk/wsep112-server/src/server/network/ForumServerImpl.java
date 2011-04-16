@@ -20,6 +20,8 @@ import common.network.messages.LogoutMessage;
 import common.network.messages.Message;
 import common.network.messages.RegMessage;
 import common.network.messages.RemoveFriendMessage;
+import common.network.messages.RemovePostMessage;
+import common.network.messages.RemoveThreadMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeFriendsMessage;
@@ -204,6 +206,25 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 				
 				answer = getForumController().addThread(athm.getForumId(),athm.getTitle(), athm.getBody(), athm.getOwnerUsername(), wo);
 
+				break;
+				
+			case REMOVE_THREAD:
+				
+				RemoveThreadMessage rtm = (RemoveThreadMessage)whatToSet;
+
+				answer = getForumController().RemoveThread(rtm.getThreadId());
+				
+				break;
+				
+			case REMOVE_POST:
+				
+				RemovePostMessage rpm = (RemovePostMessage)whatToSet;
+				
+				wo = new WrappedObserver(rpm.getRemoteObserver());
+				
+				answer = getForumController().RemovePost(rpm.getThreadId(),
+						rpm.getPostId(), wo);
+				
 				break;
 
 			default:

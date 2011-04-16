@@ -203,7 +203,7 @@ public class ForumController implements Serializable{
     		String threadId, String ownerUsername, WrappedObserver wo) {
     	
     	//AVID: notify to friends and thread's observers..
-		//AVID: add this user as observer on this thread..
+		//AVID: add this user as observer on this thread.. ????
     	//		(nobody can remove him from observation..)
     	
     	if (!isExist(ownerUsername))
@@ -324,7 +324,8 @@ public class ForumController implements Serializable{
 	/**
 	 * 
 	 * @param sum
-	 * @return
+	 * 
+	 * @return list of users inside the given message, or ErrorMessage (with reason) on failure
 	 */
 	public Message getUsersList(SeeFriendsMessage sum) {
 
@@ -337,6 +338,40 @@ public class ForumController implements Serializable{
 		sum.setListOfFriends(tListOfUsers);
 		
 		return sum;
+	}
+	
+	/**
+	 * 
+	 * @param threadId
+	 * @param wo
+	 * 
+	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
+	 */
+	public Message RemoveThread(String threadId) {
+		
+		// TODO: need to remove this thread from the DB..
+		//		 should delete also its observers and posts..
+		
+    	// AVID: verify that there is no observers on this thread after deletion
+		
+		// TODO: return real answer..
+		return new OKMessage();
+	}
+	
+	/**
+	 * 
+	 * @param threadId
+	 * @param postId
+	 * @param wo
+	 * 
+	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
+	 */
+	public Message RemovePost(String threadId, String postId, WrappedObserver wo) {
+		
+		// TODO: need to remove this post from the DB..
+		
+		// TODO: return real answer..
+		return new OKMessage();
 	}
 	
 	/**
