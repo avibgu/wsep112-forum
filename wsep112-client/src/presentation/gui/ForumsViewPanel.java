@@ -11,6 +11,7 @@
 
 package presentation.gui;
 
+import common.forum.items.ForumInfo;
 import domain.ClientController;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
@@ -35,10 +36,10 @@ public class ForumsViewPanel extends javax.swing.JPanel {
 
     /** Creates new form ChooseSpaceShip */
     public void fillListForum( ) {
-        Vector<String> forums= _clientController.getForumsList();
+        Vector<ForumInfo> forums= _clientController.getForumsList();
         //this.setVisible(true);
      for (int j=0; j<forums.size(); j++  ){
-               _forumsList.addElement(forums.get(j));
+               _forumsList.addElement(forums.get(j).getName());
               }
     }
 
@@ -120,7 +121,7 @@ public class ForumsViewPanel extends javax.swing.JPanel {
                //TODO
         }
        else
-                JOptionPane.showMessageDialog(null, "Please selsct one of the forums above.!", "Forum Selection  Error", 0);
+                JOptionPane.showMessageDialog(null, "Please select one of the forums above.", "Forum Selection  Error", 0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
