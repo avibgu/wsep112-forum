@@ -23,6 +23,8 @@ import common.network.messages.Message;
 import common.network.messages.MessageType;
 import common.network.messages.RegMessage;
 import common.network.messages.RemoveFriendMessage;
+import common.network.messages.RemovePostMessage;
+import common.network.messages.RemoveThreadMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeFriendsMessage;
@@ -494,6 +496,69 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @param threadId
+	 * @return
+	 */
+	public boolean RemoveThread(String threadId) {
+
+    	ErrorMessage errorMessage;
+    	
+    	//	RemoveThreadMessage rfm = new RemoveThreadMessage(getCurrentShownThread());
+
+    	RemoveThreadMessage rtm = new RemoveThreadMessage(threadId);
+    	
+		try {
+
+			Message answer = getForumServerStub().setInformation(rtm);
+
+			if (answer.getMessageType() != MessageType.ERROR) return true;
+
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		notifyObservers(errorMessage);
+		
+		return false;
+    }
+	
+	public boolean RemovePost(String threadId, String postId) {
+
+    	ErrorMessage errorMessage;
+    	
+    	//	RemovePostMessage rpm = new RemovePostMessage(getCurrentShownThread(), postId);
+
+    	RemovePostMessage rpm = new RemovePostMessage(threadId, postId, this);
+    	
+		try {
+
+			Message answer = getForumServerStub().setInformation(rpm);
+
+			if (answer.getMessageType() != MessageType.ERROR) return true;
+
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		notifyObservers(errorMessage);
+		
+		return false;
+    }
 	
 	/**
 	 * Check if the word contains upper letter.
