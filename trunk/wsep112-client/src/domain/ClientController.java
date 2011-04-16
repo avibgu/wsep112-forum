@@ -503,13 +503,14 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 * @param threadId
 	 * @return
 	 */
-	public boolean RemoveThread(String threadId) {
+	public boolean RemoveThread(String threadId, String forumId) {
 
     	ErrorMessage errorMessage;
     	
-    	//	RemoveThreadMessage rfm = new RemoveThreadMessage(getCurrentShownThread());
+    	//	RemoveThreadMessage rfm = new RemoveThreadMessage(
+    	//			getCurrentShownThread(), getCurrentShownForum());
 
-    	RemoveThreadMessage rtm = new RemoveThreadMessage(threadId);
+    	RemoveThreadMessage rtm = new RemoveThreadMessage(threadId, forumId);
     	
 		try {
 
@@ -532,6 +533,12 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		return false;
     }
 	
+	/**
+	 * 
+	 * @param threadId
+	 * @param postId
+	 * @return
+	 */
 	public boolean RemovePost(String threadId, String postId) {
 
     	ErrorMessage errorMessage;
