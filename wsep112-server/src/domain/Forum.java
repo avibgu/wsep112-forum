@@ -89,9 +89,9 @@ public class Forum implements Serializable{
 		
 		Thread new_thread=new Thread(title,this._forumId);
 		
-		//AVID_DONE: add this user as observer on this thread..
+		//AVID_DONE: add this user as owner observer on this thread..
     	//			(nobody can remove him from observation..)
-		new_thread.addObserver(wo);
+		new_thread.set_ownerObserver(wo);
 		
 		Integer ans = (Integer) HibernateUtil.insertDB(new_thread);
 		
