@@ -378,12 +378,9 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
     	SeeForumThreadsMessage sftm = new SeeForumThreadsMessage(forumID);
 
 		try {
-
 			Message answer = getForumServerStub().getInformation(sftm);
-			
 			if (answer.getMessageType() != MessageType.ERROR)
 				return ((SeeForumThreadsMessage)answer).getListOfThreads();
-			
 			errorMessage = (ErrorMessage)answer;
 		}
 		catch (RemoteException e) {
