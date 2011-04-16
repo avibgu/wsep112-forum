@@ -9,9 +9,16 @@ public class ForumInfo implements Serializable{
 	private String _name;
 	private int _id;
 	
+	/**
+	 * 
+	 * @param name
+	 * @param id
+	 */
 	public ForumInfo(String name, int id) {
-		_name = name;
-		_id = id;
+		
+		super();
+		this._name = name;
+		this._id = id;
 	}
 	
 	public String getName(){
