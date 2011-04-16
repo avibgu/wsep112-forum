@@ -59,12 +59,12 @@ public class StartWindow extends javax.swing.JFrame {
         getContentPane().add(jTextField7);
         jTextField7.setBounds(210, 250, 120, 30);
 
-        jLabel4.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel4.setText("Password");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(120, 250, 73, 20);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel3.setText("UserName");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(120, 210, 79, 20);
@@ -78,7 +78,7 @@ public class StartWindow extends javax.swing.JFrame {
         getContentPane().add(jTextField6);
         jTextField6.setBounds(210, 200, 120, 30);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +88,7 @@ public class StartWindow extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(230, 300, 80, 30);
 
-        jToggleButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jToggleButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jToggleButton1.setForeground(new java.awt.Color(255, 0, 102));
         jToggleButton1.setText("Click here to register");
         jToggleButton1.setBorderPainted(false);
@@ -103,9 +103,9 @@ public class StartWindow extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 102));
-        jLabel2.setText("Don't have an account?");
+        jLabel2.setText("Don't you have an account?");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(180, 350, 210, 20);
+        jLabel2.setBounds(170, 350, 230, 20);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forums.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
