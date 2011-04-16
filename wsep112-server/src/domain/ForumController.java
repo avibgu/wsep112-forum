@@ -39,7 +39,7 @@ public class ForumController implements Serializable{
 	private Vector<Forum> _forums;
 	static int _availableForumId = 0;
 	
-	// AVID: manage this map.. SHIRAN: save this as table in the DB?..
+	// SHIRAN: save this as table in the DB?..
 	private HashMap<String, WrappedObserver> _usersToObserversMap;
 	
 	public ForumController(Logger logger){
@@ -107,7 +107,7 @@ public class ForumController implements Serializable{
 	 */
 	public Message login(String username, String password, WrappedObserver wo) {
 		
-		//AVID: notify user about things that happened when he was offline.. ????
+		//AVID: ???? notify user about things that happened when he was offline..
 
 		// Check is username exists.
 		if (!isExist(username))
@@ -144,7 +144,7 @@ public class ForumController implements Serializable{
 	 */
 	public Message logout(String username, WrappedObserver wo) {
 
-		//AVID: what to do about offline observers?.. ????
+		//AVID: ???? what to do about offline observers?..
 		
 		// Check is username exists.
 		if (!isExist(username))
@@ -153,7 +153,7 @@ public class ForumController implements Serializable{
 		User logoutUser = getUser(username);
 		logoutUser.setStatus(Status.OFFLINE);
 
-		//AVID: should we unrelate between this user and his observer?.. ????
+		//AVID: ???? should we unrelate between this user and his observer?..
 		
 		_loginUsers.remove(username);
 		HibernateUtil.updateDB(logoutUser);
@@ -431,7 +431,6 @@ public class ForumController implements Serializable{
 		
 		// Update the db
 		HibernateUtil.updateDB(tForum);
-    	// AVID: verify that there is no observers on this thread after deletion
 		
 		// TODO: return real answer..
 		return new OKMessage();
