@@ -5,12 +5,11 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Vector;
 
-import common.forum.items.UserInfo;
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
 
-public class User extends Observable implements UserInfo, Serializable{
+public class User extends Observable implements Serializable{
 
 	private static final long serialVersionUID = 3753192357127381924L;
 
