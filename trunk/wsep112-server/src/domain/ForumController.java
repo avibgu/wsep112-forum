@@ -9,6 +9,10 @@ import java.util.logging.Logger;
 
 import server.network.WrappedObserver;
 
+import common.forum.items.ForumInfo;
+import common.forum.items.PostInfo;
+import common.forum.items.ThreadInfo;
+import common.forum.items.UserInfo;
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
@@ -248,11 +252,17 @@ public class ForumController implements Serializable{
      * @return list of Forums inside the given message, or ErrorMessage (with reason) on failure
      */
     public Message getForumsList(SeeForumsListMessage sflm) {
+    	
     		List<Forum> forums = HibernateUtil.retrieveForumsList();
-    		Vector<String> listOfForums = new Vector<String>();
-    	    for (int i=0; i < forums.size() ; ++i){
-            	listOfForums.add(forums.get(i).getName());
-            }
+    		
+    		Vector<ForumInfo> listOfForums = new Vector<ForumInfo>();
+    		
+    		for (Forum forum : forums)
+    			listOfForums.add(forum);
+
+//    	    for (int i=0; i < forums.size() ; ++i)
+//            	listOfForums.add(forums.get(i).getName());
+    	    
             sflm.setListOfForums(listOfForums);
             return sflm;
     }
@@ -264,14 +274,20 @@ public class ForumController implements Serializable{
 	 * @return list of Threads inside the given message, or ErrorMessage (with reason) on failure
 	 */
 	public Message getThreadsList(String forumID, SeeForumThreadsMessage sftm) {
-		List<Thread> threads = HibernateUtil.retrieveThreadList(Integer.parseInt(forumID));
-		Vector<String> tListOfThreads = new Vector<String>();
-		for (int i=0; i < threads.size(); ++i){
-			tListOfThreads.add(threads.get(i).getTitle());
-			
-		}
-	
+		
+		List<Thread> threads = HibernateUtil.
+			retrieveThreadList(Integer.parseInt(forumID));
+		
+		Vector<ThreadInfo> tListOfThreads = new Vector<ThreadInfo>();
+		
+		for (Thread thread : threads)
+			tListOfThreads.add(thread);
+
+//		for (int i=0; i < threads.size(); ++i)
+//			tListOfThreads.add(threads.get(i).getTitle());
+
 		sftm.setListOfThreads(tListOfThreads);
+		
 		return sftm;
 	}
 
@@ -289,12 +305,17 @@ public class ForumController implements Serializable{
 		//AVID: remove this user from observation on other threads
 		//		(just in case he is not their owner or replyer)
 		
-		Vector<String> tListOfPosts = new Vector<String>();
+		Vector<PostInfo> tListOfPosts = new Vector<PostInfo>();
+		
 		List<Post> tPost = HibernateUtil.retrievePostList(Integer.parseInt(threadID));
-		for (int i=0; i < tPost.size(); ++i){
-			Post tcurrPost = tPost.get(i);
-			tListOfPosts.add("Title:   " + tcurrPost.get_title() +"\n  Date:    " + tcurrPost.getDateTime() + "\n  Message: " + tcurrPost.get_body());
-		}
+		
+		for (Post post : tPost)
+			tListOfPosts.add(post);
+		
+//		for (int i=0; i < tPost.size(); ++i){
+//			Post tcurrPost = tPost.get(i);
+//			tListOfPosts.add("Title:   " + tcurrPost.get_title() +"\n  Date:    " + tcurrPost.getDateTime() + "\n  Message: " + tcurrPost.get_body());
+//		}
 		
 		stpm.setListOfPosts(tListOfPosts);
 
@@ -310,10 +331,10 @@ public class ForumController implements Serializable{
 	 */
 	public Message getFriendsList(String username, SeeFriendsMessage sfm) {
 		
-		Vector<String> tListOfFriends = new Vector<String>();
+		Vector<UserInfo> tListOfFriends = new Vector<UserInfo>();
 		
 		// TODO need to get all the friends of 'username' from the DB..
-		tListOfFriends.add("TODO: get list of friends from the db..");
+		tListOfFriends.add(new User("","","TODO: get list of friends from the db..","",""));
 		///////////////////////////////////////////////////////////////
 		
 		sfm.setListOfFriends(tListOfFriends);
@@ -329,10 +350,10 @@ public class ForumController implements Serializable{
 	 */
 	public Message getUsersList(SeeFriendsMessage sum) {
 
-		Vector<String> tListOfUsers = new Vector<String>();
+		Vector<UserInfo> tListOfUsers = new Vector<UserInfo>();
 		
 		// TODO need to get all the users from the DB..
-		tListOfUsers.add("TODO: get list of users from the db..");
+		tListOfUsers.add(new User("","","TODO: get list of users from the db..","",""));
 		///////////////////////////////////////////////////////////////
 		
 		sum.setListOfFriends(tListOfUsers);
