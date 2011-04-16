@@ -1,6 +1,8 @@
 package common.forum.items;
 
-public interface UserInfo {
+import java.io.Serializable;
+
+public interface UserInfo extends Serializable {
 
 	String getStatusAsString();
 	String getUserName();

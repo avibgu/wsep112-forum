@@ -1,6 +1,8 @@
 package common.forum.items;
 
-public interface ThreadInfo {
+import java.io.Serializable;
+
+public interface ThreadInfo extends Serializable  {
 
 	int getThread_id();
 	String getTitle();
