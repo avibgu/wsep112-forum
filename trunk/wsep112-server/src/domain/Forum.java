@@ -8,6 +8,8 @@ import java.util.Vector;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import server.network.WrappedObserver;
+
 import common.network.messages.ErrorMessage;
 
 
@@ -47,15 +49,16 @@ public class Forum implements Serializable{
 	public Message reaplyToThread(String title, String body, int threadId,User owner) {
 		
 		List<Thread> tThreadList = HibernateUtil.retrieveThreadList(_forumId);
+		
 		for(int i=0;i<tThreadList.size();i++){
+			
 			Thread thread=tThreadList.get(i);
-			if(thread.getThread_id()==threadId){
+			
+			if(thread.getThread_id()==threadId)
 				return thread.reaply(title, body, owner);
-			}
 		}
 		
 		return new ErrorMessage("theard doesn't exists.");//meaning that we didn't found the thread 
-		
 	}
 	
 	/**
@@ -67,7 +70,7 @@ public class Forum implements Serializable{
 		List<Thread> tThreadList = HibernateUtil.retrieveThreadList(_forumId);
 		for(int i=0;i<tThreadList.size();i++){
 			//if(tThreadList.get(i).getThread_id()==threadId)
-				// _threads.remove(i); // TODO:: remove thread
+				// _threads.remove(i); // TODO: remove thread
 		}
 		
 	}
@@ -80,22 +83,26 @@ public class Forum implements Serializable{
 	 * @return
 	 */
 	
-	public Message add_thread (String title,String body,User owner){
+	public Message add_thread (String title, String body, User owner, WrappedObserver wo){
 		
 		Thread new_thread=new Thread(title,this._forumId);
+		
+		//AVID_DONE: add this user as observer on this thread..
+    	//			(nobody can remove him from observation..)
+		new_thread.addObserver(wo);
+		
 		Integer ans = (Integer) HibernateUtil.insertDB(new_thread);
+		
 		try {
-			Session session = HibernateUtil.getSession();
-			Transaction t = session.beginTransaction();
 			
-		} catch(Exception e){
-			e.printStackTrace();
+			Session session = HibernateUtil.getSession();
+			Transaction t = session.beginTransaction();	
 		}
+		catch(Exception e){ e.printStackTrace(); }
+		
 		new_thread.setThread_id(ans.intValue());
 	
-		return new_thread.reaply(title, body,owner);
-		
-		
+		return new_thread.reaply(title, body, owner);
 	}
 	
 	/**
