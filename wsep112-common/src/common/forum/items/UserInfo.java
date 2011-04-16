@@ -7,24 +7,24 @@ public class UserInfo implements Serializable {
 	private static final long serialVersionUID = -1262119404847181191L;
 	
 	private String _status;
-	private String _name;
+	private String _username;
 	
 	/**
 	 * 
 	 * @param status
 	 * @param name
 	 */
-	public UserInfo(String status, String name) {
+	public UserInfo(String status, String username) {
 		
 		super();
 		this._status = status;
-		this._name = name;
+		this._username = username;
 	}
 	
 	public String getStatus(){
 		return _status;
 	}
 	public String getUserName(){
-		return _name;
+		return _username;
 	}
 }
