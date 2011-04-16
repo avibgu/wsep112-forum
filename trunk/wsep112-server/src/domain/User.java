@@ -5,14 +5,12 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Vector;
 
-import org.hibernate.Hibernate;
-
+import common.forum.items.UserInfo;
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
-import database.HibernateUtil;
 
-public class User extends Observable implements Serializable{
+public class User extends Observable implements UserInfo, Serializable{
 
 	private static final long serialVersionUID = 3753192357127381924L;
 
@@ -64,6 +62,13 @@ public class User extends Observable implements Serializable{
 	 */
 	public Status getStatus() {
 		return _status;
+	}
+	
+	/**
+	 * @return Status - status (Offline/Online) of user
+	 */
+	public String getStatusAsString() {
+		return ((_status == Status.ONLINE) ? "ONLINE" : "OFFLINE");
 	}
 
 	/**
