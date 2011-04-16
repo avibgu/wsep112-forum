@@ -14,11 +14,13 @@ public class RemoveThreadMessage implements Serializable, Message {
 	private static final long serialVersionUID = 8760287282205068029L;
 
 	private String _threadId;
+	private String _forumId;
 	
-	public RemoveThreadMessage(String threadId) {
+	public RemoveThreadMessage(String threadId, String forumId) {
 
 		super();
 		setThreadId(threadId);
+		setForumId(forumId);
 	}
 
 	/* (non-Javadoc)
@@ -35,5 +37,13 @@ public class RemoveThreadMessage implements Serializable, Message {
 
 	public String getThreadId() {
 		return _threadId;
+	}
+
+	public void setForumId(String _forumId) {
+		this._forumId = _forumId;
+	}
+
+	public String getForumId() {
+		return _forumId;
 	}
 }
