@@ -3,22 +3,28 @@ package domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
+import java.util.Observer;
 import java.util.Vector;
+
+import server.network.WrappedObserver;
 
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
+import common.observation.Observable;
 import database.HibernateUtil;
 
-public class Thread extends Observable implements Serializable{
+public class Thread implements Observable, Serializable{
 
 	private static final long serialVersionUID = 3069041512726662410L;
 	private int _forumId;
 	private int _threadID;
 	private String _title;
 	private List<Post> _posts;
-	static int _available_post_id=0;
+	static int _available_post_id = 0;
+	
+	private WrappedObserver _ownerObserver;
+	private List<WrappedObserver> _observers;
 	
 	public Thread(){
 		
@@ -27,6 +33,7 @@ public class Thread extends Observable implements Serializable{
 		this._posts=new ArrayList<Post>();
 		this._title=title;
 		this.set_forumId(forumId);
+		this.set_observers(new ArrayList<WrappedObserver>());
 	}
 	
 	/**
@@ -102,8 +109,57 @@ public class Thread extends Observable implements Serializable{
 	
 	@Override
 	public void notifyObservers(Object arg){
-		setChanged();
-		super.notifyObservers(arg);
-		clearChanged();
+		
+		List<WrappedObserver> observers = get_observers();
+		
+		for (WrappedObserver wo : observers)
+			wo.update(null, arg);
+	}
+	
+	public void notifyOwner(PostAddedToYourThreadNotification notification) {
+		get_ownerObserver().update(null, notification);
+	}
+	
+	@Override
+	public synchronized void deleteObserver(Observer o){
+		
+		if (o == null) throw new NullPointerException();
+		
+		if (o instanceof WrappedObserver)
+			deleteObserver((WrappedObserver)o);
+    }
+    
+	public synchronized void deleteObserver(WrappedObserver wo) {
+
+		get_observers().remove(wo);
+	}
+	
+	@Override
+	public synchronized void addObserver(Observer o) {
+		
+		if (o == null) throw new NullPointerException();
+		
+		if (o instanceof WrappedObserver)
+			addObserver((WrappedObserver)o);
+	}
+	
+    public synchronized void addObserver(WrappedObserver wo) {
+		if (!get_observers().contains(wo)) get_observers().add(wo);
+    }
+	
+	public void set_ownerObserver(WrappedObserver _ownerObserver) {
+		this._ownerObserver = _ownerObserver;
+	}
+	
+	public WrappedObserver get_ownerObserver() {
+		return _ownerObserver;
+	}
+	
+	public void set_observers(List<WrappedObserver> _observers) {
+		this._observers = _observers;
+	}
+	
+	public List<WrappedObserver> get_observers() {
+		return _observers;
 	}
 }

@@ -242,6 +242,8 @@ public class ForumController implements Serializable{
 		
 		thread.notifyObservers(new ThreadChangedNotification(threadInfo));
 		
+		thread.notifyOwner(new PostAddedToYourThreadNotification(threadInfo));
+		
     	//AVID_DONE: notify to friends
 		user.notifyObservers(new FriendAddedPostNotification(
 				threadInfo, new UserInfo(user.getStatusAsString(), user.getUserName())));
@@ -446,6 +448,8 @@ public class ForumController implements Serializable{
 		
 		for (Thread thread : threads)
 			thread.deleteObserver(wo);
+		
+		//SHIRAN: should we update these changes in db?..
 	}
 	
 	/**
