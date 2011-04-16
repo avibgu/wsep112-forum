@@ -5,7 +5,7 @@ package common.network.messages;
 
 import java.io.Serializable;
 
-import common.network.RemoteObserver;
+import common.observation.RemoteObserver;
 
 /**
  * @author Avi Digmi

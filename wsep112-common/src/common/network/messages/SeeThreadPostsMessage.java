@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Vector;
 
 import common.forum.items.PostInfo;
-import common.network.RemoteObserver;
+import common.observation.RemoteObserver;
 
 /**
  * @author Avi Digmi
