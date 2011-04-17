@@ -199,11 +199,11 @@ public class ForumController implements Serializable{
 		
     	//AVID_DONE: add this user to friend's observers..
 
-		friend.addObserver(wo);
-		user.addObserver(getUsersToObserversMap().get(friendUsername));
+		//AVID: remove:	friend.addObserver(wo);
+		//AVID: remove:	user.addObserver(getUsersToObserversMap().get(friendUsername));
 
 		//AVID_DONE: relate between this user and his observer
-		getUsersToObserversMap().put(username, wo);
+		//AVID: remove:	getUsersToObserversMap().put(username, wo);
 		
 		//SHIRAN: update friend in DB?..
 		
@@ -236,11 +236,11 @@ public class ForumController implements Serializable{
 		
 		//AVID_DONE: remove this user from friend's observers..
 
-		friend.deleteObserver(wo);
-		user.deleteObserver(getUsersToObserversMap().get(friendUsername));
+		//AVID: remove:	friend.deleteObserver(wo);
+		//AVID: remove:	user.deleteObserver(getUsersToObserversMap().get(friendUsername));
 
 		//AVID_DONE: relate between this user and his observer
-		getUsersToObserversMap().put(username, wo);
+		//AVID: remove:	getUsersToObserversMap().put(username, wo);
 		
 		//SHIRAN: update friend in DB?..
 		
@@ -270,23 +270,34 @@ public class ForumController implements Serializable{
 		
 		//AVID_DONE: notify to thread's observers..
 		Thread thread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
-		
-		ThreadInfo threadInfo = new ThreadInfo(
-				thread.getThread_id(), thread.getTitle(), thread.get_forumId());
-		
-		thread.notifyObservers(new ThreadChangedNotification(threadInfo));
-		// SHIRAN
-		//thread.notifyOwner(new PostAddedToYourThreadNotification(threadInfo));
-		
-    	//AVID_DONE: notify to friends
-		user.notifyObservers(new FriendAddedPostNotification(
-				threadInfo, new UserInfo(user.getStatusAsString(), user.get_Username())));
 
 		Message msg = HibernateUtil.retrieveForum(Integer.valueOf(forumId)).reaplyToThread(title, body,  Integer.parseInt(threadId), user);
+		
+		notifyAboutNewPost(user, thread);
+		
 		return msg;
     }
 
     /**
+     * 
+     * @param user
+     * @param thread
+     */
+    private void notifyAboutNewPost(User user, Thread thread) {
+
+		ThreadInfo threadInfo = new ThreadInfo(
+				thread.getThread_id(), thread.getTitle(), thread.get_forumId());
+		
+		thread.notifyObservers(new ThreadChangedNotification(threadInfo));
+		
+		thread.notifyOwner(new PostAddedToYourThreadNotification(threadInfo));
+		
+    	//AVID_DONE: notify to friends
+		user.notifyObservers(new FriendAddedPostNotification(
+				threadInfo, new UserInfo(user.getStatusAsString(), user.get_Username())));
+		
+	}
+	/**
      *
      * @param title
      * @param body
