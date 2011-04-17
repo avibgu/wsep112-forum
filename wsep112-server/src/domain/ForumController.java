@@ -464,7 +464,7 @@ public class ForumController implements Serializable{
 		Thread tThread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
 		User tUser = HibernateUtil.retrievePostOwner(Integer.parseInt(postId));
 		tThread.delete(Integer.parseInt(postId), tUser);
-		//HibernateUtil.updateDB(tThread);
+		
 		
 		// TODO: return real answer..
 		return new OKMessage();
