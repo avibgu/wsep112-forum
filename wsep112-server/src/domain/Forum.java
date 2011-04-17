@@ -51,9 +51,9 @@ public class Forum implements Serializable{
 	 */
 	public Message reaplyToThread(String title, String body, int threadId,User owner) {
 		
-		List<Thread> tThreadList = HibernateUtil.retrieveThreadList(_forumId);
+		List<Thread> tThreadList = getThreads();
 		
-		for(int i=0;i<tThreadList.size();i++){
+		for(int i=0 ; i < tThreadList.size() ; i++){
 			
 			Thread thread=tThreadList.get(i);
 			
@@ -70,10 +70,12 @@ public class Forum implements Serializable{
 	 */
 	//removing the given specific thread from the forum
 	public void deleteThread(int threadId){
-		//List<Thread> tThreadList = HibernateUtil.retrieveThreadList(_forumId);
-		for(int i=0;i<getThreads().size();i++){
-			if(getThreads().get(i).getThread_id()==threadId){
-				 _threads.remove(i); 
+		List<Thread> tThreadList = getThreads();
+		for(int i=0;i<tThreadList.size();i++){
+			Thread tThread = tThreadList.get(i); 
+			if(tThread.getThread_id()==threadId){
+				// _threads.remove(i);
+				//HibernateUtil.deleteObj(tThread);
 				 break;
 			}
 		}
@@ -103,7 +105,7 @@ public class Forum implements Serializable{
 				new_thread.getThread_id(), new_thread.getTitle(), new_thread.get_forumId());
 		
 		owner.notifyObservers(new FriendAddedPostNotification(
-				threadInfo, new UserInfo(owner.getStatusAsString(), owner.getUserName())));
+				threadInfo, new UserInfo(owner.getStatusAsString(), owner.get_Username())));
 		
 		getThreads().add(new_thread);
 		Integer ans = (Integer) HibernateUtil.insertDB(new_thread);
@@ -117,7 +119,6 @@ public class Forum implements Serializable{
 		
 		new_thread.setThread_id(ans.intValue());
 		HibernateUtil.updateDB(new_thread);
-		System.out.println("num of threads after  = " + getThreads().size());
 		return new_thread.reaply(title, body, owner);
 	}
 	
@@ -168,9 +169,8 @@ public class Forum implements Serializable{
 	 * @return list of forum's threads
 	 */
 	public List<Thread> getThreads() {
-		if (_threads.size() > 0)
-			_threads.remove(0);
-			return _threads;
+		//return _threads;
+		return HibernateUtil.retrieveThreadList(getForumId());
 	}
 
 	/**

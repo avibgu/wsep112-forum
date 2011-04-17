@@ -5,7 +5,7 @@
 <hibernate-mapping>
  <class name="domain.User" table="USERS">
   <id access="field" name="_username" type="java.lang.String">
-   <column name="username"/>
+   <column name="username" sql-type="VARCHAR"/>
    <generator class="assigned"/>
   </id>
   <property access="field" generated="never" lazy="false"
@@ -46,5 +46,5 @@
    <index column="idx"/>
    <many-to-many class="domain.Post" column="POST_ID" unique="false"/>
   </list>
-  </class>
+ </class>
 </hibernate-mapping>

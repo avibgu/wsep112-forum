@@ -276,14 +276,12 @@ public class ForumController implements Serializable{
 		
 		thread.notifyObservers(new ThreadChangedNotification(threadInfo));
 		
-		thread.notifyOwner(new PostAddedToYourThreadNotification(threadInfo));
+		//thread.notifyOwner(new PostAddedToYourThreadNotification(threadInfo));
 		
     	//AVID_DONE: notify to friends
 		user.notifyObservers(new FriendAddedPostNotification(
-				threadInfo, new UserInfo(user.getStatusAsString(), user.getUserName())));
+				threadInfo, new UserInfo(user.getStatusAsString(), user.get_Username())));
 
-		// find the forum
-		//return _forums.get(Integer.parseInt(forumId)).reaplyToThread(title, body, Integer.parseInt(threadId), user);
 		Message msg = HibernateUtil.retrieveForum(Integer.valueOf(forumId)).reaplyToThread(title, body,  Integer.parseInt(threadId), user);
 		return msg;
     }
@@ -308,7 +306,7 @@ public class ForumController implements Serializable{
 		Forum tForum =  HibernateUtil.retrieveForum(Integer.parseInt(forumId));
 		Message tMsg = tForum.add_thread(title, body, user, wo); 
 		
-		HibernateUtil.updateDB(tForum);
+		//HibernateUtil.updateDB(tForum);
 		return tMsg;
     }
 
@@ -380,8 +378,8 @@ public class ForumController implements Serializable{
 		
 		for (Post post : tPost){
 			
-			UserInfo ui = new UserInfo(post.getOwner().getStatusAsString(),
-					post.getOwner().getUserName());
+			UserInfo ui = new UserInfo(post.get_Owner().getStatusAsString(),
+					post.get_Owner().get_Username());
 			
 			tListOfPosts.add(new PostInfo(post.get_post_id(), post.get_title(),
 					post.get_body(), ui, post.getThread_id(), post.getDateTime()));
@@ -524,7 +522,7 @@ public class ForumController implements Serializable{
 		for (String friendName : friendsNames) {
 			
 			User friend = HibernateUtil.retrieveUser(friendName);
-			friend.addObserver(wo);
+			//friend.addObserver(wo);
 		}
 	}
 	
