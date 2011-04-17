@@ -174,7 +174,7 @@ public class HibernateUtil {
 			   
 			   for (int i=0; i < tPostsList.size() ; ++i){
 				   Post tPost = tPostsList.get(i);
-				   if (tPost.getThreadId() == threadId)
+				   if (tPost.getThread_id() == threadId)
 					   tAns.add(tPost);
 			   }
 			   
@@ -243,7 +243,7 @@ public class HibernateUtil {
 		
 			for (int i=0 ; i<tPostList.size();++i){
 				Post tCurrPost = tPostList.get(i);
-				if (tCurrPost.getPostId() == postId){
+				if (tCurrPost.get_post_id() == postId){
 					return tCurrPost.getOwner();
 				}
 					
