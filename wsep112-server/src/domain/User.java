@@ -298,9 +298,7 @@ public class User implements Observable, Serializable{
     }
     
 	public synchronized void deleteObserver(WrappedObserver wo) {
-
-		if (get_observers().contains(wo))
-			get_observers().remove(wo);
+		get_observers().remove(wo);
 	}
 	
 	@Override
@@ -313,7 +311,7 @@ public class User implements Observable, Serializable{
 	}
 	
     public synchronized void addObserver(WrappedObserver wo) {
-		if (!get_observers().contains(wo)) get_observers().add(wo);
+		get_observers().add(wo);
     }
     
 	public void set_observers(List<WrappedObserver> _observers) {
