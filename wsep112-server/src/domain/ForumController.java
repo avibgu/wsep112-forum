@@ -267,8 +267,7 @@ public class ForumController implements Serializable{
     	
     	 // Find the owner
 		User user = getUser(username);
-		
-		//AVID_DONE: notify to thread's observers..
+
 		Thread thread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
 
 		Message msg = HibernateUtil.retrieveForum(Integer.valueOf(forumId)).reaplyToThread(title, body,  Integer.parseInt(threadId), user);
@@ -285,18 +284,38 @@ public class ForumController implements Serializable{
      */
     private void notifyAboutNewPost(User user, Thread thread) {
 
+		WrappedObserver wo;
+		
 		ThreadInfo threadInfo = new ThreadInfo(
 				thread.getThread_id(), thread.getTitle(), thread.get_forumId());
 		
-		thread.notifyObservers(new ThreadChangedNotification(threadInfo));
+		//AVID_DONE: notify thread's owner..
+
+		wo = getUsersToObserversMap().get(thread.get_owner());
+		wo.update(null, new PostAddedToYourThreadNotification(threadInfo));
+
+		//AVID_DONE: notify thread's observers..
 		
-		thread.notifyOwner(new PostAddedToYourThreadNotification(threadInfo));
+		List<String> viewers = thread.get_watchingUsers();
 		
-    	//AVID_DONE: notify to friends
-		user.notifyObservers(new FriendAddedPostNotification(
-				threadInfo, new UserInfo(user.getStatusAsString(), user.get_Username())));
+		for (String viewer : viewers) {
+			
+			wo = getUsersToObserversMap().get(viewer);
+			wo.update(null, new ThreadChangedNotification(threadInfo));
+		}
 		
+    	//AVID_DONE: notify friends
+		
+		List<String> friends = user.getFriends();
+
+		for (String friend : friends) {
+			
+			wo = getUsersToObserversMap().get(friend);
+			wo.update(null, new FriendAddedPostNotification(
+					threadInfo, new UserInfo(user.getStatusAsString(), user.get_Username())));
+		}
 	}
+    
 	/**
      *
      * @param title
@@ -318,6 +337,9 @@ public class ForumController implements Serializable{
 		Message tMsg = tForum.add_thread(title, body, user, wo); 
 		
 		//HibernateUtil.updateDB(tForum);
+		
+		notifyAboutNewPost(user, thread);
+		
 		return tMsg;
     }
 
