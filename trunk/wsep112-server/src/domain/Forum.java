@@ -85,9 +85,8 @@ public class Forum implements Serializable{
 	 * @return
 	 */
 	
-	public Message add_thread (String title, String body, User owner, WrappedObserver wo){
-		
-		Thread new_thread=new Thread(title,this._forumId);
+	public Message add_thread (Thread new_thread, String title, String body, User owner, WrappedObserver wo){
+
 		System.out.println("num of threads before  = " + getThreads().size());
 
 		getThreads().add(new_thread);
