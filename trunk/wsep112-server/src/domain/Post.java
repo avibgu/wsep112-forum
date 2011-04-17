@@ -58,7 +58,7 @@ public class Post implements Serializable{
 	
 	//********************** SETTERS AND GETTERS *******************************//
 	
-	public int get_post_id() {
+	public int getPostId() {
 		return _post_id;
 	}
 	
@@ -66,7 +66,7 @@ public class Post implements Serializable{
 		this._post_id = _post_id;
 	}
 	
-	public String get_title() {
+	public String getTitle() {
 		return _title;
 	}
 	
@@ -74,7 +74,7 @@ public class Post implements Serializable{
 		this._title = _title;
 	}
 	
-	public String get_body() {
+	public String getBody() {
 		return _body;
 	}
 	
@@ -90,7 +90,7 @@ public class Post implements Serializable{
 		this._owner = owner;
 	}
 	
-	public int getThread_id() {
+	public int getThreadId() {
 		return _threadID;
 	}
 	
