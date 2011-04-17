@@ -34,6 +34,7 @@ public class Thread implements Serializable{
 		this.set_observers(new ArrayList<WrappedObserver>());
 	}
 	public Thread (String title,int forumId,String username){
+		this._watchingUsers = new ArrayList<String>();
 		this._posts=new ArrayList<Post>();
 		this._title=title;
 		this.set_forumId(forumId);
