@@ -125,10 +125,10 @@ public class ForumController implements Serializable{
 		getUsersToObserversMap().put(username, wo);
 		
 		//AVID: add this user as observer on his friends
-		addUserAsObserverOnHisFriends(loginUser, wo);
+		//AVID: remove: addUserAsObserverOnHisFriends(loginUser, wo);
 		
 		//AVID: add this user as observer on his threads
-		addUserAsObserverOnHisThreads(loginUser, wo);
+		//AVID: remove: addUserAsObserverOnHisThreads(loginUser, wo);
 		
 		loginUser.setStatus(Status.ONLINE);
 		HibernateUtil.updateDB(loginUser);
@@ -165,10 +165,10 @@ public class ForumController implements Serializable{
 		getUsersToObserversMap().remove(username);
 		
 		//AVID: remove this user from observing on his friends
-		removeUserFromObserveringOnHisFriends(logoutUser, wo);
+		//AVID: remove: removeUserFromObserveringOnHisFriends(logoutUser, wo);
 		
 		//AVID: remove this user from observing on his threads
-		removeUserFromObserveringOnHisThreads(logoutUser, wo);
+		//AVID: remove: removeUserFromObserveringOnHisThreads(logoutUser, wo);
 		
 		_loginUsers.remove(username);
 		HibernateUtil.updateDB(logoutUser);
@@ -518,64 +518,64 @@ public class ForumController implements Serializable{
 		//SHIRAN: should we update these changes in db?..
 	}
 
-	/**
-	 * 
-	 * @param loginUser
-	 * @param wo
-	 */
-	private void addUserAsObserverOnHisThreads(User loginUser, WrappedObserver wo) {
-		
-		List<Thread> threads = loginUser.getThreads();
-		
-		for (Thread thread : threads)
-			thread.setOwnerObserver(wo);
-	}
-	
-	/**
-	 * 
-	 * @param loginUser
-	 * @param wo
-	 */
-	private void removeUserFromObserveringOnHisThreads(User loginUser, WrappedObserver wo) {
-
-		List<Thread> threads = loginUser.getThreads();
-		
-		for (Thread thread : threads)
-			thread.setOwnerObserver(null);
-	}
-	
-	/**
-	 * 
-	 * @param loginUser
-	 * @param wo
-	 */
-	private void addUserAsObserverOnHisFriends(User loginUser, WrappedObserver wo) {
-		
-		List<String> friendsNames = loginUser.getFriends();
-		
-		for (String friendName : friendsNames) {
-			
-			User friend = HibernateUtil.retrieveUser(friendName);
-			
-			if (null != friend) friend.addObserver(wo);
-		}
-	}
-	
-	/**
-	 * 
-	 * @param loginUser
-	 * @param wo
-	 */
-	private void removeUserFromObserveringOnHisFriends(User loginUser, WrappedObserver wo) {
-		
-		List<String> friendsNames = loginUser.getFriends();
-		
-		for (String friendName : friendsNames) {
-			
-			User friend = HibernateUtil.retrieveUser(friendName);
-			friend.deleteObserver(wo);
-		}
-	}
+//	/**
+//	 * 
+//	 * @param loginUser
+//	 * @param wo
+//	 */
+//	private void addUserAsObserverOnHisThreads(User loginUser, WrappedObserver wo) {
+//		
+//		List<Thread> threads = loginUser.getThreads();
+//		
+//		for (Thread thread : threads)
+//			thread.setOwnerObserver(wo);
+//	}
+//	
+//	/**
+//	 * 
+//	 * @param loginUser
+//	 * @param wo
+//	 */
+//	private void removeUserFromObserveringOnHisThreads(User loginUser, WrappedObserver wo) {
+//
+//		List<Thread> threads = loginUser.getThreads();
+//		
+//		for (Thread thread : threads)
+//			thread.setOwnerObserver(null);
+//	}
+//	
+//	/**
+//	 * 
+//	 * @param loginUser
+//	 * @param wo
+//	 */
+//	private void addUserAsObserverOnHisFriends(User loginUser, WrappedObserver wo) {
+//		
+//		List<String> friendsNames = loginUser.getFriends();
+//		
+//		for (String friendName : friendsNames) {
+//			
+//			User friend = HibernateUtil.retrieveUser(friendName);
+//			
+//			if (null != friend) friend.addObserver(wo);
+//		}
+//	}
+//	
+//	/**
+//	 * 
+//	 * @param loginUser
+//	 * @param wo
+//	 */
+//	private void removeUserFromObserveringOnHisFriends(User loginUser, WrappedObserver wo) {
+//		
+//		List<String> friendsNames = loginUser.getFriends();
+//		
+//		for (String friendName : friendsNames) {
+//			
+//			User friend = HibernateUtil.retrieveUser(friendName);
+//			friend.deleteObserver(wo);
+//		}
+//	}
 	
 	/**
 	 * 
