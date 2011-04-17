@@ -522,7 +522,8 @@ public class ForumController implements Serializable{
 		for (String friendName : friendsNames) {
 			
 			User friend = HibernateUtil.retrieveUser(friendName);
-			//friend.addObserver(wo);
+			
+			if (null != friend) friend.addObserver(wo);
 		}
 	}
 	
