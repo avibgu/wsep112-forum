@@ -100,7 +100,7 @@ public class Forum implements Serializable{
     	//AVID_DONE: notify to friends
 		
 		ThreadInfo threadInfo = new ThreadInfo(
-				new_thread.getThread_id(), new_thread.getTitle(), new_thread.getForumId());
+				new_thread.getThread_id(), new_thread.getTitle(), new_thread.get_forumId());
 		
 		owner.notifyObservers(new FriendAddedPostNotification(
 				threadInfo, new UserInfo(owner.getStatusAsString(), owner.getUserName())));
