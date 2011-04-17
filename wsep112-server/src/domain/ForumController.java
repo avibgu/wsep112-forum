@@ -16,12 +16,14 @@ import common.forum.items.ThreadInfo;
 import common.forum.items.UserInfo;
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
+import common.network.messages.MessageType;
 import common.network.messages.OKMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeFriendsMessage;
 import common.network.messages.SeeThreadPostsMessage;
 import common.notifications.FriendAddedPostNotification;
+import common.notifications.PostAddedToYourThreadNotification;
 import common.notifications.ThreadChangedNotification;
 import database.HibernateUtil;
 import domain.User.Status;
@@ -177,11 +179,13 @@ public class ForumController implements Serializable{
 			return new ErrorMessage("Friend Username doesn't exists.");
 
 		User user = getUser(username);
-		Message msg =  user.addFriend(friendUsername);
-		
-    	//AVID_DONE: add this user to friend's observers..
+		Message msg1 =  user.addFriend(friendUsername);
 		
 		User friend = getUser(friendUsername);
+		Message msg2 =  friend.addFriend(username);
+		
+    	//AVID_DONE: add this user to friend's observers..
+
 		friend.addObserver(wo);
 		user.addObserver(get_usersToObserversMap().get(friendUsername));
 
@@ -192,7 +196,7 @@ public class ForumController implements Serializable{
 		
 		HibernateUtil.updateDB(user);
 		
-		return msg;
+		return (msg1.getMessageType() == MessageType.OK) ? msg2 : msg1;
     }
 
     /**
@@ -212,11 +216,13 @@ public class ForumController implements Serializable{
 			return new ErrorMessage("Friend Username doesn't exists.");
 
 		User user = getUser(username);
-		Message msg = user.removeFriend(friendUsername);
-		
-		//AVID_DONE: remove this user from friend's observers..
+		Message msg1 = user.removeFriend(friendUsername);
 		
 		User friend = getUser(friendUsername);
+		Message msg2 = friend.removeFriend(username);
+		
+		//AVID_DONE: remove this user from friend's observers..
+
 		friend.deleteObserver(wo);
 		user.deleteObserver(get_usersToObserversMap().get(friendUsername));
 
@@ -227,7 +233,7 @@ public class ForumController implements Serializable{
 		
 		HibernateUtil.updateDB(user);
 		
-		return msg;
+		return (msg1.getMessageType() == MessageType.OK) ? msg2 : msg1;
     }
 
     /**
@@ -290,7 +296,7 @@ public class ForumController implements Serializable{
 		// find the forum
 		Forum tForum =  HibernateUtil.retrieveForum(Integer.parseInt(forumId));
 		Message tMsg = tForum.add_thread(title, body, user, wo); 
-	
+		
 		HibernateUtil.updateDB(tForum);
 		return tMsg;
     }
