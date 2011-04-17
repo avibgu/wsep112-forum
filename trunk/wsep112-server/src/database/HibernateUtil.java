@@ -83,15 +83,14 @@ public class HibernateUtil {
 	try{  
 		   Session session = getSession();
 		   Transaction transaction = session.beginTransaction();
-		   List<User> tUserList= session.createQuery("from User").list();
-		   for (int i=0; i < tUserList.size() ; ++i){
-			   User tUser = tUserList.get(i);
-			   if (tUser.get_Username().equals(username))
-				   return tUser;
-		   }
-		 
+		   Query q = session.createQuery("from User as u where u._username = :username");
+		   q.setParameter("username", username);
+		   List<User> tUserList= q.list();
 		   session.close();
-		   return null;
+		   
+		   if (tUserList.size() == 0)
+			   	return null;
+		   else return tUserList.get(0);
 	}catch(Exception e){
 		e.printStackTrace();
 		return null;
@@ -102,9 +101,12 @@ public class HibernateUtil {
 	   public static List<User> retrieveOnlineUsers(){
 		 try{  Session session = getSession();
 		   Transaction transaction = session.beginTransaction();
-		   List<User> tAns = session.createQuery("from User where status=ONLINE").list();
+		   Query q = session.createQuery("from User as u where u._status= :status");
+		   q.setParameter("status", "ONLINE");
+		   List<User> tAns = q.list();
 		   
 		   return tAns;
+		   
 		 }catch (Exception e){
 			 e.printStackTrace();
 			 return null;
@@ -115,12 +117,15 @@ public class HibernateUtil {
 	   public static Forum retrieveForum(int id){
 		   try{Session session = getSession();
 		   Transaction transaction = session.beginTransaction();
-		   List<Forum> tForumList = session.createQuery("from Forum").list();
-		  for (int i=0; i < tForumList.size() ; ++i){
-			   Forum tForum = tForumList.get(i);
-			   if (tForum.getForumId() == id)
-				   return tForum;
-		   }
+		   Query q = session.createQuery("from Forum as f where f._forumId= :id");
+		   q.setParameter("id", id);
+		   List<Forum> tAns = q.list();
+		   
+		   if (tAns.size() == 0)
+			   	return null;
+		   else return tAns.get(0);
+		   
+		  
 		   }catch (Exception e){
 			   e.printStackTrace();
 		   }
@@ -131,11 +136,7 @@ public class HibernateUtil {
 		  try{ Session session = getSession();
 		   Transaction transaction = session.beginTransaction();
 		   return session.createQuery("from Forum").list();
-		 /*  for (int i=0; i < tUserList.size() ; ++i){
-			   User tUser = tUserList.get(i);
-			   if (tUser.getUserName().equals(username))
-				   return tUser;
-		   }*/
+		 
 		  }catch (Exception e){
 			  e.printStackTrace();
 			  return null;
@@ -145,15 +146,12 @@ public class HibernateUtil {
 	   public static List<Thread> retrieveThreadList(int ForumId){
 		   try{Session session = getSession();
 		   Transaction transaction = session.beginTransaction();
-		  // return session.createQuery("from Thread where forum_id="+ForumId).list();
-		   List<Thread> tThreadList = session.createQuery("from Thread").list();
-		   List<Thread> tAns = new ArrayList<Thread>();
-		   for (int i=0; i < tThreadList.size() ; ++i){
-			   Thread tThread = tThreadList.get(i);
-			   if (tThread.get_forumId() == ForumId)
-				   tAns.add(tThread);
-		   }
+		   Query q = session.createQuery("from Thread as t where t._forumId= :id");
+		   q.setParameter("id", ForumId);
+		   List<Thread> tAns = q.list();
+		   
 		   return tAns;
+		   
 		   }catch(Exception e){
 			   e.printStackTrace();
 			   return null;
@@ -168,17 +166,12 @@ public class HibernateUtil {
 			   Session session = getSession();
 			   Transaction transaction = session.beginTransaction();
 
-			   //return session.createQuery("from Post where forum_id="+ForumId +"and thread_id="+ threadId).list();
-			   List<Post> tPostsList = session.createQuery("from Post").list();
-			   List<Post> tAns = new ArrayList<Post>();
-			   
-			   for (int i=0; i < tPostsList.size() ; ++i){
-				   Post tPost = tPostsList.get(i);
-				   if (tPost.getThread_id() == threadId)
-					   tAns.add(tPost);
-			   }
+			   Query q = session.createQuery("from Post as p where p._threadID= :id");
+			   q.setParameter("id", threadId);
+			   List<Post> tAns = q.list();
 			   
 			   return tAns;
+		
 		   }
 		   catch (Exception e){
 			   
@@ -194,16 +187,14 @@ public class HibernateUtil {
 			   
 			Session session = getSession();
 			Transaction transaction = session.beginTransaction();
-
-			//return session.createQuery("from Thread where forum_id="+ForumId).list();
-		   
-			List<Thread> tThreadList = session.createQuery("from Thread").list();
-
-			for (Thread thread : tThreadList)
-				if(thread.getThread_id() == threadId)
-					return thread;
-
-			return null;
+			
+			  Query q = session.createQuery("from Thread as t where t._threadID= :id");
+			  q.setParameter("id", threadId);
+			  List<Thread> tAns = q.list();
+			  
+			  if (tAns.size() == 0)
+			   	return null;
+			  else return tAns.get(0);
 		}
 		catch(Exception e){
 			   
@@ -212,6 +203,8 @@ public class HibernateUtil {
 		}
 	}
 
+	// SHIRAN - STOP HERE 
+	
 	public static List<Thread> retrieveAllThreadsList() {
 		
 		try{

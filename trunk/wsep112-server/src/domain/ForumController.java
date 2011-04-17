@@ -275,7 +275,7 @@ public class ForumController implements Serializable{
 				thread.getThread_id(), thread.getTitle(), thread.get_forumId());
 		
 		thread.notifyObservers(new ThreadChangedNotification(threadInfo));
-		
+		// SHIRAN
 		//thread.notifyOwner(new PostAddedToYourThreadNotification(threadInfo));
 		
     	//AVID_DONE: notify to friends
