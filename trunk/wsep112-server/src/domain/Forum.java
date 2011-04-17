@@ -10,10 +10,13 @@ import org.hibernate.Transaction;
 
 import server.network.WrappedObserver;
 
+import common.forum.items.ThreadInfo;
+import common.forum.items.UserInfo;
 import common.network.messages.ErrorMessage;
 
 
 import common.network.messages.Message;
+import common.notifications.FriendAddedPostNotification;
 import database.HibernateUtil;
 
 
@@ -89,9 +92,19 @@ public class Forum implements Serializable{
 		
 		Thread new_thread=new Thread(title,this._forumId);
 		System.out.println("num of threads before  = " + getThreads().size());
+		
 		//AVID_DONE: add this user as owner observer on this thread..
     	//			(nobody can remove him from observation..)
 		new_thread.set_ownerObserver(wo);
+		
+    	//AVID_DONE: notify to friends
+		
+		ThreadInfo threadInfo = new ThreadInfo(
+				new_thread.getThread_id(), new_thread.getTitle(), new_thread.get_forumId());
+		
+		owner.notifyObservers(new FriendAddedPostNotification(
+				threadInfo, new UserInfo(owner.getStatusAsString(), owner.getUserName())));
+		
 		getThreads().add(new_thread);
 		Integer ans = (Integer) HibernateUtil.insertDB(new_thread);
 		

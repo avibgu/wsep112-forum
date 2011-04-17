@@ -11,6 +11,7 @@ import server.network.WrappedObserver;
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
+import common.notifications.PostAddedToYourThreadNotification;
 import common.observation.Observable;
 import database.HibernateUtil;
 
