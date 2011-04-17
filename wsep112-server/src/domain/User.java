@@ -3,18 +3,14 @@ package domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 import java.util.Vector;
-
-import server.network.WrappedObserver;
 
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
-import common.observation.Observable;
 import database.HibernateUtil;
 
-public class User implements Observable, Serializable{
+public class User implements Serializable{
 
 	private static final long serialVersionUID = 3753192357127381924L;
 
@@ -29,14 +25,11 @@ public class User implements Observable, Serializable{
 	private List<String> _friends;
 	private List<Post> _posts;
 	private List<Thread> _threads;
-	private List<WrappedObserver> _observers;
-
 	
 	public User(){
 		_friends = new Vector<String>();
 		_posts= new Vector<Post>();
 		_threads = new ArrayList<Thread>();
-		_observers = new ArrayList<WrappedObserver>();
 	}
 	/**
 	 * Constructor of User
@@ -58,7 +51,6 @@ public class User implements Observable, Serializable{
 			_friends = new Vector<String>();
 			_posts= new Vector<Post>();
 			_threads = new ArrayList<Thread>();
-			_observers = new ArrayList<WrappedObserver>();
 	}
 
 	/**
@@ -278,52 +270,11 @@ public class User implements Observable, Serializable{
 	public List<String> getFriends(){
 		return _friends;
 	}
-	
-	@Override
-	public void notifyObservers(Object arg){
-		
-		List<WrappedObserver> observers = get_observers();
-		
-		for (WrappedObserver wo : observers)
-			wo.update(null, arg);
-	}
-	
-	@Override
-	public synchronized void deleteObserver(Observer o){
-		
-		if (o == null) throw new NullPointerException();
-		
-		if (o instanceof WrappedObserver)
-			deleteObserver((WrappedObserver)o);
-    }
-    
-	public synchronized void deleteObserver(WrappedObserver wo) {
-		get_observers().remove(wo);
-	}
-	
-	@Override
-	public synchronized void addObserver(Observer o) {
-		
-		if (o == null) throw new NullPointerException();
-		
-		if (o instanceof WrappedObserver)
-			addObserver((WrappedObserver)o);
-	}
-	
-    public synchronized void addObserver(WrappedObserver wo) {
-		get_observers().add(wo);
-    }
-    
-	public void set_observers(List<WrappedObserver> _observers) {
-		this._observers = _observers;
-	}
-	
-	public List<WrappedObserver> get_observers() {
-		return _observers;
-	}
+
 	public void setThreads(List<Thread> _threads) {
 		this._threads = _threads;
 	}
+	
 	public List<Thread> getThreads() {
 		return _threads;
 	}
