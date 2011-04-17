@@ -150,7 +150,7 @@ public class HibernateUtil {
 		   List<Thread> tAns = new ArrayList<Thread>();
 		   for (int i=0; i < tThreadList.size() ; ++i){
 			   Thread tThread = tThreadList.get(i);
-			   if (tThread.getForumId() == ForumId)
+			   if (tThread.get_forumId() == ForumId)
 				   tAns.add(tThread);
 		   }
 		   return tAns;

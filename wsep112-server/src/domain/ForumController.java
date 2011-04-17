@@ -272,7 +272,7 @@ public class ForumController implements Serializable{
 		Thread thread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
 		
 		ThreadInfo threadInfo = new ThreadInfo(
-				thread.getThread_id(), thread.getTitle(), thread.getForumId());
+				thread.getThread_id(), thread.getTitle(), thread.get_forumId());
 		
 		thread.notifyObservers(new ThreadChangedNotification(threadInfo));
 		
@@ -346,7 +346,7 @@ public class ForumController implements Serializable{
 		
 		for (Thread thread : threads)
 			tListOfThreads.add(new ThreadInfo(
-					thread.getThread_id(), thread.getTitle(), thread.getForumId()));
+					thread.getThread_id(), thread.getTitle(), thread.get_forumId()));
 
 		sftm.setListOfThreads(tListOfThreads);
 		
