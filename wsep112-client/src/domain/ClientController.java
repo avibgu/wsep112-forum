@@ -33,6 +33,7 @@ import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeFriendsMessage;
 import common.network.messages.SeeThreadPostsMessage;
 import common.network.messages.SeeUsersMessage;
+import common.notifications.Notification;
 import common.observation.Observable;
 import common.observation.RemoteObserver;
 
@@ -626,6 +627,9 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
 		// notification about some error
 		if (arg instanceof ErrorMessage)
+			notifyObservers(arg);
+		
+		if (arg instanceof Notification)
 			notifyObservers(arg);
 	}
 

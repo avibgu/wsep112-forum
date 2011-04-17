@@ -14,7 +14,12 @@ import java.util.logging.Logger;
 import common.forum.items.ForumInfo;
 import common.forum.items.PostInfo;
 import common.forum.items.ThreadInfo;
+import common.forum.items.UserInfo;
 import common.network.messages.ErrorMessage;
+import common.notifications.FriendAddedPostNotification;
+import common.notifications.Notification;
+import common.notifications.PostAddedToYourThreadNotification;
+import common.notifications.ThreadChangedNotification;
 
 import domain.ClientController;
 
@@ -467,5 +472,45 @@ public class CLI implements Observer{
 		// notification about some error
 		if (arg instanceof ErrorMessage)
 			System.err.println(((ErrorMessage)arg).getReason());
+		
+		if (arg instanceof Notification){
+			
+			switch (((Notification) arg).getNotificationType() ){
+			
+				case THREAD_HAS_BEEN_CHANGED:
+				
+					ThreadChangedNotification tcn = (ThreadChangedNotification)arg;
+					ThreadInfo tInfo1 = tcn.getThreadInfo();
+					
+					System.out.println(	"Thread " + tInfo1.getThread_id() +
+										" (Forum " + tInfo1.get_forumId() +") : \"" +
+										tInfo1.getTitle() + "\" has been changed");
+					break;
+				
+				case FRIEND_ADDED_POST:
+					
+					FriendAddedPostNotification fapn = (FriendAddedPostNotification)arg;
+					ThreadInfo tInfo2 = fapn.getThreadInfo();
+					UserInfo uInfo2 = fapn.getUserInfo();
+					
+					System.out.println(	"Your friend " + uInfo2.getUserName() +
+										" added post to Thread " + tInfo2.getThread_id() +
+										" (Forum " + tInfo2.get_forumId() +") : \"" +
+										tInfo2.getTitle() + "\"");
+					break;
+					
+				case POST_ADDED_TO_YOUR_THREAD:
+					
+					PostAddedToYourThreadNotification patytn =
+						(PostAddedToYourThreadNotification)arg;
+					
+					ThreadInfo tInfo3 = patytn.getThreadInfo();
+					
+					System.out.println(	"Your Thread " + tInfo3.getThread_id() +
+										" (Forum " + tInfo3.get_forumId() +") : \"" +
+										tInfo3.getTitle() + "\" has been changed");
+					break;
+			}
+		}
 	}
 }
