@@ -29,13 +29,13 @@ public class Thread implements Observable, Serializable{
 	
 	public Thread(){
 		this._posts=new ArrayList<Post>();
-		this.set_observers(new ArrayList<WrappedObserver>());
+		this.setObservers(new ArrayList<WrappedObserver>());
 	}
 	public Thread (String title,int forumId){
 		this._posts=new ArrayList<Post>();
 		this._title=title;
-		this.set_forumId(forumId);
-		this.set_observers(new ArrayList<WrappedObserver>());
+		this.setForumId(forumId);
+		this.setObservers(new ArrayList<WrappedObserver>());
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public class Thread implements Observable, Serializable{
 	public Message delete (int post_id,User owner){
 		System.out.println("size1 = " + getPosts().size());
 		for(int i=1;i<getPosts().size();i++){
-			if(getPosts().get(i).get_post_id() == post_id){
+			if(getPosts().get(i).getPostId() == post_id){
 				owner.removePost(getThread_id(),post_id);
 				//HibernateUtil.updateDB(owner);
 				HibernateUtil.runQuery("delete from user_posts where post_id =" + post_id);
@@ -104,25 +104,25 @@ public class Thread implements Observable, Serializable{
 		this._posts = posts;
 	}
 
-	public void set_forumId(int _forumID) {
+	public void setForumId(int _forumID) {
 		this._forumId = _forumID;
 	}
 
-	public int get_forumId() {
+	public int getForumId() {
 		return _forumId;
 	}
 	
 	@Override
 	public void notifyObservers(Object arg){
 		
-		List<WrappedObserver> observers = get_observers();
+		List<WrappedObserver> observers = getObservers();
 		
 		for (WrappedObserver wo : observers)
 			wo.update(null, arg);
 	}
 	
 	public void notifyOwner(PostAddedToYourThreadNotification notification) {
-		get_ownerObserver().update(null, notification);
+		getOwnerObserver().update(null, notification);
 	}
 	
 	@Override
@@ -136,8 +136,8 @@ public class Thread implements Observable, Serializable{
     
 	public synchronized void deleteObserver(WrappedObserver wo) {
 
-		if (get_observers().contains(wo))
-			get_observers().remove(wo);
+		if (getObservers().contains(wo))
+			getObservers().remove(wo);
 	}
 	
 	@Override
@@ -150,22 +150,22 @@ public class Thread implements Observable, Serializable{
 	}
 	
     public synchronized void addObserver(WrappedObserver wo) {
-		if (!get_observers().contains(wo)) get_observers().add(wo);
+		if (!getObservers().contains(wo)) getObservers().add(wo);
     }
 	
-	public void set_ownerObserver(WrappedObserver _ownerObserver) {
+	public void setOwnerObserver(WrappedObserver _ownerObserver) {
 		this._ownerObserver = _ownerObserver;
 	}
 	
-	public WrappedObserver get_ownerObserver() {
+	public WrappedObserver getOwnerObserver() {
 		return _ownerObserver;
 	}
 	
-	public void set_observers(List<WrappedObserver> _observers) {
+	public void setObservers(List<WrappedObserver> _observers) {
 		this._observers = _observers;
 	}
 	
-	public List<WrappedObserver> get_observers() {
+	public List<WrappedObserver> getObservers() {
 		return _observers;
 	}
 }
