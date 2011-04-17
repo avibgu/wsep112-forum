@@ -27,7 +27,8 @@ public class Thread implements Observable, Serializable{
 	private List<WrappedObserver> _observers;
 	
 	public Thread(){
-		
+		this._posts=new ArrayList<Post>();
+		this.set_observers(new ArrayList<WrappedObserver>());
 	}
 	public Thread (String title,int forumId){
 		this._posts=new ArrayList<Post>();
