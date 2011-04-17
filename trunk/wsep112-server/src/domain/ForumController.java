@@ -383,8 +383,8 @@ public class ForumController implements Serializable{
 			UserInfo ui = new UserInfo(post.getOwner().getStatusAsString(),
 					post.getOwner().getUserName());
 			
-			tListOfPosts.add(new PostInfo(post.getPostId(), post.getTitle(),
-					post.getBody(), ui, post.getThreadId(), post.getDateTime()));
+			tListOfPosts.add(new PostInfo(post.get_post_id(), post.get_title(),
+					post.get_body(), ui, post.getThread_id(), post.getDateTime()));
 		}
 		
 		stpm.setListOfPosts(tListOfPosts);
