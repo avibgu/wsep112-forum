@@ -12,6 +12,7 @@ import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.OKMessage;
 import common.observation.Observable;
+import database.HibernateUtil;
 
 public class User implements Observable, Serializable{
 
@@ -116,7 +117,7 @@ public class User implements Observable, Serializable{
 	 * @param username
 	 * Sets user name
 	 */
-	public void setUserName(String username) {
+	public void set_Username(String username) {
 		this._username = username;
 	}
 
@@ -124,7 +125,7 @@ public class User implements Observable, Serializable{
 	 * @return String
 	 * Returns user name
 	 */
-	public String getUserName(){
+	public String get_Username(){
 		return _username;
 	}
 
@@ -195,7 +196,8 @@ public class User implements Observable, Serializable{
 	 * @return Vector<Post> - posts of User (Owner)
 	 */
 	public List<Post> getPosts(){
-		return _posts;
+		//return _posts;
+		return HibernateUtil.retrieveUserPosts(get_Username());
 	}
 
 	/**

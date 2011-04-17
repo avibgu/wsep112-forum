@@ -82,11 +82,11 @@ public class Post implements Serializable{
 		this._body = _body;
 	}
 	
-	public User getOwner() {
+	public User get_Owner() {
 		return _owner;
 	}
 	
-	public void setOwner(User owner) {
+	public void set_Owner(User owner) {
 		this._owner = owner;
 	}
 	

@@ -86,7 +86,7 @@ public class HibernateUtil {
 		   List<User> tUserList= session.createQuery("from User").list();
 		   for (int i=0; i < tUserList.size() ; ++i){
 			   User tUser = tUserList.get(i);
-			   if (tUser.getUserName().equals(username))
+			   if (tUser.get_Username().equals(username))
 				   return tUser;
 		   }
 		 
@@ -244,7 +244,7 @@ public class HibernateUtil {
 			for (int i=0 ; i<tPostList.size();++i){
 				Post tCurrPost = tPostList.get(i);
 				if (tCurrPost.get_post_id() == postId){
-					return tCurrPost.getOwner();
+					return tCurrPost.get_Owner();
 				}
 					
 			}
@@ -273,5 +273,49 @@ public class HibernateUtil {
 			e.printStackTrace();
 		
 		}
+	}
+	
+	public static void deleteObj(int postId){
+		try{
+			   
+			Session session = getSession();
+			Transaction transaction = session.beginTransaction();
+			
+		//	session.delete(obj);
+			Query q = session.createQuery("delete from Post as p where p._post_id = :postId");
+			q.setParameter("postId", String.valueOf(postId));
+			session.close();
+			
+		}
+		catch(Exception e){
+			   
+			e.printStackTrace();
+		
+		}
+	}
+	
+	public static List<Post> retrieveUserPosts(String username){
+		User tUser = retrieveUser(username);
+		try{
+			   
+			Session session = getSession();
+			Transaction transaction = session.beginTransaction();
+			
+			Query q = session.createQuery("from Post as p where p._owner._username = :_username");
+			q.setParameter("_username", username);
+			List<Post> tPostList = q.list();
+			
+			session.close();
+			
+			return tPostList;
+			
+			
+		}
+		catch(Exception e){
+			   
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 }

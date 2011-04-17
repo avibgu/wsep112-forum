@@ -11,7 +11,8 @@
   <property access="field" generated="never" lazy="false" name="_name" type="java.lang.String">
    <column name="FORUM_NAME"/>
   </property>
-  <list access="field" inverse="true" lazy="false" name="_threads" table="THREADS">
+  <list access="field" cascade="all,delete-orphan" inverse="true"
+   lazy="false" name="_threads" table="THREADS">
    <key>
     <column name="FORUM_ID" not-null="true"/>
    </key>

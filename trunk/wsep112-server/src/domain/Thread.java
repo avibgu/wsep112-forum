@@ -46,11 +46,11 @@ public class Thread implements Observable, Serializable{
 	 * @return  massage of success 
 	 */
 	//return the new post created un order the user to store it on his list
-	public Message reaply(String title, String body,User owner){
+public Message reaply(String title, String body,User owner){
 		
 		Post new_post=new Post(getThread_id(), title, body,owner);
 		owner.addPostToOwnerUser(new_post);//adding the post to owner
-		
+		getPosts().add(new_post);
 		HibernateUtil.insertDB(new_post);
 		HibernateUtil.updateDB(owner);
 		
@@ -65,10 +65,17 @@ public class Thread implements Observable, Serializable{
 	 */
 	public Message delete (int post_id,User owner){
 		System.out.println("size1 = " + getPosts().size());
-		for(int i=0;i<getPosts().size();i++){
-			if(getPosts().get(i).get_post_id() == post_id){
-				getPosts().remove(i);
+		List<Post> tAllPosts = getPosts();
+		for(int i=0;i<tAllPosts.size();i++){
+			System.out.println("i = " + i);
+			Post tPost = tAllPosts.get(i); 
+			if(tPost.get_post_id() == post_id){
 				owner.removePost(getThread_id(),post_id);
+				//HibernateUtil.updateDB(owner);
+				HibernateUtil.runQuery("delete from user_posts where post_id =" + post_id);
+			//	getPosts().remove(i);
+				HibernateUtil.deleteObj(post_id);
+				HibernateUtil.updateDB(tPost);
 				System.out.println("size2 = " + getPosts().size());
 				return new OKMessage();
 			}
@@ -94,8 +101,8 @@ public class Thread implements Observable, Serializable{
 	}
 
 	public List<Post> getPosts() {
-		return _posts;
-		//return HibernateUtil.retrievePostList(_threadID);
+		//return _posts;
+		return HibernateUtil.retrievePostList(_threadID);
 	}
 
 	public void setPosts(Vector<Post> posts) {
