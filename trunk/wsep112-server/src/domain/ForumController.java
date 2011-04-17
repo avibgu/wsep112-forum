@@ -292,7 +292,8 @@ public class ForumController implements Serializable{
 		//AVID_DONE: notify thread's owner..
 
 		wo = getUsersToObserversMap().get(thread.get_owner());
-		wo.update(null, new PostAddedToYourThreadNotification(threadInfo));
+		if (wo != null)
+			wo.update(null, new PostAddedToYourThreadNotification(threadInfo));
 
 		//AVID_DONE: notify thread's observers..
 		
@@ -301,7 +302,8 @@ public class ForumController implements Serializable{
 		for (String viewer : viewers) {
 			
 			wo = getUsersToObserversMap().get(viewer);
-			wo.update(null, new ThreadChangedNotification(threadInfo));
+			if (wo != null)
+				wo.update(null, new ThreadChangedNotification(threadInfo));
 		}
 		
     	//AVID_DONE: notify friends
@@ -311,7 +313,8 @@ public class ForumController implements Serializable{
 		for (String friend : friends) {
 			
 			wo = getUsersToObserversMap().get(friend);
-			wo.update(null, new FriendAddedPostNotification(
+			if (wo != null)
+				wo.update(null, new FriendAddedPostNotification(
 					threadInfo, new UserInfo(user.getStatusAsString(), user.get_Username())));
 		}
 	}
