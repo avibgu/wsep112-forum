@@ -23,6 +23,7 @@ public class Thread implements Serializable{
 	private String _title;
 	private List<Post> _posts;
 	private List<String> _watchingUsers;
+	private String _owner;
 	static int _available_post_id = 0;
 	
 	private WrappedObserver _ownerObserver;
@@ -162,6 +163,12 @@ public Message reaply(String title, String body,User owner){
 	}
 	public List<String> get_watchingUsers() {
 		return _watchingUsers;
+	}
+	public void set_owner(String _owner) {
+		this._owner = _owner;
+	}
+	public String get_owner() {
+		return _owner;
 	}
 	
 }
