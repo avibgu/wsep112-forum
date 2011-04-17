@@ -11,6 +11,9 @@
   <property access="field" generated="never" lazy="false" name="_title" type="java.lang.String">
    <column name="TITLE"/>
   </property>
+  <property access="field" generated="never" lazy="false" name="_owner" type="java.lang.String">
+   <column name="OWNER"/>
+  </property>
   <list access="field" cascade="all,delete-orphan" inverse="true"
    lazy="false" name="_posts" table="POSTS">
    <key not-null="false">
