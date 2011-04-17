@@ -150,7 +150,7 @@ public class HibernateUtil {
 		   List<Thread> tAns = new ArrayList<Thread>();
 		   for (int i=0; i < tThreadList.size() ; ++i){
 			   Thread tThread = tThreadList.get(i);
-			   if (tThread.get_forumId() == ForumId)
+			   if (tThread.getForumId() == ForumId)
 				   tAns.add(tThread);
 		   }
 		   return tAns;
@@ -174,7 +174,7 @@ public class HibernateUtil {
 			   
 			   for (int i=0; i < tPostsList.size() ; ++i){
 				   Post tPost = tPostsList.get(i);
-				   if (tPost.getThread_id() == threadId)
+				   if (tPost.getThreadId() == threadId)
 					   tAns.add(tPost);
 			   }
 			   
@@ -243,7 +243,7 @@ public class HibernateUtil {
 		
 			for (int i=0 ; i<tPostList.size();++i){
 				Post tCurrPost = tPostList.get(i);
-				if (tCurrPost.get_post_id() == postId){
+				if (tCurrPost.getPostId() == postId){
 					return tCurrPost.getOwner();
 				}
 					
