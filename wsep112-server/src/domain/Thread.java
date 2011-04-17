@@ -66,7 +66,7 @@ public class Thread implements Observable, Serializable{
 	public Message delete (int post_id,User owner){
 		System.out.println("size1 = " + getPosts().size());
 		for(int i=1;i<getPosts().size();i++){
-			if(getPosts().get(i).getPostId() == post_id){
+			if(getPosts().get(i).get_post_id() == post_id){
 				owner.removePost(getThread_id(),post_id);
 				//HibernateUtil.updateDB(owner);
 				HibernateUtil.runQuery("delete from user_posts where post_id =" + post_id);
