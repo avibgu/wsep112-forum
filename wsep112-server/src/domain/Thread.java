@@ -15,13 +15,14 @@ import common.notifications.PostAddedToYourThreadNotification;
 import common.observation.Observable;
 import database.HibernateUtil;
 
-public class Thread implements Observable, Serializable{
+public class Thread implements Serializable{
 
 	private static final long serialVersionUID = 3069041512726662410L;
 	private int _forumId;
 	private int _threadID;
 	private String _title;
 	private List<Post> _posts;
+	private List<String> _watchingUsers;
 	static int _available_post_id = 0;
 	
 	private WrappedObserver _ownerObserver;
@@ -79,6 +80,15 @@ public Message reaply(String title, String body,User owner){
 		return new ErrorMessage("post doesn't exists.");
 	}
 	
+	public void addWatchUser(String username){
+		get_watchingUsers().add(username);
+	}
+	
+	public void removeWatchUser(String username){
+		get_watchingUsers().remove(username);
+	}
+	
+	
 	//*************************** GETTERS AND SETTERS ***********************************
 	public int getThread_id() {
 		return _threadID;
@@ -113,43 +123,20 @@ public Message reaply(String title, String body,User owner){
 		return _forumId;
 	}
 	
-	@Override
-	public void notifyObservers(Object arg){
-		
-		List<WrappedObserver> observers = get_observers();
-		
-		for (WrappedObserver wo : observers)
-			wo.update(null, arg);
-	}
+
 	
 	public void notifyOwner(PostAddedToYourThreadNotification notification) {
 		if (get_ownerObserver() != null)
 			get_ownerObserver().update(null, notification);
 	}
 	
-	@Override
-	public synchronized void deleteObserver(Observer o){
-		
-		if (o == null) throw new NullPointerException();
-		
-		if (o instanceof WrappedObserver)
-			deleteObserver((WrappedObserver)o);
-    }
-    
 	public synchronized void deleteObserver(WrappedObserver wo) {
 
 		if (get_observers().contains(wo))
 			get_observers().remove(wo);
 	}
 	
-	@Override
-	public synchronized void addObserver(Observer o) {
-		
-		if (o == null) throw new NullPointerException();
-		
-		if (o instanceof WrappedObserver)
-			addObserver((WrappedObserver)o);
-	}
+	
 	
     public synchronized void addObserver(WrappedObserver wo) {
 		if (!get_observers().contains(wo)) get_observers().add(wo);
@@ -170,4 +157,11 @@ public Message reaply(String title, String body,User owner){
 	public List<WrappedObserver> get_observers() {
 		return _observers;
 	}
+	public void set_watchingUsers(List<String> _watchingUsers) {
+		this._watchingUsers = _watchingUsers;
+	}
+	public List<String> get_watchingUsers() {
+		return _watchingUsers;
+	}
+	
 }
