@@ -95,12 +95,12 @@ public class Forum implements Serializable{
 		
 		//AVID_DONE: add this user as owner observer on this thread..
     	//			(nobody can remove him from observation..)
-		new_thread.set_ownerObserver(wo);
+		new_thread.setOwnerObserver(wo);
 		
     	//AVID_DONE: notify to friends
 		
 		ThreadInfo threadInfo = new ThreadInfo(
-				new_thread.getThread_id(), new_thread.getTitle(), new_thread.get_forumId());
+				new_thread.getThread_id(), new_thread.getTitle(), new_thread.getForumId());
 		
 		owner.notifyObservers(new FriendAddedPostNotification(
 				threadInfo, new UserInfo(owner.getStatusAsString(), owner.getUserName())));
@@ -135,7 +135,7 @@ public class Forum implements Serializable{
 	 * 
 	 * @return sub forums list
 	 */
-	public List<Forum> getSub_forums() {
+	public List<Forum> getSubForums() {
 		return _subForums;
 	}
 
@@ -143,7 +143,7 @@ public class Forum implements Serializable{
 	 * 
 	 * @param sub_forums sub forums list
 	 */
-	public void setSub_forums(Vector<Forum> sub_forums) {
+	public void setSubForums(Vector<Forum> sub_forums) {
 		this._subForums = sub_forums;
 	}
 	
