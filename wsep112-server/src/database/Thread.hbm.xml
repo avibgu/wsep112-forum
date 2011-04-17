@@ -22,5 +22,14 @@
   <property generated="never" lazy="false" name="_forumId">
    <column name="forum_id"/>
   </property>
+  <list access="field" lazy="false" name="_watchingUsers" table="THREAD_WATCHERS">
+   <key>
+    <column name="THREAD_ID"/>
+   </key>
+   <list-index base="0"/>
+   <element type="java.lang.String">
+    <column name="USERNAME"/>
+   </element>
+  </list>
  </class>
 </hibernate-mapping>
