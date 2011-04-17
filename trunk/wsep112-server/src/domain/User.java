@@ -32,7 +32,9 @@ public class User implements Observable, Serializable{
 
 	
 	public User(){
-		
+		_friends = new Vector<String>();
+		_posts= new Vector<Post>();
+		_observers = new ArrayList<WrappedObserver>();
 	}
 	/**
 	 * Constructor of User
