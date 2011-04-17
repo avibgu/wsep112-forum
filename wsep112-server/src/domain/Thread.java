@@ -33,11 +33,12 @@ public class Thread implements Serializable{
 		this._posts=new ArrayList<Post>();
 		this.set_observers(new ArrayList<WrappedObserver>());
 	}
-	public Thread (String title,int forumId){
+	public Thread (String title,int forumId,String username){
 		this._posts=new ArrayList<Post>();
 		this._title=title;
 		this.set_forumId(forumId);
 		this.set_observers(new ArrayList<WrappedObserver>());
+		this.set_owner(username);
 	}
 	
 	/**
