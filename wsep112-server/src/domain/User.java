@@ -1,7 +1,6 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -24,12 +23,10 @@ public class User implements Serializable{
 	private Status _status;
 	private List<String> _friends;
 	private List<Post> _posts;
-	private List<Thread> _threads;
 	
 	public User(){
 		_friends = new Vector<String>();
 		_posts= new Vector<Post>();
-		_threads = new ArrayList<Thread>();
 	}
 	/**
 	 * Constructor of User
@@ -50,7 +47,6 @@ public class User implements Serializable{
 			_status= Status.OFFLINE;
 			_friends = new Vector<String>();
 			_posts= new Vector<Post>();
-			_threads = new ArrayList<Thread>();
 	}
 
 	/**
@@ -269,13 +265,5 @@ public class User implements Serializable{
 	
 	public List<String> getFriends(){
 		return _friends;
-	}
-
-	public void setThreads(List<Thread> _threads) {
-		this._threads = _threads;
-	}
-	
-	public List<Thread> getThreads() {
-		return _threads;
 	}
 }
