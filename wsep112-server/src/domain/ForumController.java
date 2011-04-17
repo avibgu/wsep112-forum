@@ -445,7 +445,7 @@ public class ForumController implements Serializable{
 		tForum.deleteThread(Integer.parseInt(threadId));
 		
 		// Update the db
-		HibernateUtil.updateDB(tForum);
+		//HibernateUtil.updateDB(tForum);
 		
 		// TODO: return real answer..
 		return new OKMessage();

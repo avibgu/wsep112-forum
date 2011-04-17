@@ -298,6 +298,29 @@ public class HibernateUtil {
 		}
 	}
 	
+	public static int deleteThread(int threadId){
+		try{
+			   
+			Session session = getSession();
+			Transaction transaction = session.beginTransaction();
+			
+			Query q = session.createQuery("delete from Thread as t where t._threadID = :threadId");
+			q.setParameter("threadId", threadId);
+			int row_count = q.executeUpdate();
+			session.close();
+			
+			return row_count;
+			
+		}
+		catch(Exception e){
+			   
+			e.printStackTrace();
+			return 0;
+		
+		}
+	}
+	
+	
 	public static List<Post> retrieveUserPosts(String username){
 		User tUser = retrieveUser(username);
 		try{

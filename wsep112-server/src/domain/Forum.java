@@ -70,15 +70,14 @@ public class Forum implements Serializable{
 	 */
 	//removing the given specific thread from the forum
 	public void deleteThread(int threadId){
-		List<Thread> tThreadList = getThreads();
-		for(int i=0;i<tThreadList.size();i++){
-			Thread tThread = tThreadList.get(i); 
-			if(tThread.getThread_id()==threadId){
-				// _threads.remove(i);
-				//HibernateUtil.deleteObj(tThread);
-				 break;
-			}
-		}
+		//List<Thread> tThreadList = getThreads();
+		//for(int i=0;i<tThreadList.size();i++){
+		//	Thread tThread = tThreadList.get(i); 
+		//	if(tThread.getThread_id()==threadId){
+				 HibernateUtil.deleteThread(threadId);
+		//		 break;
+		//	}
+		//}
 		
 	}
 	

@@ -64,20 +64,15 @@ public Message reaply(String title, String body,User owner){
 	 * @param owner the owner of the post
 	 */
 	public Message delete (int post_id,User owner){
-		System.out.println("size1 = " + getPosts().size());
 		List<Post> tAllPosts = getPosts();
 		for(int i=0;i<tAllPosts.size();i++){
-			System.out.println("i = " + i);
 			Post tPost = tAllPosts.get(i); 
 			if(tPost.get_post_id() == post_id){
 				owner.removePost(getThread_id(),post_id);
 				//HibernateUtil.updateDB(owner);
 				HibernateUtil.runQuery("delete from user_posts where post_id =" + post_id);
-			//	getPosts().remove(i);
 				int row = HibernateUtil.deletePost(post_id);
-				System.out.println("row = " + row);
 				HibernateUtil.updateDB(tPost);
-				System.out.println("size2 = " + getPosts().size());
 				return new OKMessage();
 			}
 		}
