@@ -256,4 +256,22 @@ public class HibernateUtil {
 			return null;
 		}
 	}
+	
+	public static void runQuery(String str){
+		try{
+			   
+			Session session = getSession();
+			Transaction transaction = session.beginTransaction();
+			
+			Query q = session.createSQLQuery(str);
+			q.executeUpdate();
+			session.close();
+			
+		}
+		catch(Exception e){
+			   
+			e.printStackTrace();
+		
+		}
+	}
 }

@@ -50,7 +50,7 @@ public class Thread implements Observable, Serializable{
 		
 		Post new_post=new Post(getThread_id(), title, body,owner);
 		owner.addPostToOwnerUser(new_post);//adding the post to owner
-		
+		getPosts().add(new_post);
 		HibernateUtil.insertDB(new_post);
 		HibernateUtil.updateDB(owner);
 		
@@ -65,10 +65,12 @@ public class Thread implements Observable, Serializable{
 	 */
 	public Message delete (int post_id,User owner){
 		System.out.println("size1 = " + getPosts().size());
-		for(int i=0;i<getPosts().size();i++){
+		for(int i=1;i<getPosts().size();i++){
 			if(getPosts().get(i).get_post_id() == post_id){
-				getPosts().remove(i);
 				owner.removePost(getThread_id(),post_id);
+				//HibernateUtil.updateDB(owner);
+				HibernateUtil.runQuery("delete from user_posts where post_id =" + post_id);
+				getPosts().remove(i);
 				System.out.println("size2 = " + getPosts().size());
 				return new OKMessage();
 			}
