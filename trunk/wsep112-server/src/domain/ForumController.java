@@ -334,7 +334,7 @@ public class ForumController implements Serializable{
 		
 		// find the forum
 		Forum tForum =  HibernateUtil.retrieveForum(Integer.parseInt(forumId));
-		Thread new_thread = new Thread(title,tForum.getForumId());
+		Thread new_thread = new Thread(title,tForum.getForumId(),user.get_Username());
 		Message tMsg = tForum.add_thread(new_thread, title, body, user, wo); 
 		
 		//HibernateUtil.updateDB(tForum);
