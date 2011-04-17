@@ -51,7 +51,7 @@ public class ForumController implements Serializable{
 		setLogger(logger);
 		Forum initialForum = new Forum("Initial forum",_availableForumId);
 		_forums.add(initialForum);
-		set_usersToObserversMap(new HashMap<String, WrappedObserver>());
+		setUsersToObserversMap(new HashMap<String, WrappedObserver>());
 	}
 	/**
 	 *
@@ -78,7 +78,7 @@ public class ForumController implements Serializable{
 		}
 
 		//AVID_DONE: relate between this user and his observer
-		get_usersToObserversMap().put(username, wo);
+		getUsersToObserversMap().put(username, wo);
 		
 		// Add the user.
 		User newUser = new User(firstName,lastName,username,password,email);
@@ -109,7 +109,7 @@ public class ForumController implements Serializable{
 	 */
 	public Message login(String username, String password, WrappedObserver wo) {
 		
-		//AVID: ???? notify user about things that happened when he was offline..
+		//AVID_DONE: ???? notify user about things that happened when he was offline?.. no
 
 		// Check is username exists.
 		if (!isExist(username))
@@ -122,7 +122,13 @@ public class ForumController implements Serializable{
 			return new ErrorMessage("Invalid password.");
 
 		//AVID_DONE: relate between this user and his observer
-		get_usersToObserversMap().put(username, wo);
+		getUsersToObserversMap().put(username, wo);
+		
+		//AVID: add this user as observer on his friends
+		addUserAsObserverOnHisFriends(loginUser, wo);
+		
+		//AVID: add this user as observer on his threads
+		addUserAsObserverOnHisThreads(loginUser, wo);
 		
 		loginUser.setStatus(Status.ONLINE);
 		HibernateUtil.updateDB(loginUser);
@@ -146,7 +152,7 @@ public class ForumController implements Serializable{
 	 */
 	public Message logout(String username, WrappedObserver wo) {
 
-		//AVID: ???? what to do about offline observers?..
+		//AVID_DONE: ???? what to do about offline observers?.. nothing
 		
 		// Check is username exists.
 		if (!isExist(username))
@@ -155,7 +161,14 @@ public class ForumController implements Serializable{
 		User logoutUser = getUser(username);
 		logoutUser.setStatus(Status.OFFLINE);
 
-		//AVID: ???? should we unrelate between this user and his observer?..
+		//AVID_DONE: ???? should we unrelate between this user and his observer?.. yes
+		getUsersToObserversMap().remove(username);
+		
+		//AVID: remove this user from observing on his friends
+		removeUserFromObserveringOnHisFriends(logoutUser, wo);
+		
+		//AVID: remove this user from observing on his threads
+		removeUserFromObserveringOnHisThreads(logoutUser, wo);
 		
 		_loginUsers.remove(username);
 		HibernateUtil.updateDB(logoutUser);
@@ -187,10 +200,10 @@ public class ForumController implements Serializable{
     	//AVID_DONE: add this user to friend's observers..
 
 		friend.addObserver(wo);
-		user.addObserver(get_usersToObserversMap().get(friendUsername));
+		user.addObserver(getUsersToObserversMap().get(friendUsername));
 
 		//AVID_DONE: relate between this user and his observer
-		get_usersToObserversMap().put(username, wo);
+		getUsersToObserversMap().put(username, wo);
 		
 		//SHIRAN: update friend in DB?..
 		
@@ -224,10 +237,10 @@ public class ForumController implements Serializable{
 		//AVID_DONE: remove this user from friend's observers..
 
 		friend.deleteObserver(wo);
-		user.deleteObserver(get_usersToObserversMap().get(friendUsername));
+		user.deleteObserver(getUsersToObserversMap().get(friendUsername));
 
 		//AVID_DONE: relate between this user and his observer
-		get_usersToObserversMap().put(username, wo);
+		getUsersToObserversMap().put(username, wo);
 		
 		//SHIRAN: update friend in DB?..
 		
@@ -259,7 +272,7 @@ public class ForumController implements Serializable{
 		Thread thread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
 		
 		ThreadInfo threadInfo = new ThreadInfo(
-				thread.getThread_id(), thread.getTitle(), thread.get_forumId());
+				thread.getThread_id(), thread.getTitle(), thread.getForumId());
 		
 		thread.notifyObservers(new ThreadChangedNotification(threadInfo));
 		
@@ -333,7 +346,7 @@ public class ForumController implements Serializable{
 		
 		for (Thread thread : threads)
 			tListOfThreads.add(new ThreadInfo(
-					thread.getThread_id(), thread.getTitle(), thread.get_forumId()));
+					thread.getThread_id(), thread.getTitle(), thread.getForumId()));
 
 		sftm.setListOfThreads(tListOfThreads);
 		
@@ -370,8 +383,8 @@ public class ForumController implements Serializable{
 			UserInfo ui = new UserInfo(post.getOwner().getStatusAsString(),
 					post.getOwner().getUserName());
 			
-			tListOfPosts.add(new PostInfo(post.get_post_id(), post.get_title(),
-					post.get_body(), ui, post.getThread_id(), post.getDateTime()));
+			tListOfPosts.add(new PostInfo(post.getPostId(), post.getTitle(),
+					post.getBody(), ui, post.getThreadId(), post.getDateTime()));
 		}
 		
 		stpm.setListOfPosts(tListOfPosts);
@@ -472,6 +485,64 @@ public class ForumController implements Serializable{
 		
 		//SHIRAN: should we update these changes in db?..
 	}
+
+	/**
+	 * 
+	 * @param loginUser
+	 * @param wo
+	 */
+	private void addUserAsObserverOnHisThreads(User loginUser, WrappedObserver wo) {
+		
+		List<Thread> threads = loginUser.getThreads();
+		
+		for (Thread thread : threads)
+			thread.setOwnerObserver(wo);
+	}
+	
+	/**
+	 * 
+	 * @param loginUser
+	 * @param wo
+	 */
+	private void removeUserFromObserveringOnHisThreads(User loginUser, WrappedObserver wo) {
+
+		List<Thread> threads = loginUser.getThreads();
+		
+		for (Thread thread : threads)
+			thread.setOwnerObserver(null);
+	}
+	
+	/**
+	 * 
+	 * @param loginUser
+	 * @param wo
+	 */
+	private void addUserAsObserverOnHisFriends(User loginUser, WrappedObserver wo) {
+		
+		List<String> friendsNames = loginUser.getFriends();
+		
+		for (String friendName : friendsNames) {
+			
+			User friend = HibernateUtil.retrieveUser(friendName);
+			friend.addObserver(wo);
+		}
+	}
+	
+	/**
+	 * 
+	 * @param loginUser
+	 * @param wo
+	 */
+	private void removeUserFromObserveringOnHisFriends(User loginUser, WrappedObserver wo) {
+		
+		List<String> friendsNames = loginUser.getFriends();
+		
+		for (String friendName : friendsNames) {
+			
+			User friend = HibernateUtil.retrieveUser(friendName);
+			friend.deleteObserver(wo);
+		}
+	}
 	
 	/**
 	 * 
@@ -504,10 +575,10 @@ public class ForumController implements Serializable{
 	public Vector<User> getRegisterdUsers() {
 		return _registerdUsers;
 	}
-	public void set_usersToObserversMap(HashMap<String, WrappedObserver> _usersToObserversMap) {
+	public void setUsersToObserversMap(HashMap<String, WrappedObserver> _usersToObserversMap) {
 		this._usersToObserversMap = _usersToObserversMap;
 	}
-	public HashMap<String, WrappedObserver> get_usersToObserversMap() {
+	public HashMap<String, WrappedObserver> getUsersToObserversMap() {
 		return _usersToObserversMap;
 	}
 }
