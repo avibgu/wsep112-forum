@@ -27,13 +27,14 @@ public class User implements Observable, Serializable{
 	private Status _status;
 	private List<String> _friends;
 	private List<Post> _posts;
-	
+	private List<Thread> _threads;
 	private List<WrappedObserver> _observers;
 
 	
 	public User(){
 		_friends = new Vector<String>();
 		_posts= new Vector<Post>();
+		_threads = new ArrayList<Thread>();
 		_observers = new ArrayList<WrappedObserver>();
 	}
 	/**
@@ -55,6 +56,7 @@ public class User implements Observable, Serializable{
 			_status= Status.OFFLINE;
 			_friends = new Vector<String>();
 			_posts= new Vector<Post>();
+			_threads = new ArrayList<Thread>();
 			_observers = new ArrayList<WrappedObserver>();
 	}
 
@@ -316,5 +318,11 @@ public class User implements Observable, Serializable{
 	
 	public List<WrappedObserver> get_observers() {
 		return _observers;
+	}
+	public void setThreads(List<Thread> _threads) {
+		this._threads = _threads;
+	}
+	public List<Thread> getThreads() {
+		return _threads;
 	}
 }
