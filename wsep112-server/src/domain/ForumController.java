@@ -272,8 +272,6 @@ public class ForumController implements Serializable{
 		// find the forum
 		//return _forums.get(Integer.parseInt(forumId)).reaplyToThread(title, body, Integer.parseInt(threadId), user);
 		Message msg = HibernateUtil.retrieveForum(Integer.valueOf(forumId)).reaplyToThread(title, body,  Integer.parseInt(threadId), user);
-		
-		HibernateUtil.updateDB(thread);
 		return msg;
     }
 
@@ -455,9 +453,8 @@ public class ForumController implements Serializable{
 		Thread tThread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
 		User tUser = HibernateUtil.retrievePostOwner(Integer.parseInt(postId));
 		tThread.delete(Integer.parseInt(postId), tUser);
-		
 		HibernateUtil.updateDB(tThread);
-		HibernateUtil.updateDB(tUser);
+		
 		// TODO: return real answer..
 		return new OKMessage();
 	}
@@ -469,7 +466,7 @@ public class ForumController implements Serializable{
 	private void removeThisUserFromObservingOnThreads(WrappedObserver wo) {
 
 		List<Thread> threads = HibernateUtil.retrieveAllThreadsList();
-		
+	
 		for (Thread thread : threads)
 			thread.deleteObserver(wo);
 		

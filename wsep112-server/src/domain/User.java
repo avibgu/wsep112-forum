@@ -210,8 +210,9 @@ public class User implements Observable, Serializable{
 	 * @param postId
 	 */
 	public void removePost(int threadId, int postId){
+		
 		if (this.isExistPostId(postId,threadId)){
-			_posts.remove(getPostIndex(postId,threadId));
+			getPosts().remove(getPostIndex(postId,threadId));
 		}
 	}
 
@@ -234,8 +235,8 @@ public class User implements Observable, Serializable{
 	 * @return true if the postId exists, and false otherwise.
 	 */
 	public Boolean isExistPostId(int threadId, int postId){
-		for (int i=0; i < _posts.size() ; i++){
-			if (_posts.get(i).get_post_id()==postId && _posts.get(i).getThread_id()==threadId)
+		for (int i=0; i < getPosts().size() ; i++){
+			if (getPosts().get(i).get_post_id()==postId && getPosts().get(i).getThread_id()==threadId)
 				return true;
 		}
 		return false;
@@ -261,8 +262,8 @@ public class User implements Observable, Serializable{
 	 * @return
 	 */
 	public int getPostIndex(int postId, int threadId){
-		for (int i=0; i < _posts.size() ; i++){
-			if (_posts.get(i).get_post_id()==postId && _posts.get(i).getThread_id()==threadId)
+		for (int i=0; i < getPosts().size() ; i++){
+			if (getPosts().get(i).get_post_id()==postId && getPosts().get(i).getThread_id()==threadId)
 				return i;
 		}
 		return -1;
