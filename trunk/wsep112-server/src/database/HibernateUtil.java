@@ -275,7 +275,7 @@ public class HibernateUtil {
 		}
 	}
 	
-	public static void deleteObj(int postId){
+	public static int deletePost(int postId){
 		try{
 			   
 			Session session = getSession();
@@ -283,13 +283,17 @@ public class HibernateUtil {
 			
 		//	session.delete(obj);
 			Query q = session.createQuery("delete from Post as p where p._post_id = :postId");
-			q.setParameter("postId", String.valueOf(postId));
+			q.setParameter("postId", postId);
+			int row_count = q.executeUpdate();
 			session.close();
+			
+			return row_count;
 			
 		}
 		catch(Exception e){
 			   
 			e.printStackTrace();
+			return 0;
 		
 		}
 	}

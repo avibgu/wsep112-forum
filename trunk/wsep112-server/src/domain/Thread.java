@@ -74,7 +74,8 @@ public Message reaply(String title, String body,User owner){
 				//HibernateUtil.updateDB(owner);
 				HibernateUtil.runQuery("delete from user_posts where post_id =" + post_id);
 			//	getPosts().remove(i);
-				HibernateUtil.deleteObj(post_id);
+				int row = HibernateUtil.deletePost(post_id);
+				System.out.println("row = " + row);
 				HibernateUtil.updateDB(tPost);
 				System.out.println("size2 = " + getPosts().size());
 				return new OKMessage();
