@@ -410,7 +410,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
 		ErrorMessage errorMessage;
 
-    	SeeThreadPostsMessage stpm = new SeeThreadPostsMessage(forumID,threadID, this);
+    	SeeThreadPostsMessage stpm = new SeeThreadPostsMessage(forumID,
+    			threadID, getCurrentLogedInUsername(), this);
 
 		try {
 
