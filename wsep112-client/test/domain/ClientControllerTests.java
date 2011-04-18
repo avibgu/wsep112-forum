@@ -287,7 +287,7 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay", this);
 		AddPostMessage add_post_msg1=new AddPostMessage("0","new post1", "shalom shalom","0","avishay", this);
 		AddPostMessage add_post_msg2=new AddPostMessage("0","new post2", "shalom shalom","0","avishay", this);
-		SeeThreadPostsMessage seeThreadPostMsg= new SeeThreadPostsMessage("0","0", this);
+		SeeThreadPostsMessage seeThreadPostMsg= new SeeThreadPostsMessage("0","0", "avishay", this);
 		LogoutMessage logoutMessage = new LogoutMessage("avishay", this);
 		try {
 			
