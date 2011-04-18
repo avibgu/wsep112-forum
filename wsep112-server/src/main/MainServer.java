@@ -116,7 +116,6 @@ public class MainServer {
 		    	else if (tError == 0){
 		    		
 		    		logger.severe("giving up.. exiting..");
-		    		e.printStackTrace();
 		    		return;
 		    	}
 		    	
