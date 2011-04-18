@@ -23,7 +23,6 @@ import common.forum.items.ThreadInfo;
 import common.forum.items.UserInfo;
 import common.network.messages.ErrorMessage;
 import common.notifications.FriendAddedPostNotification;
-import common.notifications.Notification;
 import common.notifications.PostAddedToYourThreadNotification;
 import common.notifications.ThreadChangedNotification;
 
@@ -41,6 +40,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
     /** Creates new form Forum */
     public Forum(ClientController clientController) {
         controller = clientController;
+        controller.addObserver(this);
         /* //TO DO - wait for this implementation by avi
        for (int i=0; i<controller.getFriend().size(); i++  ){
                  String friend = controller.getFriend().get(i);
