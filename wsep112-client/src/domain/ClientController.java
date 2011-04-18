@@ -48,8 +48,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	private ForumServer _forumServerStub;
 	private Logger _logger;
 	private String _currentLogedInUsername;
-	private String _currentShownForum;			//AVID: use this variable..
-	private String _currentShownThread;			//AVID: use this variable..
+	private String _currentShownForum;			//AVID: use this variable.. ????
+	private String _currentShownThread;			//AVID: use this variable.. ????
 	private ArrayList<Observer> _observers;
 
 	public ClientController(ForumServer forumServerStub, Logger logger)  throws RemoteException {
