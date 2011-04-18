@@ -203,7 +203,7 @@ public class HibernateUtil {
 		}
 	}
 
-	// SHIRAN - STOP HERE 
+	
 	
 	public static List<Thread> retrieveAllThreadsList() {
 		
@@ -212,8 +212,6 @@ public class HibernateUtil {
 			Session session = getSession();
 			Transaction transaction = session.beginTransaction();
 
-			//return session.createQuery("from Thread where forum_id="+ForumId).list();
-		   
 			List<Thread> tThreadList = session.createQuery("from Thread").list();
 		
 			return tThreadList;
@@ -231,17 +229,15 @@ public class HibernateUtil {
 			Session session = getSession();
 			Transaction transaction = session.beginTransaction();
 			
-		
-			List<Post> tPostList = session.createQuery("from Post").list();
-		
-			for (int i=0 ; i<tPostList.size();++i){
-				Post tCurrPost = tPostList.get(i);
-				if (tCurrPost.get_post_id() == postId){
-					return tCurrPost.get_Owner();
-				}
-					
-			}
-			return null;
+			 Query q = session.createQuery("from Post as p where t._post_id = :id");
+			 q.setParameter("id", postId);
+			 List<Post> tAns = q.list();
+			  
+			 if (tAns.size() == 0)
+				   	return null;
+				  else return tAns.get(0).get_Owner();
+	
+	
 		}
 		catch(Exception e){
 			   
@@ -274,8 +270,7 @@ public class HibernateUtil {
 			Session session = getSession();
 			Transaction transaction = session.beginTransaction();
 			
-		//	session.delete(obj);
-			Query q = session.createQuery("delete from Post as p where p._post_id = :postId");
+	    	Query q = session.createQuery("delete from Post as p where p._post_id = :postId");
 			q.setParameter("postId", postId);
 			int row_count = q.executeUpdate();
 			session.close();
