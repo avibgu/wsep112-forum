@@ -11,16 +11,31 @@
 
 package presentation.gui;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import domain.ClientController;
 import javax.swing.DefaultListModel;
 
+import presentation.gui.notifications.TempNotification;
+
+import common.forum.items.ThreadInfo;
+import common.forum.items.UserInfo;
+import common.network.messages.ErrorMessage;
+import common.notifications.FriendAddedPostNotification;
+import common.notifications.Notification;
+import common.notifications.PostAddedToYourThreadNotification;
+import common.notifications.ThreadChangedNotification;
+
 /**
  *
- * @author מירי
+ * @author
  */
-public class Forum extends javax.swing.JFrame {
+public class Forum extends javax.swing.JFrame implements Observer{
 
-    ClientController controller;
+	private static final long serialVersionUID = -2618735121811057973L;
+	
+	ClientController controller;
     public static  DefaultListModel friendsList= new DefaultListModel();
     
     /** Creates new form Forum */
@@ -171,4 +186,67 @@ public class Forum extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
+	@Override
+    public void update(Observable o, Object arg){
+    	if (null != arg) nofity(arg);
+    }
+
+	private void nofity(Object arg){
+		System.err.println("notification problem..");
+	}
+
+	private void nofity(final ErrorMessage em) {
+		java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+            	new TempNotification(em, em.getReason());
+            }
+        });
+	}
+	
+	private void nofity(final ThreadChangedNotification tcn) {
+
+		ThreadInfo tInfo = tcn.getThreadInfo();
+		
+		final String msg =	"Thread " + tInfo.getThread_id() +
+						" (Forum " + tInfo.get_forumId() +") : \"" +
+						tInfo.getTitle() + "\" has been changed";
+        
+		java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+            	new TempNotification(tcn, msg);
+            }
+        });
+	}
+	
+	private void nofity(final FriendAddedPostNotification fapn) {
+
+		ThreadInfo tInfo = fapn.getThreadInfo();
+		UserInfo uInfo = fapn.getUserInfo();
+		
+		final String msg =	"Your friend " + uInfo.getUserName() +
+						" added post to Thread " + tInfo.getThread_id() +
+						" (Forum " + tInfo.get_forumId() +") : \"" +
+						tInfo.getTitle() + "\"";
+		
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+            	new TempNotification(fapn, msg);
+            }
+        });
+	}
+	
+	private void nofity(final PostAddedToYourThreadNotification patytn) {
+
+		ThreadInfo tInfo = patytn.getThreadInfo();
+					
+		final String msg =	"Your Thread " + tInfo.getThread_id() +
+						" (Forum " + tInfo.get_forumId() +") : \"" +
+						tInfo.getTitle() + "\" has been changed";
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+            	new TempNotification(patytn, msg);
+            }
+        });
+	}
 }
