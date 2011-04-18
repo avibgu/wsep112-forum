@@ -1,0 +1,2 @@
+serviceClass: presentation.web.client.GreetingService
+path: 7741A9DCD5B621228ED537E5191B6079.gwt.rpc
