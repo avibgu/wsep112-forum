@@ -20,15 +20,19 @@ public class SeeThreadPostsMessage implements Message, Serializable {
 	private String _forumID;
 	private String _threadID;
 	private Vector<PostInfo> _listOfPosts;
+	private String _username;
 	private RemoteObserver _remoteObserver;
 	
 	/**
 	 * @param threadId
 	 */
-	public SeeThreadPostsMessage(String forumID, String threadID, RemoteObserver ro) {
+	public SeeThreadPostsMessage(String forumID, String threadID,
+			String username, RemoteObserver ro) {
+		
 		super();
 		setForumID(forumID);
 		setThreadID(threadID);
+		setUsername(username);
 		setRemoteObserver(ro);
 	}
 
@@ -70,5 +74,13 @@ public class SeeThreadPostsMessage implements Message, Serializable {
 	
 	public RemoteObserver getRemoteObserver() {
 		return this._remoteObserver;
+	}
+
+	public String getUsername() {
+		return this._username;
+	}
+
+	public void setUsername(String _username) {
+		this._username = _username;
 	}
 }
