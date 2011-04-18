@@ -277,47 +277,6 @@ public class ForumController implements Serializable{
 		return msg;
     }
 
-    /**
-     * 
-     * @param user
-     * @param thread
-     */
-    private void notifyAboutNewPost(User user, Thread thread) {
-
-		WrappedObserver wo;
-		
-		ThreadInfo threadInfo = new ThreadInfo(
-				thread.getThread_id(), thread.getTitle(), thread.get_forumId());
-		
-		//AVID_DONE: notify thread's owner..
-
-		wo = getUsersToObserversMap().get(thread.get_owner());
-		if (wo != null)
-			wo.update(null, new PostAddedToYourThreadNotification(threadInfo));
-
-		//AVID_DONE: notify thread's observers..
-		
-		List<String> viewers = thread.get_watchingUsers();
-		
-		for (String viewer : viewers) {
-			
-			wo = getUsersToObserversMap().get(viewer);
-			if (wo != null)
-				wo.update(null, new ThreadChangedNotification(threadInfo));
-		}
-		
-    	//AVID_DONE: notify friends
-		
-		List<String> friends = user.getFriends();
-
-		for (String friend : friends) {
-			
-			wo = getUsersToObserversMap().get(friend);
-			if (wo != null)
-				wo.update(null, new FriendAddedPostNotification(
-					threadInfo, new UserInfo(user.getStatusAsString(), user.get_Username())));
-		}
-	}
     
 	/**
      *
@@ -389,23 +348,26 @@ public class ForumController implements Serializable{
 	}
 
 	/**
-	 *
+	 * 
+	 * @param forumID
 	 * @param threadID
-	 * @param stpm
-	 *
+	 * @param username
+	 * 
 	 * @return list of Posts inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Message getPostsList(String forumID, String threadID,
+	public Message getPostsList(String forumID, String threadID, String username,
 			SeeThreadPostsMessage stpm, WrappedObserver wo) {
 		
 		//AVID_DONE: remove this user from observation on other threads
 		//			(just in case he is not their owner (or replyer ??))
-		removeThisUserFromObservingOnThreads(wo);
+
+		removeThisUserFromObservingOnThreads(username);
 		
 		//AVID_DONE: add this user as observer on this thread..
 		
 		Thread thread = HibernateUtil.retrieveThread(Integer.parseInt(threadID));
-		thread.addObserver(wo);
+		//AVID remove:	thread.addObserver(wo);
+		thread.addWatchUser(username);
 		
 		// SHIRAN: save it back in the DB?..
 
@@ -506,17 +468,59 @@ public class ForumController implements Serializable{
 		// TODO: return real answer..
 		return new OKMessage();
 	}
+
+    /**
+     * 
+     * @param user
+     * @param thread
+     */
+    private void notifyAboutNewPost(User user, Thread thread) {
+
+		WrappedObserver wo;
+		
+		ThreadInfo threadInfo = new ThreadInfo(
+				thread.getThread_id(), thread.getTitle(), thread.get_forumId());
+		
+		//AVID_DONE: notify thread's owner..
+
+		wo = getUsersToObserversMap().get(thread.get_owner());
+		if (wo != null)
+			wo.update(null, new PostAddedToYourThreadNotification(threadInfo));
+
+		//AVID_DONE: notify thread's observers..
+		
+		List<String> viewers = thread.get_watchingUsers();
+		
+		for (String viewer : viewers) {
+			
+			wo = getUsersToObserversMap().get(viewer);
+			if (wo != null)
+				wo.update(null, new ThreadChangedNotification(threadInfo));
+		}
+		
+    	//AVID_DONE: notify friends
+		
+		List<String> friends = user.getFriends();
+
+		for (String friend : friends) {
+			
+			wo = getUsersToObserversMap().get(friend);
+			if (wo != null)
+				wo.update(null, new FriendAddedPostNotification(
+					threadInfo, new UserInfo(user.getStatusAsString(), user.get_Username())));
+		}
+	}
 	
-	/**
-	 * 
-	 * @param wo
-	 */
-	private void removeThisUserFromObservingOnThreads(WrappedObserver wo) {
+    /**
+     * 
+     * @param username
+     */
+	private void removeThisUserFromObservingOnThreads(String username) {
 
 		List<Thread> threads = HibernateUtil.retrieveAllThreadsList();
 	
 		for (Thread thread : threads)
-			thread.deleteObserver(wo);
+			thread.removeWatchUser(username);
 		
 		//SHIRAN: should we update these changes in db?..
 	}
