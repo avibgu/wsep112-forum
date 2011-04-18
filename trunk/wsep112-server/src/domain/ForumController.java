@@ -489,26 +489,18 @@ public class ForumController implements Serializable{
 	
 	/**
 	 * 
-	 * @param logger
-	 */
-	public void setLogger(Logger logger) {
-		this._logger = logger;
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public Logger getLogger() {
-		return _logger;
-	}
-	
-	/**
-	 * 
 	 * @param msg
 	 */
 	public void log(String msg){
 		getLogger().info(msg);
+	}
+	
+	public void setLogger(Logger logger) {
+		this._logger = logger;
+	}
+
+	public Logger getLogger() {
+		return _logger;
 	}
 	
 	public void setRegisterdUsers(Vector<User> _registerdUsers) {
@@ -518,9 +510,11 @@ public class ForumController implements Serializable{
 	public Vector<User> getRegisterdUsers() {
 		return _registerdUsers;
 	}
+	
 	public void setUsersToObserversMap(HashMap<String, WrappedObserver> _usersToObserversMap) {
 		this._usersToObserversMap = _usersToObserversMap;
 	}
+	
 	public HashMap<String, WrappedObserver> getUsersToObserversMap() {
 		return _usersToObserversMap;
 	}
