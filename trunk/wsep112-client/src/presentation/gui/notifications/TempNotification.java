@@ -27,22 +27,28 @@ public class TempNotification extends javax.swing.JFrame {
 	/** Creates new form TempNotification 
 	 * @param arg 
 	 * @param string */
-    public TempNotification(ErrorMessage arg, String string) {
+    public TempNotification(ErrorMessage arg, String msg) {
     	this.setVisible(true);
         initComponents();
+        jTextArea1.setText(msg);
     }
 
     public TempNotification(ThreadChangedNotification tcn, String msg) {
     	this.setVisible(true);
         initComponents();
+        jTextArea1.setText(msg);
 	}
 
 	public TempNotification(FriendAddedPostNotification fapn, String msg) {
-		// TODO Auto-generated constructor stub
+		this.setVisible(true);
+        initComponents();
+        jTextArea1.setText(msg);
 	}
 
 	public TempNotification(PostAddedToYourThreadNotification patytn, String msg) {
-		// TODO Auto-generated constructor stub
+    	this.setVisible(true);
+        initComponents();
+        jTextArea1.setText(msg);
 	}
 
 	/** This method is called from within the constructor to
