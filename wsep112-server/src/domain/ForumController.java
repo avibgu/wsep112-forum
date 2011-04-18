@@ -40,8 +40,7 @@ public class ForumController implements Serializable{
 	private Logger _logger;
 	private Vector<Forum> _forums;
 	static int _availableForumId = 0;
-	
-	// SHIRAN: save this as table in the DB?..
+
 	private HashMap<String, WrappedObserver> _usersToObserversMap;
 	
 	public ForumController(Logger logger){
@@ -208,6 +207,7 @@ public class ForumController implements Serializable{
 		//SHIRAN: update friend in DB?..
 		
 		HibernateUtil.updateDB(user);
+		HibernateUtil.updateDB(friend);
 		
 		return (msg1.getMessageType() == MessageType.OK) ? msg2 : msg1;
     }
@@ -245,6 +245,7 @@ public class ForumController implements Serializable{
 		//SHIRAN: update friend in DB?..
 		
 		HibernateUtil.updateDB(user);
+		HibernateUtil.updateDB(friend);
 		
 		return (msg1.getMessageType() == MessageType.OK) ? msg2 : msg1;
     }
@@ -368,8 +369,9 @@ public class ForumController implements Serializable{
 		Thread thread = HibernateUtil.retrieveThread(Integer.parseInt(threadID));
 		//AVID remove:	thread.addObserver(wo);
 		thread.addWatchUser(username);
-		
+
 		// SHIRAN: save it back in the DB?..
+		HibernateUtil.updateDB(thread);
 
 		Vector<PostInfo> tListOfPosts = new Vector<PostInfo>();
 		
