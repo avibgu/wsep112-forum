@@ -21,6 +21,7 @@ public class TempNotification extends javax.swing.JFrame {
 	
 	/** Creates new form TempNotification */
     public TempNotification() {
+    	this.setVisible(true);
         initComponents();
     }
 
