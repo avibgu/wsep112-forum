@@ -91,7 +91,8 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 				
 				wo = new WrappedObserver(stpm.getRemoteObserver());
 
-				answer = getForumController().getPostsList(stpm.getForumID(),stpm.getThreadID(), stpm, wo);
+				answer = getForumController().getPostsList(stpm.getForumID(),
+						stpm.getThreadID(), stpm.getUsername(), stpm, wo);
 
 				break;
 				
