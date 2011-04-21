@@ -32,16 +32,16 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
     public ThreadsViewPanel(ClientController clientController, String forumId) {
         _clientController= clientController;
         _threadsList= new DefaultListModel();
+       this.fillListThreads();
         _ForumId= forumId;
         initComponents();
     }
 
-        /** Creates new form ChooseSpaceShip */
     public void fillListThreads( ) {
          Vector <ThreadInfo> threads= _clientController.getThreadsList(_ForumId);
         //this.setVisible(true);
      for (int j=0; j<threads.size(); j++  ){
-               _threadsList.addElement(threads.get(j).getTitle());
+               getThreadsListModel().addElement(threads.get(j).getTitle());
              }
     }
 
