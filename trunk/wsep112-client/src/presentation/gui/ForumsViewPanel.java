@@ -32,14 +32,15 @@ public class ForumsViewPanel extends javax.swing.JPanel {
             _clientController= clientController;
             _forumsList= new DefaultListModel();
             initComponents();
+            fillListForum();
     }
 
-    /** Creates new form ChooseSpaceShip */
+
     public void fillListForum( ) {
         Vector<ForumInfo> forums= _clientController.getForumsList();
         //this.setVisible(true);
      for (int j=0; j<forums.size(); j++  ){
-               _forumsList.addElement(forums.get(j).getName());
+               getForumsListModel().addElement(forums.get(j).getName());
               }
     }
 
