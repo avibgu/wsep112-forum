@@ -31,8 +31,9 @@ public class ForumsViewPanel extends javax.swing.JPanel {
     public ForumsViewPanel(ClientController clientController) {
             _clientController= clientController;
             _forumsList= new DefaultListModel();
-            initComponents();
             fillListForum();
+             setVisible(true);
+            initComponents();
     }
 
 
@@ -90,17 +91,15 @@ public class ForumsViewPanel extends javax.swing.JPanel {
         jButton4.setBounds(10, 20, 40, 30);
         jLayeredPane4.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton1.setText("Enter Forum");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(190, 350, 130, -1);
+        jButton1.setBounds(190, 350, 140, 29);
         jLayeredPane4.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\משה\\Desktop\\icons\\forum.png")); // NOI18N
         jLabel1.setBounds(360, 340, 140, 130);
         jLayeredPane4.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
