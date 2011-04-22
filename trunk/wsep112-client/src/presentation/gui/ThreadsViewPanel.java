@@ -32,8 +32,9 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
     public ThreadsViewPanel(ClientController clientController, String forumId) {
         _clientController= clientController;
         _threadsList= new DefaultListModel();
-       this.fillListThreads();
         _ForumId= forumId;
+       this.fillListThreads();
+        setVisible(true);
         initComponents();
     }
 
@@ -47,6 +48,10 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
 
     public   DefaultListModel  getThreadsListModel() {
         return _threadsList;
+    }
+
+    public ClientController getClientController(){
+        return this._clientController;
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -140,7 +145,8 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
          _threadsIndexSelected= jList1.getSelectedIndex();
          if (_threadsIndexSelected>=0  ){
                //TODO: CALL FRAME OF VIEW POSTS OF THREAD
-                this.setVisible(false);
+             new FormsViewFrame(getClientController(),Integer.toString(_threadsIndexSelected)).setSize(693,516);
+             this.setVisible(false);
         }
        else
                 JOptionPane.showMessageDialog(null, "Please choose one of the threads above.", "Thread Selection  Error", 0);
