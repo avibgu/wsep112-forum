@@ -159,7 +159,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new AddThread(_clientController, _ForumId).setSize(693,516);
+        new AddThreadFrame(_clientController, _ForumId).setSize(693,516);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
