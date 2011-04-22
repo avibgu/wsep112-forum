@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author משה
+ * @author 
  */
 public class ThreadsViewPanel extends javax.swing.JPanel {
     private  DefaultListModel _threadsList;
