@@ -61,7 +61,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
          //JLayeredPane pane =(JLayeredPane) getMainPanel().getComponent(0);
          //this.add(pane);
          JPanel panel= getMainPanel();
-         panel.setBounds(150, -2, 520, 470);
+         panel.setBounds(150, -7, 520, 470);
          this.add(panel);
     }
 

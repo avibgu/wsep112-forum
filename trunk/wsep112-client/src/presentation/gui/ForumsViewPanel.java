@@ -65,7 +65,6 @@ public class ForumsViewPanel extends javax.swing.JPanel {
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -75,20 +74,15 @@ public class ForumsViewPanel extends javax.swing.JPanel {
 
         jList1.setModel(getForumsListModel());
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
-
-        jScrollPane1.setBounds(10, 30, 470, 260);
-        jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
-        jButton1.setText("Enter Forum");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
             }
         });
-        jButton1.setBounds(180, 300, 140, 29);
-        jLayeredPane2.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jScrollPane1.setViewportView(jList1);
+
+        jScrollPane1.setBounds(10, 30, 470, 300);
+        jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBounds(10, 40, 490, 340);
         jLayeredPane4.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -125,20 +119,18 @@ public class ForumsViewPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.forum_list=   (DefaultListModel)jList1.getModel();
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+         this.forum_list=   (DefaultListModel)jList1.getModel();
         _forumsIndexSelected= jList1.getSelectedIndex();
         String forumIdString=  Integer.toString(_forumsIndexSelected);
         if (_forumsIndexSelected>=0  ){
                this.setVisible(false);;
                new Forum(getController(), new ThreadsViewPanel(getController(),forumIdString ) ).setSize(693,516);
-        } else
-            JOptionPane.showMessageDialog(null, "Please select one of the forums above.", "Forum Selection  Error", 0);
-}//GEN-LAST:event_jButton1ActionPerformed
+        }
+    }//GEN-LAST:event_jList1ValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane2;
