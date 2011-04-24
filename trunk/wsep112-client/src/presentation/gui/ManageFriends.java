@@ -36,7 +36,7 @@ public class ManageFriends extends javax.swing.JFrame {
         setVisible(true);
         initComponents();
     }
-
+   
    public static  DefaultListModel  getMembersListModel() {
         return membersList;
     }
@@ -107,7 +107,7 @@ public class ManageFriends extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       new Forum(controller).setSize(693,516);
+       new Forum(controller, new ForumsViewPanel(controller)).setSize(693,516);
        this.setVisible(false);
 }//GEN-LAST:event_jButton3ActionPerformed
 

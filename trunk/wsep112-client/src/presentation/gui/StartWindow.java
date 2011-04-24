@@ -126,7 +126,7 @@ public class StartWindow extends javax.swing.JFrame {
            System.out.println("password=" + password);
            boolean flag = controller.login(username, password);
            if (flag) {
-                new Forum(controller).setSize(693,516);
+                new Forum(controller, new ForumsViewPanel(controller) ).setSize(693,516);
                 this.setVisible(false);
            }
            else   System.out.println("TO DO !! cannot login");
