@@ -145,7 +145,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
          _threadsIndexSelected= jList1.getSelectedIndex();
          if (_threadsIndexSelected>=0  ){
                //TODO: CALL FRAME OF VIEW POSTS OF THREAD
-             new FormsViewFrame(getClientController(),Integer.toString(_threadsIndexSelected)).setSize(693,516);
+            // new FormsViewFrame(getClientController(),Integer.toString(_threadsIndexSelected)).setSize(693,516);
              this.setVisible(false);
         }
        else
