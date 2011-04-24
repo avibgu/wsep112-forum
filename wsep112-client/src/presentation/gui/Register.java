@@ -147,7 +147,7 @@ public class Register extends javax.swing.JFrame {
            System.out.println("email=" + email);
            boolean flag =   controller.register(firstname, lastname, username, password, email);
            if (flag) {
-                   new Forum(controller).setSize(693,516);
+                   new Forum(controller, new ForumsViewPanel(controller)).setSize(693,516);
                    this.setVisible(false);
            }
            else  System.out.println("TO DO !! cannot register");

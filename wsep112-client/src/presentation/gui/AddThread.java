@@ -28,6 +28,10 @@ public class AddThread extends javax.swing.JPanel {
         initComponents();
     }
 
+        private ClientController getClientController(){
+        return this._client;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -113,13 +117,13 @@ public class AddThread extends javax.swing.JPanel {
             String title = jTextField4.getText(); //Title
             String body = jTextField3.getText(); //Body
              _client.addThread(_forumId, title, body);
-               new Forum(_client).setSize(693,516);
+            new Forum(getClientController(), new ThreadsViewPanel(getClientController(),_forumId ) ).setSize(693,516);
                this.setVisible(false);
         }
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-               new Forum(_client).setSize(693,516);
+            new Forum(getClientController(), new ThreadsViewPanel(getClientController(),_forumId ) ).setSize(693,516);
                this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -16,6 +16,7 @@ import java.util.Observer;
 
 import domain.ClientController;
 import javax.swing.DefaultListModel;
+import javax.swing.JLayeredPane;
 
 import presentation.gui.notifications.TempNotification;
 
@@ -25,6 +26,7 @@ import common.network.messages.ErrorMessage;
 import common.notifications.FriendAddedPostNotification;
 import common.notifications.PostAddedToYourThreadNotification;
 import common.notifications.ThreadChangedNotification;
+import javax.swing.JPanel;
 
 /**
  *
@@ -33,14 +35,17 @@ import common.notifications.ThreadChangedNotification;
 public class Forum extends javax.swing.JFrame implements Observer{
 
 	private static final long serialVersionUID = -2618735121811057973L;
-	
+	private javax.swing.JPanel _mainPanel;
+
 	ClientController controller;
     public static  DefaultListModel friendsList= new DefaultListModel();
     
-    /** Creates new form Forum */
-    public Forum(ClientController clientController) {
+    /** Creates new form Forum with main panel(forun/threads/posts) */
+    public Forum(ClientController clientController, JPanel panel) {
         controller = clientController;
         controller.addObserver(this);
+        _mainPanel= panel;
+        setMainPanel();
         /* //TO DO - wait for this implementation by avi
        for (int i=0; i<controller.getFriend().size(); i++  ){
                  String friend = controller.getFriend().get(i);
@@ -48,12 +53,24 @@ public class Forum extends javax.swing.JFrame implements Observer{
         }
          * /
          */
-        setVisible(true);
-        initComponents();
+         initComponents();
+         setVisible(true);
+    }
+
+    public void setMainPanel(){
+         //JLayeredPane pane =(JLayeredPane) getMainPanel().getComponent(0);
+         //this.add(pane);
+         JPanel panel= getMainPanel();
+         panel.setBounds(150, -2, 520, 470);
+         this.add(panel);
     }
 
     public static DefaultListModel  getFriendsListModel() {
         return friendsList;
+    }
+
+    private  JPanel getMainPanel(){
+        return _mainPanel;
     }
 
     /** This method is called from within the constructor to
@@ -65,7 +82,6 @@ public class Forum extends javax.swing.JFrame implements Observer{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane3 = new javax.swing.JLayeredPane();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jButton1 = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
@@ -80,10 +96,6 @@ public class Forum extends javax.swing.JFrame implements Observer{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLayeredPane3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        getContentPane().add(jLayeredPane3);
-        jLayeredPane3.setBounds(150, 0, 520, 470);
-
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hello User !", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 10));
@@ -93,7 +105,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(30, 440, 80, -1);
+        jButton1.setBounds(30, 440, 80, 23);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "My Friends", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -101,13 +113,13 @@ public class Forum extends javax.swing.JFrame implements Observer{
         jList1.setModel(presentation.gui.Forum.getFriendsListModel());
         jScrollPane1.setViewportView(jList1);
 
-        jScrollPane1.setBounds(10, 30, 80, 130);
+        jScrollPane1.setBounds(10, 30, 80, -1);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBounds(20, 140, 100, 170);
         jLayeredPane1.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 10)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 10));
         jButton2.setText("Edit friends");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +129,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
         jButton2.setBounds(10, 360, 120, 30);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton3.setFont(new java.awt.Font("Kristen ITC", 1, 10)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Kristen ITC", 1, 10));
         jButton3.setText("Edit profile");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +147,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(0, 0, 140, 470);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forum_img.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/רקע.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 680, 480);
 
@@ -180,7 +192,6 @@ public class Forum extends javax.swing.JFrame implements Observer{
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JLayeredPane jLayeredPane3;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

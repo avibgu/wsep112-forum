@@ -35,10 +35,9 @@ public class ForumsViewPanel extends javax.swing.JPanel {
              setVisible(true);
             initComponents();
     }
-
-
+    
     public void fillListForum( ) {
-        Vector<ForumInfo> forums= _clientController.getForumsList();
+        Vector<ForumInfo> forums= getController().getForumsList();
         //this.setVisible(true);
      for (int j=0; j<forums.size(); j++  ){
                getForumsListModel().addElement(forums.get(j).getName());
@@ -47,6 +46,10 @@ public class ForumsViewPanel extends javax.swing.JPanel {
 
     public   DefaultListModel  getForumsListModel() {
         return _forumsList;
+    }
+
+    private ClientController getController(){
+        return this._clientController;
     }
 
     /** This method is called from within the constructor to
@@ -62,9 +65,9 @@ public class ForumsViewPanel extends javax.swing.JPanel {
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
-        jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         jLayeredPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
@@ -77,20 +80,6 @@ public class ForumsViewPanel extends javax.swing.JPanel {
         jScrollPane1.setBounds(10, 30, 470, 260);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLayeredPane2.setBounds(10, 40, 490, 300);
-        jLayeredPane4.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/go_back.png"))); // NOI18N
-        jButton4.setBorder(null);
-        jButton4.setBorderPainted(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jButton4.setBounds(10, 20, 40, 30);
-        jLayeredPane4.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton1.setText("Enter Forum");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -98,10 +87,15 @@ public class ForumsViewPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(190, 350, 140, 29);
-        jLayeredPane4.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jButton1.setBounds(180, 300, 140, 29);
+        jLayeredPane2.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLayeredPane2.setBounds(10, 40, 490, 340);
+        jLayeredPane4.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLabel1.setBounds(360, 340, 140, 130);
         jLayeredPane4.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/רקע.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -109,36 +103,44 @@ public class ForumsViewPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(161, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 1, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.forum_list=   (DefaultListModel)jList1.getModel();
         _forumsIndexSelected= jList1.getSelectedIndex();
+        String forumIdString=  Integer.toString(_forumsIndexSelected);
         if (_forumsIndexSelected>=0  ){
-            //TODO
+               this.setVisible(false);;
+               new Forum(getController(), new ThreadsViewPanel(getController(),forumIdString ) ).setSize(693,516);
         } else
             JOptionPane.showMessageDialog(null, "Please select one of the forums above.", "Forum Selection  Error", 0);
 }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        new Forum(_clientController).setSize(693,516);
-        this.setVisible(false);
-}//GEN-LAST:event_jButton4ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane4;
     private javax.swing.JList jList1;
