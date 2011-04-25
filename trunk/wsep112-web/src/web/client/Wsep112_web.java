@@ -36,6 +36,12 @@ public class Wsep112_web implements EntryPoint {
 			.create(GreetingService.class);
 
 	/**
+	 * Create a remote service proxy to talk to the server-side Web Controller
+	 * @author Avi Digmi
+	 */
+	private WebControllerAsync webControllerSvc = GWT.create(WebController.class);
+	
+	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
@@ -91,7 +97,8 @@ public class Wsep112_web implements EntryPoint {
 			 * Fired when the user clicks on the sendButton.
 			 */
 			public void onClick(ClickEvent event) {
-				sendNameToServer();
+				//	sendNameToServer();
+				loginToTheForumServer();
 			}
 
 			/**
@@ -141,6 +148,32 @@ public class Wsep112_web implements EntryPoint {
 								closeButton.setFocus(true);
 							}
 						});
+			}
+			
+			/**
+			 * 
+			 */
+			private void loginToTheForumServer(){
+				
+				webControllerSvc.login("avidigmi", "Qwe123",
+						new AsyncCallback<Boolean>() {
+							
+							@Override
+							public void onSuccess(Boolean result) {
+								dialogBox.setText(
+										"the result of the login operation is " +
+										result);
+								dialogBox.center();
+								closeButton.setFocus(true);
+							}
+							
+							@Override
+							public void onFailure(Throwable caught) {
+								dialogBox.setText("RPC Failure");
+								dialogBox.center();
+								closeButton.setFocus(true);
+							}
+						});				
 			}
 		}
 
