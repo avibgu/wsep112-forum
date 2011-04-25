@@ -1,0 +1,2 @@
+serviceClass: web.client.WebController
+path: BFD2BA17BB8F4FA1127A564AFDF087CC.gwt.rpc
