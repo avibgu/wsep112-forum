@@ -105,7 +105,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(30, 440, 80, 23);
+        jButton1.setBounds(30, 440, 80, -1);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "My Friends", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -147,7 +147,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(0, 0, 140, 470);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/רקע.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forum_img.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 680, 480);
 
