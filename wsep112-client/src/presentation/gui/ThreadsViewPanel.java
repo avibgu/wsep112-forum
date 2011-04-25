@@ -123,7 +123,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
         jLabel1.setBounds(180, 320, 140, 140);
         jLayeredPane4.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/רקע.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forum_img.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
