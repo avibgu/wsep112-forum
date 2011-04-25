@@ -672,7 +672,9 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	}
 
 	private void log(String msg){
-		getLogger().info(msg);
+		
+		if (getLogger() != null)
+			getLogger().info(msg);
 	}
 
 	public void setCurrentLogedInUsername(String currentLogedInUsername) {

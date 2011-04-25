@@ -4,6 +4,7 @@
 package main;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.FileHandler;
@@ -71,7 +72,22 @@ public class MainClient {
 	    logger.setLevel(Level.INFO);
 
 	    logger.info("Client is Starting..");
+
+		ClientController clientController = connectToRmiServer(args[0], logger);
+        
+		if (null == clientController) return;
 		
+		//new StartWindow(clientController).setSize(546,465);
+		new CLI(clientController).start();
+	}
+	
+	/**
+	 * @throws RemoteException 
+	 * 
+	 */
+	public static ClientController connectToRmiServer(
+			String serverAddress, Logger logger) throws RemoteException{
+
 		//	creating security policy manager
 		if (System.getSecurityManager() == null) {
 			
@@ -84,36 +100,26 @@ public class MainClient {
 		
 		ForumServer forumServerStub = null;
 		
-		tError = 10;
+		int tError = 10;
 
 		while(true){
 			
 		    try {
 		
-		    	registry = LocateRegistry.getRegistry(args[0]);
+		    	registry = LocateRegistry.getRegistry(serverAddress);
 		    	
 		    	forumServerStub = (ForumServer) registry.lookup(serverName);
 		    	
 		    	break;
 		    }
 		    catch (Exception e){
-		    	
-				if (tError == 10)
-					logger.severe("ForumServer exception: cannot connect to the server, will try again..");
 
-		    	else if (tError == 0){
-		    		
-		    		logger.severe("giving up.. exiting..");
-		    		return;
-		    	}
+				if (tError == 0) return null;
 		    	
 	    		tError--;
 		    }
 		}
         
-        ClientController clientController = new ClientController(forumServerStub, logger);
-
-      new StartWindow(clientController).setSize(546,465);
-     //new CLI(clientController, logger).start();
+        return new ClientController(forumServerStub, logger);
 	}
 }
