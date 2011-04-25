@@ -98,8 +98,9 @@ public class Forum extends javax.swing.JFrame implements Observer{
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hello User !", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 10));
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 10)); // NOI18N
         jButton1.setText("Logut");
+        jButton1.setActionCommand("Logout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
