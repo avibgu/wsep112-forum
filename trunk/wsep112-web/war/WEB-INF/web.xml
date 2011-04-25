@@ -16,6 +16,16 @@
     <url-pattern>/wsep112_web/greet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>WebControllerServlet</servlet-name>
+    <servlet-class>web.server.WebControllerImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>WebControllerServlet</servlet-name>
+    <url-pattern>/wsep112_web/WebController</url-pattern>
+  </servlet-mapping>
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>Wsep112_web.html</welcome-file>
