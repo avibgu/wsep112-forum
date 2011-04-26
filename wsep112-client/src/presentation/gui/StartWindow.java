@@ -23,12 +23,22 @@ import javax.swing.JOptionPane;
 public class StartWindow extends javax.swing.JFrame {
 
     ClientController controller;
+    Forum _forum;
 
     /** Creates new form StartWindow */
     public StartWindow( ClientController clientController) {
         controller = clientController;
         setVisible(true);
         initComponents();
+    }
+
+    public Forum getForum(){
+         return _forum;
+       //return  new Forum(controller, this );
+    }
+
+    public void nonDisplayForum(){
+        _forum.setVisible(false);
     }
 
     /** This method is called from within the constructor to
@@ -127,15 +137,16 @@ public class StartWindow extends javax.swing.JFrame {
            System.out.println("password=" + password);
            ErrorMessage message = controller.login(username, password);
            if (message==null) {
-                new Forum(controller, new ForumsViewPanel(controller) ).setSize(693,516);
-                this.setVisible(false);
+                //new Forum(controller, new ForumsViewPanel(controller) ).setSize(693,516);
+                _forum= new Forum(controller, this);
+               this.setVisible(false);
            }
            else System.out.println(message.getReason());
        }
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-           new Register(controller).setSize(550,467);
+           new Register(controller, this).setSize(550,467);
            this.setVisible(false);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
