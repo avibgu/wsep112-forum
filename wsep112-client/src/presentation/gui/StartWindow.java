@@ -135,13 +135,13 @@ public class StartWindow extends javax.swing.JFrame {
            String password = jTextField7.getText();
            System.out.println("username=" + username);
            System.out.println("password=" + password);
-           ErrorMessage message = controller.login(username, password);
-           if (message==null) {
+            ErrorMessage message = controller.login(username, password);
+           if (message == null) {
                 //new Forum(controller, new ForumsViewPanel(controller) ).setSize(693,516);
                 _forum= new Forum(controller, this);
                this.setVisible(false);
            }
-           else System.out.println(message.getReason());
+           else     JOptionPane.showMessageDialog(null, message.getReason(), "Login Error", 0);
        }
 }//GEN-LAST:event_jButton1ActionPerformed
 
