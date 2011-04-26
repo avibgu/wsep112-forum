@@ -150,7 +150,7 @@ public class Register extends javax.swing.JFrame {
            String email = jTextField2.getText();
             ErrorMessage message =   controller.register(firstname, lastname, username, password, email);
            if (message == null){
-                    getStartWindow().getForum().displayForum(new ForumsViewPanel(controller,getStartWindow() ) );
+                   this.getStartWindow().setForum(new Forum(controller, getStartWindow()));
                    this.setVisible(false);
            }
            else  JOptionPane.showMessageDialog(null, message.getReason(), "Register Error", 0);
