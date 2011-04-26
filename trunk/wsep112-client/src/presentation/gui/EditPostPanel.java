@@ -4,30 +4,36 @@
  */
 
 /*
- * EditPostPanel.java
+ * EditPostPanel1.java
  *
- * Created on 26/04/2011, 14:35:32
+ * Created on 26/04/2011, 21:24:43
  */
 
 package presentation.gui;
-    import domain.ClientController;
+ import domain.ClientController;
+
 /**
  *
  * @author yedidim
  */
-public class EditPostPanel extends javax.swing.JFrame {
-
+public class EditPostPanel extends javax.swing.JPanel {
 private ClientController _clientController;
 private String _forum_id;
 private String _thread_id;
+private String _postId;
+ private  StartWindow _start;
 
-    /** Creates new form EditPostPanel */
-    public EditPostPanel(ClientController clientController, String forum_id, String thread_id) {
+   public EditPostPanel(ClientController clientController, String forum_id,
+                                                        String thread_id,String PostId, StartWindow start) {
         this._clientController=clientController;
         this._forum_id=forum_id;
         this._thread_id=thread_id;
+        this._postId=PostId;
+        this._start=start;
         initComponents();
+        setVisible(true);
     }
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -48,11 +54,9 @@ private String _thread_id;
         ok = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "forum system", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 3, 14), new java.awt.Color(255, 0, 0))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Kristen ITC", 3, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Kristen ITC", 3, 14));
         jLabel1.setText("edit your post as you wish:");
 
         title.addActionListener(new java.awt.event.ActionListener() {
@@ -61,7 +65,7 @@ private String _thread_id;
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 3, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 3, 12));
         jLabel2.setForeground(new java.awt.Color(0, 0, 204));
         jLabel2.setText("title :");
 
@@ -132,8 +136,8 @@ private String _thread_id;
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 564, Short.MAX_VALUE)
@@ -150,8 +154,6 @@ private String _thread_id;
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleActionPerformed
@@ -162,18 +164,38 @@ private String _thread_id;
         String new_title=title.getText();
         String new_body=body.getText();
         //updating the database via the clientController
-         _clientController.replyToThread(_forum_id,new_title, new_body,_thread_id);
+        this.getController().editPost(this.getForumId(), new_title, new_body,
+                this.getThreadId(), this.getPostId());
         //shows the new post list
-        new PostsViewPanel(this._clientController,this._forum_id,this._thread_id);
+        getStart().getForum().displayForum( new PostsViewPanel(this._clientController,this._forum_id,this._thread_id,this.getStart() ) );
         //removig the view of new post
         this.setVisible(false);
 }//GEN-LAST:event_okActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        new PostsViewPanel(this._clientController,this._forum_id,this._thread_id);
+        getStart().getForum().displayForum( new PostsViewPanel(this._clientController,this._forum_id,this._thread_id,this.getStart()));
         this.setVisible(false);
 }//GEN-LAST:event_cancelActionPerformed
 
+    public ClientController getController(){
+     return this._clientController;
+ }
+
+public String  getForumId(){
+     return this._forum_id;
+ }
+
+ public String  getThreadId(){
+     return this._thread_id;
+ }
+
+ public String  getPostId(){
+     return this._postId;
+ }
+
+ public  StartWindow getStart(){
+         return this._start;
+     }
     /**
     * @param args the command line arguments
     */
