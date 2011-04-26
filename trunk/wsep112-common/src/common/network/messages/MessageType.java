@@ -24,5 +24,6 @@ public enum MessageType {
     SEE_FRIENDS_LIST,
     SEE_USERS_LIST,
     REMOVE_THREAD,
-    REMOVE_POST
+    REMOVE_POST,
+    EDIT_POST
 }
