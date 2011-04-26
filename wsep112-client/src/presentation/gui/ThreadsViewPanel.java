@@ -136,7 +136,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forum_img.jpg"))); // NOI18N
         add(jLabel2);
-        jLabel2.setBounds(0, 1, 680, 480);
+        jLabel2.setBounds(0, 10, 520, 480);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
