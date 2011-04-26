@@ -54,7 +54,7 @@
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder justification="2" title="Forum System">
               <Font PropertyName="font" name="Kristen ITC" size="14" style="1"/>
-              <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color PropertyName="color" blue="0" green="0" red="ff" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -71,7 +71,7 @@
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="2" position="1" title="Please choose one of the forums below">
                   <Font PropertyName="font" name="Kristen ITC" size="14" style="1"/>
-                  <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color PropertyName="color" blue="0" green="0" red="ff" type="rgb"/>
                 </TitledBorder>
               </Border>
             </Property>
