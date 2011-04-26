@@ -106,6 +106,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Please choose one of the Threads below", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
+        jList1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jList1.setModel(getThreadsListModel());
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jList1);
@@ -161,7 +162,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     // Add Thread Button
        getStartWindow().nonDisplayForum(); //setVisible false
-        new AddThreadFrame(getClientController(),_ForumId, getStartWindow());
+        new AddThreadFrame(getClientController(),_ForumId, getStartWindow()).setSize(430,370);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
