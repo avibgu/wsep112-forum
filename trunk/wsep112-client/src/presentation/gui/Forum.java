@@ -11,16 +11,29 @@
 
 package presentation.gui;
 
-import domain.ClientController;
+import java.util.Observable;
+import java.util.Observer;
 
+import domain.ClientController;
 import javax.swing.DefaultListModel;
+
+import presentation.gui.notifications.TempNotification;
+
+import common.forum.items.ThreadInfo;
+import common.forum.items.UserInfo;
+import common.network.messages.ErrorMessage;
+import common.notifications.FriendAddedPostNotification;
+import common.notifications.PostAddedToYourThreadNotification;
+import common.notifications.ThreadChangedNotification;
+import java.awt.Container;
+import java.awt.Graphics;
 import javax.swing.JPanel;
 
 /**
  *
  * @author
  */
-public class Forum extends javax.swing.JFrame {
+public class Forum extends javax.swing.JFrame implements Observer{
 
 	private static final long serialVersionUID = -2618735121811057973L;
 	private javax.swing.JPanel _mainPanel;
@@ -32,6 +45,7 @@ public class Forum extends javax.swing.JFrame {
     /** Creates new form Forum with main panel(forun/threads/posts) */
     public Forum(ClientController clientController, StartWindow start ) {
         controller = clientController;
+        controller.addObserver(this);
         _start=start;                
           dispalyInitialForum( new ForumsViewPanel(controller, getStartWindow() ));
         /* //TO DO - wait for this implementation by avi
@@ -208,4 +222,24 @@ public class Forum extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+	@Override
+    public void update(Observable o, Object arg){
+		// AVID remove this..
+		System.out.println("Forum got notification..");
+    	if (null != arg) nofity(arg);
+    }
+
+	private void nofity(Object arg){
+		// AVID ignore it..
+		System.err.println("notification problem..");
+	}
+
+	private void nofity(final ErrorMessage em) {
+		java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+            	new TempNotification(em, em.getReason());
+            }
+        });
+	}
 }
