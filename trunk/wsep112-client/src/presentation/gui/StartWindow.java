@@ -11,6 +11,7 @@
 
 package presentation.gui;
 
+import common.network.messages.ErrorMessage;
 import domain.ClientController;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
@@ -124,12 +125,12 @@ public class StartWindow extends javax.swing.JFrame {
            String password = jTextField7.getText();
            System.out.println("username=" + username);
            System.out.println("password=" + password);
-           boolean flag = controller.login(username, password);
-           if (flag) {
+           ErrorMessage message = controller.login(username, password);
+           if (message==null) {
                 new Forum(controller, new ForumsViewPanel(controller) ).setSize(693,516);
                 this.setVisible(false);
            }
-           else   System.out.println("TO DO !! cannot login");
+           else System.out.println(message.getReason());
        }
 }//GEN-LAST:event_jButton1ActionPerformed
 
