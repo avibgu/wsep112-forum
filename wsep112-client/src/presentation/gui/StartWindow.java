@@ -133,8 +133,6 @@ public class StartWindow extends javax.swing.JFrame {
        else{
            String username = jTextField6.getText();
            String password = jTextField7.getText();
-           System.out.println("username=" + username);
-           System.out.println("password=" + password);
             ErrorMessage message = controller.login(username, password);
            if (message == null) {
                 //new Forum(controller, new ForumsViewPanel(controller) ).setSize(693,516);
