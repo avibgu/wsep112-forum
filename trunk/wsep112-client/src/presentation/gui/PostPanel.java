@@ -21,24 +21,27 @@ public class PostPanel extends javax.swing.JPanel {
        private ClientController _clientController;
        private String _forunId;
        private String _threadId;
-       private int _post_id;
+       private String _post_id;
 	private String _title;
 	private String _body;
 	private String _owner;
-	private int _thread_id;
+	private String _thread_id;
 	private String _dateTime;
+        private  StartWindow _start;
 
     /** Creates new form Post */
-    public PostPanel(ClientController clientController,String forumId,String threadId, String title1, String body1 , String owner ,String date1, int thread_id,int post_id) {
+    public PostPanel(ClientController clientController,String forumId,String threadId, String title1,
+            String body1 , String owner ,String date1,String post_id,StartWindow start) {
      this._clientController=clientController;
         this._post_id=post_id;
         this._title=title1;
         this._body=body1;
         this._owner=owner;
         this._dateTime=date1;
-        this._thread_id=thread_id;
+        this._thread_id=threadId;
         this._forunId=forumId;
         this._threadId=threadId;
+        this._start=start;
         initComponents();
 
         author.setText(owner);
@@ -129,7 +132,9 @@ public class PostPanel extends javax.swing.JPanel {
 }//GEN-LAST:event_titleActionPerformed
 
     private void editBtmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtmActionPerformed
-        new EditPostPanel(this.getController(),this.getForumId(),this._threadId);
+    
+      getStart().getForum().displayForum(  new EditPostPanel(this.getController(),this.getForumId(),
+                                                                                                                                       this.getThreadId(),this.getPostId(),this.getStart()));
 }//GEN-LAST:event_editBtmActionPerformed
 
  public ClientController getController(){
@@ -146,6 +151,16 @@ public class PostPanel extends javax.swing.JPanel {
  public String  getThreadId(){
      return this._threadId;
  }
+
+  public String  getPostId(){
+     return this._post_id;
+ }
+
+
+ public StartWindow  getStart(){
+     return this._start;
+ }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel author;

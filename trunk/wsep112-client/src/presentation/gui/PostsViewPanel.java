@@ -4,13 +4,12 @@
  */
 
 /*
- * PostViewForm.java
+ * PostsViewPanel1.java
  *
- * Created on 26/04/2011, 13:40:59
+ * Created on 26/04/2011, 19:46:07
  */
 
 package presentation.gui;
-
 import common.forum.items.PostInfo;
 import domain.ClientController;
 //import domain.DemoClientController;
@@ -23,24 +22,26 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.text.View;
 
+
 /**
  *
  * @author yedidim
  */
-public class PostsViewPanel extends javax.swing.JFrame {
+public class PostsViewPanel extends javax.swing.JPanel {
 
-    //class fields
+ //class fields
     private ClientController _clientController;
     private String _ForumId;
     private String _threadId;
-
+    private  StartWindow _start;
 
     /** Creates new form PostViewForm */
-    public PostsViewPanel(ClientController clientController,String forum_id,String thread_id)  {
+    public PostsViewPanel(ClientController clientController,String forum_id,String thread_id,StartWindow start)  {
 
         this._clientController=clientController;
         this._ForumId=forum_id;
         this._threadId=thread_id;
+        this._start=start;
         initComponents();
 
         //avi shahimov
@@ -48,9 +49,8 @@ public class PostsViewPanel extends javax.swing.JFrame {
         setVisible(true);
        // postsPanel.setVisible(true);
         //avi shaimov
-        
-    }
 
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -67,8 +67,6 @@ public class PostsViewPanel extends javax.swing.JFrame {
         newPost = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         postsPanel = new javax.swing.JPanel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         mainPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "forum system", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 3, 14), new java.awt.Color(255, 0, 0))); // NOI18N
 
@@ -127,7 +125,7 @@ public class PostsViewPanel extends javax.swing.JFrame {
                         .addComponent(newPost, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
@@ -137,7 +135,7 @@ public class PostsViewPanel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(2, 2, 2)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
@@ -148,10 +146,11 @@ public class PostsViewPanel extends javax.swing.JFrame {
                         .addGap(25, 25, 25))))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 517, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -159,30 +158,26 @@ public class PostsViewPanel extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 485, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
 
-        new ThreadsViewPanel(this.getclientController(),this.getForum_id()).setSize(693,516);
+       getStart().getForum().displayForum(new ThreadsViewPanel(this.getclientController(),this.getForum_id(),this.getStart()));
         this.setVisible(false);
 }//GEN-LAST:event_backActionPerformed
 
     private void newPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPostActionPerformed
 
-        new NewPost(this.getclientController(), this.getForum_id(),this.getThread_id()).setSize(693,516);
+       getStart().getForum().displayForum(new NewPost(this.getclientController(), this.getForum_id(),this.getThread_id(),this.getStart()));
         this.setVisible(false);
 }//GEN-LAST:event_newPostActionPerformed
 
-    /**
-    * @param args the command line arguments
-    */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
@@ -199,8 +194,8 @@ public class PostsViewPanel extends javax.swing.JFrame {
         String body;
         String author;
         String dateTime;
-        int thread_id;
-        int post_id;
+        String thread_id;
+        String post_id;
          // Vector<PostInfo> posts = _clientController.getPostsList(_ForumId,_threadId);
           Vector<PostInfo> posts = this.getclientController().getPostsList(this.getForum_id(),this.getThread_id());
         List<JPanel> panels = new ArrayList<JPanel>();
@@ -210,9 +205,9 @@ public class PostsViewPanel extends javax.swing.JFrame {
         body=post.get_body();
         author=post.getOwner().getUserName();
         dateTime=post.getDateTime();
-        thread_id=post.getThread_id();
-        post_id=post.get_post_id();
-        JPanel jPanel = new PostPanel(this.getclientController(),this.getForum_id(),this.getThread_id(),title,body,author,dateTime,thread_id,post_id);
+        thread_id=Integer.toString(post.getThread_id());
+        post_id=Integer.toString(post.get_post_id());
+        JPanel jPanel = new PostPanel(this.getclientController(),this.getForum_id(),this.getThread_id(),title,body,author,dateTime,post_id,this.getStart());
          panels.add(jPanel);
 
         }
@@ -268,7 +263,7 @@ public class PostsViewPanel extends javax.swing.JFrame {
             .addGroup(group2.addContainerGap(25, Short.MAX_VALUE))
         );
 
-        pack();
+       // pack();
 
     }
 
@@ -286,7 +281,13 @@ public class PostsViewPanel extends javax.swing.JFrame {
      public JPanel getPostsPanel(){
          return postsPanel;
      }
-    /**
+
+     public  StartWindow getStart(){
+         return this._start;
+     }
+
+
+       /**
     * @param args the command line arguments
     */
 /* public static void main(String args[]) {
