@@ -21,17 +21,23 @@ import javax.swing.JOptionPane;
 public class AddThreadFrame extends javax.swing.JFrame{
          private ClientController _client;
          private String _forumId;
-
+         private StartWindow _start;
+         
     /** Creates new form AddThreadFrame */
-    public AddThreadFrame(ClientController c, String forumId) {
+    public AddThreadFrame(ClientController c, String forumId,StartWindow start) {
          _client=c;
         _forumId= forumId;
+        _start=start;
         setVisible(true);
         initComponents();
     }
 
     private ClientController getClientController(){
         return this._client;
+    }
+
+    private StartWindow getStartWindow(){
+        return _start;
     }
 
     /** This method is called from within the constructor to
@@ -125,15 +131,17 @@ public class AddThreadFrame extends javax.swing.JFrame{
             String title = jTextField4.getText(); //Title
             String body = jTextField3.getText(); //Body
             getClientController().addThread(_forumId, title, body);
-            new Forum(getClientController(), new ThreadsViewPanel(getClientController(),_forumId ) ).setSize(693,516);
-            this.setVisible(false);
+            getStartWindow().getForum().displayForum(null); //setVisible false
+            getStartWindow().getForum().displayForum( new ThreadsViewPanel( getClientController(),_forumId,  getStartWindow()));
+            //this.setVisible(false);
         }
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     //Cancel Button
-        new Forum(getClientController(),  new ThreadsViewPanel(getClientController(),_forumId )).setSize(693,516);
-        this.setVisible(false);
+    getStartWindow().getForum().displayForum(null); //setVisible false
+    getStartWindow().getForum().displayForum( new ThreadsViewPanel( getClientController(),_forumId,  getStartWindow()));
+        
 }//GEN-LAST:event_jButton2ActionPerformed
 
 

@@ -25,12 +25,14 @@ public class ForumsViewPanel extends javax.swing.JPanel {
     public  DefaultListModel _forumsList;
     private ClientController _clientController;
     private int _forumsIndexSelected;
+    private StartWindow _start;
     DefaultListModel forum_list;
 
     /** Creates new form ThreadsViewPanel */
-    public ForumsViewPanel(ClientController clientController) {
+    public ForumsViewPanel(ClientController clientController, StartWindow start) {
             _clientController= clientController;
             _forumsList= new DefaultListModel();
+            _start=start;
             fillListForum();
              setVisible(true);
             initComponents();
@@ -42,6 +44,10 @@ public class ForumsViewPanel extends javax.swing.JPanel {
      for (int j=0; j<forums.size(); j++  ){
                getForumsListModel().addElement(forums.get(j).getName());
               }
+    }
+
+    private StartWindow getStartWindow(){
+        return this._start;
     }
 
     public   DefaultListModel  getForumsListModel() {
@@ -124,8 +130,10 @@ public class ForumsViewPanel extends javax.swing.JPanel {
         _forumsIndexSelected= jList1.getSelectedIndex();
         String forumIdString=  Integer.toString(_forumsIndexSelected);
         if (_forumsIndexSelected>=0  ){
-               this.setVisible(false);;
-               new Forum(getController(), new ThreadsViewPanel(getController(),forumIdString ) ).setSize(693,516);
+              getStartWindow().nonDisplayForum(); //setVisible false
+              getStartWindow().getForum().displayForum(new ThreadsViewPanel(getController(),forumIdString,getStartWindow() ) );
+               
+
         }
     }//GEN-LAST:event_jList1ValueChanged
 

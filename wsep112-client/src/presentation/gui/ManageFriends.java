@@ -21,11 +21,13 @@ import javax.swing.DefaultListModel;
 public class ManageFriends extends javax.swing.JFrame {
 
      ClientController controller;
+     private StartWindow _start;
      public static DefaultListModel membersList= new DefaultListModel();
 
     /** Creates new form ManageFriends */
-   public ManageFriends(ClientController clientController) {
+   public ManageFriends(ClientController clientController, StartWindow start) {
         controller = clientController;
+        _start=start;
        /* //TO DO - wait for this implementation by avi
        for (int i=0; i<controller.getMembers().size(); i++  ){
                  String member = controller.getMembers().get(i);
@@ -36,7 +38,11 @@ public class ManageFriends extends javax.swing.JFrame {
         setVisible(true);
         initComponents();
     }
-   
+
+   private StartWindow getStartWindow(){
+       return _start;
+   }
+
    public static  DefaultListModel  getMembersListModel() {
         return membersList;
     }
@@ -107,8 +113,8 @@ public class ManageFriends extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       new Forum(controller, new ForumsViewPanel(controller)).setSize(693,516);
-       this.setVisible(false);
+      getStartWindow().getForum().displayForum(new ForumsViewPanel(controller,getStartWindow() ) );
+        this.setVisible(false);
 }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
