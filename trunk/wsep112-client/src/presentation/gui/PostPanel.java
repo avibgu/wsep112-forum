@@ -50,7 +50,10 @@ public class PostPanel extends javax.swing.JPanel {
         body.setText(body1);
         //TODO add if statement to check if the user is the owner of the post
         if(this.getController().getCurrentLogedInUsername().equals(this.getOwner()))
-                    editBtm.setVisible(false);
+        {
+           editBtm.setVisible(false);
+           remove.setVisible(false);
+        }
         setVisible(true);
     }
 
@@ -70,6 +73,7 @@ public class PostPanel extends javax.swing.JPanel {
         editBtm = new javax.swing.JButton();
         author = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
+        remove = new javax.swing.JButton();
 
         mainPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 3, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
@@ -88,16 +92,16 @@ public class PostPanel extends javax.swing.JPanel {
         jScrollPane1.setBounds(30, 50, 410, 230);
         mainPanel.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        editBtm.setText("edit");
+        editBtm.setText("Edit");
         editBtm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editBtmActionPerformed(evt);
             }
         });
-        editBtm.setBounds(170, 280, 100, 23);
+        editBtm.setBounds(60, 280, 100, 23);
         mainPanel.add(editBtm, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        author.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        author.setFont(new java.awt.Font("Arial", 3, 14));
         author.setForeground(new java.awt.Color(0, 0, 204));
         author.setText("authore");
         author.setBounds(30, 10, 80, 20);
@@ -108,6 +112,15 @@ public class PostPanel extends javax.swing.JPanel {
         date.setText("date");
         date.setBounds(400, 10, 60, 17);
         mainPanel.add(date, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        remove.setText("Remove");
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
+            }
+        });
+        remove.setBounds(310, 280, 90, 23);
+        mainPanel.add(remove, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -136,6 +149,12 @@ public class PostPanel extends javax.swing.JPanel {
       getStart().getForum().displayForum(  new EditPostPanel(this.getController(),this.getForumId(),
                                                                                                                                        this.getThreadId(),this.getPostId(),this.getStart()));
 }//GEN-LAST:event_editBtmActionPerformed
+
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
+      this.getController().RemovePost(this.getThreadId(), this.getPostId());
+      getStart().getForum().displayForum(  new PostsViewPanel(this.getController(), this.getForumId(), this.getThreadId(), this.getStart()));
+
+    }//GEN-LAST:event_removeActionPerformed
 
  public ClientController getController(){
      return this._clientController;
@@ -169,6 +188,7 @@ public class PostPanel extends javax.swing.JPanel {
     private javax.swing.JButton editBtm;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLayeredPane mainPanel;
+    private javax.swing.JButton remove;
     private javax.swing.JTextField title;
     // End of variables declaration//GEN-END:variables
 
