@@ -41,6 +41,10 @@ public class StartWindow extends javax.swing.JFrame {
         _forum.setVisible(false);
     }
 
+    public void setForum(Forum forum){
+        _forum=forum;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

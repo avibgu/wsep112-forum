@@ -25,6 +25,8 @@ import common.network.messages.ErrorMessage;
 import common.notifications.FriendAddedPostNotification;
 import common.notifications.PostAddedToYourThreadNotification;
 import common.notifications.ThreadChangedNotification;
+import java.awt.Container;
+import java.awt.Graphics;
 import javax.swing.JPanel;
 
 /**
@@ -63,7 +65,6 @@ public class Forum extends javax.swing.JFrame implements Observer{
         _mainPanel=panel;
          panel.setBounds(150, -7, 520, 470);
          this.add(panel);
-
     }
 
     public static DefaultListModel  getFriendsListModel() {
