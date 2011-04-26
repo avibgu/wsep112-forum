@@ -172,7 +172,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
         jLayeredPane1.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(jLayeredPane1);
-        jLayeredPane1.setBounds(530, 20, 140, 450);
+        jLayeredPane1.setBounds(530, 10, 140, 460);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forum_img.jpg"))); // NOI18N
         getContentPane().add(jLabel1);

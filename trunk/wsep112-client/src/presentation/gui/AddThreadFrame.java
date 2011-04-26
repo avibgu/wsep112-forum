@@ -94,14 +94,13 @@ public class AddThreadFrame extends javax.swing.JFrame{
                 jButton2ActionPerformed(evt);
             }
         });
-        jButton2.setBounds(210, 240, 123, 30);
+        jButton2.setBounds(210, 240, 130, 30);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
             .addGap(0, 620, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -111,7 +110,6 @@ public class AddThreadFrame extends javax.swing.JFrame{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
             .addGap(0, 485, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -133,7 +131,7 @@ public class AddThreadFrame extends javax.swing.JFrame{
             getClientController().addThread(_forumId, title, body);
             getStartWindow().getForum().displayForum(null); //setVisible false
             getStartWindow().getForum().displayForum( new ThreadsViewPanel( getClientController(),_forumId,  getStartWindow()));
-            //this.setVisible(false);
+            this.setVisible(false);
         }
 }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -141,6 +139,7 @@ public class AddThreadFrame extends javax.swing.JFrame{
     //Cancel Button
     getStartWindow().getForum().displayForum(null); //setVisible false
     getStartWindow().getForum().displayForum( new ThreadsViewPanel( getClientController(),_forumId,  getStartWindow()));
+    setVisible(false);
         
 }//GEN-LAST:event_jButton2ActionPerformed
 
