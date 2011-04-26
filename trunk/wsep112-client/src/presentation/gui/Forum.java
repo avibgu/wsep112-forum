@@ -118,7 +118,6 @@ public class Forum extends javax.swing.JFrame implements Observer{
         jList1 = new javax.swing.JList();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
@@ -127,15 +126,14 @@ public class Forum extends javax.swing.JFrame implements Observer{
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hello User !", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 10)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 10));
         jButton1.setText("Logout");
-        jButton1.setActionCommand("Logout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(30, 440, 80, -1);
+        jButton1.setBounds(30, 440, 80, 23);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "My Friends", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -143,10 +141,10 @@ public class Forum extends javax.swing.JFrame implements Observer{
         jList1.setModel(presentation.gui.Forum.getFriendsListModel());
         jScrollPane1.setViewportView(jList1);
 
-        jScrollPane1.setBounds(10, 30, 80, -1);
+        jScrollPane1.setBounds(10, 30, 80, 210);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLayeredPane2.setBounds(20, 140, 100, 170);
+        jLayeredPane2.setBounds(20, 40, 100, 250);
         jLayeredPane1.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 10));
@@ -166,13 +164,8 @@ public class Forum extends javax.swing.JFrame implements Observer{
                 jButton3ActionPerformed(evt);
             }
         });
-        jButton3.setBounds(10, 320, 120, 30);
+        jButton3.setBounds(10, 310, 120, 30);
         jLayeredPane1.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/P1000317.JPG"))); // NOI18N
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jLabel2.setBounds(30, 30, 80, 100);
-        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(0, 0, 140, 470);
@@ -219,7 +212,6 @@ public class Forum extends javax.swing.JFrame implements Observer{
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JList jList1;
