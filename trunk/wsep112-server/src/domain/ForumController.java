@@ -443,8 +443,10 @@ public class ForumController implements Serializable{
 	 */
 	public Message editPost(String forumID, String title, String body,
 			String threadId, String postId, String username, WrappedObserver wo) {
-		// TODO Auto-generated method stub
-		return null;
+		Post tPost = HibernateUtil.retrievePost(Integer.parseInt(postId));
+		tPost.edit_post(title, body);
+		HibernateUtil.updateDB(tPost);
+		return new OKMessage();
 	}
 
     /**
