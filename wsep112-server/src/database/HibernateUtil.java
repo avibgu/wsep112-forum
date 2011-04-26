@@ -203,7 +203,28 @@ public class HibernateUtil {
 		}
 	}
 
-	
+public static Post retrievePost(int postId) {
+		
+		//			can we change the db query to receive only one thread?
+		try{
+			   
+			Session session = getSession();
+			Transaction transaction = session.beginTransaction();
+			
+			  Query q = session.createQuery("from Post as p where p._post_id= :id");
+			  q.setParameter("id", postId);
+			  List<Post> tAns = q.list();
+			  
+			  if (tAns.size() == 0)
+			   	return null;
+			  else return tAns.get(0);
+		}
+		catch(Exception e){
+			   
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 	public static List<Thread> retrieveAllThreadsList() {
 		
@@ -333,4 +354,6 @@ public class HibernateUtil {
 		}
 		
 	}
+	
+	
 }
