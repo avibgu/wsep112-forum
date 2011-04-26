@@ -63,8 +63,11 @@ public class Forum extends javax.swing.JFrame implements Observer{
          //JLayeredPane pane =(JLayeredPane) getMainPanel().getComponent(0);
          //this.add(pane);
         _mainPanel=panel;
-         panel.setBounds(150, -7, 520, 470);
-         this.add(panel);
+         panel.setBounds(150, 0, 520, 470);
+         this.setContentPane(panel);
+         this.pack();
+         
+//         this.add(panel);
     }
 
     public static DefaultListModel  getFriendsListModel() {
@@ -134,7 +137,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(30, 440, 80, 23);
+        jButton1.setBounds(30, 410, 80, 23);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "My Friends", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -169,7 +172,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
         jLayeredPane1.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(jLayeredPane1);
-        jLayeredPane1.setBounds(0, 0, 140, 470);
+        jLayeredPane1.setBounds(530, 20, 140, 450);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forum_img.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
