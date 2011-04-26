@@ -4,30 +4,30 @@
  */
 
 /*
- * NewPost.java
+ * NewPost1.java
  *
- * Created on 24/04/2011, 11:41:01
+ * Created on 26/04/2011, 21:03:23
  */
-
 package presentation.gui;
-
 import domain.ClientController;
-//import domain.DemoClientController;
-
+import presentation.gui.StartWindow;
 /**
  *
  * @author yedidim
  */
-public class NewPost extends javax.swing.JFrame {
+public class NewPost extends javax.swing.JPanel {
 
     private ClientController _clientController;
     private String _forum_id;
     private String _thread_id;
+     private  StartWindow _start;
+
     /** Creates new form NewPost */
-    public NewPost(ClientController clientController,String forum_id, String thread_id) {
+    public NewPost(ClientController clientController,String forum_id, String thread_id,StartWindow start) {
         this._clientController=clientController;
         this._forum_id=forum_id;
         this._thread_id=thread_id;
+        this._start=start;
         initComponents();
         this.setVisible(true);
     }
@@ -51,11 +51,9 @@ public class NewPost extends javax.swing.JFrame {
         ok = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "forum system", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 3, 14), new java.awt.Color(255, 0, 0))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Kristen ITC", 3, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Kristen ITC", 3, 14));
         jLabel1.setText("add your new post :");
 
         title.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +62,7 @@ public class NewPost extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 3, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 3, 12));
         jLabel2.setForeground(new java.awt.Color(0, 0, 204));
         jLabel2.setText("title :");
 
@@ -136,10 +134,11 @@ public class NewPost extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 564, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,13 +146,12 @@ public class NewPost extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 412, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleActionPerformed
@@ -164,29 +162,34 @@ public class NewPost extends javax.swing.JFrame {
         String new_title=title.getText();
         String new_body=body.getText();
         //updating the database via the clientController
-        this.getclientController().replyToThread(_forum_id,new_title, new_body,_thread_id);//******************************************* remove heara
+        this.getclientController().replyToThread(_forum_id,new_title, new_body,_thread_id);
         //shows the new post list
-        new PostsViewPanel(getclientController(),this.getForum_id(),this.getThread_id());
+       getStart().getForum().displayForum(   new PostsViewPanel(getclientController(),this.getForum_id(),this.getThread_id(),this.getStart()));
         //removig the view of new post
         this.setVisible(false);
-    }//GEN-LAST:event_okActionPerformed
+}//GEN-LAST:event_okActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        new PostsViewPanel(getclientController(),this.getForum_id(),this.getThread_id());
+   getStart().getForum().displayForum(new PostsViewPanel(getclientController(),this.getForum_id(),this.getThread_id(),this.getStart()));
         this.setVisible(false);
-    }//GEN-LAST:event_cancelActionPerformed
+}//GEN-LAST:event_cancelActionPerformed
 
     //******************************************* GETTERS ************************************************//
     public ClientController getclientController(){
         return this._clientController;
     }
+    
     public String getForum_id(){
         return this._forum_id;
     }
+
     public String getThread_id(){
         return this._thread_id;
     }
 
+public StartWindow getStart(){
+    return this._start;
+}
     /**
     * @param args the command line arguments
     */
