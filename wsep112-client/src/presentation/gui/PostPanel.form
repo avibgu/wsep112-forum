@@ -80,14 +80,14 @@
         </Container>
         <Component class="javax.swing.JButton" name="editBtm">
           <Properties>
-            <Property name="text" type="java.lang.String" value="edit"/>
+            <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editBtmActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="170" y="280" width="100" height="-1" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="60" y="280" width="100" height="-1" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -120,6 +120,19 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
               <JLayeredPaneConstraints x="400" y="10" width="60" height="-1" layer="0" position="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="remove">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Remove"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeActionPerformed"/>
+          </Events>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+              <JLayeredPaneConstraints x="310" y="280" width="90" height="-1" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>
