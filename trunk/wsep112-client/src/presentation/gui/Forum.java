@@ -16,7 +16,6 @@ import java.util.Observer;
 
 import domain.ClientController;
 import javax.swing.DefaultListModel;
-import javax.swing.JLayeredPane;
 
 import presentation.gui.notifications.TempNotification;
 
@@ -36,16 +35,17 @@ public class Forum extends javax.swing.JFrame implements Observer{
 
 	private static final long serialVersionUID = -2618735121811057973L;
 	private javax.swing.JPanel _mainPanel;
+        private StartWindow _start;
 
 	ClientController controller;
     public static  DefaultListModel friendsList= new DefaultListModel();
     
     /** Creates new form Forum with main panel(forun/threads/posts) */
-    public Forum(ClientController clientController, JPanel panel) {
+    public Forum(ClientController clientController, StartWindow start ) {
         controller = clientController;
         controller.addObserver(this);
-        _mainPanel= panel;
-        setMainPanel();
+        _start=start;                
+          dispalyInitialForum( new ForumsViewPanel(controller, getStartWindow() ));
         /* //TO DO - wait for this implementation by avi
        for (int i=0; i<controller.getFriend().size(); i++  ){
                  String friend = controller.getFriend().get(i);
@@ -53,16 +53,17 @@ public class Forum extends javax.swing.JFrame implements Observer{
         }
          * /
          */
-         initComponents();
-         setVisible(true);
+         //initComponents();
+         //setVisible(true);
     }
 
-    public void setMainPanel(){
+    public void setMainPanel(JPanel panel){
          //JLayeredPane pane =(JLayeredPane) getMainPanel().getComponent(0);
          //this.add(pane);
-         JPanel panel= getMainPanel();
+        _mainPanel=panel;
          panel.setBounds(150, -7, 520, 470);
          this.add(panel);
+
     }
 
     public static DefaultListModel  getFriendsListModel() {
@@ -72,6 +73,34 @@ public class Forum extends javax.swing.JFrame implements Observer{
     private  JPanel getMainPanel(){
         return _mainPanel;
     }
+
+    private StartWindow getStartWindow(){
+        return _start;
+    }
+
+    public void displayForum(JPanel panel){
+        if (panel!=null){
+               this.remove(getMainPanel());
+               setMainPanel(panel);
+               initComponents();
+               this.setSize(693,516);
+               setVisible(true);
+        }
+        else
+                  setVisible(false);
+    }
+
+    public void dispalyInitialForum(JPanel panel){
+        if (panel!=null){
+               setMainPanel(panel);
+               initComponents();
+               this.setSize(693,516);
+               setVisible(true);
+        }
+        else
+                  setVisible(false);
+    }
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -99,7 +128,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hello User !", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 10)); // NOI18N
-        jButton1.setText("Logut");
+        jButton1.setText("Logout");
         jButton1.setActionCommand("Logout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,7 +205,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         new ManageFriends(controller).setSize(550,467);
+         new ManageFriends(controller, getStartWindow());
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 

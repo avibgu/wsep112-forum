@@ -48,7 +48,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Kristen ITC" size="10" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Logut"/>
+            <Property name="text" type="java.lang.String" value="Logout"/>
             <Property name="actionCommand" type="java.lang.String" value="Logout"/>
           </Properties>
           <Events>
