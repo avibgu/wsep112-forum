@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /*
  * Register.java
@@ -22,12 +18,18 @@ import javax.swing.JOptionPane;
 public class Register extends javax.swing.JFrame {
 
     ClientController controller;
-    
+    StartWindow _start;
+
     /** Creates new form Register */
-    public Register(ClientController clientController) {
+    public Register(ClientController clientController, StartWindow start) {
          controller = clientController;
+         _start=start;
         setVisible(true);
         initComponents();
+    }
+
+     private StartWindow getStartWindow(){
+        return this._start;
     }
 
     /** This method is called from within the constructor to
@@ -146,12 +148,12 @@ public class Register extends javax.swing.JFrame {
            System.out.println("username=" + username);
            System.out.println("password=" + password);
            System.out.println("email=" + email);
-           ErrorMessage message = controller.register(firstname, lastname, username, password, email);
-           if (message==null) {
-                   new Forum(controller, new ForumsViewPanel(controller)).setSize(693,516);
+            ErrorMessage message =   controller.register(firstname, lastname, username, password, email);
+           if (message == null){
+                    getStartWindow().getForum().displayForum(new ForumsViewPanel(controller,getStartWindow() ) );
                    this.setVisible(false);
            }
-           else System.out.println(message.getReason());
+           else  JOptionPane.showMessageDialog(null, message.getReason(), "Register Error", 0);
        }
 }//GEN-LAST:event_jButton1ActionPerformed
 
