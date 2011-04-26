@@ -429,6 +429,23 @@ public class ForumController implements Serializable{
 		// TODO: return real answer..
 		return new OKMessage();
 	}
+	
+	/**
+	 * 
+	 * @param forumID
+	 * @param title
+	 * @param body
+	 * @param threadId
+	 * @param postId
+	 * @param username
+	 * @param wo
+	 * @return
+	 */
+	public Message editPost(String forumID, String title, String body,
+			String threadId, String postId, String username, WrappedObserver wo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
     /**
      * 

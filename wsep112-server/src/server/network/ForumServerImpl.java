@@ -14,6 +14,7 @@ import common.network.ForumServer;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.AddPostMessage;
 import common.network.messages.AddThreadMessage;
+import common.network.messages.EditPostMessage;
 import common.network.messages.ErrorMessage;
 import common.network.messages.LoginMessage;
 import common.network.messages.LogoutMessage;
@@ -228,6 +229,18 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 				answer = getForumController().RemovePost(rpm.getThreadId(),
 						rpm.getPostId(), wo);
 				
+				break;
+				
+			case EDIT_POST:
+				
+				EditPostMessage epm = (EditPostMessage)whatToSet;
+				
+				wo = new WrappedObserver(epm.getRemoteObserver());
+				
+				answer = getForumController().editPost(epm.getForumID(),
+						epm.getTitle(), epm.getBody(), epm.getThreadId(),
+						epm.getPostId(), epm.getUsername(), wo);
+
 				break;
 
 			default:
