@@ -19,6 +19,7 @@ import common.network.ForumServer;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.AddPostMessage;
 import common.network.messages.AddThreadMessage;
+import common.network.messages.EditPostMessage;
 import common.network.messages.ErrorMessage;
 import common.network.messages.LoginMessage;
 import common.network.messages.LogoutMessage;
@@ -300,6 +301,41 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
 		notifyObservers(errorMessage);
     }
+    
+    /**
+    *
+    * @param title
+    * @param body
+    * @param threadId
+    *
+    * @return OKMessage on success, or ErrorMessage (with reason) on failure
+    */
+   public void editPost(String forumID, String title, String body,
+		   String threadId, String postId) {
+
+   	ErrorMessage errorMessage;
+   	
+   	EditPostMessage apm = new EditPostMessage(forumID, title, body,
+   			threadId, postId, getCurrentLogedInUsername(), this);
+
+		try {
+
+			Message answer = getForumServerStub().setInformation(apm);
+
+			if (answer.getMessageType() != MessageType.ERROR) return;
+			
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		notifyObservers(errorMessage);
+   }
 
     /**
      *
