@@ -12,6 +12,8 @@ import common.notifications.FriendAddedPostNotification;
 import common.notifications.PostAddedToYourThreadNotification;
 import common.notifications.ThreadChangedNotification;
 import common.observation.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Avi Digmi
@@ -32,13 +34,8 @@ public class NotificationsController implements Observer {
 	 */
 	@Override
     public void update(java.util.Observable o, Object arg){
-		// AVID remove it..
-		System.out.println("NotificationsController got update..");
-		
-		if (arg instanceof ErrorMessage)
-			nofity((ErrorMessage)arg);
-		
-		else if (arg instanceof ThreadChangedNotification)
+
+		if (arg instanceof ThreadChangedNotification)
 			nofity((ThreadChangedNotification)arg);
 		
 		else if (arg instanceof FriendAddedPostNotification)
@@ -47,14 +44,6 @@ public class NotificationsController implements Observer {
 		else if (arg instanceof PostAddedToYourThreadNotification)
 			nofity((PostAddedToYourThreadNotification)arg);
     }
-
-	private void nofity(final ErrorMessage em) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            	new TempNotification(em, em.getReason());
-            }
-        });
-	}
 	
 	private void nofity(final ThreadChangedNotification tcn) {
 
@@ -64,11 +53,7 @@ public class NotificationsController implements Observer {
 						" (Forum " + tInfo.get_forumId() +") : \"" +
 						tInfo.getTitle() + "\" has been changed";
         
-		java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            	new TempNotification(tcn, msg);
-            }
-        });
+		genPopUp(msg);
 	}
 	
 	private void nofity(final FriendAddedPostNotification fapn) {
@@ -81,11 +66,7 @@ public class NotificationsController implements Observer {
 						" (Forum " + tInfo.get_forumId() +") : \"" +
 						tInfo.getTitle() + "\"";
 		
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            	new TempNotification(fapn, msg);
-            }
-        });
+                genPopUp(msg);
 	}
 	
 	private void nofity(final PostAddedToYourThreadNotification patytn) {
@@ -96,11 +77,19 @@ public class NotificationsController implements Observer {
 						" (Forum " + tInfo.get_forumId() +") : \"" +
 						tInfo.getTitle() + "\" has been changed";
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            	new TempNotification(patytn, msg);
-            }
-        });
+                genPopUp(msg);
+	}
+
+	public void genPopUp(final String message){
+
+            final NotificationForm popup = new NotificationForm(message);
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    popup.setVisible(true);
+                }
+            });
+            try { Thread.sleep(3000); } catch (Exception ex) {}
+            popup.setVisible(true);
 	}
 
 	public void set_observable(Observable _observable) {
