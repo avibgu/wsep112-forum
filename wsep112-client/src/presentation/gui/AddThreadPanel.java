@@ -57,7 +57,7 @@ public class AddThreadPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Thread", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14))); // NOI18N
+        jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Thread", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jLayeredPane1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField3.setBounds(70, 80, 380, 250);
         jLayeredPane1.add(jTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
