@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author מירי
+ * @author ׳�׳™׳¨׳™
  */
 public class StartWindow extends javax.swing.JFrame {
 
@@ -137,13 +137,12 @@ public class StartWindow extends javax.swing.JFrame {
        else{
            String username = jTextField6.getText();
            String password = jTextField7.getText();
-            ErrorMessage message = controller.login(username, password);
-           if (message == null) {
+           boolean flag = controller.login(username, password);
+           if (flag) {
                 //new Forum(controller, new ForumsViewPanel(controller) ).setSize(693,516);
                 _forum= new Forum(controller, this);
                this.setVisible(false);
            }
-           else     JOptionPane.showMessageDialog(null, message.getReason(), "Login Error", 0);
        }
 }//GEN-LAST:event_jButton1ActionPerformed
 
