@@ -17,8 +17,6 @@ import java.util.Observer;
 import domain.ClientController;
 import javax.swing.DefaultListModel;
 
-import presentation.gui.notifications.TempNotification;
-
 import common.forum.items.ThreadInfo;
 import common.forum.items.UserInfo;
 import common.network.messages.ErrorMessage;
@@ -238,7 +236,7 @@ public class Forum extends javax.swing.JFrame implements Observer{
 	private void nofity(final ErrorMessage em) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            	new TempNotification(em, em.getReason());
+            	//new TempNotification(em, em.getReason());
             }
         });
 	}
