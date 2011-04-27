@@ -49,7 +49,7 @@ public class PostPanel extends javax.swing.JPanel {
         title.setText(title1);
         body.setText(body1);
         //TODO add if statement to check if the user is the owner of the post
-        if(this.getController().getCurrentLogedInUsername().equals(this.getOwner()))
+        if(!this.getController().getCurrentLogedInUsername().equals(this.getOwner()))
         {
            editBtm.setVisible(false);
            remove.setVisible(false);
@@ -103,14 +103,14 @@ public class PostPanel extends javax.swing.JPanel {
 
         author.setFont(new java.awt.Font("Arial", 3, 14));
         author.setForeground(new java.awt.Color(0, 0, 204));
-        author.setText("authore");
+        author.setText("author");
         author.setBounds(30, 10, 80, 20);
         mainPanel.add(author, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        date.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        date.setFont(new java.awt.Font("Arial", 3, 14));
         date.setForeground(new java.awt.Color(0, 255, 0));
         date.setText("date");
-        date.setBounds(400, 10, 60, 17);
+        date.setBounds(360, 10, 80, 17);
         mainPanel.add(date, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         remove.setText("Remove");
