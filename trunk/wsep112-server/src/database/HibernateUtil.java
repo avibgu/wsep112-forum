@@ -217,6 +217,27 @@ public class HibernateUtil {
 			return null;
 		}
 	}
+	
+	public static List<User> retrieveUserFriends(String username) {
+		
+		try{
+			   
+			Session session = getSession();
+			Transaction transaction = session.beginTransaction();
+			
+			  Query q = session.createQuery("from User as u where u._username= :id");
+			  q.setParameter("id", username);
+			  
+			  return q.list();
+			 
+		}
+		catch(Exception e){
+			   
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 
 public static Post retrievePost(int postId) {
 		
