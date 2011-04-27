@@ -178,7 +178,11 @@ public class ManageFriends extends javax.swing.JFrame {
      }
      else{
           String name= (String)membersList.getElementAt(index);
-          controller.AddFriend(name);
+          if (controller.AddFriend(name)) {
+              membersList.removeElementAt(index);
+              friendsList.addElement(name);
+              JOptionPane.showMessageDialog(null, "Friend added succsessfully.", "Adding friend", 0);
+          };
      }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -189,7 +193,11 @@ public class ManageFriends extends javax.swing.JFrame {
      }
      else{
           String name= (String)friendsList.getElementAt(index);
-          controller.RemoveFriend(name);
+          if (controller.RemoveFriend(name)) {
+              friendsList.removeElementAt(index);
+              membersList.addElement(name);
+              JOptionPane.showMessageDialog(null, "Friend removed succsessfully.", "Removing friend", 0);
+          };
      }
     }//GEN-LAST:event_jButton2ActionPerformed
 
