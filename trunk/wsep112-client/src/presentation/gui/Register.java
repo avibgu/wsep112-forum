@@ -41,73 +41,53 @@ public class Register extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 12));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/go_back.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(10, 390, 50, 30);
-
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Register", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("FirstName");
-        jLabel2.setBounds(110, 140, -1, -1);
+        jLabel2.setBounds(110, 140, 79, 20);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel6.setText("LastName");
-        jLabel6.setBounds(110, 180, -1, -1);
+        jLabel6.setBounds(110, 180, 78, 20);
         jLayeredPane1.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel3.setText("UserName");
-        jLabel3.setBounds(110, 220, -1, -1);
+        jLabel3.setBounds(110, 220, 79, 20);
         jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel4.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Password");
-        jLabel4.setBounds(110, 260, -1, -1);
+        jLabel4.setBounds(110, 260, 73, 20);
         jLayeredPane1.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel5.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel5.setText("Email");
-        jLabel5.setBounds(140, 300, 50, -1);
+        jLabel5.setBounds(140, 300, 50, 20);
         jLayeredPane1.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel7.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jLabel7.setText("Please insert all details in order to register to the forum");
-        jLabel7.setBounds(30, 60, 450, -1);
-        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +96,11 @@ public class Register extends javax.swing.JFrame {
         });
         jButton1.setBounds(230, 340, 70, 30);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel7.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel7.setText("Please insert all details in order to register to the forum");
+        jLabel7.setBounds(30, 60, 450, 20);
+        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextField2.setBounds(200, 300, 140, 30);
         jLayeredPane1.add(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextField5.setBounds(200, 260, 140, 30);
@@ -129,6 +114,16 @@ public class Register extends javax.swing.JFrame {
 
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(20, 10, 490, 380);
+
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 12));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/go_back.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(10, 390, 50, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forums.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
