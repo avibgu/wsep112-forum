@@ -49,6 +49,7 @@ public class ManageFriends extends javax.swing.JFrame {
                  if (checkFriends(member.getUserName())) {
                      membersList.addElement(member.getUserName()); }
         }
+        this.setSize(540,470);
         setVisible(true);
         initComponents();
     }
