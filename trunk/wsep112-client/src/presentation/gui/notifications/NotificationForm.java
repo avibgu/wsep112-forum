@@ -36,51 +36,42 @@ public class NotificationForm extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel1 = new javax.swing.JLabel(_msg);
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(204, 255, 204));
+        setTitle("Got Notification from Server");
+        setBackground(new java.awt.Color(51, 51, 255));
+        setForeground(new java.awt.Color(204, 255, 204));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setBackground(new java.awt.Color(204, 255, 204));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        getContentPane().add(jLabel1, gridBagConstraints);
-
-        jLabel2.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
-        jLabel2.setText("Got Notification from Server:");
+        jLabel1.setBackground(new java.awt.Color(35, 204, 35));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        getContentPane().add(jLabel2, gridBagConstraints);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(jLabel1, gridBagConstraints);
 
-        jLabel3.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel3.setBackground(new java.awt.Color(35, 204, 35));
         jLabel3.setText("        ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(jLabel3, gridBagConstraints);
 
-        jLabel4.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel4.setBackground(new java.awt.Color(35, 204, 35));
         jLabel4.setText("        ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(jLabel4, gridBagConstraints);
 
-        jLabel5.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel5.setBackground(new java.awt.Color(35, 204, 35));
         jLabel5.setText("        ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -89,22 +80,13 @@ public class NotificationForm extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(jLabel5, gridBagConstraints);
 
-        jLabel6.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel6.setBackground(new java.awt.Color(35, 204, 35));
         jLabel6.setText("        ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(jLabel6, gridBagConstraints);
-
-        jLabel7.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel7.setText("        ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        getContentPane().add(jLabel7, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -112,12 +94,10 @@ public class NotificationForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 
 }
