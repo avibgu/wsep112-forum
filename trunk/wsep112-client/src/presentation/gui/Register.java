@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author מירי
+ * @author ׳�׳™׳¨׳™
  */
 public class Register extends javax.swing.JFrame {
 
@@ -148,12 +148,11 @@ public class Register extends javax.swing.JFrame {
            String username = jTextField6.getText();
            String password = jTextField5.getText();
            String email = jTextField2.getText();
-            ErrorMessage message =   controller.register(firstname, lastname, username, password, email);
-           if (message == null){
+           boolean flag = controller.register(firstname, lastname, username, password, email);
+           if (flag){
                    this.getStartWindow().setForum(new Forum(controller, getStartWindow()));
                    this.setVisible(false);
            }
-           else  JOptionPane.showMessageDialog(null, message.getReason(), "Register Error", 0);
        }
 }//GEN-LAST:event_jButton1ActionPerformed
 
