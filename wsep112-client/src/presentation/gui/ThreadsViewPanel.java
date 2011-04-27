@@ -59,6 +59,11 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
     public ClientController getClientController(){
         return this._clientController;
     }
+    
+    private String getForumId(){
+    	return this._ForumId;
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -167,9 +172,10 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
           //View Thread Button
         this.thread_list=   (DefaultListModel)jList1.getModel();
          _threadsIndexSelected= jList1.getSelectedIndex();
+         String threadIdString=  Integer.toString(_threadsIndexSelected);
          if (_threadsIndexSelected>=0  ){
               getStartWindow().nonDisplayForum(); //setVisible false
-             getStartWindow().getForum().displayForum( new PostsViewPanel( getClientController(), getStartWindow()));
+             getStartWindow().getForum().displayForum( new PostsViewPanel( getClientController(),getForumId(),threadIdString, getStartWindow()));
         }
     }//GEN-LAST:event_jList1ValueChanged
 
