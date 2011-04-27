@@ -78,6 +78,9 @@
                   <Connection code="presentation.gui.ManageFriends.getFriendsListModel()" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="jList1ValueChanged"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
