@@ -51,6 +51,7 @@ public class Forum extends javax.swing.JFrame {
                  friendsList.addElement(friend.getUserName());
         }
          initComponents();
+         this.setSize(693,516);
          setVisible(true);
     }
 
