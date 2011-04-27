@@ -128,14 +128,15 @@ public class Forum extends javax.swing.JFrame {
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hello User !", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 10));
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shiran\\Desktop\\logout-icon.png")); // NOI18N
         jButton1.setText("Logout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(30, 403, 80, 30);
+        jButton1.setBounds(20, 410, 110, 30);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "My Friends", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -144,24 +145,25 @@ public class Forum extends javax.swing.JFrame {
         jList1.setModel(presentation.gui.Forum.getFriendsListModel());
         jScrollPane1.setViewportView(jList1);
 
-        jScrollPane1.setBounds(10, 40, 80, 200);
+        jScrollPane1.setBounds(10, 40, 110, 200);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLayeredPane2.setBounds(20, 40, 100, 260);
+        jLayeredPane2.setBounds(10, 40, 130, 260);
         jLayeredPane1.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 10));
-        jButton2.setText("Edit friends");
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/Edit-Users-icon.png"))); // NOI18N
+        jButton2.setText("Edit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jButton2.setBounds(10, 310, 120, 30);
+        jButton2.setBounds(20, 310, 110, 30);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(jLayeredPane1);
-        jLayeredPane1.setBounds(530, 10, 140, 460);
+        jLayeredPane1.setBounds(520, 10, 150, 460);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forum_img.jpg"))); // NOI18N
         getContentPane().add(jLabel1);

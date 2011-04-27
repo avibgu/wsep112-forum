@@ -113,7 +113,7 @@
               <Font name="Kristen ITC" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/presentation/gui/1302965210_Cancel2.png"/>
+              <Image iconType="3" name="/presentation/gui/Close-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Remove"/>
           </Properties>
