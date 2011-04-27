@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -363,7 +364,8 @@ public class ForumController implements Serializable{
 		Vector<UserInfo> tListOfFriends = new Vector<UserInfo>();
 		User tUser = HibernateUtil.retrieveUser(username);
 		List<String> tUserFriends = tUser.getFriends();
-		for (int i=1; i< tUserFriends.size(); ++i){
+		tUserFriends.removeAll(Arrays.asList(new Object[]{null}));
+		for (int i=0; i< tUserFriends.size(); ++i){
 			String tFriendUserName= tUserFriends.get(i);
 			User tFriend = HibernateUtil.retrieveUser(tFriendUserName);
 			tListOfFriends.add(new UserInfo(tFriend.getStatusAsString(),tUserFriends.get(i)));
