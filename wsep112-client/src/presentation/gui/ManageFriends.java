@@ -196,7 +196,7 @@ public class ManageFriends extends javax.swing.JFrame {
           if (controller.RemoveFriend(name)) {
               friendsList.removeElementAt(index);
               membersList.addElement(name);
-              JOptionPane.showMessageDialog(null, "Friend removed succsessfully.", "Removing friend", 0);
+              JOptionPane.showInternalMessageDialog(null,"Friend removed succsessfully.");
           };
      }
     }//GEN-LAST:event_jButton2ActionPerformed
