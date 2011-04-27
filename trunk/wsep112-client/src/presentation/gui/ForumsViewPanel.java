@@ -26,6 +26,7 @@ public class ForumsViewPanel extends javax.swing.JPanel {
     private ClientController _clientController;
     private int _forumsIndexSelected;
     private StartWindow _start;
+    private  Vector<ForumInfo> _forums;
     DefaultListModel forum_list;
 
     /** Creates new form ThreadsViewPanel */
@@ -39,10 +40,10 @@ public class ForumsViewPanel extends javax.swing.JPanel {
     }
     
     public void fillListForum( ) {
-        Vector<ForumInfo> forums= getController().getForumsList();
+       _forums= getController().getForumsList();
         //this.setVisible(true);
-     for (int j=0; j<forums.size(); j++  ){
-               getForumsListModel().addElement(forums.get(j).getName());
+     for (int j=0; j<_forums.size(); j++  ){
+               getForumsListModel().addElement(_forums.get(j).getName());
               }
     }
 
@@ -117,12 +118,11 @@ public class ForumsViewPanel extends javax.swing.JPanel {
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
          this.forum_list=   (DefaultListModel)jList1.getModel();
         _forumsIndexSelected = jList1.getSelectedIndex();
-        String forumIdString=  Integer.toString(_forumsIndexSelected);
+        int forum_id=_forums.get(_forumsIndexSelected).getForumId();
+        String forumIdString=  Integer.toString(forum_id);
         if (_forumsIndexSelected>=0  ){
               getStartWindow().nonDisplayForum(); //setVisible false
               getStartWindow().getForum().displayForum(new ThreadsViewPanel(getController(),forumIdString,getStartWindow() ) );
-               
-
         }
     }//GEN-LAST:event_jList1ValueChanged
 
