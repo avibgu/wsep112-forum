@@ -60,9 +60,9 @@ public class StartWindow extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -108,8 +108,10 @@ public class StartWindow extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButton1);
         jToggleButton1.setBounds(160, 370, 230, 29);
+        getContentPane().add(jPasswordField1);
+        jPasswordField1.setBounds(210, 250, 120, 30);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 102));
         jLabel2.setText("Don't you have an account?");
         getContentPane().add(jLabel2);
@@ -119,8 +121,6 @@ public class StartWindow extends javax.swing.JFrame {
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 530, 430);
-        getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(210, 250, 120, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
