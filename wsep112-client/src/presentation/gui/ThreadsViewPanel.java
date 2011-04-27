@@ -148,12 +148,15 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
           //View Thread Button
-        this.thread_list=   (DefaultListModel)jList1.getModel();
+      //  this.thread_list=   (DefaultListModel)jList1.getModel();
          _threadsIndexSelected= jList1.getSelectedIndex();
          String threadIdString=  Integer.toString(_threadsIndexSelected);
          if (_threadsIndexSelected>=0  ){
+             Vector <ThreadInfo> threads= _clientController.getThreadsList(_ForumId);
+             int thread_id=threads.get(_threadsIndexSelected).getThread_id();
+             String thread_id_string=  Integer.toString(thread_id);
               getStartWindow().nonDisplayForum(); //setVisible false
-             getStartWindow().getForum().displayForum( new PostsViewPanel( getClientController(),getForumId(),threadIdString, getStartWindow()));
+             getStartWindow().getForum().displayForum( new PostsViewPanel( getClientController(),getForumId(),thread_id_string, getStartWindow()));
         }
     }//GEN-LAST:event_jList1ValueChanged
 
