@@ -101,16 +101,14 @@ public class PostPanel extends javax.swing.JPanel {
         editBtm.setBounds(60, 280, 100, 23);
         mainPanel.add(editBtm, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        author.setFont(new java.awt.Font("Arial", 3, 14));
-        author.setForeground(new java.awt.Color(0, 0, 204));
+        author.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         author.setText("author");
         author.setBounds(30, 10, 80, 20);
         mainPanel.add(author, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        date.setFont(new java.awt.Font("Arial", 3, 14));
-        date.setForeground(new java.awt.Color(0, 255, 0));
+        date.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         date.setText("date");
-        date.setBounds(360, 10, 80, 17);
+        date.setBounds(350, 10, 90, 20);
         mainPanel.add(date, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         remove.setText("Remove");
@@ -129,14 +127,14 @@ public class PostPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(599, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
