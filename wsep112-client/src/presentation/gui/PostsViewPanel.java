@@ -81,23 +81,25 @@ public class PostsViewPanel extends javax.swing.JPanel {
         back.setBounds(20, 30, 40, 30);
         jLayeredPane1.add(back, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        postsPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        postsPanel.setFocusTraversalPolicyProvider(true);
         postsPanel.setMaximumSize(new java.awt.Dimension(1000, 1000));
-        postsPanel.setPreferredSize(new java.awt.Dimension(400, 250));
+        postsPanel.setPreferredSize(new java.awt.Dimension(400, 320));
 
         javax.swing.GroupLayout postsPanelLayout = new javax.swing.GroupLayout(postsPanel);
         postsPanel.setLayout(postsPanelLayout);
         postsPanelLayout.setHorizontalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 478, Short.MAX_VALUE)
+            .addGap(0, 461, Short.MAX_VALUE)
         );
         postsPanelLayout.setVerticalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 258, Short.MAX_VALUE)
+            .addGap(0, 320, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(postsPanel);
 
-        jScrollPane1.setBounds(20, 70, 480, 260);
+        jScrollPane1.setBounds(20, 70, 480, 270);
         jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
