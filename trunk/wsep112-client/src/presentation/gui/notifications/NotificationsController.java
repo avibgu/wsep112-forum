@@ -97,7 +97,7 @@ public class NotificationsController implements Observer {
                 }
             });
             try { Thread.sleep(3000); } catch (Exception ex) {}
-            popup.setVisible(true);
+            popup.dispose();
 	}
 
 	public void set_observable(Observable _observable) {
