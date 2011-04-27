@@ -16,7 +16,6 @@ import common.forum.items.PostInfo;
 import common.forum.items.ThreadInfo;
 import common.forum.items.UserInfo;
 import common.network.messages.ErrorMessage;
-import common.network.messages.MessageType;
 import common.notifications.FriendAddedPostNotification;
 import common.notifications.Notification;
 import common.notifications.PostAddedToYourThreadNotification;
@@ -62,10 +61,10 @@ public class CLI implements Observer{
 			System.out.println();
 			key = readFromUser();
 	        if (key.equals("1")) {
-	        	if (register().getMessageType() == MessageType.OK) subMenu();
+	        	if(register()) subMenu();
 	        }
 	        else if (key.equals("2")){
-	        	if (login().getMessageType() == MessageType.LOGIN) subMenu();
+	        	if (login()) subMenu();
 	        }
 		}
        }
@@ -234,8 +233,6 @@ public class CLI implements Observer{
 	 * @throws IOException
 	 */
 	private void ViewThreads(String forumID) throws IOException {
-
-		
 		String str = "";
 		Vector<ThreadInfo> threadList = getClientController().getThreadsList(forumID);
 		if (threadList == null) return;		
@@ -355,7 +352,7 @@ public class CLI implements Observer{
 	 * @return
 	 * @throws IOException
 	 */
-	public ErrorMessage register() throws IOException {
+	public boolean register() throws IOException {
 		System.out.println("Please insert your firstName");
 		String firstName = buf.readLine();
 		System.out.println("Please insert your lastName");
@@ -374,7 +371,7 @@ public class CLI implements Observer{
 	 * @return
 	 * @throws IOException
 	 */
-	public ErrorMessage login() throws IOException {
+	public boolean login() throws IOException {
 		System.out.println("Please insert your username");
 		String username = buf.readLine();
 		System.out.println("Please insert your password");
