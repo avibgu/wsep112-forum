@@ -14,10 +14,11 @@ package presentation.gui;
 import common.forum.items.UserInfo;
 import domain.ClientController;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author מירי
+ * @author ׳�׳™׳¨׳™
  */
 public class ManageFriends extends javax.swing.JFrame {
 
@@ -27,6 +28,7 @@ public class ManageFriends extends javax.swing.JFrame {
      public static DefaultListModel friendsList= new DefaultListModel();
 
     public boolean checkFriends(String member) {
+        if (controller.getCurrentLogedInUsername().equals(member)) return false;
         for (int i=0; i<controller.getFriendList().size(); i++  ){
              UserInfo friend = controller.getFriendList().get(i);
              if ((friend.getUserName()).equals(member)) return false;
@@ -87,7 +89,7 @@ public class ManageFriends extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton3.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Kristen ITC", 1, 12));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/go_back.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,31 +109,46 @@ public class ManageFriends extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jButton1.setBounds(60, 300, 110, 30);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton2.setText("Remove");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jButton2.setBounds(290, 300, 110, 30);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel2.setText("Please choose members to add or remove to your list");
         jLabel2.setBounds(40, 30, 430, 70);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jList2.setModel(presentation.gui.ManageFriends.getMembersListModel());
+        jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList2ValueChanged(evt);
+            }
+        });
         jScrollPane3.setViewportView(jList2);
 
         jScrollPane3.setBounds(50, 130, 130, 160);
         jLayeredPane1.add(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 12));
         jLabel1.setText("Add new friend");
         jLabel1.setBounds(60, 100, 110, 20);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 12));
         jLabel3.setText("Remove exist friend");
         jLabel3.setBounds(270, 100, 150, 20);
         jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -146,6 +163,29 @@ public class ManageFriends extends javax.swing.JFrame {
       getStartWindow().getForum().displayForum(new ForumsViewPanel(controller,getStartWindow() ) );
         this.setVisible(false);
 }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     int index= jList2.getSelectedIndex();
+     if (index==-1){
+           JOptionPane.showMessageDialog(null, "Please choose member to add.", "Error Adding friend", 0);
+     }
+     else{
+          String name= (String)membersList.getElementAt(index);
+          System.out.println("member name= " + name);
+          controller.AddFriend(name);
+     }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.friendsList = (DefaultListModel)jList1.getModel();
+        int friendSelected = jList1.getSelectedIndex();
+        String friendName =  Integer.toString(friendSelected);
+        controller.RemoveFriend(friendName);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jList2ValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
