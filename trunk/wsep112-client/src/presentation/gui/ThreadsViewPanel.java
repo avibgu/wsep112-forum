@@ -141,15 +141,14 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // Back Button
         this.setVisible(false);
-         getStartWindow().nonDisplayForum(); //setVisible false
+        getStartWindow().nonDisplayForum(); //setVisible false
         getStartWindow().getForum().displayForum( new ForumsViewPanel( getClientController(), getStartWindow()));
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     // Add Thread Button
        getStartWindow().nonDisplayForum(); //setVisible false
-        new AddThreadFrame(getClientController(),_ForumId, getStartWindow()).setSize(430,370);
-
+       getStartWindow().getForum().displayForum( new AddThreadPanel(getClientController(),_ForumId, getStartWindow()));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
