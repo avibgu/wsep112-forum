@@ -81,15 +81,18 @@ public class PostsViewPanel extends javax.swing.JPanel {
         back.setBounds(20, 30, 40, 30);
         jLayeredPane1.add(back, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        postsPanel.setMaximumSize(new java.awt.Dimension(1000, 1000));
+        postsPanel.setPreferredSize(new java.awt.Dimension(400, 250));
+
         javax.swing.GroupLayout postsPanelLayout = new javax.swing.GroupLayout(postsPanel);
         postsPanel.setLayout(postsPanelLayout);
         postsPanelLayout.setHorizontalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1067, Short.MAX_VALUE)
+            .addGap(0, 478, Short.MAX_VALUE)
         );
         postsPanelLayout.setVerticalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 441, Short.MAX_VALUE)
+            .addGap(0, 258, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(postsPanel);
@@ -99,7 +102,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel2.setText("List Of Posts");
-        jLabel2.setBounds(240, 50, 105, 20);
+        jLabel2.setBounds(210, 50, 105, 20);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forum.png"))); // NOI18N
@@ -124,7 +127,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(565, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
