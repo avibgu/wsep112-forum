@@ -50,10 +50,11 @@ public class NewPost extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         ok = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "forum system", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 3, 14), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "forum system", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Kristen ITC", 3, 14));
+        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel1.setText("add your new post :");
 
         title.addActionListener(new java.awt.event.ActionListener() {
@@ -62,18 +63,18 @@ public class NewPost extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 3, 12));
-        jLabel2.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel2.setText("title :");
 
         body.setColumns(20);
         body.setRows(5);
         jScrollPane1.setViewportView(body);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 3, 12));
-        jLabel3.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel3.setText("body:");
 
+        ok.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        ok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/addThreadIcon.png"))); // NOI18N
         ok.setText("ok");
         ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,10 +82,21 @@ public class NewPost extends javax.swing.JPanel {
             }
         });
 
+        cancel.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/1302965210_Cancel2.png"))); // NOI18N
         cancel.setText("cancel");
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/addThreadIcon.png"))); // NOI18N
+        jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -100,7 +112,7 @@ public class NewPost extends javax.swing.JPanel {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -109,7 +121,10 @@ public class NewPost extends javax.swing.JPanel {
                                 .addGap(37, 37, 37)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(ok)
+                        .addGap(122, 122, 122)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cancel)
                         .addGap(21, 21, 21))))
@@ -128,17 +143,18 @@ public class NewPost extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancel)
-                    .addComponent(ok))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cancel)
+                        .addComponent(ok, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1))
+                .addGap(162, 162, 162))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 564, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,7 +162,6 @@ public class NewPost extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -173,6 +188,19 @@ public class NewPost extends javax.swing.JPanel {
    getStart().getForum().displayForum(new PostsViewPanel(getclientController(),this.getForum_id(),this.getThread_id(),this.getStart()));
         this.setVisible(false);
 }//GEN-LAST:event_cancelActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //OK Button
+        String new_title=title.getText();
+        String new_body=body.getText();
+        //updating the database via the clientController
+        this.getclientController().replyToThread(_forum_id,new_title, new_body,_thread_id);
+        //shows the new post list
+       getStart().getForum().displayForum(   new PostsViewPanel(getclientController(),this.getForum_id(),this.getThread_id(),this.getStart()));
+        //removig the view of new post
+        this.setVisible(false);
+        }
+//GEN-LAST:event_jButton1ActionPerformed
 
     //******************************************* GETTERS ************************************************//
     public ClientController getclientController(){
@@ -204,6 +232,7 @@ public StartWindow getStart(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea body;
     private javax.swing.JButton cancel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
