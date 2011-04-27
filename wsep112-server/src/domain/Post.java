@@ -33,9 +33,6 @@ public class Post implements Serializable{
 	 */
 	public void edit_titel(String title){
 		set_title(title);
-		
-		// TODO: database
-	
 	}
 	/**
 	 * editing only the body
@@ -43,7 +40,6 @@ public class Post implements Serializable{
 	 */
 	public void edit_body(String body){
 		set_body(body);
-		// TODO: database
 	}
 	
 	/**
