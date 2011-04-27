@@ -240,7 +240,7 @@ public class ForumController implements Serializable{
 
 		Message msg = HibernateUtil.retrieveForum(Integer.valueOf(forumId)).reaplyToThread(title, body,  Integer.parseInt(threadId), user);
 		
-		notifyAboutNewPost(user, thread);
+		//notifyAboutNewPost(user, thread);
 		
 		return msg;
     }
@@ -269,7 +269,7 @@ public class ForumController implements Serializable{
 		
 		//HibernateUtil.updateDB(tForum);
 		
-		notifyAboutNewPost(user, new_thread);
+		//notifyAboutNewPost(user, new_thread);
 		
 		return tMsg;
     }
@@ -432,8 +432,7 @@ public class ForumController implements Serializable{
 		Thread tThread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
 		User tUser = HibernateUtil.retrievePostOwner(Integer.parseInt(postId));
 		tThread.delete(Integer.parseInt(postId), tUser);
-		
-		
+			
 		// TODO: return real answer..
 		return new OKMessage();
 	}
