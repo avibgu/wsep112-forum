@@ -85,19 +85,19 @@ public class PostsViewPanel extends javax.swing.JPanel {
         postsPanel.setLayout(postsPanelLayout);
         postsPanelLayout.setHorizontalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 818, Short.MAX_VALUE)
+            .addGap(0, 1067, Short.MAX_VALUE)
         );
         postsPanelLayout.setVerticalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 262, Short.MAX_VALUE)
+            .addGap(0, 441, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(postsPanel);
 
-        jScrollPane1.setBounds(20, 70, 480, 264);
+        jScrollPane1.setBounds(20, 70, 480, 260);
         jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel2.setText("List Of Posts");
         jLabel2.setBounds(240, 50, 105, 20);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
