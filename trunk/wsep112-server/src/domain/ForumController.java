@@ -366,7 +366,6 @@ public class ForumController implements Serializable{
 		for (int i=1; i< tUserFriends.size(); ++i){
 			String tFriendUserName= tUserFriends.get(i);
 			User tFriend = HibernateUtil.retrieveUser(tFriendUserName);
-			System.out.println("null? " + tFriend.get_Username());
 			tListOfFriends.add(new UserInfo(tFriend.getStatusAsString(),tUserFriends.get(i)));
 		}
 		
