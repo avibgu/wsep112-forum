@@ -31,7 +31,7 @@ import javax.swing.JPanel;
  *
  * @author
  */
-public class Forum extends javax.swing.JFrame implements Observer{
+public class Forum extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = -2618735121811057973L;
 	private javax.swing.JPanel _mainPanel;
@@ -43,7 +43,6 @@ public class Forum extends javax.swing.JFrame implements Observer{
     /** Creates new form Forum with main panel(forun/threads/posts) */
     public Forum(ClientController clientController, StartWindow start ) {
         controller = clientController;
-        controller.addObserver(this);
         _start=start;                
           dispalyInitialForum( new ForumsViewPanel(controller, getStartWindow() ));
         /* //TO DO - wait for this implementation by avi
@@ -221,23 +220,4 @@ public class Forum extends javax.swing.JFrame implements Observer{
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-	@Override
-    public void update(Observable o, Object arg){
-		// AVID remove this..
-		System.out.println("Forum got notification..");
-    	if (null != arg) nofity(arg);
-    }
-
-	private void nofity(Object arg){
-		// AVID ignore it..
-		System.err.println("notification problem..");
-	}
-
-	private void nofity(final ErrorMessage em) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            	//new TempNotification(em, em.getReason());
-            }
-        });
-	}
 }
