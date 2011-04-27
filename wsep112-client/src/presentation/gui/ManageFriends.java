@@ -89,7 +89,7 @@ public class ManageFriends extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton3.setFont(new java.awt.Font("Kristen ITC", 1, 12));
+        jButton3.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/go_back.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,12 +102,17 @@ public class ManageFriends extends javax.swing.JFrame {
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum members", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14))); // NOI18N
 
         jList1.setModel(presentation.gui.ManageFriends.getFriendsListModel());
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(jList1);
 
         jScrollPane2.setBounds(280, 130, 130, 160);
         jLayeredPane1.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,32 +165,41 @@ public class ManageFriends extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      getStartWindow().getForum().displayForum(new ForumsViewPanel(controller,getStartWindow() ) );
+        friendsList.removeAllElements();
+        membersList.removeAllElements();
+        getStartWindow().getForum().displayForum(new ForumsViewPanel(controller,getStartWindow() ) );
         this.setVisible(false);
 }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     int index= jList2.getSelectedIndex();
+     int index = jList2.getSelectedIndex();
      if (index==-1){
            JOptionPane.showMessageDialog(null, "Please choose member to add.", "Error Adding friend", 0);
      }
      else{
           String name= (String)membersList.getElementAt(index);
-          System.out.println("member name= " + name);
           controller.AddFriend(name);
      }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.friendsList = (DefaultListModel)jList1.getModel();
-        int friendSelected = jList1.getSelectedIndex();
-        String friendName =  Integer.toString(friendSelected);
-        controller.RemoveFriend(friendName);
+     int index = jList1.getSelectedIndex();
+     if (index==-1){
+           JOptionPane.showMessageDialog(null, "Please choose friend to remove.", "Error Removing friend", 0);
+     }
+     else{
+          String name= (String)friendsList.getElementAt(index);
+          controller.RemoveFriend(name);
+     }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_jList2ValueChanged
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jList1ValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
