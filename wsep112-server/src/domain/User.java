@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -160,7 +161,7 @@ public class User implements Serializable{
 			return new ErrorMessage("Friend is already exists in user's list.");
 		}
 		
-		_friends.add(userNameFriend);
+		getFriends().add(userNameFriend);
 		return new OKMessage();
 	}
 
@@ -265,5 +266,11 @@ public class User implements Serializable{
 	
 	public List<String> getFriends(){
 		return _friends;
+		/*List<String> ans = new ArrayList<String>();
+		List<User> tFriends  = HibernateUtil.retrieveUserFriends(_username);
+		for (int i=0; i>tFriends.size(); ++i){
+			ans.add(tFriends.get(i).get_Username());
+		}
+		return ans;*/
 	}
 }
