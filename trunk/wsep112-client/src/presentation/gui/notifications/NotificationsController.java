@@ -93,6 +93,7 @@ public class NotificationsController implements Observer {
             final NotificationForm popup = new NotificationForm(message);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
+                	popup.setLocation(930, 670);
                     popup.setVisible(true);
                 }
             });
