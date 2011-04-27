@@ -60,14 +60,14 @@ public class NewPost extends javax.swing.JPanel {
         title.setBounds(70, 60, 360, 30);
         jLayeredPane1.add(title, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jLabel2.setText("title");
-        jLabel2.setBounds(30, 60, 35, 20);
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel2.setText("Title");
+        jLabel2.setBounds(15, 60, 50, 20);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jLabel3.setText("body");
-        jLabel3.setBounds(30, 100, 37, 20);
+        jLabel3.setText("Body");
+        jLabel3.setBounds(17, 100, 50, 20);
         jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         body.setColumns(20);
@@ -77,8 +77,8 @@ public class NewPost extends javax.swing.JPanel {
         jScrollPane1.setBounds(70, 100, 360, 220);
         jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/addThreadIcon.png"))); // NOI18N
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Ok-icon.png"))); // NOI18N
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,8 +88,8 @@ public class NewPost extends javax.swing.JPanel {
         jButton1.setBounds(110, 380, 120, 33);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/1302965210_Cancel2.png"))); // NOI18N
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

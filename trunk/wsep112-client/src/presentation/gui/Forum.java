@@ -128,7 +128,7 @@ public class Forum extends javax.swing.JFrame {
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Hello User !", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 12));
         jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\shiran\\Desktop\\logout-icon.png")); // NOI18N
         jButton1.setText("Logout");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +141,7 @@ public class Forum extends javax.swing.JFrame {
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "My Friends", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jList1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jList1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jList1.setModel(presentation.gui.Forum.getFriendsListModel());
         jScrollPane1.setViewportView(jList1);
 
@@ -152,7 +152,7 @@ public class Forum extends javax.swing.JFrame {
         jLayeredPane1.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/Edit-Users-icon.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Edit-Users-icon.png"))); // NOI18N
         jButton2.setText("Edit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +165,7 @@ public class Forum extends javax.swing.JFrame {
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(520, 10, 150, 460);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forum_img.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/forum_img.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 680, 480);
 

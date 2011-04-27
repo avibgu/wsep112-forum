@@ -30,7 +30,7 @@
           <Font name="Kristen ITC" size="12" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/presentation/gui/go_back.png"/>
+          <Image iconType="3" name="/presentation/gui/pics/go_back.png"/>
         </Property>
       </Properties>
       <Events>
@@ -94,7 +94,7 @@
               <Font name="Kristen ITC" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/presentation/gui/addThreadIcon.png"/>
+              <Image iconType="3" name="/presentation/gui/pics/addThreadIcon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
@@ -113,7 +113,7 @@
               <Font name="Kristen ITC" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/presentation/gui/Close-icon.png"/>
+              <Image iconType="3" name="/presentation/gui/pics/Close-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Remove"/>
           </Properties>
@@ -198,7 +198,7 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/presentation/gui/forums.jpg"/>
+          <Image iconType="3" name="/presentation/gui/pics/forums.jpg"/>
         </Property>
       </Properties>
       <Constraints>

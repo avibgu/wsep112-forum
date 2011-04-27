@@ -88,13 +88,14 @@ public class Register extends javax.swing.JFrame {
         jLayeredPane1.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Ok-icon.png"))); // NOI18N
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(230, 340, 70, 30);
+        jButton1.setBounds(220, 340, 100, 30);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel7.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
@@ -113,22 +114,22 @@ public class Register extends javax.swing.JFrame {
         jLayeredPane1.add(jTextField4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(jLayeredPane1);
-        jLayeredPane1.setBounds(20, 10, 490, 380);
+        jLayeredPane1.setBounds(20, 40, 490, 380);
 
-        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 12));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/go_back.png"))); // NOI18N
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/go_back.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(10, 390, 50, 30);
+        jButton2.setBounds(10, 10, 50, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forums.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/forums.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 535, 431);
+        jLabel1.setBounds(0, 0, 530, 430);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
