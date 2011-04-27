@@ -74,13 +74,15 @@ public Message reaply(String title, String body,User owner){
 			Post tPost = tAllPosts.get(i); 
 			if(tPost.get_post_id() == post_id){
 				owner.removePost(getThread_id(),post_id);
-				//HibernateUtil.updateDB(owner);
-				HibernateUtil.runQuery("delete from user_posts where post_id =" + post_id);
+				HibernateUtil.runQuery("delete from user_posts where post_id =" + String.valueOf(post_id));
 				int row = HibernateUtil.deletePost(post_id);
-				HibernateUtil.updateDB(tPost);
+				
+				getPosts().remove(tPost);
+				
 				return new OKMessage();
 			}
 		}
+		
 		return new ErrorMessage("post doesn't exists.");
 	}
 	
