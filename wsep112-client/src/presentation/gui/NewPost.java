@@ -41,32 +41,41 @@ public class NewPost extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         title = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         body = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Post", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 0, 14))); // NOI18N
+        jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "AddPost", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14))); // NOI18N
 
         title.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titleActionPerformed(evt);
             }
         });
+        title.setBounds(70, 60, 360, 30);
+        jLayeredPane1.add(title, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel2.setText("title");
+        jLabel2.setBounds(30, 60, 35, 20);
+        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel3.setText("body");
+        jLabel3.setBounds(30, 100, 37, 20);
+        jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         body.setColumns(20);
         body.setRows(5);
         jScrollPane1.setViewportView(body);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jLabel3.setText("body");
+        jScrollPane1.setBounds(70, 100, 360, 220);
+        jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/addThreadIcon.png"))); // NOI18N
@@ -76,6 +85,8 @@ public class NewPost extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.setBounds(130, 380, 85, 33);
+        jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/1302965210_Cancel2.png"))); // NOI18N
@@ -85,47 +96,8 @@ public class NewPost extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(95, 95, 95))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(7, 7, 7)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(86, 86, 86)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(97, 97, 97))
-        );
+        jButton2.setBounds(250, 380, 123, 30);
+        jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -133,14 +105,15 @@ public class NewPost extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -200,7 +173,7 @@ public StartWindow getStart(){
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField title;
     // End of variables declaration//GEN-END:variables
