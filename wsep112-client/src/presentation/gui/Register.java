@@ -62,32 +62,32 @@ public class Register extends javax.swing.JFrame {
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Register", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel2.setText("FirstName");
         jLabel2.setBounds(110, 140, 79, 20);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel6.setText("LastName");
         jLabel6.setBounds(110, 180, 78, 20);
         jLayeredPane1.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel3.setText("UserName");
         jLabel3.setBounds(110, 220, 79, 20);
         jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel4.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel4.setText("Password");
         jLabel4.setBounds(110, 260, 73, 20);
         jLayeredPane1.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel5.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel5.setText("Email");
         jLabel5.setBounds(140, 300, 50, 20);
         jLayeredPane1.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Ok-icon.png"))); // NOI18N
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +100,7 @@ public class Register extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel7.setText("Please insert all details in order to register to the forum");
-        jLabel7.setBounds(30, 60, 450, 20);
+        jLabel7.setBounds(30, 40, 450, 20);
         jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jTextField2.setBounds(200, 300, 140, 30);
         jLayeredPane1.add(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -116,7 +116,7 @@ public class Register extends javax.swing.JFrame {
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(20, 40, 490, 380);
 
-        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 12));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/go_back.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
