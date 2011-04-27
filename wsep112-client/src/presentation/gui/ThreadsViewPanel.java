@@ -80,7 +80,6 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
         jList1 = new javax.swing.JList();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setLayout(null);
 
@@ -132,10 +131,6 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
 
         add(jLayeredPane4);
         jLayeredPane4.setBounds(10, 11, 508, 459);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forum_img.jpg"))); // NOI18N
-        add(jLabel2);
-        jLabel2.setBounds(0, 10, 520, 480);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -167,7 +162,6 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane4;
     private javax.swing.JList jList1;
