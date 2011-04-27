@@ -62,11 +62,10 @@ public class PostsViewPanel extends javax.swing.JPanel {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         back = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        postsPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         newPost = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        postsPanel = new javax.swing.JPanel();
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
@@ -81,6 +80,23 @@ public class PostsViewPanel extends javax.swing.JPanel {
         back.setBounds(20, 30, 40, 30);
         jLayeredPane1.add(back, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("List Of Posts");
+        jLabel2.setBounds(210, 50, 105, 20);
+        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        newPost.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        newPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
+        newPost.setText("Add New Post");
+        newPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newPostActionPerformed(evt);
+            }
+        });
+        newPost.setBounds(160, 410, 190, 41);
+        jLayeredPane1.add(newPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         postsPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         postsPanel.setFocusTraversalPolicyProvider(true);
         postsPanel.setMaximumSize(new java.awt.Dimension(1000, 1000));
@@ -90,38 +106,17 @@ public class PostsViewPanel extends javax.swing.JPanel {
         postsPanel.setLayout(postsPanelLayout);
         postsPanelLayout.setHorizontalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
+            .addGap(0, 478, Short.MAX_VALUE)
         );
         postsPanelLayout.setVerticalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGap(0, 338, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(postsPanel);
 
-        jScrollPane1.setBounds(20, 70, 480, 240);
+        jScrollPane1.setBounds(20, 70, 480, 340);
         jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("List Of Posts");
-        jLabel2.setBounds(210, 50, -1, -1);
-        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        newPost.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        newPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
-        newPost.setText("Add New Post");
-        newPost.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newPostActionPerformed(evt);
-            }
-        });
-        newPost.setBounds(240, 377, 190, -1);
-        jLayeredPane1.add(newPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/user-group-icon.png"))); // NOI18N
-        jLabel3.setBounds(60, 330, 130, 130);
-        jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -157,7 +152,6 @@ public class PostsViewPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newPost;
