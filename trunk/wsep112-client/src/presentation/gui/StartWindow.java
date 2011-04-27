@@ -55,7 +55,6 @@ public class StartWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField7 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
@@ -63,17 +62,10 @@ public class StartWindow extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField7);
-        jTextField7.setBounds(210, 250, 120, 30);
 
         jLabel4.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel4.setText("Password");
@@ -117,7 +109,7 @@ public class StartWindow extends javax.swing.JFrame {
         getContentPane().add(jToggleButton1);
         jToggleButton1.setBounds(160, 370, 230, 29);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel2.setForeground(new java.awt.Color(255, 0, 102));
         jLabel2.setText("Don't you have an account?");
         getContentPane().add(jLabel2);
@@ -127,17 +119,19 @@ public class StartWindow extends javax.swing.JFrame {
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 530, 430);
+        getContentPane().add(jPasswordField1);
+        jPasswordField1.setBounds(210, 250, 120, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       if (jTextField6.getText().equals("") || (jTextField7.getText().equals(""))){
+       if (jTextField6.getText().equals("") || (jPasswordField1.getText().equals(""))){
             JOptionPane.showMessageDialog(null, "Please insert all details!", "Login Error", 0);
        }
        else{
            String username = jTextField6.getText();
-           String password = jTextField7.getText();
+           String password = jPasswordField1.getText();
            boolean flag = controller.login(username, password);
            if (flag) {
                 //new Forum(controller, new ForumsViewPanel(controller) ).setSize(693,516);
@@ -156,18 +150,14 @@ public class StartWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 
