@@ -22,6 +22,7 @@ import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeFriendsMessage;
 import common.network.messages.SeeThreadPostsMessage;
+import common.network.messages.SeeUsersMessage;
 import common.notifications.FriendAddedPostNotification;
 import common.notifications.PostAddedToYourThreadNotification;
 import common.notifications.ThreadChangedNotification;
@@ -361,10 +362,15 @@ public class ForumController implements Serializable{
 		
 		Vector<UserInfo> tListOfFriends = new Vector<UserInfo>();
 		
-		// TODO need to get all the friends of 'username' from the DB..
-		tListOfFriends.add(new UserInfo("OFFLINE", "TODO: get list of friends from the db.."));
-		///////////////////////////////////////////////////////////////
+		User tUser = HibernateUtil.retrieveUser(username);
+		List<String> tUserFriends = tUser.getFriends();
+		for (int i=0; i< tUserFriends.size(); ++i){
+			String tFriendUserName= tUserFriends.get(i);
+			User tFriend = HibernateUtil.retrieveUser(tFriendUserName);
+			tListOfFriends.add(new UserInfo(tFriend.getStatusAsString(),tUserFriends.get(i)));
+		}
 		
+	
 		sfm.setListOfFriends(tListOfFriends);
 		
 		return sfm;
@@ -376,15 +382,16 @@ public class ForumController implements Serializable{
 	 * 
 	 * @return list of users inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Message getUsersList(SeeFriendsMessage sum) {
+	public Message getUsersList(SeeUsersMessage sum) {
 
 		Vector<UserInfo> tListOfUsers = new Vector<UserInfo>();
 		
-		// TODO need to get all the users from the DB..
-		tListOfUsers.add(new UserInfo("OFFLINE", "TODO: get list of users from the db.."));
-		///////////////////////////////////////////////////////////////
-		
-		sum.setListOfFriends(tListOfUsers);
+		List<User> tUsers = HibernateUtil.retrieveUsers();
+		for (int i=0; i< tUsers.size(); ++i){
+			tListOfUsers.add(new UserInfo(tUsers.get(i).getStatusAsString(),tUsers.get(i).get_Username()));
+		}
+				
+		sum.setListOfUsers(tListOfUsers);
 		
 		return sum;
 	}

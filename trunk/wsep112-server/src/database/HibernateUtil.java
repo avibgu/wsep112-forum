@@ -114,6 +114,21 @@ public class HibernateUtil {
 		 }
 	   }
 	   
+	   public static List<User> retrieveUsers(){
+			 try{  Session session = getSession();
+			   Transaction transaction = session.beginTransaction();
+			   Query q = session.createQuery("from User");
+			   List<User> tAns = q.list();
+			   
+			   return tAns;
+			   
+			 }catch (Exception e){
+				 e.printStackTrace();
+				 return null;
+				 
+			 }
+		   }
+	   
 	   public static Forum retrieveForum(int id){
 		   try{Session session = getSession();
 		   Transaction transaction = session.beginTransaction();
@@ -243,6 +258,7 @@ public static Post retrievePost(int postId) {
 			return null;
 		}
 	}
+
 	
 	public static User retrievePostOwner(int postId){
 		try{

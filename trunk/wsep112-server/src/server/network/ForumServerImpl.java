@@ -27,6 +27,7 @@ import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeFriendsMessage;
 import common.network.messages.SeeThreadPostsMessage;
+import common.network.messages.SeeUsersMessage;
 
 import domain.ForumController;
 
@@ -107,7 +108,7 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 				
 			case SEE_USERS_LIST:
 				
-				SeeFriendsMessage sum = (SeeFriendsMessage)whatToGet;
+				SeeUsersMessage sum = (SeeUsersMessage)whatToGet;
 
 				answer = getForumController().getUsersList(sum);
 				
