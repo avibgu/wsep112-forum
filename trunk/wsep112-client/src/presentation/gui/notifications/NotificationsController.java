@@ -12,8 +12,8 @@ import common.notifications.FriendAddedPostNotification;
 import common.notifications.PostAddedToYourThreadNotification;
 import common.notifications.ThreadChangedNotification;
 import common.observation.Observable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import javax.swing.JOptionPane;
 
 /**
  * @author Avi Digmi
@@ -35,7 +35,10 @@ public class NotificationsController implements Observer {
 	@Override
     public void update(java.util.Observable o, Object arg){
 
-		if (arg instanceof ThreadChangedNotification)
+		if (arg instanceof ErrorMessage)
+			nofity((ErrorMessage)arg);
+		
+		else if (arg instanceof ThreadChangedNotification)
 			nofity((ThreadChangedNotification)arg);
 		
 		else if (arg instanceof FriendAddedPostNotification)
@@ -45,7 +48,12 @@ public class NotificationsController implements Observer {
 			nofity((PostAddedToYourThreadNotification)arg);
     }
 	
-	private void nofity(final ThreadChangedNotification tcn) {
+    private void nofity(ErrorMessage em){
+
+    	JOptionPane.showMessageDialog(null, em.getReason(), "Error", 0);
+    }
+	
+	private void nofity(ThreadChangedNotification tcn) {
 
 		ThreadInfo tInfo = tcn.getThreadInfo();
 		
