@@ -33,27 +33,25 @@ import javax.swing.JPanel;
  */
 public class Forum extends javax.swing.JFrame {
 
-	private static final long serialVersionUID = -2618735121811057973L;
-	private javax.swing.JPanel _mainPanel;
-        private StartWindow _start;
+    private static final long serialVersionUID = -2618735121811057973L;
+    private javax.swing.JPanel _mainPanel;
+    private StartWindow _start;
 
-	ClientController controller;
-    public static  DefaultListModel friendsList= new DefaultListModel();
+    ClientController controller;
+    public static  DefaultListModel friendsList = new DefaultListModel();
     
     /** Creates new form Forum with main panel(forun/threads/posts) */
     public Forum(ClientController clientController, StartWindow start ) {
         controller = clientController;
         _start=start;                
           dispalyInitialForum( new ForumsViewPanel(controller, getStartWindow() ));
-        /* //TO DO - wait for this implementation by avi
-       for (int i=0; i<controller.getFriend().size(); i++  ){
-                 String friend = controller.getFriend().get(i);
-                 friendsList.addElement(friend);
+        for (int i=0; i<controller.getFriendList().size(); i++  ){
+                 UserInfo friend = controller.getFriendList().get(i);
+                 System.out.println(friend.getUserName());
+                 friendsList.addElement(friend.getUserName());
         }
-         * /
-         */
-         //initComponents();
-         //setVisible(true);
+         initComponents();
+         setVisible(true);
     }
 
     public void setMainPanel(JPanel panel){
@@ -67,7 +65,7 @@ public class Forum extends javax.swing.JFrame {
 //         this.add(panel);
     }
 
-    public static DefaultListModel  getFriendsListModel() {
+    public static DefaultListModel getFriendsListModel() {
         return friendsList;
     }
 
@@ -118,7 +116,6 @@ public class Forum extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
@@ -134,7 +131,7 @@ public class Forum extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(30, 410, 80, 23);
+        jButton1.setBounds(30, 403, 80, 30);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "My Friends", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -142,10 +139,10 @@ public class Forum extends javax.swing.JFrame {
         jList1.setModel(presentation.gui.Forum.getFriendsListModel());
         jScrollPane1.setViewportView(jList1);
 
-        jScrollPane1.setBounds(10, 30, 80, 210);
+        jScrollPane1.setBounds(10, 40, 80, 200);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLayeredPane2.setBounds(20, 40, 100, 250);
+        jLayeredPane2.setBounds(20, 40, 100, 260);
         jLayeredPane1.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 10));
@@ -155,18 +152,8 @@ public class Forum extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jButton2.setBounds(10, 360, 120, 30);
+        jButton2.setBounds(10, 310, 120, 30);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton3.setFont(new java.awt.Font("Kristen ITC", 1, 10));
-        jButton3.setText("Edit profile");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jButton3.setBounds(10, 310, 120, 30);
-        jLayeredPane1.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(jLayeredPane1);
         jLayeredPane1.setBounds(530, 10, 140, 460);
@@ -203,15 +190,10 @@ public class Forum extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
