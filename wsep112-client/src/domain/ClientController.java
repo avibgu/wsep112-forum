@@ -71,7 +71,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 *
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
-	public boolean register(String firstName, String lastName, String username,
+	public ErrorMessage register(String firstName, String lastName, String username,
 			String password, String email) {
 		
 		ErrorMessage errorMessage;
@@ -101,7 +101,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 				if (answer.getMessageType() == MessageType.OK){
 					
 					setCurrentLogedInUsername(username);
-					return true;
+					return null;
 				}
 
 				errorMessage = (ErrorMessage)answer;
@@ -117,7 +117,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
 		notifyObservers(errorMessage);
 		
-		return false;
+		return errorMessage;
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 *
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
-	public boolean login(String username, String password) {
+	public ErrorMessage login(String username, String password) {
 
 		ErrorMessage errorMessage;
 		
@@ -143,7 +143,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			if (answer.getMessageType() == MessageType.OK){
 				
 				setCurrentLogedInUsername(username);
-				return true;
+				return null;
 			}
 
 			errorMessage = (ErrorMessage)answer;
@@ -158,7 +158,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
 		notifyObservers(errorMessage);
 		
-		return false;
+		return errorMessage;
 	}
 
 	/**
