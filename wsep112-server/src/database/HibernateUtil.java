@@ -312,6 +312,7 @@ public static Post retrievePost(int postId) {
 			
 			Query q = session.createSQLQuery(str);
 			q.executeUpdate();
+			transaction.commit();
 			session.close();
 			
 		}
@@ -327,12 +328,11 @@ public static Post retrievePost(int postId) {
 			   
 			Session session = getSession();
 			Transaction transaction = session.beginTransaction();
-			
-	    	Query q = session.createQuery("delete from Post as p where p._post_id = :postId");
+		   	Query q = session.createQuery("delete from Post as p where p._post_id = :postId");
 			q.setParameter("postId", postId);
 			int row_count = q.executeUpdate();
+			transaction.commit();
 			session.close();
-			
 			return row_count;
 			
 		}
