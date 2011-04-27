@@ -171,9 +171,6 @@ public class ForumController implements Serializable{
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
     public Message AddFriend(String username, String friendUsername, WrappedObserver wo) {
-    	System.out.println("ADD FRIEND...");
-    	System.out.println("username = " + username);
-    	System.out.println("friend = " + friendUsername);
 		// Check is username exists.
 		if (!isExist(username))
 			return new ErrorMessage("Username doesn't exists.");
@@ -363,13 +360,8 @@ public class ForumController implements Serializable{
 	public Message getFriendsList(String username, SeeFriendsMessage sfm) {
 		
 		Vector<UserInfo> tListOfFriends = new Vector<UserInfo>();
-		System.out.println("friend = " + username);
 		User tUser = HibernateUtil.retrieveUser(username);
-		System.out.println("tUser = " + tUser.get_Username());
 		List<String> tUserFriends = tUser.getFriends();
-		System.out.println("size = " + tUserFriends.size());
-		System.out.println("size = " + tUserFriends.get(0));
-		System.out.println("size = " + tUserFriends.get(1));
 		for (int i=1; i< tUserFriends.size(); ++i){
 			String tFriendUserName= tUserFriends.get(i);
 			User tFriend = HibernateUtil.retrieveUser(tFriendUserName);
