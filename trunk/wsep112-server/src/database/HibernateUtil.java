@@ -287,7 +287,7 @@ public static Post retrievePost(int postId) {
 			Session session = getSession();
 			Transaction transaction = session.beginTransaction();
 			
-			 Query q = session.createQuery("from Post as p where t._post_id = :id");
+			 Query q = session.createQuery("from Post as p where p._post_id = :id");
 			 q.setParameter("id", postId);
 			 List<Post> tAns = q.list();
 			  
