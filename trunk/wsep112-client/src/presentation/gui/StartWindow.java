@@ -33,8 +33,9 @@ public class StartWindow extends javax.swing.JFrame {
     }
 
     public Forum getForum(){
+         _forum.clearFriends();
+         _forum.setFriends();
          return _forum;
-       //return  new Forum(controller, this );
     }
 
     public void nonDisplayForum(){

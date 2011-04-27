@@ -43,27 +43,30 @@ public class Forum extends javax.swing.JFrame {
     /** Creates new form Forum with main panel(forun/threads/posts) */
     public Forum(ClientController clientController, StartWindow start ) {
         controller = clientController;
-        _start=start;                
-          dispalyInitialForum( new ForumsViewPanel(controller, getStartWindow() ));
-        for (int i=0; i<controller.getFriendList().size(); i++  ){
-                 UserInfo friend = controller.getFriendList().get(i);
-                 System.out.println(friend.getUserName());
-                 friendsList.addElement(friend.getUserName());
-        }
-         initComponents();
-         this.setSize(693,516);
-         setVisible(true);
+        _start=start;
+        setFriends();
+        dispalyInitialForum( new ForumsViewPanel(controller, getStartWindow() ));
+        initComponents();
+        this.setSize(693,516);
+        setVisible(true);
     }
 
     public void setMainPanel(JPanel panel){
-         //JLayeredPane pane =(JLayeredPane) getMainPanel().getComponent(0);
-         //this.add(pane);
         _mainPanel=panel;
          panel.setBounds(150, 0, 520, 470);
          this.setContentPane(panel);
          this.pack();
-         
-//         this.add(panel);
+    }
+
+   public void clearFriends(){
+       friendsList.removeAllElements();
+    }
+
+    public void setFriends(){
+        for (int i=0; i<controller.getFriendList().size(); i++  ){
+                 UserInfo friend = controller.getFriendList().get(i);
+                 friendsList.addElement(friend.getUserName());
+        }
     }
 
     public static DefaultListModel getFriendsListModel() {
@@ -137,6 +140,7 @@ public class Forum extends javax.swing.JFrame {
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "My Friends", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
+        jList1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jList1.setModel(presentation.gui.Forum.getFriendsListModel());
         jScrollPane1.setViewportView(jList1);
 
