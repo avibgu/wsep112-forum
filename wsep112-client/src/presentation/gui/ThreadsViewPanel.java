@@ -106,9 +106,14 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Please choose one of the Threads below", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jList1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jList1.setFont(new java.awt.Font("Tahoma", 0, 18));
         jList1.setModel(getThreadsListModel());
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jScrollPane1.setBounds(10, 30, 470, 260);
@@ -141,15 +146,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-   //View Thread Button
-        this.thread_list=   (DefaultListModel)jList1.getModel();
-         _threadsIndexSelected= jList1.getSelectedIndex();
-         if (_threadsIndexSelected>=0  ){
-              getStartWindow().nonDisplayForum(); //setVisible false
-             //TO DO: AVI S //**********************************************************************************************************/
-        }
-       else
-                JOptionPane.showMessageDialog(null, "Please choose one of the threads above.", "Thread Selection  Error", 0);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -165,6 +162,16 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
         new AddThreadFrame(getClientController(),_ForumId, getStartWindow()).setSize(430,370);
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+          //View Thread Button
+        this.thread_list=   (DefaultListModel)jList1.getModel();
+         _threadsIndexSelected= jList1.getSelectedIndex();
+         if (_threadsIndexSelected>=0  ){
+              getStartWindow().nonDisplayForum(); //setVisible false
+             getStartWindow().getForum().displayForum( new PostsViewPanel( getClientController(), getStartWindow()));
+        }
+    }//GEN-LAST:event_jList1ValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
