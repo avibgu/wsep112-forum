@@ -49,9 +49,9 @@ public class ManageFriends extends javax.swing.JFrame {
                  if (checkFriends(member.getUserName())) {
                      membersList.addElement(member.getUserName()); }
         }
-        this.setSize(540,470);
         setVisible(true);
         initComponents();
+        this.setSize(540,449);
     }
 
    private StartWindow getStartWindow(){
@@ -86,6 +86,7 @@ public class ManageFriends extends javax.swing.JFrame {
         jList2 = new javax.swing.JList();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -98,11 +99,13 @@ public class ManageFriends extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(10, 370, 50, 30);
+        jButton3.setBounds(10, 10, 50, 30);
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum members", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14))); // NOI18N
 
+        jList1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jList1.setModel(presentation.gui.ManageFriends.getFriendsListModel());
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 jList1ValueChanged(evt);
@@ -110,35 +113,39 @@ public class ManageFriends extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jList1);
 
-        jScrollPane2.setBounds(280, 130, 130, 160);
+        jScrollPane2.setBounds(280, 110, 130, 160);
         jLayeredPane1.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/addThreadIcon.png"))); // NOI18N
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(60, 300, 110, 30);
+        jButton1.setBounds(50, 290, 130, 30);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/1302965210_Cancel2.png"))); // NOI18N
         jButton2.setText("Remove");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jButton2.setBounds(290, 300, 110, 30);
+        jButton2.setBounds(280, 290, 130, 30);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel2.setText("Please choose members to add or remove to your list");
-        jLabel2.setBounds(40, 30, 430, 70);
+        jLabel2.setBounds(30, 10, 430, 70);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jList2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jList2.setModel(presentation.gui.ManageFriends.getMembersListModel());
+        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 jList2ValueChanged(evt);
@@ -146,21 +153,25 @@ public class ManageFriends extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jList2);
 
-        jScrollPane3.setBounds(50, 130, 130, 160);
+        jScrollPane3.setBounds(50, 110, 130, 160);
         jLayeredPane1.add(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 12));
+        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel1.setText("Add new friend");
-        jLabel1.setBounds(60, 100, 110, 20);
+        jLabel1.setBounds(50, 80, 130, 20);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 12));
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel3.setText("Remove exist friend");
-        jLabel3.setBounds(270, 100, 150, 20);
+        jLabel3.setBounds(270, 80, 160, 20);
         jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(jLayeredPane1);
-        jLayeredPane1.setBounds(20, 10, 490, 360);
+        jLayeredPane1.setBounds(20, 40, 490, 360);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forums.jpg"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 530, 410);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -168,7 +179,7 @@ public class ManageFriends extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         friendsList.removeAllElements();
         membersList.removeAllElements();
-        getStartWindow().getForum().displayForum(new ForumsViewPanel(controller,getStartWindow() ) );
+        getStartWindow().getForum().displayForum(new ForumsViewPanel(controller,getStartWindow()));
         this.setVisible(false);
 }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -182,7 +193,7 @@ public class ManageFriends extends javax.swing.JFrame {
           if (controller.AddFriend(name)) {
               membersList.removeElementAt(index);
               friendsList.addElement(name);
-              JOptionPane.showMessageDialog(null, "Friend added succsessfully.", "Adding friend", 0);
+              JOptionPane.showMessageDialog(null,"Friend added succsessfully.");
           };
      }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -197,7 +208,7 @@ public class ManageFriends extends javax.swing.JFrame {
           if (controller.RemoveFriend(name)) {
               friendsList.removeElementAt(index);
               membersList.addElement(name);
-              JOptionPane.showInternalMessageDialog(null,"Friend removed succsessfully.");
+              JOptionPane.showMessageDialog(null,"Friend removed succsessfully.");
           };
      }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -217,6 +228,7 @@ public class ManageFriends extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
