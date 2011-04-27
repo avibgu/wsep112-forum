@@ -64,8 +64,8 @@ public class AddThreadPanel extends javax.swing.JPanel {
         jTextField4.setBounds(70, 40, 380, 30);
         jLayeredPane1.add(jTextField4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/addThreadIcon.png"))); // NOI18N
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Ok-icon.png"))); // NOI18N
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,8 +75,8 @@ public class AddThreadPanel extends javax.swing.JPanel {
         jButton1.setBounds(120, 380, 120, 30);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/1302965210_Cancel2.png"))); // NOI18N
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,16 +86,16 @@ public class AddThreadPanel extends javax.swing.JPanel {
         jButton2.setBounds(280, 380, 130, 30);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Body");
-        jLabel6.setBounds(20, 80, 38, 20);
+        jLabel6.setBounds(20, 80, -1, -1);
         jLayeredPane1.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("title");
-        jLabel2.setBounds(20, 40, 79, 20);
+        jLabel2.setBounds(20, 40, 79, -1);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

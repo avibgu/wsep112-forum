@@ -70,7 +70,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/go_back.png"))); // NOI18N
+        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/go_back.png"))); // NOI18N
         back.setBorder(null);
         back.setBorderPainted(false);
         back.addActionListener(new java.awt.event.ActionListener() {
@@ -102,17 +102,17 @@ public class PostsViewPanel extends javax.swing.JPanel {
         jScrollPane1.setBounds(20, 70, 480, 270);
         jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel2.setText("List Of Posts");
-        jLabel2.setBounds(210, 50, 105, 20);
+        jLabel2.setBounds(210, 50, -1, -1);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forum.png"))); // NOI18N
-        jLabel1.setBounds(50, 340, 128, 128);
+        jLabel1.setBounds(50, 340, -1, -1);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        newPost.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        newPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/Threadadd.png"))); // NOI18N
+        newPost.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        newPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
         newPost.setText("Add New Post");
         newPost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

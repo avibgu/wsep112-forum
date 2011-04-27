@@ -113,7 +113,7 @@
               <Font name="Kristen ITC" size="12" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/presentation/gui/Edit-Users-icon.png"/>
+              <Image iconType="3" name="/presentation/gui/pics/Edit-Users-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Edit"/>
           </Properties>
@@ -131,7 +131,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/presentation/gui/forum_img.jpg"/>
+          <Image iconType="3" name="/presentation/gui/pics/forum_img.jpg"/>
         </Property>
       </Properties>
       <Constraints>

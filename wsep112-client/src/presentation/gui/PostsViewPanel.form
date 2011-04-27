@@ -51,7 +51,7 @@
         <Component class="javax.swing.JButton" name="back">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/presentation/gui/go_back.png"/>
+              <Image iconType="3" name="/presentation/gui/pics/go_back.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
@@ -136,7 +136,7 @@
               <Font name="Kristen ITC" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/presentation/gui/Threadadd.png"/>
+              <Image iconType="3" name="/presentation/gui/pics/view_bottom.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Add New Post"/>
           </Properties>

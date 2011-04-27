@@ -92,32 +92,36 @@ public class PostPanel extends javax.swing.JPanel {
         jScrollPane1.setBounds(30, 50, 410, 230);
         mainPanel.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        editBtm.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        editBtm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Edit-Users-icon.png"))); // NOI18N
         editBtm.setText("Edit");
         editBtm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editBtmActionPerformed(evt);
             }
         });
-        editBtm.setBounds(60, 280, 100, 23);
+        editBtm.setBounds(60, 280, 100, 33);
         mainPanel.add(editBtm, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         author.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
-        author.setText("author");
+        author.setText("Author");
         author.setBounds(30, 10, 80, 20);
         mainPanel.add(author, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        date.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
-        date.setText("date");
+        date.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        date.setText("Date");
         date.setBounds(330, 10, 110, 20);
         mainPanel.add(date, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        remove.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
         remove.setText("Remove");
         remove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeActionPerformed(evt);
             }
         });
-        remove.setBounds(310, 280, 90, 23);
+        remove.setBounds(281, 280, 119, 33);
         mainPanel.add(remove, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

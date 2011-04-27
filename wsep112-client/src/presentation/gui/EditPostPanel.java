@@ -54,10 +54,10 @@ private String _postId;
         ok = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "forum system", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 3, 14), new java.awt.Color(255, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "forum system", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Kristen ITC", 3, 14));
-        jLabel1.setText("edit your post as you wish:");
+        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel1.setText("Please edit your post");
 
         title.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,18 +65,18 @@ private String _postId;
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 3, 12));
-        jLabel2.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel2.setText("title :");
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jLabel2.setText("Title");
 
         body.setColumns(20);
         body.setRows(5);
         jScrollPane1.setViewportView(body);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 3, 12));
-        jLabel3.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel3.setText("body:");
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jLabel3.setText("Body");
 
+        ok.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        ok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Ok-icon.png"))); // NOI18N
         ok.setText("ok");
         ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +84,8 @@ private String _postId;
             }
         });
 
+        cancel.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
         cancel.setText("cancel");
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +103,7 @@ private String _postId;
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +142,6 @@ private String _postId;
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 564, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -148,7 +149,6 @@ private String _postId;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

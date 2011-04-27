@@ -85,8 +85,8 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
 
         jLayeredPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/Threadadd.png"))); // NOI18N
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
         jButton2.setText("Add Thread");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +114,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
         jLayeredPane2.setBounds(10, 30, 490, 300);
         jLayeredPane4.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/go_back.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/go_back.png"))); // NOI18N
         jButton4.setBorder(null);
         jButton4.setBorderPainted(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {

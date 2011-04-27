@@ -71,7 +71,7 @@
               <Font name="Kristen ITC" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/presentation/gui/addThreadIcon.png"/>
+              <Image iconType="3" name="/presentation/gui/pics/Ok-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="OK"/>
           </Properties>
@@ -90,7 +90,7 @@
               <Font name="Kristen ITC" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/presentation/gui/1302965210_Cancel2.png"/>
+              <Image iconType="3" name="/presentation/gui/pics/Close-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>

@@ -115,7 +115,7 @@ public class StartWindow extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(170, 350, 230, 20);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/forums.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/forums.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 530, 430);
