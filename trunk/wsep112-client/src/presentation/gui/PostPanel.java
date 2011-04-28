@@ -74,6 +74,7 @@ public class PostPanel extends javax.swing.JPanel {
         author = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
         remove = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         mainPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 3, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
@@ -110,7 +111,7 @@ public class PostPanel extends javax.swing.JPanel {
 
         date.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         date.setText("Date");
-        date.setBounds(270, 10, 170, 20);
+        date.setBounds(260, 10, 170, 20);
         mainPanel.add(date, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         remove.setFont(new java.awt.Font("Kristen ITC", 1, 14));
@@ -124,15 +125,34 @@ public class PostPanel extends javax.swing.JPanel {
         remove.setBounds(281, 280, 119, 33);
         mainPanel.add(remove, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/go_back.png"))); // NOI18N
+        back.setBorder(null);
+        back.setBorderPainted(false);
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -151,6 +171,14 @@ public class PostPanel extends javax.swing.JPanel {
       getStart().getForum().displayForum(  new PostsViewPanel(this.getController(), this.getForumId(), this.getThreadId(), this.getStart()));
 
     }//GEN-LAST:event_removeActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // Back Button
+        this.setVisible(false);
+        //getStartWindow().nonDisplayForum(); //setVisible false
+        getStart().getForum().displayForum( new PostsViewPanel(this.getController(), this.getForumId(), this.getThreadId(), this.getStart()));
+        this.setVisible(false);
+}//GEN-LAST:event_backActionPerformed
 
  public ClientController getController(){
      return this._clientController;
@@ -184,6 +212,7 @@ public String getBody(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel author;
+    private javax.swing.JButton back;
     private javax.swing.JTextArea body;
     private javax.swing.JLabel date;
     private javax.swing.JButton editBtm;
