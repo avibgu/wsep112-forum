@@ -52,28 +52,31 @@ public class PostsViewPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLayeredPane4 = new javax.swing.JLayeredPane();
-        newPost = new javax.swing.JButton();
+        editPost = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         postsList = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        bodyArea = new javax.swing.JTextArea();
         back = new javax.swing.JButton();
+        newPost = new javax.swing.JButton();
 
         jLayeredPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        newPost.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        newPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
-        newPost.setText("Add Post");
-        newPost.addActionListener(new java.awt.event.ActionListener() {
+        editPost.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        editPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
+        editPost.setText("Edit post");
+        editPost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newPostActionPerformed(evt);
+                editPostActionPerformed(evt);
             }
         });
-        newPost.setBounds(170, 350, 180, 40);
-        jLayeredPane4.add(newPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        editPost.setBounds(270, 330, 180, 40);
+        jLayeredPane4.add(editPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Please choose one of the Posts below for view", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        postsList.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        postsList.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         postsList.setModel(getThreadsListModel());
         postsList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         postsList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -83,8 +86,15 @@ public class PostsViewPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(postsList);
 
-        jScrollPane1.setBounds(10, 30, 470, 260);
+        jScrollPane1.setBounds(10, 30, 230, 260);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        bodyArea.setColumns(20);
+        bodyArea.setRows(5);
+        jScrollPane2.setViewportView(bodyArea);
+
+        jScrollPane2.setBounds(240, 30, 240, 260);
+        jLayeredPane2.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBounds(10, 30, 490, 300);
         jLayeredPane4.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -99,6 +109,17 @@ public class PostsViewPanel extends javax.swing.JPanel {
         });
         back.setBounds(20, 20, 40, 30);
         jLayeredPane4.add(back, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        newPost.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        newPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
+        newPost.setText("Add Post");
+        newPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newPostActionPerformed(evt);
+            }
+        });
+        newPost.setBounds(50, 330, 180, 40);
+        jLayeredPane4.add(newPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -118,18 +139,26 @@ public class PostsViewPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void newPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPostActionPerformed
+    private void editPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPostActionPerformed
         // Add Thread Button
-        getStartWindow().nonDisplayForum(); //setVisible false
-        getStartWindow().getForum().displayForum( new NewPost(this.getclientController(), this.getForum_id(), this.getThread_id(), this.getStartWindow()));
-}//GEN-LAST:event_newPostActionPerformed
+      //  getStartWindow().nonDisplayForum(); //setVisible false
+        _postSelected= postsList.getSelectedIndex();
+        if(_postSelected>=0)
+        {
+             Vector <PostInfo> posts= _clientController.getPostsList(this.getForum_id(), this.getThread_id());
+            PostInfo post=posts.get(_postSelected);
+            String   title=post.get_title();
+            String body=post.get_body();
+            String post_id=Integer.toString(post.get_post_id());
+            getStartWindow().getForum().displayForum( new EditPostPanel(this.getclientController(), this.getForum_id(), this.getThread_id(), post_id, title, body, this.getStartWindow()));
+            this.setVisible(false);
+        }
+
+}//GEN-LAST:event_editPostActionPerformed
 
     private void postsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_postsListValueChanged
-        //View Thread Button
-        //  this.thread_list=   (DefaultListModel)jList1.getModel();
-     //  _threadsIndexSelected= jList1.getSelectedIndex();
-      //  String threadIdString=  Integer.toString(_threadsIndexSelected);
-           _postSelected= postsList.getSelectedIndex();
+      
+           //_postSelected= postsList.getSelectedIndex();
             Vector <PostInfo> posts= _clientController.getPostsList(this.getForum_id(), this.getThread_id());
             PostInfo post=posts.get(_postSelected);
         String   title=post.get_title();
@@ -138,18 +167,28 @@ public class PostsViewPanel extends javax.swing.JPanel {
         String dateTime=post.getDateTime();
         String thread_id=Integer.toString(post.getThread_id());
         String post_id=Integer.toString(post.get_post_id());
+
+           String  viewInfo= author+ "\n"+dateTime +"\n"+ body;
+           bodyArea.setText(viewInfo);
+           bodyArea.setEditable(false);
         
            //getStartWindow().nonDisplayForum(); //setVisible false
-            getStartWindow().getForum().displayForum( new PostPanel(this.getclientController(), this.getForum_id(),this.getThread_id(), title, body, author, dateTime, post_id, _start));
-            this.setVisible(false);
+            //getStartWindow().getForum().displayForum( new PostPanel(this.getclientController(), this.getForum_id(),this.getThread_id(), title, body, author, dateTime, post_id, _start));
+            //this.setVisible(false);
 }//GEN-LAST:event_postsListValueChanged
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // Back Button
         this.setVisible(false);
-        getStartWindow().nonDisplayForum(); //setVisible false
+       // getStartWindow().nonDisplayForum(); //setVisible false
         getStartWindow().getForum().displayForum( new ThreadsViewPanel(this.getclientController(), this.getForum_id(), this.getStartWindow()));
+        this.setVisible(false);
 }//GEN-LAST:event_backActionPerformed
+
+    private void newPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPostActionPerformed
+         getStartWindow().getForum().displayForum(new NewPost(this.getclientController(), this.getForum_id(), this.getThread_id(), this.getStartWindow()));
+         this.setVisible(false);
+    }//GEN-LAST:event_newPostActionPerformed
 
     public void fillListPosts( ) {
          Vector <PostInfo> posts= _clientController.getPostsList(this.getForum_id(), this.getThread_id());
@@ -186,9 +225,12 @@ public class PostsViewPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
+    private javax.swing.JTextArea bodyArea;
+    private javax.swing.JButton editPost;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton newPost;
     private javax.swing.JList postsList;
     // End of variables declaration//GEN-END:variables
