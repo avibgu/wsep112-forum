@@ -11,6 +11,7 @@
 package presentation.gui;
 import domain.ClientController;
 import presentation.gui.StartWindow;
+import presentation.gui.workers.AddPostWorker;
 /**
  *
  * @author yedidim
@@ -124,12 +125,18 @@ public class NewPost extends javax.swing.JPanel {
         //OK Button
         String new_title=title.getText();
         String new_body=body.getText();
+        
+        new AddPostWorker(this, getclientController(), getStart(),
+        		_forum_id, new_title, new_body, _thread_id ).execute();
+        
+        /*
         //updating the database via the clientController
         this.getclientController().replyToThread(_forum_id,new_title, new_body,_thread_id);
         //shows the new post list
        getStart().getForum().displayForum(   new PostsViewPanel(getclientController(),this.getForum_id(),this.getThread_id(),this.getStart()));
         //removig the view of new post
         this.setVisible(false);
+        */
         }
 //GEN-LAST:event_jButton1ActionPerformed
 
