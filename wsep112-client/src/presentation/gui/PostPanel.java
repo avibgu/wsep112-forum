@@ -66,64 +66,19 @@ public class PostPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel = new javax.swing.JLayeredPane();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
+        back = new javax.swing.JButton();
         title = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         body = new javax.swing.JTextArea();
-        editBtm = new javax.swing.JButton();
         author = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
+        editBtm = new javax.swing.JButton();
         remove = new javax.swing.JButton();
-        back = new javax.swing.JButton();
 
-        mainPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 3, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        setPreferredSize(new java.awt.Dimension(1000, 403));
 
-        title.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                titleActionPerformed(evt);
-            }
-        });
-        title.setBounds(30, 30, 410, 20);
-        mainPanel.add(title, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        body.setColumns(20);
-        body.setRows(5);
-        jScrollPane1.setViewportView(body);
-
-        jScrollPane1.setBounds(30, 50, 410, 230);
-        mainPanel.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        editBtm.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        editBtm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Edit-Users-icon.png"))); // NOI18N
-        editBtm.setText("Edit");
-        editBtm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editBtmActionPerformed(evt);
-            }
-        });
-        editBtm.setBounds(60, 280, 100, 33);
-        mainPanel.add(editBtm, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        author.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        author.setText("Author");
-        author.setBounds(30, 10, 80, 20);
-        mainPanel.add(author, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        date.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
-        date.setText("Date");
-        date.setBounds(260, 10, 170, 20);
-        mainPanel.add(date, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        remove.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
-        remove.setText("Remove");
-        remove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeActionPerformed(evt);
-            }
-        });
-        remove.setBounds(281, 280, 119, 33);
-        mainPanel.add(remove, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 3, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/go_back.png"))); // NOI18N
         back.setBorder(null);
@@ -133,26 +88,71 @@ public class PostPanel extends javax.swing.JPanel {
                 backActionPerformed(evt);
             }
         });
+        back.setBounds(10, 20, 40, 30);
+        jLayeredPane2.add(back, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        title.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                titleActionPerformed(evt);
+            }
+        });
+        title.setBounds(40, 80, 410, 20);
+        jLayeredPane2.add(title, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        body.setColumns(20);
+        body.setRows(5);
+        jScrollPane1.setViewportView(body);
+
+        jScrollPane1.setBounds(40, 100, 410, 210);
+        jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        author.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        author.setText("Author");
+        author.setBounds(50, 60, 80, 20);
+        jLayeredPane2.add(author, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        date.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        date.setText("Date");
+        date.setBounds(270, 60, 170, 20);
+        jLayeredPane2.add(date, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        editBtm.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        editBtm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Edit-Users-icon.png"))); // NOI18N
+        editBtm.setText("Edit");
+        editBtm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtmActionPerformed(evt);
+            }
+        });
+        editBtm.setBounds(90, 310, 100, 33);
+        jLayeredPane2.add(editBtm, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        remove.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
+        remove.setText("Remove");
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
+            }
+        });
+        remove.setBounds(280, 310, 140, 33);
+        jLayeredPane2.add(remove, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jLayeredPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                .addGap(11, 11, 11))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -216,8 +216,8 @@ public String getBody(){
     private javax.swing.JTextArea body;
     private javax.swing.JLabel date;
     private javax.swing.JButton editBtm;
+    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLayeredPane mainPanel;
     private javax.swing.JButton remove;
     private javax.swing.JTextField title;
     // End of variables declaration//GEN-END:variables
