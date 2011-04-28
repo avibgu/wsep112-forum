@@ -80,13 +80,13 @@ public class PostsViewPanel extends javax.swing.JPanel {
         back.setBounds(20, 30, 40, 30);
         jLayeredPane1.add(back, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("List Of Posts");
         jLabel2.setBounds(210, 50, 105, 20);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        newPost.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        newPost.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         newPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
         newPost.setText("Add New Post");
         newPost.addActionListener(new java.awt.event.ActionListener() {
@@ -97,25 +97,28 @@ public class PostsViewPanel extends javax.swing.JPanel {
         newPost.setBounds(160, 410, 190, 41);
         jLayeredPane1.add(newPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         postsPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         postsPanel.setFocusTraversalPolicyProvider(true);
         postsPanel.setMaximumSize(new java.awt.Dimension(1000, 1000));
-        postsPanel.setPreferredSize(new java.awt.Dimension(400, 320));
+        postsPanel.setPreferredSize(new java.awt.Dimension(600, 10000));
 
         javax.swing.GroupLayout postsPanelLayout = new javax.swing.GroupLayout(postsPanel);
         postsPanel.setLayout(postsPanelLayout);
         postsPanelLayout.setHorizontalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 478, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         postsPanelLayout.setVerticalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 338, Short.MAX_VALUE)
+            .addGap(0, 10000, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(postsPanel);
 
-        jScrollPane1.setBounds(20, 70, 480, 340);
+        jScrollPane1.setBounds(30, 80, 450, 300);
         jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -195,7 +198,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
         javax.swing.GroupLayout postsPanelLayout = new javax.swing.GroupLayout(this.getPostsPanel());
         this.getPostsPanel().setLayout(postsPanelLayout);
 
-        postsPanelLayout.setHorizontalGroup(
+    /*    postsPanelLayout.setHorizontalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 488, Short.MAX_VALUE)
         );
@@ -203,10 +206,10 @@ public class PostsViewPanel extends javax.swing.JPanel {
         postsPanelLayout.setVerticalGroup(
             postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 232, Short.MAX_VALUE)
-        );
+        );*/
 
 
-        ParallelGroup group1 = postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING);
+        ParallelGroup group1 = postsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);//was TRAILING
 
         for (JPanel jPanel : newPanels) {
                 group1.addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE);

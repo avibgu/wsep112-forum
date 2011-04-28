@@ -92,7 +92,7 @@ public class PostPanel extends javax.swing.JPanel {
         jScrollPane1.setBounds(30, 50, 410, 230);
         mainPanel.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        editBtm.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        editBtm.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         editBtm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Edit-Users-icon.png"))); // NOI18N
         editBtm.setText("Edit");
         editBtm.addActionListener(new java.awt.event.ActionListener() {
@@ -103,17 +103,17 @@ public class PostPanel extends javax.swing.JPanel {
         editBtm.setBounds(60, 280, 100, 33);
         mainPanel.add(editBtm, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        author.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        author.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         author.setText("Author");
         author.setBounds(30, 10, 80, 20);
         mainPanel.add(author, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        date.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        date.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         date.setText("Date");
-        date.setBounds(330, 10, 110, 20);
+        date.setBounds(270, 10, 170, 20);
         mainPanel.add(date, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        remove.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        remove.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
         remove.setText("Remove");
         remove.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +143,7 @@ public class PostPanel extends javax.swing.JPanel {
     private void editBtmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtmActionPerformed
     
       getStart().getForum().displayForum(  new EditPostPanel(this.getController(),this.getForumId(),
-                                                                                                                                       this.getThreadId(),this.getPostId(),this.getStart()));
+                                                                                                                                       this.getThreadId(),this.getPostId(),this.getTitle(),this.getBody(),this.getStart()));
 }//GEN-LAST:event_editBtmActionPerformed
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
@@ -162,7 +162,12 @@ public class PostPanel extends javax.swing.JPanel {
  public String  getForumId(){
      return this._forunId;
  }
-
+ public String getTitle(){
+     return this._title;
+ }
+public String getBody(){
+    return this._body;
+}
  public String  getThreadId(){
      return this._threadId;
  }

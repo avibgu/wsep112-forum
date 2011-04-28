@@ -24,13 +24,15 @@ private String _postId;
  private  StartWindow _start;
 
    public EditPostPanel(ClientController clientController, String forum_id,
-                                                        String thread_id,String PostId, StartWindow start) {
+                                                        String thread_id,String PostId,String title1, String body1, StartWindow start) {
         this._clientController=clientController;
         this._forum_id=forum_id;
         this._thread_id=thread_id;
         this._postId=PostId;
         this._start=start;
         initComponents();
+        title.setText(title1);
+        body.setText(body1);
         setVisible(true);
     }
 
