@@ -7,7 +7,6 @@ import domain.ClientController;
 import presentation.gui.NewPost;
 import presentation.gui.PostsViewPanel;
 import presentation.gui.StartWindow;
-import presentation.gui.ThreadsViewPanel;
 
 public class AddPostWorker extends SwingWorker<Void, Void> {
 
@@ -40,9 +39,6 @@ public class AddPostWorker extends SwingWorker<Void, Void> {
 	}
 
 	protected void done(){
-		
-        //updating the database via the clientController
-		_clientController.replyToThread(_forumID,_title, _body,_threadId);
 
         //shows the new post list
 		_startWindow.getForum().displayForum(
