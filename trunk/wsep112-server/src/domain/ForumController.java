@@ -78,6 +78,9 @@ public class ForumController implements Serializable{
 			return new ErrorMessage("Missing parameters.");
 		}
 
+		// unrelate between this user and his observer
+		getUsersToObserversMap().remove(username);
+		
 		// relate between this user and his observer
 		getUsersToObserversMap().put(username, wo);
 		
@@ -122,6 +125,9 @@ public class ForumController implements Serializable{
 		if (!(loginUser.getPassword().equals(password)))
 			return new ErrorMessage("Invalid password.");
 
+		// unrelate between this user and his observer
+		getUsersToObserversMap().remove(username);
+		
 		// relate between this user and his observer
 		getUsersToObserversMap().put(username, wo);
 		
@@ -240,7 +246,7 @@ public class ForumController implements Serializable{
 
 		Message msg = HibernateUtil.retrieveForum(Integer.valueOf(forumId)).reaplyToThread(title, body,  Integer.parseInt(threadId), user);
 		
-		//notifyAboutNewPost(user, thread);
+		notifyAboutNewPost(user, thread);
 		
 		return msg;
     }
@@ -269,7 +275,7 @@ public class ForumController implements Serializable{
 		
 		//HibernateUtil.updateDB(tForum);
 		
-		//notifyAboutNewPost(user, new_thread);
+		notifyAboutNewPost(user, new_thread);
 		
 		return tMsg;
     }
