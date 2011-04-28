@@ -47,7 +47,9 @@ public class PostPanel extends javax.swing.JPanel {
         author.setText(owner);
         date.setText(_dateTime);
         title.setText(title1);
+        title.setEditable(false);
         body.setText(body1);
+        body.setEditable(false);
         //TODO add if statement to check if the user is the owner of the post
         if(!this.getController().getCurrentLogedInUsername().equals(this.getOwner()))
         {
