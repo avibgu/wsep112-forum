@@ -14,6 +14,8 @@ package presentation.gui;
 import domain.ClientController;
 import javax.swing.JOptionPane;
 
+import presentation.gui.workers.AddThreadWorker;
+
 /**
  *
  * @author 

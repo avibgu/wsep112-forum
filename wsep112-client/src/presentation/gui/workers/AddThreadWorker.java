@@ -1,6 +1,10 @@
-package presentation.gui;
+package presentation.gui.workers;
 
 import javax.swing.SwingWorker;
+
+import presentation.gui.AddThreadPanel;
+import presentation.gui.StartWindow;
+import presentation.gui.ThreadsViewPanel;
 
 import domain.ClientController;
 
