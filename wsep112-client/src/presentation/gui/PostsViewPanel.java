@@ -158,7 +158,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
 
     private void postsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_postsListValueChanged
       
-           //_postSelected= postsList.getSelectedIndex();
+           _postSelected= postsList.getSelectedIndex();
             Vector <PostInfo> posts= _clientController.getPostsList(this.getForum_id(), this.getThread_id());
             PostInfo post=posts.get(_postSelected);
         String   title=post.get_title();
