@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author מוש
+ * @author 
  */
 public class AddThreadPanel extends javax.swing.JPanel {
          private ClientController _client;
@@ -125,10 +125,16 @@ public class AddThreadPanel extends javax.swing.JPanel {
         } else{
             String title = jTextField4.getText(); //Title
             String body = jTextField3.getText(); //Body
-            getClientController().addThread(_forumId, title, body);
+            
+            new AddThreadWorker(this, getClientController(), getStartWindow(),
+            		_forumId, title, body).execute();
+
+            /*
+			getClientController().addThread(_forumId, title, body);
             getStartWindow().getForum().displayForum(null); //setVisible false
             getStartWindow().getForum().displayForum( new ThreadsViewPanel( getClientController(),_forumId,  getStartWindow()));
             this.setVisible(false);
+            */
         }
 }//GEN-LAST:event_jButton1ActionPerformed
 
