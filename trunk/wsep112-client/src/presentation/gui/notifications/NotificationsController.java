@@ -15,6 +15,8 @@ import common.observation.Observable;
 
 import javax.swing.JOptionPane;
 
+import presentation.gui.PostsViewPanel;
+
 /**
  * @author Avi Digmi
  *
@@ -55,6 +57,10 @@ public class NotificationsController implements Observer {
 	
 	private void nofity(ThreadChangedNotification tcn) {
 
+		getStartWindow().getForum().displayForum(
+				new PostsViewPanel( getClientController(), getForumId(),
+						thread_id_string, getStartWindow()));
+		
 		ThreadInfo tInfo = tcn.getThreadInfo();
 		
 		final String msg =	"Thread " + tInfo.getThread_id() +
@@ -93,7 +99,7 @@ public class NotificationsController implements Observer {
             final NotificationForm popup = new NotificationForm(message);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                	popup.setLocation(930, 670);
+                	popup.setLocation(900, 670);
                     popup.setVisible(true);
                 }
             });
