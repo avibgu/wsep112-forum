@@ -73,7 +73,7 @@ public class Forum extends javax.swing.JFrame {
         return friendsList;
     }
 
-    private  JPanel getMainPanel(){
+    public  JPanel getMainPanel(){
         return _mainPanel;
     }
 
