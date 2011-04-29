@@ -16,6 +16,8 @@ import domain.ClientController;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 
+import presentation.gui.notifications.NotificationsController;
+
 /**
  *
  * @author ׳�׳™׳¨׳™
@@ -30,6 +32,7 @@ public class StartWindow extends javax.swing.JFrame {
         controller = clientController;
         setVisible(true);
         initComponents();
+        new NotificationsController(clientController, clientController, this);
     }
 
     public Forum getForum(){
