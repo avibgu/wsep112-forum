@@ -72,7 +72,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
                 editPostActionPerformed(evt);
             }
         });
-        editPost.setBounds(270, 330, 180, 40);
+        editPost.setBounds(270, 390, 180, 40);
         jLayeredPane4.add(editPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Please choose one of the Posts below for view", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -87,17 +87,18 @@ public class PostsViewPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(postsList);
 
-        jScrollPane1.setBounds(10, 30, 230, 260);
+        jScrollPane1.setBounds(10, 30, 230, 280);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         bodyArea.setColumns(20);
+        bodyArea.setFont(new java.awt.Font("Kristen ITC", 3, 12)); // NOI18N
         bodyArea.setRows(5);
         jScrollPane2.setViewportView(bodyArea);
 
-        jScrollPane2.setBounds(240, 30, 240, 260);
+        jScrollPane2.setBounds(240, 30, 240, 280);
         jLayeredPane2.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLayeredPane2.setBounds(10, 30, 490, 300);
+        jLayeredPane2.setBounds(10, 30, 490, 320);
         jLayeredPane4.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/go_back.png"))); // NOI18N
@@ -119,24 +120,24 @@ public class PostsViewPanel extends javax.swing.JPanel {
                 newPostActionPerformed(evt);
             }
         });
-        newPost.setBounds(50, 330, 180, 40);
+        newPost.setBounds(40, 390, 180, 40);
         jLayeredPane4.add(newPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,7 +180,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
         String thread_id=Integer.toString(post.getThread_id());
         String post_id=Integer.toString(post.get_post_id());
 
-           String  viewInfo= author+ "\n"+dateTime +"\n"+ body;
+           String  viewInfo= dateTime+ "\n"+"created by: "+author +"\n\n"+ body;
            bodyArea.setText(viewInfo);
            bodyArea.setEditable(false);
         
