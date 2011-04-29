@@ -35,6 +35,7 @@ import common.network.messages.SeeFriendsMessage;
 import common.network.messages.SeeThreadPostsMessage;
 import common.network.messages.SeeUsersMessage;
 import common.notifications.Notification;
+import common.notifications.ThreadChangedNotification;
 import common.observation.Observable;
 import common.observation.RemoteObserver;
 
@@ -449,6 +450,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
     	SeeThreadPostsMessage stpm = new SeeThreadPostsMessage(forumID,
     			threadID, getCurrentLogedInUsername(), this);
 
+    	setCurrentShownThread(threadID);
+    	
 		try {
 
 			Message answer = getForumServerStub().getInformation(stpm);
@@ -662,11 +665,13 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	@Override
 	public void update(Object observable, Object arg){
 
-		// notification about some error
-		if (arg instanceof ErrorMessage)
+	/*	if	(	(arg instanceof ThreadChangedNotification) &&
+				(0 == _currentShownThread.compareTo(String.valueOf(
+					((ThreadChangedNotification)arg).getThreadInfo().getThread_id()))) )
 			notifyObservers(arg);
-		
-		if (arg instanceof Notification)
+*/
+		//else 
+		if (arg instanceof Notification || arg instanceof ErrorMessage)
 			notifyObservers(arg);
 	}
 
