@@ -14,8 +14,14 @@ import common.notifications.ThreadChangedNotification;
 import common.observation.Observable;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingWorker;
+
+import domain.ClientController;
 
 import presentation.gui.PostsViewPanel;
+import presentation.gui.StartWindow;
+import presentation.gui.ThreadsViewPanel;
 
 /**
  * @author Avi Digmi
@@ -24,11 +30,16 @@ import presentation.gui.PostsViewPanel;
 public class NotificationsController implements Observer {
 
 	private Observable _observable;
+	private ClientController _clientController;
+	private StartWindow _startWindow;
 	
-	public NotificationsController(Observable observable) {
+	public NotificationsController(Observable observable,
+			ClientController clientController, StartWindow startWindow) {
 
-		set_observable(observable);
-		get_observable().addObserver(this);
+		setObservable(observable);
+		getObservable().addObserver(this);
+		setClientController(clientController);
+		setStartWindow(startWindow);
 	}
 	
 	/* (non-Javadoc)
@@ -57,44 +68,56 @@ public class NotificationsController implements Observer {
 	
 	private void nofity(ThreadChangedNotification tcn) {
 
-		getStartWindow().getForum().displayForum(
-				new PostsViewPanel( getClientController(), getForumId(),
-						thread_id_string, getStartWindow()));
+		final ThreadInfo tInfo = tcn.getThreadInfo();
 		
-		ThreadInfo tInfo = tcn.getThreadInfo();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            
+        	public void run() {
+            	
+        		JPanel currentPanel = getStartWindow().getForum().getMainPanel();
+
+        		if (currentPanel instanceof PostsViewPanel)
+        			
+        			getStartWindow().getForum().displayForum(
+        					new PostsViewPanel(getClientController(),
+        							String.valueOf(tInfo.get_forumId()),
+        							String.valueOf(tInfo.getThread_id()),
+        							getStartWindow()) );
+            }
+        });
 		
-		final String msg =	"Thread " + tInfo.getThread_id() +
+		String msg =	"Thread " + tInfo.getThread_id() +
 						" (Forum " + tInfo.get_forumId() +") : \"" +
 						tInfo.getTitle() + "\" has been changed";
         
 		genPopUp(msg);
 	}
 	
-	private void nofity(final FriendAddedPostNotification fapn) {
+	private void nofity(FriendAddedPostNotification fapn) {
 
 		ThreadInfo tInfo = fapn.getThreadInfo();
 		UserInfo uInfo = fapn.getUserInfo();
 		
-		final String msg =	"Your friend " + uInfo.getUserName() +
+		String msg =	"Your friend " + uInfo.getUserName() +
 						" added post to Thread " + tInfo.getThread_id() +
 						" (Forum " + tInfo.get_forumId() +") : \"" +
 						tInfo.getTitle() + "\"";
 		
-                genPopUp(msg);
+		genPopUp(msg);
 	}
 	
-	private void nofity(final PostAddedToYourThreadNotification patytn) {
+	private void nofity(PostAddedToYourThreadNotification patytn) {
 
 		ThreadInfo tInfo = patytn.getThreadInfo();
 					
-		final String msg =	"Your Thread " + tInfo.getThread_id() +
+		String msg =	"Your Thread " + tInfo.getThread_id() +
 						" (Forum " + tInfo.get_forumId() +") : \"" +
 						tInfo.getTitle() + "\" has been changed";
 
-                genPopUp(msg);
+		genPopUp(msg);
 	}
 
-	public void genPopUp(final String message){
+	public void genPopUp(String message){
 
             final NotificationForm popup = new NotificationForm(message);
             java.awt.EventQueue.invokeLater(new Runnable() {
@@ -107,11 +130,27 @@ public class NotificationsController implements Observer {
             popup.dispose();
 	}
 
-	public void set_observable(Observable _observable) {
+	public void setObservable(Observable _observable) {
 		this._observable = _observable;
 	}
 
-	public Observable get_observable() {
+	public Observable getObservable() {
 		return _observable;
+	}
+
+	public void setClientController(ClientController _clientController) {
+		this._clientController = _clientController;
+	}
+
+	public ClientController getClientController() {
+		return _clientController;
+	}
+
+	public void setStartWindow(StartWindow _startWindow) {
+		this._startWindow = _startWindow;
+	}
+
+	public StartWindow getStartWindow() {
+		return _startWindow;
 	}
 }
