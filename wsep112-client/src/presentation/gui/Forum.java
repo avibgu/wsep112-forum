@@ -13,9 +13,11 @@ package presentation.gui;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Vector;
 
 import domain.ClientController;
 import javax.swing.DefaultListModel;
+import javax.swing.SwingWorker;
 
 import common.forum.items.ThreadInfo;
 import common.forum.items.UserInfo;
@@ -63,10 +65,26 @@ public class Forum extends javax.swing.JFrame {
     }
 
     public void setFriends(){
-        for (int i=0; i<controller.getFriendList().size(); i++  ){
-                 UserInfo friend = controller.getFriendList().get(i);
-                 friendsList.addElement(friend.getUserName());
-        }
+    	
+    	new SwingWorker<Void, Void>(){
+
+			@Override
+			protected Void doInBackground() throws Exception {
+
+				Vector<UserInfo> friends = controller.getFriendList();
+				
+				for (UserInfo friend : friends) {
+		    		friendsList.addElement(friend.getUserName());
+				}
+				
+				return null;
+			}    		
+    	}.execute();
+
+//        for (int i=0; i<controller.getFriendList().size(); i++  ){
+//                 UserInfo friend = controller.getFriendList().get(i);
+//                 friendsList.addElement(friend.getUserName());
+//        }
     }
 
     public static DefaultListModel getFriendsListModel() {
