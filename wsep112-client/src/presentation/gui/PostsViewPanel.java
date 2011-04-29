@@ -15,6 +15,7 @@ import common.forum.items.PostInfo;
 import domain.ClientController;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -145,13 +146,23 @@ public class PostsViewPanel extends javax.swing.JPanel {
         _postSelected= postsList.getSelectedIndex();
         if(_postSelected>=0)
         {
+       
+            
              Vector <PostInfo> posts= _clientController.getPostsList(this.getForum_id(), this.getThread_id());
             PostInfo post=posts.get(_postSelected);
             String   title=post.get_title();
             String body=post.get_body();
+            String owner=post.getOwner().getUserName();
             String post_id=Integer.toString(post.get_post_id());
-            getStartWindow().getForum().displayForum( new EditPostPanel(this.getclientController(), this.getForum_id(), this.getThread_id(), post_id, title, body, this.getStartWindow()));
-            this.setVisible(false);
+            if(this.getclientController().getCurrentLogedInUsername().equals(owner))
+                {
+                    getStartWindow().getForum().displayForum( new EditPostPanel(this.getclientController(), this.getForum_id(), this.getThread_id(), post_id, title, body, this.getStartWindow()));
+                    this.setVisible(false);
+                }
+            else{
+                 JOptionPane.showMessageDialog(null, "Only the owner of the post can edit it!", "Edit Error", 0);
+            }
+          
         }
 
 }//GEN-LAST:event_editPostActionPerformed
