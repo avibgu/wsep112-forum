@@ -16,6 +16,7 @@ import domain.ClientController;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 
 /**
  *
@@ -203,11 +204,31 @@ public class PostsViewPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_newPostActionPerformed
 
     public void fillListPosts( ) {
-         Vector <PostInfo> posts= _clientController.getPostsList(this.getForum_id(), this.getThread_id());
-        //this.setVisible(true);
-     for (int j=0; j<posts.size(); j++  ){
-               getPostsListModel().addElement(posts.get(j).get_title());
-             }
+    	
+       	new SwingWorker<Void, Void>(){
+
+    		private Vector <PostInfo> posts;
+    		
+			@Override
+			protected Void doInBackground() throws Exception {
+				
+				posts = _clientController.getPostsList(getForum_id(), getThread_id());
+				
+				return null;
+			}
+			
+			protected void done(){
+
+				for (PostInfo post : posts)
+					getPostsListModel().addElement(post.get_title());
+			}
+    	}.execute();
+    	
+//         Vector <PostInfo> posts= _clientController.getPostsList(this.getForum_id(), this.getThread_id());
+//        //this.setVisible(true);
+//     for (int j=0; j<posts.size(); j++  ){
+//               getPostsListModel().addElement(posts.get(j).get_title());
+//             }
     }
 
       public ClientController getclientController(){
