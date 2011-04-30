@@ -188,11 +188,11 @@ public class ForumController implements Serializable{
 		User user = getUser(username);
 		Message msg1 =  user.addFriend(friendUsername);
 		
-	//	User friend = getUser(friendUsername);
-	//	Message msg2 =  friend.addFriend(username);
+		User friend = getUser(friendUsername);
+		Message msg2 =  friend.addFriendToNotify(username);
 		
 		HibernateUtil.updateDB(user);
-		//HibernateUtil.updateDB(friend);
+		HibernateUtil.updateDB(friend);
 		
 		//return (msg1.getMessageType() == MessageType.OK) ? msg2 : msg1;
 		return (msg1.getMessageType() == MessageType.OK)? msg1 : new ErrorMessage("");
@@ -217,11 +217,11 @@ public class ForumController implements Serializable{
 		User user = getUser(username);
 		Message msg1 = user.removeFriend(friendUsername);
 		
-		//User friend = getUser(friendUsername);
-		//Message msg2 = friend.removeFriend(username);
+		User friend = getUser(friendUsername);
+		Message msg2 = friend.removeFriendToNotify(username);
 		
 		HibernateUtil.updateDB(user);
-	//	HibernateUtil.updateDB(friend);
+		HibernateUtil.updateDB(friend);
 		
 		return (msg1.getMessageType() == MessageType.OK)? msg1 : new ErrorMessage("");
     }
@@ -493,7 +493,7 @@ public class ForumController implements Serializable{
 		
     	// notify friends
 		
-		List<String> friends = user.getFriends();
+		List<String> friends = user.get_friendsToNotify();
 
 		for (String friend : friends) {
 			
