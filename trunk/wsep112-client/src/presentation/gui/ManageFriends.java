@@ -34,18 +34,18 @@ public class ManageFriends extends javax.swing.JFrame {
 
     	if (controller.getCurrentLogedInUsername().equals(member)) return false;
 
-		Vector<UserInfo> friends = controller.getFriendList();
-		
-		for (UserInfo friend : friends)
-			if ((friend.getUserName()).equals(member)) return false;
-		
-        return true;
-
-//        for (int i=0; i<controller.getFriendList().size(); i++  ){
-//             UserInfo friend = controller.getFriendList().get(i);
-//             if ((friend.getUserName()).equals(member)) return false;
-//        }
+//		Vector<UserInfo> friends = controller.getFriendList();
+//		
+//		for (UserInfo friend : friends)
+//			if ((friend.getUserName()).equals(member)) return false;
+//		
 //        return true;
+
+        for (int i=0; i<controller.getFriendList().size(); i++  ){
+             UserInfo friend = controller.getFriendList().get(i);
+             if ((friend.getUserName()).equals(member)) return false;
+        }
+        return true;
     }
     
     /** Creates new form ManageFriends */
@@ -53,26 +53,26 @@ public class ManageFriends extends javax.swing.JFrame {
         controller = clientController;
         _start=start;
         
-		Vector<UserInfo> friends = controller.getFriendList();
-		
-		for (UserInfo friend : friends)
-			friendsList.addElement(friend.getUserName());
-			
-		Vector<UserInfo> members = controller.getFriendList();
-			
-		for (UserInfo member : members)
-			if (checkFriends(member.getUserName()))
-                membersList.addElement(member.getUserName());
+//		Vector<UserInfo> friends = controller.getFriendList();
+//		
+//		for (UserInfo friend : friends)
+//			friendsList.addElement(friend.getUserName());
+//			
+//		Vector<UserInfo> members = controller.getFriendList();
+//			
+//		for (UserInfo member : members)
+//			if (checkFriends(member.getUserName()))
+//                membersList.addElement(member.getUserName());
 
-//        for (int i=0; i<controller.getFriendList().size(); i++  ){
-//                 UserInfo friend = controller.getFriendList().get(i);
-//                 friendsList.addElement(friend.getUserName());
-//        }
-//        for (int i=0; i<controller.getUsersList().size(); i++  ){
-//                 UserInfo member = controller.getUsersList().get(i);
-//                 if (checkFriends(member.getUserName())) {
-//                     membersList.addElement(member.getUserName()); }
-//        }
+        for (int i=0; i<controller.getFriendList().size(); i++  ){
+                 UserInfo friend = controller.getFriendList().get(i);
+                 friendsList.addElement(friend.getUserName());
+        }
+        for (int i=0; i<controller.getUsersList().size(); i++  ){
+                 UserInfo member = controller.getUsersList().get(i);
+                 if (checkFriends(member.getUserName())) {
+                     membersList.addElement(member.getUserName()); }
+        }
         
         setVisible(true);
         initComponents();
