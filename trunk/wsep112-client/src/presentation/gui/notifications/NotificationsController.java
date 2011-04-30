@@ -15,13 +15,11 @@ import common.observation.Observable;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingWorker;
 
 import domain.ClientController;
 
 import presentation.gui.PostsViewPanel;
 import presentation.gui.StartWindow;
-import presentation.gui.ThreadsViewPanel;
 
 /**
  * @author Avi Digmi
