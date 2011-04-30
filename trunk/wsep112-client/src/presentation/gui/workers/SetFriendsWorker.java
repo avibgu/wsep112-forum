@@ -33,12 +33,10 @@ public class SetFriendsWorker<T1, T2> extends SwingWorker<Void, Void> {
 	}
 	
 	protected void done(){
-		try{
-			
-			for (UserInfo friend : _friends)
-	    		_friendsList.addElement(friend.getUserName());
-		} catch(Exception e){
-			e.printStackTrace();
-		}
+		
+		_friendsList.removeAllElements();
+		
+		for (UserInfo friend : _friends)
+    		_friendsList.addElement(friend.getUserName());
 	}
 }
