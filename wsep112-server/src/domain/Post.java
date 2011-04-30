@@ -50,6 +50,7 @@ public class Post implements Serializable{
 	public void edit_post(String title, String body){
 		set_title(title);
 		set_body(body);
+		setDate(new Date());
 	}
 	
 	//********************** SETTERS AND GETTERS *******************************//
