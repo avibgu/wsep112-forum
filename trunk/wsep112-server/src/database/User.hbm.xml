@@ -39,6 +39,15 @@
     <column name="FRIEND_USERNAME"/>
    </element>
   </list>
+    <list access="field" lazy="false" name="_friendsToNotify" table="FRIENDSTONOTIFY">
+   <key>
+    <column name="USERNAME"/>
+   </key>
+   <list-index base="0"/>
+   <element type="java.lang.String">
+    <column name="NOTIFIERFRIEND"/>
+   </element>
+  </list>
   <list access="field" lazy="false" name="_posts" table="USER_POSTS">
    <key>
     <column name="USERNAME"/>
