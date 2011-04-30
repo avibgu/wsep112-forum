@@ -66,7 +66,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
 
         jLayeredPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        editPost.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        editPost.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         editPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
         editPost.setText("Edit post");
         editPost.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +74,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
                 editPostActionPerformed(evt);
             }
         });
-        editPost.setBounds(40, 400, 180, 40);
+        editPost.setBounds(320, 360, 170, 40);
         jLayeredPane4.add(editPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Please choose one of the Posts below for view", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -114,7 +114,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
         back.setBounds(20, 20, 40, 30);
         jLayeredPane4.add(back, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        newPost.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        newPost.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         newPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
         newPost.setText("Add Post");
         newPost.addActionListener(new java.awt.event.ActionListener() {
@@ -122,10 +122,10 @@ public class PostsViewPanel extends javax.swing.JPanel {
                 newPostActionPerformed(evt);
             }
         });
-        newPost.setBounds(40, 350, 180, 40);
+        newPost.setBounds(10, 360, 150, 40);
         jLayeredPane4.add(newPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        remove.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        remove.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
         remove.setText("Remove");
         remove.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +133,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
                 removeActionPerformed(evt);
             }
         });
-        remove.setBounds(300, 350, 160, 40);
+        remove.setBounds(170, 360, 140, 40);
         jLayeredPane4.add(remove, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
