@@ -86,11 +86,11 @@ public class NotificationsController implements Observer {
             }
         });
 		
-		String msg =	"Thread " + tInfo.getThread_id() +
-						" (Forum " + tInfo.get_forumId() +") : \"" +
-						tInfo.getTitle() + "\" has been changed";
-        
-		genPopUp(msg);
+//		String msg =	"Thread " + tInfo.getThread_id() +
+//						" (Forum " + tInfo.get_forumId() +") : \"" +
+//						tInfo.getTitle() + "\" has been changed";
+//        
+//		genPopUp(msg);
 	}
 	
 	private void nofity(FriendAddedPostNotification fapn) {
