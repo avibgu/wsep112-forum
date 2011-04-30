@@ -62,6 +62,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
         bodyArea = new javax.swing.JTextArea();
         back = new javax.swing.JButton();
         newPost = new javax.swing.JButton();
+        remove = new javax.swing.JButton();
 
         jLayeredPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
@@ -73,12 +74,12 @@ public class PostsViewPanel extends javax.swing.JPanel {
                 editPostActionPerformed(evt);
             }
         });
-        editPost.setBounds(270, 390, 180, 40);
+        editPost.setBounds(40, 400, 180, 40);
         jLayeredPane4.add(editPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Please choose one of the Posts below for view", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        postsList.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        postsList.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         postsList.setModel(getThreadsListModel());
         postsList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         postsList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -92,7 +93,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         bodyArea.setColumns(20);
-        bodyArea.setFont(new java.awt.Font("Kristen ITC", 3, 12)); // NOI18N
+        bodyArea.setFont(new java.awt.Font("Kristen ITC", 3, 12));
         bodyArea.setRows(5);
         jScrollPane2.setViewportView(bodyArea);
 
@@ -121,8 +122,19 @@ public class PostsViewPanel extends javax.swing.JPanel {
                 newPostActionPerformed(evt);
             }
         });
-        newPost.setBounds(40, 390, 180, 40);
+        newPost.setBounds(40, 350, 180, 40);
         jLayeredPane4.add(newPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        remove.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
+        remove.setText("Remove");
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
+            }
+        });
+        remove.setBounds(300, 350, 160, 40);
+        jLayeredPane4.add(remove, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -203,6 +215,15 @@ public class PostsViewPanel extends javax.swing.JPanel {
          this.setVisible(false);
     }//GEN-LAST:event_newPostActionPerformed
 
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
+        _postSelected= postsList.getSelectedIndex();
+            Vector <PostInfo> posts= _clientController.getPostsList(this.getForum_id(), this.getThread_id());
+            PostInfo post=posts.get(_postSelected);
+            String post_id=Integer.toString(post.get_post_id());
+        this.getclientController().RemovePost(this.getThread_id(), post_id);
+        getStartWindow().getForum().displayForum(  new PostsViewPanel(this.getclientController(), this.getForum_id(), this.getThread_id(), this.getStartWindow()));
+    }//GEN-LAST:event_removeActionPerformed
+
     public void fillListPosts( ) {
     	
        	new SwingWorker<Void, Void>(){
@@ -266,6 +287,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton newPost;
     private javax.swing.JList postsList;
+    private javax.swing.JButton remove;
     // End of variables declaration//GEN-END:variables
 
 }
