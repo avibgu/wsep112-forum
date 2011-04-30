@@ -11,24 +11,17 @@
 
 package presentation.gui;
 
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Vector;
 
-import domain.ClientController;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingWorker;
-
-import common.forum.items.ThreadInfo;
-import common.forum.items.UserInfo;
-import common.network.messages.ErrorMessage;
-import common.notifications.FriendAddedPostNotification;
-import common.notifications.PostAddedToYourThreadNotification;
-import common.notifications.ThreadChangedNotification;
-import java.awt.Container;
-import java.awt.Graphics;
 import javax.swing.JPanel;
 
+import presentation.gui.workers.SetFriendsWorker;
+
+import common.forum.items.UserInfo;
+
+import domain.ClientController;
 /**
  *
  * @author
@@ -66,20 +59,7 @@ public class Forum extends javax.swing.JFrame {
 
     public void setFriends(){
     	
-    	new SwingWorker<Void, Void>(){
-
-			@Override
-			protected Void doInBackground() throws Exception {
-
-				Vector<UserInfo> friends = controller.getFriendList();
-				
-				for (UserInfo friend : friends) {
-		    		friendsList.addElement(friend.getUserName());
-				}
-				
-				return null;
-			}    		
-    	}.execute();
+    	new SetFriendsWorker<Void, Void>(controller, this, friendsList).execute();
 
 //        for (int i=0; i<controller.getFriendList().size(); i++  ){
 //                 UserInfo friend = controller.getFriendList().get(i);
