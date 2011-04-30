@@ -24,9 +24,11 @@ public class User implements Serializable{
 	private Status _status;
 	private List<String> _friends;
 	private List<Post> _posts;
+	private List<String> _friendsToNotify;
 	
-	public User(){
+ 	public User(){
 		_friends = new Vector<String>();
+		_friendsToNotify = new ArrayList<String>();
 		_posts= new Vector<Post>();
 	}
 	/**
@@ -47,6 +49,7 @@ public class User implements Serializable{
 			_email = email;
 			_status= Status.OFFLINE;
 			_friends = new Vector<String>();
+			_friendsToNotify = new ArrayList<String>();
 			_posts= new Vector<Post>();
 	}
 
@@ -164,7 +167,20 @@ public class User implements Serializable{
 		getFriends().add(userNameFriend);
 		return new OKMessage();
 	}
+	
+	/**
+	 * Adding friendToNotify to user's list
+	 * @param userNameFriend
+	 * @return Message
+	 */
+	public Message addFriendToNotify(String userNameFriend){
 
+		
+		get_friendsToNotify().add(userNameFriend);
+		return new OKMessage();
+	}
+	
+	
 	/**
 	 *
 	 * @param userNameFriend
@@ -181,6 +197,22 @@ public class User implements Serializable{
 		return new ErrorMessage("Friend is not exists in user's list.");
 	}
 
+	/**
+	 * Remove friend to notify.
+	 * @param userNameFriend
+	 * @return Message
+	 */
+	public Message removeFriendToNotify(String userNameFriend){
+
+		// Check if the userName is in user's list of friends
+		if (get_friendsToNotify().contains(userNameFriend.toLowerCase())){
+			_friendsToNotify.remove(userNameFriend);
+		
+			return new OKMessage();
+		}
+		return new ErrorMessage("Friend is not exists in user's list.");
+	}
+	
 	/**
 	 * @return Vector<Post> - posts of User (Owner)
 	 */
@@ -273,4 +305,12 @@ public class User implements Serializable{
 		}
 		return ans;*/
 	}
+	
+	public void set_friendsToNotify(List<String> _friendsToNotify) {
+		this._friendsToNotify = _friendsToNotify;
+	}
+	public List<String> get_friendsToNotify() {
+		return _friendsToNotify;
+	}
+
 }
