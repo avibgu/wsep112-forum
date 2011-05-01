@@ -66,20 +66,20 @@ public class PostsViewPanel extends javax.swing.JPanel {
 
         jLayeredPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        editPost.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        editPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
-        editPost.setText("Edit post");
+        editPost.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        editPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Text-Edit-icon.png"))); // NOI18N
+        editPost.setText("Edit");
         editPost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editPostActionPerformed(evt);
             }
         });
-        editPost.setBounds(320, 360, 170, 40);
+        editPost.setBounds(330, 380, 130, 40);
         jLayeredPane4.add(editPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Please choose one of the Posts below for view", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        postsList.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        postsList.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         postsList.setModel(getThreadsListModel());
         postsList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         postsList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -93,11 +93,11 @@ public class PostsViewPanel extends javax.swing.JPanel {
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         bodyArea.setColumns(20);
-        bodyArea.setFont(new java.awt.Font("Kristen ITC", 3, 12));
+        bodyArea.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         bodyArea.setRows(5);
         jScrollPane2.setViewportView(bodyArea);
 
-        jScrollPane2.setBounds(240, 30, 240, 280);
+        jScrollPane2.setBounds(240, 30, 246, 280);
         jLayeredPane2.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBounds(10, 30, 490, 320);
@@ -114,18 +114,18 @@ public class PostsViewPanel extends javax.swing.JPanel {
         back.setBounds(20, 20, 40, 30);
         jLayeredPane4.add(back, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        newPost.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        newPost.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         newPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
-        newPost.setText("Add Post");
+        newPost.setText("Add");
         newPost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newPostActionPerformed(evt);
             }
         });
-        newPost.setBounds(10, 360, 150, 40);
+        newPost.setBounds(50, 380, 130, 40);
         jLayeredPane4.add(newPost, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        remove.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        remove.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
         remove.setText("Remove");
         remove.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +133,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
                 removeActionPerformed(evt);
             }
         });
-        remove.setBounds(170, 360, 140, 40);
+        remove.setBounds(190, 380, 130, 40);
         jLayeredPane4.add(remove, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -142,15 +142,15 @@ public class PostsViewPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLayeredPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jLayeredPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
