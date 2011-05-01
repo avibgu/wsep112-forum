@@ -55,6 +55,7 @@ public class NewPost extends javax.swing.JPanel {
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "AddPost", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
+        title.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         title.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titleActionPerformed(evt);
@@ -66,13 +67,13 @@ public class NewPost extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Title");
-        jLabel2.setBounds(20, 60, 50, 20);
+        jLabel2.setBounds(20, 60, 50, -1);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Body");
-        jLabel3.setBounds(20, 90, 50, 20);
+        jLabel3.setBounds(20, 90, 50, -1);
         jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
@@ -83,7 +84,7 @@ public class NewPost extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(110, 380, 120, 33);
+        jButton1.setBounds(110, 380, 120, -1);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
@@ -98,6 +99,7 @@ public class NewPost extends javax.swing.JPanel {
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         body.setColumns(20);
+        body.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         body.setRows(5);
         jScrollPane1.setViewportView(body);
 
