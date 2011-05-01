@@ -116,7 +116,7 @@ public class ManageFriends extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jButton3.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Kristen ITC", 1, 12));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/go_back.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +142,7 @@ public class ManageFriends extends javax.swing.JFrame {
         jLayeredPane1.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/addThreadIcon.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/add-user-icon.png"))); // NOI18N
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +153,7 @@ public class ManageFriends extends javax.swing.JFrame {
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/remove-user-icon.png"))); // NOI18N
         jButton2.setText("Remove");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
