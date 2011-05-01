@@ -43,8 +43,9 @@ public class HibernateUtil {
 	   * @param obj
 	   */
 	   public static void updateDB(Object obj){
+		   Session session=null;
 		   try{
-			   Session session = getSession();
+			   session = getSession();
 			   Transaction transaction = session.beginTransaction();
 			   session.merge(obj);
 			   transaction.commit();
@@ -53,6 +54,8 @@ public class HibernateUtil {
 			  
 		   }
 		   catch(Exception e){
+			   if (session != null)
+				   session.close();
 			   e.printStackTrace();
 			  
 		   }
