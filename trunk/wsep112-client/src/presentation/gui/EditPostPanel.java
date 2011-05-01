@@ -48,23 +48,29 @@ private String _postId;
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
-        title = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        title = new javax.swing.JTextField();
         ok = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         body = new javax.swing.JTextArea();
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Please edit your post");
-        jLabel1.setBounds(10, 40, -1, -1);
+        jLabel1.setBounds(160, 40, 165, 20);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        title.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Body");
+        jLabel3.setBounds(50, 110, 40, 20);
+        jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        title.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         title.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titleActionPerformed(evt);
@@ -72,18 +78,6 @@ private String _postId;
         });
         title.setBounds(100, 70, 290, 30);
         jLayeredPane1.add(title, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Title");
-        jLabel2.setBounds(50, 70, 40, 30);
-        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Body");
-        jLabel3.setBounds(50, 110, 40, -1);
-        jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         ok.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         ok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Ok-icon.png"))); // NOI18N
@@ -93,7 +87,7 @@ private String _postId;
                 okActionPerformed(evt);
             }
         });
-        ok.setBounds(120, 350, 110, -1);
+        ok.setBounds(120, 350, 110, 33);
         jLayeredPane1.add(ok, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         cancel.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
@@ -104,11 +98,17 @@ private String _postId;
                 cancelActionPerformed(evt);
             }
         });
-        cancel.setBounds(260, 350, 120, -1);
+        cancel.setBounds(260, 350, 120, 33);
         jLayeredPane1.add(cancel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Title");
+        jLabel2.setBounds(50, 70, 40, 30);
+        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         body.setColumns(20);
-        body.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        body.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         body.setRows(5);
         jScrollPane1.setViewportView(body);
 
