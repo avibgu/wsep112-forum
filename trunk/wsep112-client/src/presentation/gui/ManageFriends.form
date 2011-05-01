@@ -94,7 +94,7 @@
               <Font name="Kristen ITC" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/presentation/gui/pics/addThreadIcon.png"/>
+              <Image iconType="3" name="/presentation/gui/pics/add-user-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
@@ -113,7 +113,7 @@
               <Font name="Kristen ITC" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/presentation/gui/pics/Close-icon.png"/>
+              <Image iconType="3" name="/presentation/gui/pics/remove-user-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Remove"/>
           </Properties>
