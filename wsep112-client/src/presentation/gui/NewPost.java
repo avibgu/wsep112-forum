@@ -43,9 +43,9 @@ public class NewPost extends javax.swing.JPanel {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        title = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        title = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -54,6 +54,18 @@ public class NewPost extends javax.swing.JPanel {
         setForeground(new java.awt.Color(255, 255, 255));
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "AddPost", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Title");
+        jLabel2.setBounds(20, 60, 50, 20);
+        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Body");
+        jLabel3.setBounds(20, 90, 50, 20);
+        jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         title.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         title.addActionListener(new java.awt.event.ActionListener() {
@@ -64,19 +76,7 @@ public class NewPost extends javax.swing.JPanel {
         title.setBounds(70, 60, 360, 30);
         jLayeredPane1.add(title, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Title");
-        jLabel2.setBounds(20, 60, 50, -1);
-        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Body");
-        jLabel3.setBounds(20, 90, 50, -1);
-        jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Ok-icon.png"))); // NOI18N
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -84,10 +84,10 @@ public class NewPost extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(110, 380, 120, -1);
+        jButton1.setBounds(100, 350, 130, 30);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
         jButton2.setText("Cancel");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +95,7 @@ public class NewPost extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        jButton2.setBounds(250, 380, 140, 30);
+        jButton2.setBounds(260, 350, 140, 30);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         body.setColumns(20);

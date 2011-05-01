@@ -65,18 +65,20 @@ public class AddThreadPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Title");
-        jLabel2.setBounds(20, 40, 79, 20);
+        jLabel2.setBounds(20, 40, 79, -1);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Body");
-        jLabel6.setBounds(20, 70, 38, 20);
+        jLabel6.setBounds(20, 70, -1, -1);
         jLayeredPane1.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextField3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jTextField3.setBounds(70, 70, 380, 250);
         jLayeredPane1.add(jTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jTextField4.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jTextField4.setBounds(70, 40, 380, 30);
         jLayeredPane1.add(jTextField4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
