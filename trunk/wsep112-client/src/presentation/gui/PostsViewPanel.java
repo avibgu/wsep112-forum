@@ -222,6 +222,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
             String post_id=Integer.toString(post.get_post_id());
         this.getclientController().RemovePost(this.getThread_id(), post_id);
         getStartWindow().getForum().displayForum(  new PostsViewPanel(this.getclientController(), this.getForum_id(), this.getThread_id(), this.getStartWindow()));
+        this.setVisible(false);
     }//GEN-LAST:event_removeActionPerformed
 
     public void fillListPosts( ) {
