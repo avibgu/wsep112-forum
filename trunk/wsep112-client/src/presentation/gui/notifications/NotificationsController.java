@@ -97,9 +97,7 @@ public class NotificationsController implements Observer {
 		UserInfo uInfo = fapn.getUserInfo();
 		
 		String msg =	"Your friend " + uInfo.getUserName() +
-						" added post to Thread " + tInfo.getThread_id() +
-						" (Forum " + tInfo.get_forumId() +") : \"" +
-						tInfo.getTitle() + "\"";
+						" added post to Thread \"" + tInfo.getTitle() + "\"";
 		
 		genPopUp(msg);
 	}
@@ -108,9 +106,7 @@ public class NotificationsController implements Observer {
 
 		ThreadInfo tInfo = patytn.getThreadInfo();
 					
-		String msg =	"Your Thread " + tInfo.getThread_id() +
-						" (Forum " + tInfo.get_forumId() +") : \"" +
-						tInfo.getTitle() + "\" has been changed";
+		String msg =	"Your Thread \"" + tInfo.getTitle() + "\" has been changed";
 
 		genPopUp(msg);
 	}
@@ -120,7 +116,7 @@ public class NotificationsController implements Observer {
             final NotificationForm popup = new NotificationForm(message);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                	popup.setLocation(900, 670);
+                	popup.setLocation(850, 670);
                     popup.setVisible(true);
                 }
             });
