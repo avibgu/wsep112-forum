@@ -86,8 +86,13 @@ public Message reaply(String title, String body,User owner){
 		return new ErrorMessage("post doesn't exists.");
 	}
 	
-	public void addWatchUser(String username){
-		get_watchingUsers().add(username);
+	public boolean addWatchUser(String username){
+		boolean ans=false;
+		if (!get_watchingUsers().contains(username)){
+			ans = true;
+			get_watchingUsers().add(username);
+		}
+		return ans;
 	}
 	
 	public boolean removeWatchUser(String username){
