@@ -142,25 +142,25 @@ public class ManageFriends extends javax.swing.JFrame {
         jLayeredPane1.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/add-user-icon.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/add-user-icon (1).png"))); // NOI18N
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(50, 290, 130, 30);
+        jButton1.setBounds(50, 290, 120, 40);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/remove-user-icon.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/remove-user-icon (1).png"))); // NOI18N
         jButton2.setText("Remove");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jButton2.setBounds(280, 290, 130, 30);
+        jButton2.setBounds(280, 290, 130, 40);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
