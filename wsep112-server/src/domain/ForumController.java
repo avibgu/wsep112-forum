@@ -508,15 +508,19 @@ public class ForumController implements Serializable{
      * 
      * @param username
      */
-	private void removeThisUserFromObservingOnThreads(String username) {
-
+	private boolean removeThisUserFromObservingOnThreads(String username) {
+		
+		boolean change = false;
 		List<Thread> threads = HibernateUtil.retrieveAllThreadsList();
 	
 		for (Thread thread : threads){
 			
-			thread.removeWatchUser(username);
-			HibernateUtil.updateDB(thread);
+			if (thread.removeWatchUser(username)){
+				change = true;
+				HibernateUtil.updateDB(thread);
+			}	
 		}
+		return change;
 	}
 	
 	/**
