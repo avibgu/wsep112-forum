@@ -94,7 +94,7 @@
               <Font name="Kristen ITC" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/presentation/gui/pics/add-user-icon.png"/>
+              <Image iconType="3" name="/presentation/gui/pics/add-user-icon (1).png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
@@ -103,7 +103,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="50" y="290" width="130" height="30" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="50" y="290" width="120" height="40" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -113,7 +113,7 @@
               <Font name="Kristen ITC" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/presentation/gui/pics/remove-user-icon.png"/>
+              <Image iconType="3" name="/presentation/gui/pics/remove-user-icon (1).png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Remove"/>
           </Properties>
@@ -122,7 +122,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="280" y="290" width="130" height="30" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="280" y="290" width="130" height="40" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>
