@@ -90,8 +90,8 @@ public Message reaply(String title, String body,User owner){
 		get_watchingUsers().add(username);
 	}
 	
-	public void removeWatchUser(String username){
-		get_watchingUsers().remove(username);
+	public boolean removeWatchUser(String username){
+		return get_watchingUsers().remove(username);
 	}
 	
 	
