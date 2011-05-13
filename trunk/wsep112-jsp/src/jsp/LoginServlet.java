@@ -38,11 +38,14 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 		throws ServletException, IOException{
 		
-		/*
-			String username = req.getParameter( "username" );
-			String password = req.getParameter( "password" );
-		 */
+		String username = req.getParameter( "username" );
+		String password = req.getParameter( "password" );
 		
+		_webController.login(username, password);
+
+		_loginJsp.forward(req, resp);
+		
+		/*
 		// Check if cancel button was pressed.
 		String cancelButton = req.getParameter("cancel-button");
 		
@@ -64,5 +67,6 @@ public class LoginServlet extends HttpServlet {
 		new NewsItemDAO().create(newsItem);
 		
 		resp.sendRedirect("view-news-item?id=" + newsItem.getId());
+		*/
 	}
 }
