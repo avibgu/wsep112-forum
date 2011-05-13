@@ -10,7 +10,7 @@
 	
 		<h1 align="center">Forum Web Client</h1>
 	
-		<form name="RegistrationForm" action="saveRegInfo.jsp" method="post">
+		<form name="RegistrationForm" action="reg" method="post">
 		
 			<p align="center">	Enter the following information for registration:
 				
@@ -19,13 +19,13 @@
 				<tr><td>	First Name:	</td><td>	<input type="text" name="firstName" />		</td></tr>
 				<tr><td>	Last Name:	</td><td>	<input type="text" name="lastName" />		</td></tr>
 				<tr><td>	Username:	</td><td>	<input type="text" name="username" />		</td></tr>
-				<tr><td>	Password:	</td><td>	<input type="password" name="password" />	</td></tr>
+				<tr><td>	Password:	</td><td>	<input type="password" name="password" style="width: 156px; "/>	</td></tr>
 				<tr><td>	EMail:		</td><td>	<input type="text" name="email" />			</td></tr>
 			
 			</table>
 			
 			<p align="center">	<input type="submit" value="Register" />
-			or <a href="login.jsp">Login to the Forum</a>
+			or <a href="login">Login to the Forum</a>
 
 		</form>
 		
