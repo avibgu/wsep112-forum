@@ -1,15 +1,19 @@
 <%
-	String name = request.getParameter( "username" );
+	String username = request.getParameter( "username" );
 	String password = request.getParameter( "password" );
 
-	session.setAttribute( "theName", name );
-	session.setAttribute( "thepassword", password );
+	session.setAttribute( "theUsername", username );
+	session.setAttribute( "thePassword", password );
 %>
 <html>
 
-	<body>
+	<body bgcolor="#BBF07F">
 	
 		<p align="center">	Information Saved..
+		
+		<p align="center">	Username = <%=username%>
+		
+		<p align="center">	Password = <%=password%>
 	
 	</body>
 

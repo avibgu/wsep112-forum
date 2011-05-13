@@ -6,11 +6,11 @@
 		<title>Forum Web Client</title>
 	</head>
 	
-	<body>
+	<body bgcolor="#BBF07F">
 	
 		<h1 align="center">Forum Web Client</h1>
 	
-		<form name="RegistrationForm" action="registration.jsp" method="post">
+		<form name="RegistrationForm" action="saveRegInfo.jsp" method="post">
 		
 			<p align="center">	Enter the following information for registration:
 				
