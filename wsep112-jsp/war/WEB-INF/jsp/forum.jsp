@@ -52,14 +52,7 @@
 				
 				<td>
 
-					<textarea rows="30" cols="100">
-					
-						bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla 
-						bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla 
-						bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla 
-						bla bla bla bla 
-					
-					</textarea>
+					<jsp:include page="forumsList.jsp"/>
 					
 				</td>
 				
