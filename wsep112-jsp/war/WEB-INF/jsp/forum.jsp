@@ -32,6 +32,8 @@
 								<li>Friend2</li>
 								<li>Friend3</li>
 							</ul>
+							
+							<jsp:include page="friendsList.jsp"/>
 						</tr>
 						
 						<tr>	<button name="removeFriendButton" type="button">	Remove Friend	</button>	</tr>
