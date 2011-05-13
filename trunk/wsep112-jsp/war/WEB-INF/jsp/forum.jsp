@@ -27,12 +27,6 @@
 						<h5>	Your Friends:				</h5>
 					
 						<tr>
-							<ul>
-								<li>Friend1</li>
-								<li>Friend2</li>
-								<li>Friend3</li>
-							</ul>
-							
 							<jsp:include page="friendsList.jsp"/>
 						</tr>
 						
