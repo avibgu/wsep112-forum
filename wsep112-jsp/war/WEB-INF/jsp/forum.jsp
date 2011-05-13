@@ -8,7 +8,11 @@
 	
 	<body>
 	
-		<h1 align="center" >Forum Web Client</h1>
+		<%
+			java.lang.String name = "Avi";
+		%>
+	
+		<h1 align="center">	Forum Web Client	</h1>
 
 		<table>
 		
@@ -18,9 +22,9 @@
 				
 					<table width="150">
 					
-						<h4>	Hello Avi,		</h4>
+						<h4>	Hello <%=	name	%>,		</h4>
 					
-						<h5>	Your Friends:	</h5>
+						<h5>	Your Friends:				</h5>
 					
 						<tr>
 							<ul>
@@ -30,10 +34,17 @@
 							</ul>
 						</tr>
 						
-						<h5>	Manage Friends:	</h5>
+						<tr>	<button name="removeFriendButton" type="button">	Remove Friend	</button>	</tr>
 						
-						<tr>	<button name="addFriendButton" type="button">		Add		</button>	</tr>
-						<tr>	<button name="removeFriendButton" type="button">	Remove	</button>	</tr>
+						<br/>
+						<br/>
+						
+						<h5>	Add Friend:	</h5>
+						
+						<tr>	<input type="text" name="friendName" />	</tr>	<br/>
+						
+						<tr>	<button name="addFriendButton" type="button">		Add	Friend	</button>	</tr>
+						
 					
 					</table>
 					
