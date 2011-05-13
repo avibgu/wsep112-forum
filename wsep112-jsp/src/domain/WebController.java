@@ -30,4 +30,9 @@ public class WebController {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public void login(String username, String password) {
+		// TODO Auto-generated method stub
+		
+	}
 }

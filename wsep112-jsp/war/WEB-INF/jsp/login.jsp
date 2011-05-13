@@ -10,7 +10,7 @@
 	
 		<h1 align="center">Forum Web Client</h1>
 	
-		<form name="loginForm" action="saveLoginInfo.jsp" method="post">
+		<form name="loginForm" action="/" method="post">
 			
 			<p align="center">	Login to the Forum:
 				
@@ -22,7 +22,7 @@
 			</table>
 			
 			<p align="center">	<input type="submit" value="Login" />
-			or <a href="registration.jsp">Register to the Forum</a>
+			or <a href="/reg">Register to the Forum</a>
 		</form>
 		
 	</body>
