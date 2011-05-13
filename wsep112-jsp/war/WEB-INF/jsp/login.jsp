@@ -10,7 +10,7 @@
 	
 		<h1 align="center">Forum Web Client</h1>
 	
-		<form name="loginForm" action="login.jsp" method="post">
+		<form name="loginForm" action="saveLoginInfo.jsp" method="post">
 			
 			<p align="center">	Login to the Forum:
 				
