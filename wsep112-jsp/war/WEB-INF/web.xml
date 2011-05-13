@@ -9,13 +9,33 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<!-- TODO: Optionally add a <welcome-file-list> tag to display a welcome file. -->
 	
 	<servlet>
-      <servlet-name>forum</servlet-name>
-      <servlet-class>jsp.ForumServlet</servlet-class>
-   </servlet>
+		<servlet-name>login</servlet-name>
+		<servlet-class>jsp.LoginServlet</servlet-class>
+	</servlet>
    
-   <servlet-mapping>
-      <servlet-name>forum</servlet-name>
-      <url-pattern>/forum</url-pattern>
-   </servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>login</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>registration</servlet-name>
+		<servlet-class>jsp.RegServlet</servlet-class>
+	</servlet>
+   
+	<servlet-mapping>
+		<servlet-name>registration</servlet-name>
+		<url-pattern>/reg</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>forum</servlet-name>
+		<servlet-class>jsp.ForumServlet</servlet-class>
+	</servlet>
+   
+	<servlet-mapping>
+		<servlet-name>forum</servlet-name>
+		<url-pattern>/forum</url-pattern>
+	</servlet-mapping>
 
 </web-app>
