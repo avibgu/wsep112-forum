@@ -6,7 +6,7 @@
 		<title>Forum Web Client</title>
 	</head>
 	
-	<body>
+	<body bgcolor="#BBF07F">
 	
 		<%
 			java.lang.String name = "Avi";
