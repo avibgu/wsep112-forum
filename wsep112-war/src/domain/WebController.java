@@ -26,6 +26,11 @@ public class WebController {
 	
 //	From Here:	delegations to a ClientController
 
+	public boolean login(String username, String password) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
 	public Vector<UserInfo> getFriendList() {
 		// TODO Auto-generated method stub
 		
@@ -35,10 +40,5 @@ public class WebController {
 		ans.add(new UserInfo("OFFLINE", "Shiran"));
 		
 		return ans;
-	}
-
-	public boolean login(String username, String password) {
-		// TODO Auto-generated method stub
-		return true;
 	}
 }
