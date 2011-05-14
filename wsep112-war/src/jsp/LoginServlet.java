@@ -46,9 +46,7 @@ public class LoginServlet extends HttpServlet {
 		String username = req.getParameter( "username" );
 		String password = req.getParameter( "password" );
 		
-		boolean ans = _webController.login(username, password);
-
-		System.out.println("\n\n\n\n" + username +", " + password + "\n\n\n\n");		
+		boolean ans = _webController.login(username, password);	
 		
 		if(ans)
 			resp.sendRedirect("forum");

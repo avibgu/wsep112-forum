@@ -34,23 +34,6 @@ public class FriendsListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		Vector<UserInfo> friends = _webController.getFriendList();
-		
-		Vector<String> online_friends = new Vector<String>();
-		Vector<String> offline_friends = new Vector<String>();
-		
-		for(UserInfo friend: friends){
-			
-			if (friend.getStatus().equals("ONLINE"))
-				online_friends.add(friend.getUserName());
-			
-			else
-				offline_friends.add(friend.getUserName());
-		}
-
-		req.setAttribute("online_friends", online_friends);
-		req.setAttribute("offline_friends", offline_friends);
-
 		_friendsListJsp.forward(req, resp);
 	}
 }
