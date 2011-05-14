@@ -8,8 +8,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/wsep112-client"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/wsep112-common"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/wsep112-client"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/wsep112-common"/>
 	<classpathentry kind="lib" path="C:/Program Files/Apache/Tomcat-7.0.12/lib/jsp-api.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Apache/Tomcat-7.0.12/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
