@@ -28,11 +28,17 @@ public class WebController {
 
 	public Vector<UserInfo> getFriendList() {
 		// TODO Auto-generated method stub
-		return null;
+		
+		Vector<UserInfo> ans = new Vector<UserInfo>();
+		
+		ans.add(new UserInfo("ONLINE", "Avi"));
+		ans.add(new UserInfo("OFFLINE", "Shiran"));
+		
+		return ans;
 	}
 
-	public void login(String username, String password) {
+	public boolean login(String username, String password) {
 		// TODO Auto-generated method stub
-		
+		return true;
 	}
 }
