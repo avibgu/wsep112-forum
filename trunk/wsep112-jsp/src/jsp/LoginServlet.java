@@ -41,9 +41,13 @@ public class LoginServlet extends HttpServlet {
 		String username = req.getParameter( "username" );
 		String password = req.getParameter( "password" );
 		
-		_webController.login(username, password);
+		boolean ans = _webController.login(username, password);
 
-		_loginJsp.forward(req, resp);
+		if(ans)
+			resp.sendRedirect("forum");
+		
+		else
+			_loginJsp.forward(req, resp);
 		
 		/*
 		// Check if cancel button was pressed.
