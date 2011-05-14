@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-		Under Construction..
+		<p align="center"> Posts List Under Construction..
 </body>
 </html>

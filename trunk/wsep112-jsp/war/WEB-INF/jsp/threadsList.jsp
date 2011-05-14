@@ -2,7 +2,7 @@
 
 	<body>
 	
-		Under Construction..
+		<p align="center"> Threads List Under Construction..
 	
 	</body>
 
