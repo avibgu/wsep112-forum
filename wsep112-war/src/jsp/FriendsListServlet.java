@@ -26,7 +26,7 @@ public class FriendsListServlet extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		
 		ServletContext context = config.getServletContext();
-		_friendsListJsp = context.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+		_friendsListJsp = context.getRequestDispatcher("/WEB-INF/jsp/friendsList.jsp");
 		_webController = WebController.getInstance();
 	}
 
@@ -35,7 +35,21 @@ public class FriendsListServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		Vector<UserInfo> friends = _webController.getFriendList();
-		req.setAttribute("friends", friends);
+		
+		Vector<String> online_friends = new Vector<String>();
+		Vector<String> offline_friends = new Vector<String>();
+		
+		for(UserInfo friend: friends){
+			
+			if (friend.getStatus().equals("ONLINE"))
+				online_friends.add(friend.getUserName());
+			
+			else
+				offline_friends.add(friend.getUserName());
+		}
+
+		req.setAttribute("online_friends", online_friends);
+		req.setAttribute("offline_friends", offline_friends);
 
 		_friendsListJsp.forward(req, resp);
 	}

@@ -30,8 +30,6 @@ public class RegServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		req.setAttribute("friends", new Vector<UserInfo>());
-		
 		_regJsp.forward(req, resp);
 	}
 	

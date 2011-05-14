@@ -38,4 +38,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/forum</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>friends</servlet-name>
+		<servlet-class>jsp.FriendsListServlet</servlet-class>
+	</servlet>
+   
+	<servlet-mapping>
+		<servlet-name>friends</servlet-name>
+		<url-pattern>/friends</url-pattern>
+	</servlet-mapping>
+
+
 </web-app>
