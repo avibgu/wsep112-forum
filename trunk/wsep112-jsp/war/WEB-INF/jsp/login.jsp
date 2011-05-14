@@ -1,3 +1,5 @@
+<jsp:useBean id="error" scope="request" type="java.lang.String" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -13,7 +15,9 @@
 		<form name="loginForm" action="login" method="post">
 			
 			<p align="center">	Login to the Forum:
-				
+			
+			<p align="center" style="color: red">	<%=error%>	</p>
+			
 			<table align="center">
 				
 				<tr><td>	Username:	</td><td>	<input type="text" name="username" />		</td></tr>
