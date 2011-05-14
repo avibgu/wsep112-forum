@@ -3,6 +3,12 @@
     <wb-module deploy-name="wsep112-war">
         <wb-resource deploy-path="/" source-path="/war"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="wsep112-common.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/wsep112-common/wsep112-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="wsep112-client.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/wsep112-client/wsep112-client">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="wsep112-war"/>
         <property name="java-output-path" value="/wsep112-war/build/classes"/>
     </wb-module>
