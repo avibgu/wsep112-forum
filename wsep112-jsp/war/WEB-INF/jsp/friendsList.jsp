@@ -1,28 +1,34 @@
-<%@ page import="java.util.Iterator" %>
-<%@ page import="common.forum.items.UserInfo" %>
+<%@ page import="java.lang.String" %>
 
-<jsp:useBean id="friends" scope="request" type="java.util.Vector<common.forum.items.UserInfo>" />
+<jsp:useBean id="online_friends" scope="request" type="java.util.Vector<java.lang.String>" />
+<jsp:useBean id="offline_friends" scope="request" type="java.util.Vector<java.lang.String>" />
 
-<ul>
+<html>
 
-	<%
-		for(UserInfo friend: friends){
-			
-			if(friend.getStatus() == "ONLINE"){
-	%>
-				<li>	
-					<div style="color:green;"><p><%=friend.getUserName()%></p></div>
-				</li>
-	<%
-			}
-			else{
-	%>
-				<li>	
-					<div style="color:red;"><p><%=friend.getUserName()%></p></div>
-				</li>
-	<%
-			}
-		}
-	%>
+	<body>
 
-</ul>
+		<ul>
+		
+			<%
+				for(String friend: online_friends){
+			%>
+					<li>
+						<div style="color:green;"><%=friend%></div>
+					</li>
+			<%
+				}
+		
+				for(String friend: offline_friends){
+			%>
+					<li>	
+						<div style="color:red;"><p><%=friend%></p></div>
+					</li>
+			<%
+				}
+			%>
+		
+		</ul>
+
+	</body>
+
+</html>
