@@ -33,6 +33,7 @@ public class ForumServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
+		// sets friends list
 		Vector<UserInfo> friends = _webController.getFriendList();
 		
 		Vector<String> online_friends = new Vector<String>();
@@ -50,6 +51,31 @@ public class ForumServlet extends HttpServlet {
 		req.setAttribute("online_friends", online_friends);
 		req.setAttribute("offline_friends", offline_friends);
 		
+	
+		// decide which data should we retrieve from the server (forums\posts\threads)
+		String window = (String)req.getAttribute("window");
+		
+		if (null == window){
+			
+			req.setAttribute("window", "forums");
+			window = "forums";
+		}
+		
+		if (window.equals("forums")){
+			
+			req.setAttribute("forums_list", new Vector<String>());
+		}
+		
+		else if (window.equals("posts")){
+			
+			req.setAttribute("posts_list", new Vector<String>());
+		}
+		
+		else if (window.equals("threads")){
+			
+			req.setAttribute("threads_list", new Vector<String>());
+		}
+			
 		_forumJsp.forward(req, resp);
 	}
 	
