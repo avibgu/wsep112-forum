@@ -41,6 +41,11 @@
 						
 						<tr>	<button name="addFriendButton" type="button">		Add	Friend	</button>	</tr>
 						
+						<br/>
+						<br/>
+						
+						<tr>	<button name="logoutButton" type="button">		Logout	</button>	</tr>
+						
 					
 					</table>
 					
