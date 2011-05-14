@@ -31,6 +31,11 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
+		String error = (String) req.getAttribute("error");
+		
+		if (null == error)
+			req.setAttribute("error", "");
+		
 		_loginJsp.forward(req, resp);
 	}
 	
@@ -43,11 +48,16 @@ public class LoginServlet extends HttpServlet {
 		
 		boolean ans = _webController.login(username, password);
 
+		System.out.println("\n\n\n\n" + username +", " + password + "\n\n\n\n");		
+		
 		if(ans)
 			resp.sendRedirect("forum");
 		
-		else
+		else{
+		
+			req.setAttribute("error", "Wrong Username or Password");
 			_loginJsp.forward(req, resp);
+		}
 		
 		/*
 		// Check if cancel button was pressed.
