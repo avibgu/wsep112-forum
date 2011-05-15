@@ -90,10 +90,10 @@ public class MainClient {
 			String serverAddress, Logger logger) throws RemoteException{
 
 		//	creating security policy manager
-		if (System.getSecurityManager() == null) {
-			
-			System.setSecurityManager(new SecurityManager());
-		}
+//		if (System.getSecurityManager() == null) {
+//			
+//			System.setSecurityManager(new SecurityManager());
+//		}
 		
 		String serverName = "ForumServer";
 		
