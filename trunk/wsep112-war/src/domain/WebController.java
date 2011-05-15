@@ -1,7 +1,12 @@
 package domain;
 
+import java.rmi.RemoteException;
 import java.util.HashMap;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Vector;
+
+import main.MainClient;
 
 import common.forum.items.ForumInfo;
 import common.forum.items.PostInfo;
@@ -11,12 +16,15 @@ import common.forum.items.UserInfo;
 /**
  * Web Controller Singleton..
  */
-public class WebController {
+public class WebController implements Observer{
 
-	private HashMap<String, ClientController> usersControllersMap;	
+	private HashMap<String, ClientController> _usersControllersMap;	
 	
 	// Private constructor prevents instantiation from other classes
-	private WebController() { }
+	private WebController() {
+		
+		setUsersControllersMap(new HashMap<String, ClientController>());
+	}
 	
 	/**
 	* SingletonHolder is loaded on the first execution of Singleton.getInstance()
@@ -33,10 +41,20 @@ public class WebController {
 //	From Here:	delegations to a ClientController
 
 	public boolean login(String username, String password) {
-		// TODO Auto-generated method stub
-		return true;
+		
+		ClientController cc = getClientController(username);
+		
+		return cc.login(username, password);
 	}
 	
+	public boolean register(String firstName, String lastName, String username,
+			String password, String email) {
+		
+		ClientController cc = getClientController(username);
+		
+		return cc.register(firstName, lastName, username, password, email);
+	}
+
 	public Vector<UserInfo> getFriendList() {
 		// TODO Auto-generated method stub
 		
@@ -76,12 +94,6 @@ public class WebController {
 		return ans;
 	}
 
-	public boolean register(String firstName, String lastName, String username,
-			String password, String email) {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
 	public void AddFriend(String username, String addFriendName) {
 		// TODO Auto-generated method stub
 		
@@ -92,4 +104,45 @@ public class WebController {
 		
 	}
 
+	public ClientController getClientController(String username) {
+
+		ClientController cc = getUsersControllersMap().get(username);
+		
+		if (cc == null){
+			
+			while (true){
+				
+				try {
+					
+					cc = MainClient.connectToRmiServer("127.0.0.1", null);
+					
+					if (cc != null){
+						
+						getUsersControllersMap().put(username, cc);
+						
+						cc.addObserver(this);
+						
+						break;
+					}
+				}
+				catch (RemoteException e) {}
+			}
+		}
+
+		return cc;
+	}
+		
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setUsersControllersMap(HashMap<String, ClientController> _usersControllersMap) {
+		this._usersControllersMap = _usersControllersMap;
+	}
+
+	public HashMap<String, ClientController> getUsersControllersMap() {
+		return _usersControllersMap;
+	}
 }
