@@ -79,4 +79,20 @@ public class ForumServlet extends HttpServlet {
 		_forumJsp.forward(req, resp);
 	}
 	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		
+		String username = req.getParameter( "username" );
+		String addFriendName = req.getParameter( "addFriendName" );
+		String removeFriendName = req.getParameter( "removeFriendName" );
+		
+		if (null != addFriendName)
+			_webController.AddFriend(username, addFriendName);
+			
+		else if (null != removeFriendName)
+			_webController.RemoveFriend(username, removeFriendName);
+
+		resp.sendRedirect("forum");
+	}
 }
