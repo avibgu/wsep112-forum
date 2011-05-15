@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +35,7 @@ public class ForumServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
 		// sets friends list
 		Vector<UserInfo> friends = _webController.getFriendList();
 		
@@ -52,6 +54,16 @@ public class ForumServlet extends HttpServlet {
 		req.setAttribute("online_friends", online_friends);
 		req.setAttribute("offline_friends", offline_friends);
 		
+		Cookie[] cookies = req.getCookies();
+		
+		String username = "";
+		
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("username"))
+				username = cookie.getValue();
+		}
+		
+		req.setAttribute("username", username);
 	
 		// decide which data should we retrieve from the server (forums\posts\threads)
 		String window = (String)req.getParameter("window");

@@ -48,13 +48,13 @@ public class LoginServlet extends HttpServlet {
 		String username = req.getParameter( "username" );
 		String password = req.getParameter( "password" );
 		
-		Cookie coockie = new Cookie("username", username);
-		
 		boolean ans = _webController.login(username, password);	
 		
-		if(ans)
+		if(ans){
+			
+			resp.addCookie(new Cookie("username", username));
 			resp.sendRedirect("forum");
-		
+		}
 		else{
 		
 			req.setAttribute("error", "Wrong Username or Password");
