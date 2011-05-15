@@ -54,54 +54,56 @@ public class WebController implements Observer{
 		
 		return cc.register(firstName, lastName, username, password, email);
 	}
+	
+	public void logout(String username) {
 
-	public Vector<UserInfo> getFriendList() {
-		// TODO Auto-generated method stub
+		ClientController cc = getClientController(username);
 		
-		Vector<UserInfo> ans = new Vector<UserInfo>();
+		cc.logout();
+	}
+
+	public Vector<UserInfo> getFriendList(String username) {
+
+		ClientController cc = getClientController(username);
 		
-		ans.add(new UserInfo("ONLINE", "Avi"));
-		ans.add(new UserInfo("OFFLINE", "Shiran"));
-		
-		return ans;
+		return cc.getFriendList();
 	}
 
 	
-	public Vector<ForumInfo> getForumList(){
-		Vector<ForumInfo> ans = new Vector<ForumInfo>();
+	public Vector<ForumInfo> getForumList(String username){
 		
-		ans.add(new ForumInfo("Shiran Forum", 1));
-		ans.add(new ForumInfo("Avi Forum", 2));
+		ClientController cc = getClientController(username);
 		
-		return ans;
+		return cc.getForumsList();
 	}
 	
-	public Vector<ThreadInfo> getThreadList(int forum_id){
-		Vector<ThreadInfo> ans = new Vector<ThreadInfo>();
+	public Vector<ThreadInfo> getThreadList(String username, String forum_id){
+
+		ClientController cc = getClientController(username);
 		
-		ans.add(new ThreadInfo(17,"Shiran1 Thread", 1));
-		ans.add(new ThreadInfo(18,"Shiran2 Thread", 1));
-		
-		return ans;
+		return cc.getThreadsList(forum_id);
 	}
 	
-	public Vector<PostInfo> getPostList(int thread_id){
-		Vector<PostInfo> ans = new Vector<PostInfo>();
+	public Vector<PostInfo> getPostList(String username,
+			String forum_id, String thread_id){
 		
-		ans.add(new PostInfo(21, "Shiran post1", "Hello, How r u?", new UserInfo("ONLINE", "gshir"), 17, "1/5/11"));
-		//ans.add(new ThreadInfo(18,"Shiran2 Thread", 1));
+		ClientController cc = getClientController(username);
 		
-		return ans;
+		return cc.getPostsList(forum_id, thread_id);
 	}
 
-	public void AddFriend(String username, String addFriendName) {
-		// TODO Auto-generated method stub
+	public boolean AddFriend(String username, String addFriendName) {
+
+		ClientController cc = getClientController(username);
 		
+		return cc.AddFriend(addFriendName);
 	}
 
-	public void RemoveFriend(String username, String removeFriendName) {
-		// TODO Auto-generated method stub
+	public boolean RemoveFriend(String username, String removeFriendName) {
 		
+		ClientController cc = getClientController(username);
+		
+		return cc.RemoveFriend(removeFriendName);
 	}
 
 	public ClientController getClientController(String username) {

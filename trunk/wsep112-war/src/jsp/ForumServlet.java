@@ -36,8 +36,19 @@ public class ForumServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		Cookie[] cookies = req.getCookies();
+		
+		String username = "";
+		
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("username"))
+				username = cookie.getValue();
+		}
+		
+		req.setAttribute("username", username);
+		
 		// sets friends list
-		Vector<UserInfo> friends = _webController.getFriendList();
+		Vector<UserInfo> friends = _webController.getFriendList(username);
 		
 		Vector<String> online_friends = new Vector<String>();
 		Vector<String> offline_friends = new Vector<String>();
@@ -53,17 +64,6 @@ public class ForumServlet extends HttpServlet {
 
 		req.setAttribute("online_friends", online_friends);
 		req.setAttribute("offline_friends", offline_friends);
-		
-		Cookie[] cookies = req.getCookies();
-		
-		String username = "";
-		
-		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals("username"))
-				username = cookie.getValue();
-		}
-		
-		req.setAttribute("username", username);
 	
 		// decide which data should we retrieve from the server (forums\posts\threads)
 		String window = (String)req.getParameter("window");
@@ -75,22 +75,28 @@ public class ForumServlet extends HttpServlet {
 		}
 		
 		if (window.equals("forums")){
-			Vector<ForumInfo> forumList = _webController.getForumList();
+			
+			Vector<ForumInfo> forumList = _webController.getForumList(username);
 			
 			req.setAttribute("forums_list", forumList);
 		}
 		
-		else if (window.equals("posts")){
-			req.setAttribute("posts_list", new Vector<String>());
-		}
-		
 		else if (window.equals("threads")){
-			int forumId= Integer.parseInt(req.getParameter("id"));
-		    Vector<ThreadInfo> threadList = _webController.getThreadList(forumId);
+			
+			String  forumId = req.getParameter("id");
+		    
+			Vector<ThreadInfo> threadList =
+		    	_webController.getThreadList(username, forumId);
+		    
 		    req.setAttribute("window", "threads");
 		    req.setAttribute("threads_list", threadList);
 		}
+		
+		else if (window.equals("posts")){
 			
+			req.setAttribute("posts_list", new Vector<String>());
+		}
+		
 		_forumJsp.forward(req, resp);
 	}
 	

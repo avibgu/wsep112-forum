@@ -1,7 +1,6 @@
 package jsp;
 
 import java.io.IOException;
-import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import common.forum.items.UserInfo;
 import domain.WebController;
 
 public class RegServlet extends HttpServlet {
