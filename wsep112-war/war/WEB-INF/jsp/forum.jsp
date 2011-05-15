@@ -21,45 +21,46 @@
 				
 					<table width="150">
 					
-						<h4>	Hello <%=username%>,		</h4>
+						<tr><h4>	Hello <%=username%>,					</h4></tr>
 					
-						<h5>	Your Friends:				</h5>
-					
-						<tr>
-							<jsp:include page="friendsList.jsp"/>
-						</tr>
-						
-						<br/>
-						
+						<tr><h5>	Your Friends:							</h5></tr>
+
+						<tr>		<jsp:include page="friendsList.jsp"/>	</tr>
 						
 						<form name="addFriendForm" action="forum" method="post">
 			
-							<h5>	Add Friend:	</h5>
+							<tr><h5>	Add Friend:									</h5></tr>
 							
-							<tr>	<input type="text" name="addFriendName" />	</tr>	<br/>
+							<tr>		<input type="text" name="addFriendName" />	</tr>
 
-							<input type="submit" value="Add Friend" />
+							<tr>		<input type="submit" value="Add Friend" />	</tr>
 							
 						</form>
+						
+						</br>
 						
 						<form name="removeFriendForm" action="forum" method="post">
 			
-							<h5>	Remove Friend:	</h5>
+							<tr><h5>	Remove Friend:									</h5></tr>
 							
-							<tr>	<input type="text" name="removeFriendName" />	</tr>	<br/>
+							<tr>		<input type="text" name="removeFriendName" />	</tr>
 
-							<input type="submit" value="Remove Friend" />
+							<tr>		<input type="submit" value="Remove Friend" />	</tr>
 							
 						</form>
 
-						<br/>
-						<br/>
+						</br>
+						</br>
 						
 						<form name="LogoutForm" action="login" method="get">
 			
-							<input type="submit" value="Logout"/>
+							<tr>		<input type="submit" value="Logout"/>	</tr>
 							
 						</form>
+						
+						</br>
+
+						<tr>			<jsp:include page="notification.jsp"/>	</tr>
 						
 					</table>
 					
