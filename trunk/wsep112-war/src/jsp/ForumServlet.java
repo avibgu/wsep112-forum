@@ -69,13 +69,13 @@ public class ForumServlet extends HttpServlet {
 		}
 		
 		else if (window.equals("posts")){
-			
 			req.setAttribute("posts_list", new Vector<String>());
 		}
 		
 		else if (window.equals("threads")){
 			int forumId= Integer.parseInt(req.getParameter("id"));
 		    Vector<ThreadInfo> threadList = _webController.getThreadList(forumId);
+		    req.setAttribute("window", "threads");
 		    req.setAttribute("threads_list", threadList);
 		}
 			
