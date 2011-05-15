@@ -51,10 +51,10 @@
 
 						</br>
 						</br>
-						
-						<form name="LogoutForm" action="login" method="get">
+
+						<form name="LogoutForm" action="login" method="get" >
 			
-							<tr>		<input type="submit" value="Logout"/>	</tr>
+							<tr>		<input type="submit" value="Logout" name="logoutButton"/>	</tr>
 							
 						</form>
 						

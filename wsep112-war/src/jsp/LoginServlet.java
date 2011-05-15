@@ -6,7 +6,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.SessionCookieConfig;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,10 +32,31 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
+		Cookie[] cookies = req.getCookies();
+		
+		String username = "";
+		
+		if (null != cookies){
+			
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("username"))
+					username = cookie.getValue();
+			}
+		}
+		
 		String error = (String) req.getAttribute("error");
 		
 		if (null == error)
 			req.setAttribute("error", "");
+		
+		String logout = (String) req.getParameter("logoutButton");
+		
+		if (null != logout){
+			
+			System.out.println("n\n\n\n\n\n" + logout + "\n\n\n\n");
+			_webController.logout(username);
+		}
+			
 		
 		_loginJsp.forward(req, resp);
 	}
