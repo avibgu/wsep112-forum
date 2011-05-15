@@ -3,6 +3,8 @@ package domain;
 import java.util.HashMap;
 import java.util.Vector;
 
+import common.forum.items.ForumInfo;
+import common.forum.items.ThreadInfo;
 import common.forum.items.UserInfo;
 
 /**
@@ -45,6 +47,25 @@ public class WebController {
 		return ans;
 	}
 
+	
+	public Vector<ForumInfo> getForumList(){
+		Vector<ForumInfo> ans = new Vector<ForumInfo>();
+		
+		ans.add(new ForumInfo("Shiran Forum", 1));
+		ans.add(new ForumInfo("Avi Forum", 2));
+		
+		return ans;
+	}
+	
+	public Vector<ThreadInfo> getThreadList(int forum_id){
+		Vector<ThreadInfo> ans = new Vector<ThreadInfo>();
+		
+		ans.add(new ThreadInfo(17,"Shiran1 Thread", 1));
+		ans.add(new ThreadInfo(18,"Shiran2 Thread", 1));
+		
+		return ans;
+	}
+
 	public boolean register(String firstName, String lastName, String username,
 			String password, String email) {
 		// TODO Auto-generated method stub
@@ -60,4 +81,5 @@ public class WebController {
 		// TODO Auto-generated method stub
 		
 	}
+
 }
