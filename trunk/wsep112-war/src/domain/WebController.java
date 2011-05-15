@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.HashMap;
 import java.util.Vector;
 
 import common.forum.items.UserInfo;
@@ -9,6 +10,8 @@ import common.forum.items.UserInfo;
  */
 public class WebController {
 
+	private HashMap<String, ClientController> usersControllersMap;	
+	
 	// Private constructor prevents instantiation from other classes
 	private WebController() { }
 	
@@ -40,5 +43,21 @@ public class WebController {
 		ans.add(new UserInfo("OFFLINE", "Shiran"));
 		
 		return ans;
+	}
+
+	public boolean register(String firstName, String lastName, String username,
+			String password, String email) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public void AddFriend(String username, String addFriendName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void RemoveFriend(String username, String removeFriendName) {
+		// TODO Auto-generated method stub
+		
 	}
 }
