@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import common.forum.items.ForumInfo;
+import common.forum.items.ThreadInfo;
 import common.forum.items.UserInfo;
 import domain.WebController;
 
@@ -32,7 +34,6 @@ public class ForumServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
 		// sets friends list
 		Vector<UserInfo> friends = _webController.getFriendList();
 		
@@ -53,8 +54,8 @@ public class ForumServlet extends HttpServlet {
 		
 	
 		// decide which data should we retrieve from the server (forums\posts\threads)
-		String window = (String)req.getAttribute("window");
-		
+		String window = (String)req.getParameter("window");
+		System.out.println("window " + window);
 		if (null == window){
 			
 			req.setAttribute("window", "forums");
@@ -62,8 +63,9 @@ public class ForumServlet extends HttpServlet {
 		}
 		
 		if (window.equals("forums")){
+			Vector<ForumInfo> forumList = _webController.getForumList();
 			
-			req.setAttribute("forums_list", new Vector<String>());
+			req.setAttribute("forums_list", forumList);
 		}
 		
 		else if (window.equals("posts")){
@@ -72,8 +74,9 @@ public class ForumServlet extends HttpServlet {
 		}
 		
 		else if (window.equals("threads")){
-			
-			req.setAttribute("threads_list", new Vector<String>());
+			int forumId= Integer.parseInt(req.getParameter("id"));
+		    Vector<ThreadInfo> threadList = _webController.getThreadList(forumId);
+		    req.setAttribute("threads_list", threadList);
 		}
 			
 		_forumJsp.forward(req, resp);
