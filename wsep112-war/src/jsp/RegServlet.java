@@ -51,9 +51,6 @@ public class RegServlet extends HttpServlet {
 		String password = req.getParameter( "password" );
 		String email = req.getParameter( "email" );
 		
-		System.out.println(firstName + "," + lastName + "," + username
-				 + "," + password + "," + email);
-		
 		boolean ans = _webController.register(firstName, lastName,
 				username, password, email);
 		
