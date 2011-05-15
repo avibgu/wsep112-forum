@@ -60,7 +60,7 @@
 						
 						</br>
 
-						<tr>			<jsp:include page="notification.jsp"/>	</tr>
+						<tr></tr>
 						
 					</table>
 					
