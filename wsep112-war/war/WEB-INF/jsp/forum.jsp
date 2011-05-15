@@ -32,23 +32,38 @@
 							<jsp:include page="friendsList.jsp"/>
 						</tr>
 						
-						<tr>	<button name="removeFriendButton" type="button">	Remove Friend	</button>	</tr>
+						<br/>
 						
+						
+						<form name="addFriendForm" action="forum" method="post">
+			
+							<h5>	Add Friend:	</h5>
+							
+							<tr>	<input type="text" name="addFriendName" />	</tr>	<br/>
+
+							<input type="submit" value="Add Friend" />
+							
+						</form>
+						
+						<form name="removeFriendForm" action="forum" method="post">
+			
+							<h5>	Remove Friend:	</h5>
+							
+							<tr>	<input type="text" name="removeFriendName" />	</tr>	<br/>
+
+							<input type="submit" value="Remove Friend" />
+							
+						</form>
+
 						<br/>
 						<br/>
 						
-						<h5>	Add Friend:	</h5>
+						<form name="LogoutForm" action="login" method="get">
+			
+							<input type="submit" value="Logout"/>
+							
+						</form>
 						
-						<tr>	<input type="text" name="friendName" />	</tr>	<br/>
-						
-						<tr>	<button name="addFriendButton" type="button">		Add	Friend	</button>	</tr>
-						
-						<br/>
-						<br/>
-						
-						<tr>	<button name="logoutButton" type="button">		Logout	</button>	</tr>
-						
-					
 					</table>
 					
 				</td>
