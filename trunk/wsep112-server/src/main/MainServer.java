@@ -82,10 +82,10 @@ public class MainServer {
 		
 		logger.info("ForumServer Starts..");
 
-		if (System.getSecurityManager() == null){
-			
-			System.setSecurityManager(new RMISecurityManager());
-		}
+//		if (System.getSecurityManager() == null){
+//			
+//			System.setSecurityManager(new RMISecurityManager());
+//		}
 		
 		String name = "ForumServer";
 		
