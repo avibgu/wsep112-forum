@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,9 +55,10 @@ public class RegServlet extends HttpServlet {
 		boolean ans = _webController.register(firstName, lastName,
 				username, password, email);
 		
-		if(ans)
+		if(ans){
+			resp.addCookie(new Cookie("username", username));
 			resp.sendRedirect("forum");
-		
+		}		
 		else{
 		
 			req.setAttribute("error", "ERROR - Enter Details again..");
