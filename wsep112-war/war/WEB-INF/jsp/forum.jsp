@@ -1,4 +1,5 @@
 <jsp:useBean id="window" scope="request" type="java.lang.String" />
+<jsp:useBean id="username" scope="request" type="java.lang.String" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,10 +11,6 @@
 	
 	<body bgcolor="#BBF07F">
 	
-		<%
-			java.lang.String name = "Avi"; //TODO
-		%>
-	
 		<h1 align="center">	Forum Web Client	</h1>
 
 		<table>
@@ -24,7 +21,7 @@
 				
 					<table width="150">
 					
-						<h4>	Hello <%=	name	%>,		</h4>
+						<h4>	Hello <%=username%>,		</h4>
 					
 						<h5>	Your Friends:				</h5>
 					
