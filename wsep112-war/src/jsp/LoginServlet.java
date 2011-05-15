@@ -60,29 +60,5 @@ public class LoginServlet extends HttpServlet {
 			req.setAttribute("error", "Wrong Username or Password");
 			_loginJsp.forward(req, resp);
 		}
-		
-		/*
-		// Check if cancel button was pressed.
-		String cancelButton = req.getParameter("cancel-button");
-		
-		if (cancelButton != null){
-
-			resp.sendRedirect("list-news-items");
-			return;
-		}
-		
-		Map<String, String> errors = EditNewsItemServlet.validate(req);
-		
-		if (!errors.isEmpty()){
-
-			jsp.forward(req, resp);
-			return;
-		}
-
-		NewsItem newsItem = (NewsItem) req.getAttribute("newsItem");
-		new NewsItemDAO().create(newsItem);
-		
-		resp.sendRedirect("view-news-item?id=" + newsItem.getId());
-		*/
 	}
 }
