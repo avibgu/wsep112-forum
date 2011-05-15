@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import common.forum.items.ForumInfo;
+import common.forum.items.PostInfo;
 import common.forum.items.ThreadInfo;
 import common.forum.items.UserInfo;
 
@@ -62,6 +63,15 @@ public class WebController {
 		
 		ans.add(new ThreadInfo(17,"Shiran1 Thread", 1));
 		ans.add(new ThreadInfo(18,"Shiran2 Thread", 1));
+		
+		return ans;
+	}
+	
+	public Vector<PostInfo> getPostList(int thread_id){
+		Vector<PostInfo> ans = new Vector<PostInfo>();
+		
+		ans.add(new PostInfo(21, "Shiran post1", "Hello, How r u?", new UserInfo("ONLINE", "gshir"), 17, "1/5/11"));
+		//ans.add(new ThreadInfo(18,"Shiran2 Thread", 1));
 		
 		return ans;
 	}
