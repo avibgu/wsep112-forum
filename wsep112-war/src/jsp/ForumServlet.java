@@ -98,7 +98,15 @@ public class ForumServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		String username = req.getParameter( "username" );
+		String username = "";
+		
+		Cookie[] cookies = req.getCookies();
+		
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("username"))
+				username = cookie.getValue();
+		}
+		
 		String addFriendName = req.getParameter( "addFriendName" );
 		String removeFriendName = req.getParameter( "removeFriendName" );
 		
