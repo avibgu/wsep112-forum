@@ -7,6 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
 		<title>Forum Web Client</title>
+		<META HTTP-EQUIV="Refresh" CONTENT="5;URL=forum">
 	</head>
 	
 	<body bgcolor="#BBF07F">
@@ -60,7 +61,7 @@
 						
 						</br>
 
-						<tr></tr>
+						<tr>	<jsp:include page="notification.jsp"/>	</tr>
 						
 					</table>
 					
