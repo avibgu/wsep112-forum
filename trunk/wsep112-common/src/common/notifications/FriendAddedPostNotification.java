@@ -18,12 +18,15 @@ public class FriendAddedPostNotification implements Notification, Serializable {
 	
 	private ThreadInfo _threadInfo;
 	private UserInfo _userInfo;
+	private String _forWho;
 
-	public FriendAddedPostNotification(ThreadInfo threadInfo, UserInfo userInfo) {
+	public FriendAddedPostNotification(ThreadInfo threadInfo,
+			UserInfo userInfo, String forWho) {
 
 		super();
 		setThreadInfo(threadInfo);
 		setUserInfo(userInfo);
+		setForWho(forWho);
 	}
 
 	/* (non-Javadoc)
@@ -48,5 +51,13 @@ public class FriendAddedPostNotification implements Notification, Serializable {
 
 	public UserInfo getUserInfo() {
 		return _userInfo;
+	}
+
+	public void setForWho(String _forWho) {
+		this._forWho = _forWho;
+	}
+
+	public String getForWho() {
+		return _forWho;
 	}
 }
