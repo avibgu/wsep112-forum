@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.forum.items.ForumInfo;
+import common.forum.items.PostInfo;
 import common.forum.items.ThreadInfo;
 import common.forum.items.UserInfo;
 import domain.WebController;
@@ -94,7 +95,10 @@ public class ForumServlet extends HttpServlet {
 		
 		else if (window.equals("posts")){
 			
-			req.setAttribute("posts_list", new Vector<String>());
+			String threadId= req.getParameter("id");
+		    Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
+		    req.setAttribute("window", "posts");
+		    req.setAttribute("posts_list", postsList);
 		}
 		
 		_forumJsp.forward(req, resp);
