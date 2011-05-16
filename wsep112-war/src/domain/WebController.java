@@ -84,12 +84,11 @@ public class WebController implements Observer{
 		return cc.getThreadsList(forum_id);
 	}
 	
-	public Vector<PostInfo> getPostList(String username,
-			String forum_id, String thread_id){
+	public Vector<PostInfo> getPostList(String username,String thread_id){
 		
 		ClientController cc = getClientController(username);
 		
-		return cc.getPostsList(forum_id, thread_id);
+		return cc.getPostsList(thread_id);
 	}
 
 	public boolean AddFriend(String username, String addFriendName) {
