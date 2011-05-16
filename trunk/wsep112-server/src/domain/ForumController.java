@@ -480,7 +480,7 @@ public class ForumController implements Serializable{
 		if (0 != user.get_Username().compareTo(thread.get_owner())){
 			wo = getUsersToObserversMap().get(thread.get_owner());
 			if (wo != null)
-				wo.update(null, new PostAddedToYourThreadNotification(threadInfo));
+				wo.update(null, new PostAddedToYourThreadNotification(threadInfo, thread.get_owner()));
 		}
 		
 		// notify thread's observers..
@@ -491,7 +491,7 @@ public class ForumController implements Serializable{
 			
 			wo = getUsersToObserversMap().get(viewer);
 			if (wo != null)
-				wo.update(null, new ThreadChangedNotification(threadInfo));
+				wo.update(null, new ThreadChangedNotification(threadInfo, viewer));
 		}
 		
     	// notify friends
@@ -502,8 +502,8 @@ public class ForumController implements Serializable{
 			
 			wo = getUsersToObserversMap().get(friend);
 			if (wo != null)
-				wo.update(null, new FriendAddedPostNotification(
-					threadInfo, new UserInfo(user.getStatusAsString(), user.get_Username())));
+				wo.update(null, new FriendAddedPostNotification( threadInfo,
+					new UserInfo(user.getStatusAsString(), user.get_Username()), friend));
 		}
 	}
 	
