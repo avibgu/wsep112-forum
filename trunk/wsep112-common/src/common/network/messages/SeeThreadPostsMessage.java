@@ -26,11 +26,10 @@ public class SeeThreadPostsMessage implements Message, Serializable {
 	/**
 	 * @param threadId
 	 */
-	public SeeThreadPostsMessage(String forumID, String threadID,
+	public SeeThreadPostsMessage(String threadID,
 			String username, RemoteObserver ro) {
 		
 		super();
-		setForumID(forumID);
 		setThreadID(threadID);
 		setUsername(username);
 		setRemoteObserver(ro);
