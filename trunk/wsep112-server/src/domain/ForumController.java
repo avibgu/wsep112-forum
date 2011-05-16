@@ -329,7 +329,7 @@ public class ForumController implements Serializable{
 	 * 
 	 * @return list of Posts inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Message getPostsList(String forumID, String threadID, String username,
+	public Message getPostsList(String threadID, String username,
 			SeeThreadPostsMessage stpm, WrappedObserver wo) {
 		
 		// remove this user from viewing on other threads
