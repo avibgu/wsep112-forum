@@ -443,11 +443,11 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 *
 	 * @return list of Posts inside the given message, or ErrorMessage (with reason) on failure
 	 */
-	public Vector<PostInfo> getPostsList(String forumID,String threadID) {
+	public Vector<PostInfo> getPostsList(String threadID) {
 
 		ErrorMessage errorMessage;
 
-    	SeeThreadPostsMessage stpm = new SeeThreadPostsMessage(forumID,
+    	SeeThreadPostsMessage stpm = new SeeThreadPostsMessage(
     			threadID, getCurrentLogedInUsername(), this);
 
     	setCurrentShownThread(threadID);

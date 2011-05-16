@@ -162,7 +162,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
         {
        
             
-             Vector <PostInfo> posts= _clientController.getPostsList(this.getForum_id(), this.getThread_id());
+             Vector <PostInfo> posts= _clientController.getPostsList(this.getThread_id());
             PostInfo post=posts.get(_postSelected);
             String   title=post.get_title();
             String body=post.get_body();
@@ -184,7 +184,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
     private void postsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_postsListValueChanged
       
            _postSelected= postsList.getSelectedIndex();
-            Vector <PostInfo> posts= _clientController.getPostsList(this.getForum_id(), this.getThread_id());
+            Vector <PostInfo> posts= _clientController.getPostsList(this.getThread_id());
             PostInfo post=posts.get(_postSelected);
         String   title=post.get_title();
         String body=post.get_body();
@@ -217,7 +217,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
         _postSelected= postsList.getSelectedIndex();
-            Vector <PostInfo> posts= _clientController.getPostsList(this.getForum_id(), this.getThread_id());
+            Vector <PostInfo> posts= _clientController.getPostsList(this.getThread_id());
             PostInfo post=posts.get(_postSelected);
             String post_id=Integer.toString(post.get_post_id());
         this.getclientController().RemovePost(this.getThread_id(), post_id);
@@ -234,7 +234,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
 			@Override
 			protected Void doInBackground() throws Exception {
 				
-				posts = _clientController.getPostsList(getForum_id(), getThread_id());
+				posts = _clientController.getPostsList(getThread_id());
 				
 				return null;
 			}
