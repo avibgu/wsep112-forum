@@ -196,6 +196,13 @@ public class WebController implements Observer{
 
 		//	TODO: add this notification to queue
 	}
+	
+	public String getNotificationFromQueue(String username){
+		
+		//	TODO: remove notification from queue and return it..
+		
+		return "";
+	}
 
 	public void setUsersControllersMap(HashMap<String, ClientController> _usersControllersMap) {
 		this._usersControllersMap = _usersControllersMap;
