@@ -37,6 +37,7 @@ public class ForumServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		// get the username
 		Cookie[] cookies = req.getCookies();
 		
 		String username = "";
@@ -47,6 +48,10 @@ public class ForumServlet extends HttpServlet {
 		}
 		
 		req.setAttribute("username", username);
+		
+		// check for notifications
+		String notification = _webController.getNotificationFromQueue(username);
+		req.setAttribute("notification", notification);
 		
 		// sets friends list
 		Vector<UserInfo> friends = _webController.getFriendList(username);

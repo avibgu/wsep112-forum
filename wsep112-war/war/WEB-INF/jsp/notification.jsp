@@ -1,6 +1,7 @@
 
 
 <%@page import="java.util.Date"%>
+<jsp:useBean id="notification" scope="request" type="java.lang.String" />
 
 <html>
 	
@@ -10,8 +11,10 @@
 			Date date = new Date();
 		%>
 		
-		</br>	<%=date%>
+		</br>	<%=notification%>
 		
+		</br>	<%=date.getTime()%>
+			
 	</body>
 	
 </html>
