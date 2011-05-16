@@ -319,7 +319,7 @@ public class CLI implements Observer{
 	private void ViewPosts(String forumID,String threadID) throws IOException {
 		String str = "";
 		
-		Vector<PostInfo> postsList = getClientController().getPostsList(forumID,threadID);
+		Vector<PostInfo> postsList = getClientController().getPostsList(threadID);
 		
 		if (postsList == null) return;
 
