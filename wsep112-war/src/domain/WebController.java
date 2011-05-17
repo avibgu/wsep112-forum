@@ -122,7 +122,12 @@ public class WebController implements Observer{
 		
 		return cc.RemoveFriend(removeFriendName);
 	}
-
+	
+	public void addThread(String username,String forumID,String title, String body) {
+		ClientController cc = getClientController(username);
+		cc.addThread(forumID, title, body);
+	}
+	
 	public ClientController getClientController(String username) {
 
 		getRdLock().lock();
