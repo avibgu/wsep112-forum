@@ -5,7 +5,7 @@
 
 	<body>
 
-		<ul>
+		<ul  style="list-style: none;">
 		
 			<%
 				for(ForumInfo forum: forums_list){
@@ -13,6 +13,7 @@
 			%>
 			<li>
 				<a href="forum?id=<%=forum.getForumId()%>&window=threads"><%=forum.getName()%></a>
+				
 				
 			</li>		
 			<% } %>	

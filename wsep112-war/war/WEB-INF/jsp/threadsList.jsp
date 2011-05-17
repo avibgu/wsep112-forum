@@ -7,7 +7,7 @@
 
 	<body>
 		<form name="loginForm" action="forum?window=addThread" method="get">
-		<ul>
+		<ul style="list-style: none;">
 		
 			<%
 				for(ThreadInfo thread: threads_list){
