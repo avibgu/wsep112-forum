@@ -13,6 +13,7 @@
 			%>
 			<li>
 				<a href="forum?id=<%=forum.getForumId()%>&window=threads"><%=forum.getName()%></a>
+				
 			</li>		
 			<% } %>	
 			

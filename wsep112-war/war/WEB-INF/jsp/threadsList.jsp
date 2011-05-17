@@ -6,7 +6,7 @@
 <html>
 
 	<body>
-
+		<form name="loginForm" action="forum?window=addThread" method="get">
 		<ul>
 		
 			<%
@@ -16,9 +16,10 @@
 			<li>
 				<a href="forum?id=<%=thread.getThread_id()%>&window=posts"><%=thread.getTitle()%></a>
 			</li>		
-			<% } %>	
 			
-		
+			<% } %>	
+			<p align="center">	<input type="submit" value="Add Thread" name=AddThreadButton />
+				
 		</ul>
 
 	</body>

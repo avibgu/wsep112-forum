@@ -3,6 +3,7 @@
 <%@page import="java.util.Date"%>
 <jsp:useBean id="notification" scope="request" type="java.lang.String" />
 
+
 <html>
 	
 	<body>
