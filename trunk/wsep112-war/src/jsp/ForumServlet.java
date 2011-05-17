@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.SessionCookieConfig;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -102,7 +103,7 @@ public class ForumServlet extends HttpServlet {
 		else if (window.equals("threads")){
 			
 			System.out.println("Threads");
-			String  forumId = req.getParameter("id");
+			String forumId = req.getParameter("id");
 			session.setAttribute("ForumId", forumId);
 		    Vector<ThreadInfo> threadList =
 		    	_webController.getThreadList(username, forumId);
@@ -120,11 +121,7 @@ public class ForumServlet extends HttpServlet {
 		    req.setAttribute("posts_list", postsList);
 		}
 		
-		
 	
-			
-	
-		
 		_forumJsp.forward(req, resp);
 	}
 	
@@ -133,6 +130,7 @@ public class ForumServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String username = "";
+		HttpSession session = req.getSession();
 		
 		Cookie[] cookies = req.getCookies();
 		
@@ -143,13 +141,21 @@ public class ForumServlet extends HttpServlet {
 		
 		String addFriendName = req.getParameter( "addFriendName" );
 		String removeFriendName = req.getParameter( "removeFriendName" );
+		String addedThread = req.getParameter("FillThreadDetails");
 		
 		if (null != addFriendName)
 			_webController.AddFriend(username, addFriendName);
 			
 		else if (null != removeFriendName)
 			_webController.RemoveFriend(username, removeFriendName);
-
+		
+		else if (null != addedThread){
+			System.out.println("Post - add thread");
+			String title = req.getParameter("title");
+			String body = req.getParameter("body");
+			_webController.addThread(username, (String) session.getAttribute("ForumId"),title, body);
+		}
+		
 		resp.sendRedirect("forum");
 	}
 }
