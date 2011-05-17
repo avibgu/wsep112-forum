@@ -11,6 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import common.forum.items.ForumInfo;
 import common.forum.items.PostInfo;
@@ -36,6 +37,9 @@ public class ForumServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		// Get the session
+		HttpSession session = req.getSession();
 		
 		// get the username
 		Cookie[] cookies = req.getCookies();
@@ -70,17 +74,25 @@ public class ForumServlet extends HttpServlet {
 
 		req.setAttribute("online_friends", online_friends);
 		req.setAttribute("offline_friends", offline_friends);
-	
+
 		// decide which data should we retrieve from the server (forums\posts\threads)
 		String window = (String)req.getParameter("window");
-		System.out.println("window " + window);
+		System.out.println("WINDOW = " + window);
 		if (null == window){
 			
 			req.setAttribute("window", "forums");
 			window = "forums";
 		}
+		if (req.getParameter("AddThreadButton") != null){
+			System.out.println("addThread");
+			int forumId= Integer.parseInt((String)session.getAttribute("ForumId"));
+			req.setAttribute("window", "addThread");
+			
+		}
 		
-		if (window.equals("forums")){
+		else if (window.equals("forums")){
+			
+			System.out.println("Forums");
 			
 			Vector<ForumInfo> forumList = _webController.getForumList(username);
 			
@@ -89,9 +101,10 @@ public class ForumServlet extends HttpServlet {
 		
 		else if (window.equals("threads")){
 			
+			System.out.println("Threads");
 			String  forumId = req.getParameter("id");
-		    
-			Vector<ThreadInfo> threadList =
+			session.setAttribute("ForumId", forumId);
+		    Vector<ThreadInfo> threadList =
 		    	_webController.getThreadList(username, forumId);
 		    
 		    req.setAttribute("window", "threads");
@@ -99,12 +112,18 @@ public class ForumServlet extends HttpServlet {
 		}
 		
 		else if (window.equals("posts")){
-			
+			System.out.println("posts");
 			String threadId= req.getParameter("id");
+			session.setAttribute("ThreadId", threadId);
 		    Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
 		    req.setAttribute("window", "posts");
 		    req.setAttribute("posts_list", postsList);
 		}
+		
+		
+	
+			
+	
 		
 		_forumJsp.forward(req, resp);
 	}
