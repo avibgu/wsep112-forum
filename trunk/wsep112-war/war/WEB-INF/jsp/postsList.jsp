@@ -1,12 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=windows-1255"
-    pageEncoding="windows-1255"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="common.forum.items.PostInfo" %>
+<jsp:useBean id="posts_list" scope="request" type="java.util.List<common.forum.items.PostInfo>" />
+
+
+
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
-<title>Insert title here</title>
-</head>
-<body>
-		<p align="center"> Posts List Under Construction..
-</body>
+
+	<body>
+
+		<ul>
+		
+			<TABLE BORDER="1">
+                <TR>
+                    <TH>Title</TH>
+                    <TH>Body</TH>
+                    <TH>Publish date</TH>
+                    <TH>Owner</TH>
+                </TR>
+                <% for(int row=0; row < posts_list.size(); row++) { %>
+				    <TR>
+				    <TD> <%= posts_list.get(row).get_title() %> </TD>
+                    <TD> <%= posts_list.get(row).get_body() %> </TD>
+                    <TD> <%= posts_list.get(row).getDateTime() %> </TD>
+                    <TD> <%= posts_list.get(row).getOwner().getUserName() %> </TD>
+				    </TR>
+				<% } %>
+             </TABLE>
+			
+		
+		</ul>
+
+	</body>
+
 </html>

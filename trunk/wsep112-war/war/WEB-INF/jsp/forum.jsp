@@ -85,6 +85,11 @@
 							<jsp:include page="threadsList.jsp"/>
 					<%
 						}
+						else if (window.equals("addThread")){
+						%>
+							<jsp:include page="addThread.jsp"/>
+						<%
+						}
 					%>
 
 				</td>
