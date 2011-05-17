@@ -128,6 +128,11 @@ public class WebController implements Observer{
 		cc.addThread(forumID, title, body);
 	}
 	
+	public void addPost(String username, String forumID, String title, String body, String threadId){
+		ClientController cc = getClientController(username);
+		cc.replyToThread(forumID, title, body, threadId);
+	}
+	
 	public ClientController getClientController(String username) {
 
 		getRdLock().lock();

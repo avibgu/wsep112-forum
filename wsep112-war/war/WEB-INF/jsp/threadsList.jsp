@@ -6,7 +6,7 @@
 <html>
 
 	<body>
-		<form name="loginForm" action="forum?window=addThread" method="get">
+		<form name="loginForm" action="forum" method="get">
 		<ul style="list-style: none;">
 		
 			<%

@@ -90,7 +90,13 @@ public class ForumServlet extends HttpServlet {
 			req.setAttribute("window", "addThread");
 			
 		}
-		
+		else if (req.getParameter("AddPostButton") != null){
+			System.out.println("addPost");
+			int forumId= Integer.parseInt((String)session.getAttribute("ForumId"));
+			int threadId = Integer.parseInt((String)session.getAttribute("ThreadId"));
+			req.setAttribute("window", "addPost");
+			
+		}
 		else if (window.equals("forums")){
 			
 			System.out.println("Forums");
@@ -154,6 +160,13 @@ public class ForumServlet extends HttpServlet {
 			String title = req.getParameter("title");
 			String body = req.getParameter("body");
 			_webController.addThread(username, (String) session.getAttribute("ForumId"),title, body);
+		}
+		else if (null != req.getParameter("FillPostDetails")){
+			System.out.println("Post - add Post");
+			String title = req.getParameter("title");
+			String body = req.getParameter("body");
+			_webController.addPost(username, (String)session.getAttribute("ForumId"), title, body, 
+								  (String)session.getAttribute("ThreadId"));
 		}
 		
 		resp.sendRedirect("forum");
