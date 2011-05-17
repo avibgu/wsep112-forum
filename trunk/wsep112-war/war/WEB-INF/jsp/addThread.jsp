@@ -10,17 +10,21 @@
 	
 		<h1 align="center">Add Thread</h1>
 	
-		<form name="AddThreadForm" action="FillThreadDetails" method="post">
+		<form name="AddThreadForm" action="forum" method="post">
 		
-			<p align="center">	Enter the thread details:
+			<p align="center">	<big><b>Enter the thread details:</b></big>
 				
 			<table align="center">
 				
-				<tr><td>	Title:	</td><td>	<input type="text" name="firstName" size=60 />		</td></tr>
-				<tr><td>	Body:	</td><td>	<input type="text" name="lastName" size=100/>		</td></tr>
+				<tr><td>	Title:	</td><td>	<input type="text" name="title" size="25" style="width: 430px; "/>		</td></tr>
+				<tr><td>	Body:	</td><td>
+				<BR>
+            		<TEXTAREA NAME="body" COLS= 50 ROWS="20"></TEXTAREA>
+            	<BR>
+            			</td></tr>
 			</table>
 			
-			<p align="center">	<input type="submit" value="Add" />
+			<p align="center">	<input type="submit" value="Add" name=FillThreadDetails />
 		
 
 		</form>
