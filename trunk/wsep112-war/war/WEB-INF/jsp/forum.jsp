@@ -89,6 +89,11 @@
 							<jsp:include page="addThread.jsp"/>
 						<%
 						}
+						else if (window.equals("addPost")){
+						%>
+							<jsp:include page="addPost.jsp"/>
+						<%
+						}
 					%>
 
 				</td>

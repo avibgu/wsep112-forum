@@ -6,7 +6,7 @@
 <html>
 
 	<body>
-
+		<form name="PostsForm" action="forum" method="get">
 		<ul>
 		
 			<TABLE BORDER="1">
@@ -24,9 +24,9 @@
                     <TD> <%= posts_list.get(row).getOwner().getUserName() %> </TD>
 				    </TR>
 				<% } %>
+				
              </TABLE>
-			
-		
+             <p align="center">	<input type="submit" value="Add Post" name=AddPostButton />
 		</ul>
 
 	</body>
