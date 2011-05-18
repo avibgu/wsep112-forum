@@ -133,6 +133,11 @@ public class WebController implements Observer{
 		cc.replyToThread(forumID, title, body, threadId);
 	}
 	
+	public void editPost(String username, String forumID, String title, String body, String threadId,String postId){
+		ClientController cc = getClientController(username);
+		cc.editPost(forumID, title, body, threadId, postId);
+	}
+	
 	public ClientController getClientController(String username) {
 
 		getRdLock().lock();

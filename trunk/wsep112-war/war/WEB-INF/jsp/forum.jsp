@@ -94,6 +94,11 @@
 							<jsp:include page="addPost.jsp"/>
 						<%
 						}
+						else if (window.equals("editPost")){
+						%>
+							<jsp:include page="editPost.jsp"/>
+						<%
+						}
 					%>
 
 				</td>

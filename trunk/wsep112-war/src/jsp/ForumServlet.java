@@ -95,7 +95,15 @@ public class ForumServlet extends HttpServlet {
 			int forumId= Integer.parseInt((String)session.getAttribute("ForumId"));
 			int threadId = Integer.parseInt((String)session.getAttribute("ThreadId"));
 			req.setAttribute("window", "addPost");
-			
+		}
+		else if (req.getParameter("EditPostButton") != null){
+			System.out.println("EditPost  " + req.getParameter("postId")) ;
+			int forumId= Integer.parseInt((String)session.getAttribute("ForumId"));
+			int threadId = Integer.parseInt((String)session.getAttribute("ThreadId"));
+			session.setAttribute("postId", req.getParameter("postId"));
+			req.setAttribute("title", req.getParameter("title"));
+			req.setAttribute("body", req.getParameter("body"));
+			req.setAttribute("window", "editPost");
 		}
 		else if (window.equals("forums")){
 			
@@ -105,7 +113,6 @@ public class ForumServlet extends HttpServlet {
 			
 			req.setAttribute("forums_list", forumList);
 		}
-		
 		else if (window.equals("threads")){
 			
 			System.out.println("Threads");
@@ -125,6 +132,7 @@ public class ForumServlet extends HttpServlet {
 		    Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
 		    req.setAttribute("window", "posts");
 		    req.setAttribute("posts_list", postsList);
+		    req.setAttribute("username", username);
 		}
 		
 	
@@ -137,6 +145,7 @@ public class ForumServlet extends HttpServlet {
 		
 		String username = "";
 		HttpSession session = req.getSession();
+		String forwardTo="forum";
 		
 		Cookie[] cookies = req.getCookies();
 		
@@ -168,7 +177,15 @@ public class ForumServlet extends HttpServlet {
 			_webController.addPost(username, (String)session.getAttribute("ForumId"), title, body, 
 								  (String)session.getAttribute("ThreadId"));
 		}
+		else if (null != req.getParameter("FillEditPostDetails")){
+			System.out.println("Post - edit Post");
+			String title = req.getParameter("title");
+			String body = req.getParameter("body");
+			_webController.editPost(username, (String)session.getAttribute("ForumId"), title, body, 
+								  (String)session.getAttribute("ThreadId"),(String)session.getAttribute("postId"));
+			//TODO: Return to previous page.
+		}
 		
-		resp.sendRedirect("forum");
+		resp.sendRedirect(forwardTo);
 	}
 }
