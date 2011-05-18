@@ -19,7 +19,9 @@
 				
 			<table align="center">
 				
-				<tr><td>	Title:	</td><td>	<input type="text" name="title" value=<%=title %> size="25" style="width: 430px; "/> </td></tr>
+				<tr><td>	Title:	</td><td>	<BR>
+            		<TEXTAREA NAME="title" COLS= 50 ROWS="1"><%=title %></TEXTAREA>
+            	<BR>
 				<tr><td>	Body:	</td><td>
 				<BR>
             		<TEXTAREA NAME="body" COLS= 50 ROWS="20"><%=body %></TEXTAREA>

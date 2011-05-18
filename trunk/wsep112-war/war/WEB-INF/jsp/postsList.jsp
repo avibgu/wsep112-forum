@@ -16,6 +16,7 @@
                     <TH>Publish date</TH>
                     <TH>Owner</TH>
                     <TH>Edit</TH>
+                    <TH>Delete</TH>
                 </TR>
                 <% for(int row=0; row < posts_list.size(); row++) { %>
 				    <TR>
@@ -26,8 +27,14 @@
                     <TD> <% if (posts_list.get(row).getOwner().getUserName().equals(username)) {%>
                              <input type="hidden" name="postId" value="<%=posts_list.get(row).get_post_id() %>" />
 						     <input type="hidden" name="title" value="<%=posts_list.get(row).get_title() %>" />
-						     <input type="hidden" name="body" value="<%=posts_list.get(row).get_body() %>" />
-						     <input type="submit" value="Edit" name="EditPostButton"> 
+						     <input type="hidden" name="body" value="<%=posts_list.get(row).get_body() %>" /><input type="submit" value="Edit" name="EditPostButton">
+						      
+						      </TD>
+                            <%} %>
+				    <TD> <% if (posts_list.get(row).getOwner().getUserName().equals(username)) {%>
+                             <input type="hidden" name="postId" value="<%=posts_list.get(row).get_post_id() %>" />
+						     <input type="submit" value="Delete" name="DeletePostButton"><input type="hidden" name="body" value="<%=posts_list.get(row).get_body() %>" />
+						      
 						      </TD>
                             <%} %>
 				    </TR>

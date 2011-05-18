@@ -138,6 +138,10 @@ public class WebController implements Observer{
 		cc.editPost(forumID, title, body, threadId, postId);
 	}
 	
+	public void deletePost(String username,String threadId,String postId){
+		ClientController cc = getClientController(username);
+		cc.RemovePost(threadId, postId);
+	}
 	public ClientController getClientController(String username) {
 
 		getRdLock().lock();
