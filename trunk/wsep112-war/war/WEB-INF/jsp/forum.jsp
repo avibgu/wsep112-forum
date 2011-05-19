@@ -9,7 +9,7 @@
 		<title>Forum Web Client</title>
 	</head>
 	
-	<body bgcolor="#BBF07F">
+	<body bgcolor="#CC99FF">
 	
 		<h1 align="center">	Forum Web Client	</h1>
 
