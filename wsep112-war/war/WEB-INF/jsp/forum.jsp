@@ -7,6 +7,14 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
 		<title>Forum Web Client</title>
+			<style type="text/css">
+			body { background:#CC99FF  url('flower.jpg') no-repeat fixed center;
+		    font:italic bold 12px/30px Georgia, serif;
+	    	font-size: large;}
+	    	h1{
+	    		color: #660066;
+	    	}
+	    </style>
 	</head>
 	
 	<body bgcolor="#CC99FF">

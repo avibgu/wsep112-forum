@@ -6,6 +6,14 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
 		<title>Forum Web Client</title>
+			<style type="text/css">
+			body { background:#CC99FF  url('flower.jpg') no-repeat fixed center;
+		    font:italic bold 12px/30px Georgia, serif;
+	    	font-size: large;}
+	    	h1{
+	    		color: #660066;
+	    	}
+	    </style>
 	</head>
 	
 	<body bgcolor="#CC99FF">
@@ -14,19 +22,19 @@
 	
 		<form name="loginForm" action="login" method="post">
 			
-			<p align="center">	Login to the Forum:
+			<p align="center"><br>Please login:
 			
-			<p align="center" style="color: red">	<%=error%>	</p>
+			<br><p align="center" style="color: red">	<%=error%>	</p><br>
 			
-			<table align="center">
+			<table align="center" style="width: 359px; ">
 				
-				<tr><td>	Username:	</td><td>	<input type="text" name="username" />		</td></tr>
-				<tr><td>	Password:	</td><td>	<input type="password" name="password" />	</td></tr>
+				<tr><td>	Username:	</td><td style="width: 197px; ">	<input type="text" name="username" />		</td></tr>
+				<tr><td>	<br>Password:	</td><td>	<br><input type="password" name="password" style="width: 151px; "/>	</td></tr>
 			
 			</table>
 			
-			<p align="center">	<input type="submit" value="Login" />
-			or <a href="reg">Register to the Forum</a>
+			<p align="center"><br><input type="submit" value="Login" style=" height: 42px; width: 128px;  background-color: #9999FF; font-size: 100% "/>
+			<br><br>or <a href="reg">Register to the Forum</a>
 		</form>
 		
 	</body>
