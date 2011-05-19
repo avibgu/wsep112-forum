@@ -20,8 +20,41 @@
 	<body bgcolor="#CC99FF">
 	
 		<h1 align="center">	Forum Web Client	</h1>
+		<td style="text-align: center; width: 923px" width="900">
+					<%
+						if (window.equals("forums")){
+					%>
+							<jsp:include page="forumsList.jsp" />
+					<%
+						}
+						else if (window.equals("posts")){
+					%>
+							<jsp:include page="postsList.jsp" />
+					<%
+						}
+						else if (window.equals("threads")){
+					%>
+							<jsp:include page="threadsList.jsp" />
+					<%
+						}
+						else if (window.equals("addThread")){
+						%>
+							<jsp:include page="addThread.jsp" />
+						<%
+						}
+						else if (window.equals("addPost")){
+						%>
+							<jsp:include page="addPost.jsp" />
+						<%
+						}
+						else if (window.equals("editPost")){
+						%>
+							<jsp:include page="editPost.jsp" />
+						<%
+						}
+					%>
 
-		<table align="left">
+				</td><table align="left">
 		
 			<tr align="center">
 				
@@ -33,87 +66,54 @@
 					
 						<tr><h5>	Your Friends:							</h5></tr>
 
-						<tr>		<jsp:include page="friendsList.jsp"/>	</tr>
+						<tr>		<jsp:include page="friendsList.jsp" />	</tr>
 						
 						<form name="addFriendForm" action="forum" method="post">
 			
 							<tr><h5>	Add Friend:									</h5></tr>
 							
-							<tr>		<input type="text" name="addFriendName" />	</tr>
+							<tr>		<input type="text" name="addFriendName">	</tr>
 
-							<tr>		<input type="submit" value="Add Friend" />	</tr>
+							<tr>		<input type="submit" value="Add Friend">	</tr>
 							
 						</form>
 						
-						</br>
+						<br>
 						
 						<form name="removeFriendForm" action="forum" method="post">
 			
 							<tr><h5>	Remove Friend:									</h5></tr>
 							
-							<tr>		<input type="text" name="removeFriendName" />	</tr>
+							<tr>		<input type="text" name="removeFriendName">	</tr>
 
-							<tr>		<input type="submit" value="Remove Friend" />	</tr>
+							<tr>		<input type="submit" value="Remove Friend">	</tr>
 							
 						</form>
 
-						</br>
-						</br>
+						<br>
+						<br>
 
-						<form name="LogoutForm" action="login" method="get" >
+						<form name="LogoutForm" action="login" method="get">
 			
-							<tr>		<input type="submit" value="Logout" name="logoutButton"/>	</tr>
+							<tr>		<input type="submit" value="Logout" name="logoutButton">	</tr>
 							
 						</form>
 						
-						</br>
+						<br>
 
-						<tr>	<jsp:include page="notification.jsp"/>	</tr>
+						<tr>	<jsp:include page="notification.jsp" />	</tr>
 						
 					</table>
 					
 				</td>
 				
-				<td align="center" width="900">
-
-					<%
-						if (window.equals("forums")){
-					%>
-							<jsp:include page="forumsList.jsp"/>
-					<%
-						}
-						else if (window.equals("posts")){
-					%>
-							<jsp:include page="postsList.jsp"/>
-					<%
-						}
-						else if (window.equals("threads")){
-					%>
-							<jsp:include page="threadsList.jsp"/>
-					<%
-						}
-						else if (window.equals("addThread")){
-						%>
-							<jsp:include page="addThread.jsp"/>
-						<%
-						}
-						else if (window.equals("addPost")){
-						%>
-							<jsp:include page="addPost.jsp"/>
-						<%
-						}
-						else if (window.equals("editPost")){
-						%>
-							<jsp:include page="editPost.jsp"/>
-						<%
-						}
-					%>
-
-				</td>
+				
 				
 			</tr>
 		
 		</table>
+
+		
 		
 	</body>
 	

@@ -3,12 +3,23 @@
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
-		<title>Forum Web Client</title>
+		
+		<style type="text/css">
+			body { background:#CC99FF no-repeat fixed center;
+		    font:italic bold 12px/30px Georgia, serif;
+		    font-size: large;
+	    	}
+	    	h1{
+	    		color: #660066;
+	    		
+	    	}
+	    </style>
 	</head>
+	<h1 style="font-size: large;" align="center">Add Thread</h1>
 	
 	<body bgcolor="#BBF07F">
 	
-		<h1 align="center">Add Thread</h1>
+		
 	
 		<form name="AddThreadForm" action="forum" method="post">
 		
@@ -24,7 +35,7 @@
             			</td></tr>
 			</table>
 			
-			<p align="center">	<input type="submit" value="Add" name=FillThreadDetails />
+			<p align="center">	<input type="submit" value="Add" name=FillThreadDetails style=" height: 42px; width: 128px;  background-color: #9999FF; font-size: 100% "/>
 		
 
 		</form>

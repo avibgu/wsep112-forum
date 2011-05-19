@@ -2,17 +2,25 @@
 <jsp:useBean id="forums_list" scope="request" type="java.util.List<common.forum.items.ForumInfo>" />
 
 <html>
-
+	<head>
+		<style type="text/css">
+			
+	    	
+	    </style>
+	</head>
 	<body>
-
-		<ul  style="list-style: none;">
+	<form>
+		<p align="center"><br>Please choose one of the forums:
+		<ul style="list-style: none;">
 		
 			<%
 				for(ForumInfo forum: forums_list){
 					
 			%>
-			<li>
-				<a href="forum?id=<%=forum.getForumId()%>&window=threads"><%=forum.getName()%></a>
+			<li style="text-align: center; font-size: 24px; white-space: normal">
+			
+				<a style="text-align: center;" href="forum?id=<%=forum.getForumId()%>&window=threads"><%=forum.getName()%>
+					</a>
 				
 				
 			</li>		
@@ -20,7 +28,7 @@
 			
 		
 		</ul>
-
+</form>
 	</body>
 
 </html>

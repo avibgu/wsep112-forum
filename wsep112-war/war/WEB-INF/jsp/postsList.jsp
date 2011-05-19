@@ -4,47 +4,48 @@
 
 
 <html>
-
+		<head>
+	    </head>	
 	<body>
 		<form name="PostsForm" action="forum" method="get">
-		<ul>
+		<br><br><ul style="text-align: center;">
 		
-			<TABLE BORDER="1" style="height: 156px; width: 589px">
-                <TR>
-                    <TH>Title</TH>
-                    <TH>Body</TH>
-                    <TH>Publish date</TH>
-                    <TH>Owner</TH>
-                    <TH>Edit</TH>
-                    <TH>Delete</TH>
+			<TABLE align="center" BORDER="1" style=" height: 156px; width: 855px">
+                <TR> 
+                    <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline; width: 205px"><p align="center">Title</p></TH>
+                    <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline"><p align="center">Body</p></TH>
+                    <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline"><p align="center">Publish date</p></TH>
+                    <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline"><p align="center">Owner</p></TH>
+                    <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline"><p align="center">Edit</p></TH>
+                    <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline"><p align="center">Delete</p></TH>
+                
                 </TR>
-                <% for(int row=0; row < posts_list.size(); row++) { %>
+                <% for(int row=0; row < posts_list.size(); row++) {
+                	PostInfo post = posts_list.get(row); %>
 				    <TR>
-				    <TD> <%= posts_list.get(row).get_title() %> </TD>
-                    <TD> <%= posts_list.get(row).get_body() %>
-                    <TD> <%= posts_list.get(row).getDateTime() %> </TD>
-                    <TD> <%= posts_list.get(row).getOwner().getUserName() %> </TD>
-                    <TD> <% if (posts_list.get(row).getOwner().getUserName().equals(username)) {%>
-                             <input type="hidden" name="postId" value="<%=posts_list.get(row).get_post_id() %>" />
-						     <input type="hidden" name="title" value="<%=posts_list.get(row).get_title() %>" />
-						     <input type="hidden" name="body" value="<%=posts_list.get(row).get_body() %>" /><input type="submit" value="Edit" name="EditPostButton">
-						      
-						      </TD>
-                            <%} %>
-				    <TD> <% if (posts_list.get(row).getOwner().getUserName().equals(username)) {%>
-                             <input type="hidden" name="postId" value="<%=posts_list.get(row).get_post_id() %>" />
-						     <input type="submit" value="Delete" name="DeletePostButton"><input type="hidden" name="body" value="<%=posts_list.get(row).get_body() %>" />
-						      
-						      </TD>
-                            <%} %>
+				    <TD style="width: 72px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal" "> <%= post.get_title() %> </TD>
+                    <TD style="width: 496px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.get_body() %> </TD>
+                    <TD style="width: 82px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.getDateTime() %> </TD>
+                    <TD style="width: 66px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.getOwner().getUserName() %> </TD>
+                    <TD style="width: 65px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <% if (post.getOwner().getUserName().equals(username)) {%>
+                             <input type="hidden" name="postId" value="<%=post.get_post_id() %>" />
+						     <input type="hidden" name="title" value="<%=post.get_title() %>" />
+						     <input type="hidden" name="body" value="<%=post.get_body() %>" /><input type="submit" value="Edit" name="EditPostButton" style="font-size: 16px">
+                            <%} %> </TD>
+				    <TD style="width: 76px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: left; white-space: normal""> <% if (post.getOwner().getUserName().equals(username)) {%>
+                             <input type="hidden" name="postId" value="<%=post.get_post_id() %>" />
+                             <input type="submit" value="Delete" name="DeletePostButton" style="font-size: 16px">
+                             					      
+						     
+                            <%} %> </TD>
 				    </TR>
 				    <p align="center">	
 				<% } %>
 				
              </TABLE>
-             <p align="center">	<input type="submit" value="Add Post" name=AddPostButton />
+             <p align="center">	<input type="submit" value="Add Post" name=AddPostButton style=" height: 42px; width: 128px;  background-color: #9999FF; font-size: 100% "/>
 		</ul>
-
+	</form>
 	</body>
 
 </html>
