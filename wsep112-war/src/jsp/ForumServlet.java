@@ -99,6 +99,8 @@ public class ForumServlet extends HttpServlet {
 		}
 		else if (req.getParameter("DeletePostButton") != null){
 			String threadId = (String)session.getAttribute("ThreadId");
+			System.out.println("Delete");
+			System.out.println("Delete postId= " +  req.getParameter("postId"));
 			_webController.deletePost(username, threadId, req.getParameter("postId"));
 			session.setAttribute("postId", req.getParameter("postId"));
 			Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
