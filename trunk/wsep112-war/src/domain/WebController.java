@@ -142,6 +142,19 @@ public class WebController implements Observer{
 		ClientController cc = getClientController(username);
 		cc.RemovePost(threadId, postId);
 	}
+	
+	public PostInfo getPost(String username,String threadId,String postId){
+		ClientController cc = getClientController(username);
+		Vector<PostInfo> posts = cc.getPostsList(threadId);
+		
+		for(PostInfo post: posts){
+			if (post.get_post_id() == Integer.parseInt(postId))
+				return post;
+				
+		}
+		
+		return null;
+	}
 	public ClientController getClientController(String username) {
 
 		getRdLock().lock();

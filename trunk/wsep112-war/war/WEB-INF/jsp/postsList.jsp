@@ -28,16 +28,14 @@
                     <TD style="width: 82px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.getDateTime() %> </TD>
                     <TD style="width: 66px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.getOwner().getUserName() %> </TD>
                     <TD style="width: 65px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <% if (post.getOwner().getUserName().equals(username)) {%>
-                             <input type="hidden" name="postId" value="<%=post.get_post_id() %>" />
-						     <input type="hidden" name="title" value="<%=post.get_title() %>" />
-						     <input type="hidden" name="body" value="<%=post.get_body() %>" /><input type="submit" value="Edit" name="EditPostButton" style="font-size: 16px">
+                             <a style="text-align: center;" href="forum?postId=<%=post.get_post_id()%>&amp;window=edit">Edit
+					</a>				      
                             <%} %> </TD>
 				    <TD style="width: 76px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: left; white-space: normal""> <% if (post.getOwner().getUserName().equals(username)) {%>
-                             <input type="hidden" name="postId" value="<%=post.get_post_id() %>" />
-                             <input type="submit" value="Delete" name="DeletePostButton" style="font-size: 16px">
-                             					      
+                             <p align="center"><a style="text-align: center;" href="forum?postId=<%=post.get_post_id()%>&amp;window=delete">Delete
+					</a>				      
 						     
-                            <%} %> </TD>
+                            </p><%} %> </TD>
 				    </TR>
 				    <p align="center">	
 				<% } %>
