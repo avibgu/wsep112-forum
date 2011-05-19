@@ -11,7 +11,7 @@
 	
 	<body bgcolor="#BBF07F">
 	
-		<h1 align="center">Edit Post</h1>
+		<h1 style="font-size: large;" align="center">Edit Post</h1>
 	
 		<form name="AddPostForm" action="forum" method="post">
 		
