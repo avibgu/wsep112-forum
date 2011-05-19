@@ -24,12 +24,12 @@
             	<BR>
 				<tr><td>	Body:	</td><td>
 				<BR>
-            		<TEXTAREA NAME="body" COLS= 50 ROWS="20"><%=body %></TEXTAREA>
+            		<TEXTAREA NAME="body" COLS= 50 ROWS="18"><%=body %></TEXTAREA>
             	<BR>
             			</td></tr>
 			</table>
 			
-			<p align="center">	<input type="submit" value="Change" name=FillEditPostDetails />
+			<p align="center">	<input type="submit" value="Change" name=FillEditPostDetails style=" height: 42px; width: 128px;  background-color: #9999FF; font-size: 100% "/>
 		
 
 		</form>
