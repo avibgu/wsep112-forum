@@ -91,16 +91,16 @@ public class ForumServlet extends HttpServlet {
 		else if (req.getParameter("AddPostButton") != null){
 			req.setAttribute("window", "addPost");
 		}
-		else if (req.getParameter("EditPostButton") != null){
-		    session.setAttribute("postId", req.getParameter("postId"));
-			req.setAttribute("title", req.getParameter("title"));
-			req.setAttribute("body", req.getParameter("body"));
+		else if (window.equals("edit")){
+			String postId = req.getParameter("postId");
+		    session.setAttribute("postId", postId);
+		    PostInfo post = _webController.getPost(username, (String)session.getAttribute("ThreadId"), postId);
+			req.setAttribute("title", post.get_title());
+			req.setAttribute("body", post.get_body());
 			req.setAttribute("window", "editPost");
 		}
-		else if (req.getParameter("DeletePostButton") != null){
+		else if (window.equals("delete")){
 			String threadId = (String)session.getAttribute("ThreadId");
-			System.out.println("Delete");
-			System.out.println("Delete postId= " +  req.getParameter("postId"));
 			_webController.deletePost(username, threadId, req.getParameter("postId"));
 			session.setAttribute("postId", req.getParameter("postId"));
 			Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
