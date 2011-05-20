@@ -17,6 +17,12 @@
 	    		color: #660066;
 	    	}
 	    </style>
+	    <SCRIPT LANGUAGE='JavaScript'>
+       		function setsel(what) 
+              {
+                alert(what)            
+              }
+		</SCRIPT>
 	</head>
 	
 	<body bgcolor="#CC99FF">
@@ -75,13 +81,13 @@
 			
 							<tr><h5>	Add Friend:									</h5></tr>
 							
-							<tr>		<input type="text" name="addFriendName">	</tr>
+							
 
-							<select>
+							<select name="addFriendName"  onChange="value = this.options[this.selectedIndex].text">
 							<%
 								for(String user: all_users){
 							%>
-							   <option><%=user%></option>
+							   <option value=<%=user%>><%=user%></option>
 						    <%
 								}
 							%>
@@ -124,7 +130,9 @@
 		
 		</table>
 
-		
+				<script type="text/javascript">
+
+		</script>
 		
 	</body>
 	
