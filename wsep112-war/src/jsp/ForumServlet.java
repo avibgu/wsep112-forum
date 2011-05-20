@@ -159,7 +159,6 @@ public class ForumServlet extends HttpServlet {
 			if (cookie.getName().equals("username"))
 				username = cookie.getValue();
 		}
-		
 		String addFriendName = req.getParameter( "addFriendName" );
 		String removeFriendName = req.getParameter( "removeFriendName" );
 		String addedThread = req.getParameter("FillThreadDetails");
