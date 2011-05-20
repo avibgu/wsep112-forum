@@ -10,7 +10,7 @@
 		<form name="PostsForm" action="forum" method="get">
 		<br><br><ul style="text-align: center;">
 		
-			<TABLE align="center" BORDER="1" style=" height: 156px; width: 855px">
+			<TABLE align="right" BORDER="1" style=" height: 156px; width: 650px">
                 <TR> 
                     <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline; width: 205px"><p align="center">Title</p></TH>
                     <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline"><p align="center">Body</p></TH>
