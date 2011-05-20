@@ -15,13 +15,13 @@
 	    	}
 	    </style>
 	</head>
-	<h1 style="font-size: large;" align="center">Add Thread</h1>
 	
-	<body bgcolor="#BBF07F">
+	
+	<body bgcolor="#BBF07F" style="height: 752px; ">
 	
 		
 	
-		<form name="AddThreadForm" action="forum" method="post">
+		<h1 style="font-size: large;" align="center" style="color: white">Add Thread</h1><form name="AddThreadForm" action="forum" method="post">
 		
 			<p align="center">	<big><b>Enter the thread details:</b></big>
 				
@@ -35,7 +35,7 @@
             			</td></tr>
 			</table>
 			
-			<p align="center">	<input type="submit" value="Add" name=FillThreadDetails style=" height: 42px; width: 128px;  background-color: #9999FF; font-size: 100% "/>
+			<p align="center">	<input type="submit" value="Add" name=FillThreadDetails style=" height: 42px; width: 128px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif"/>
 		
 
 		</form>
