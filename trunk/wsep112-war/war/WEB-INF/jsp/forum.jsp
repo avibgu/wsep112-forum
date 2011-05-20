@@ -2,6 +2,7 @@
 <jsp:useBean id="window" scope="request" type="java.lang.String" />
 <jsp:useBean id="username" scope="request" type="java.lang.String" />
 <jsp:useBean id="users_to_add" scope="request" type="java.util.Vector<java.lang.String>" />
+<jsp:useBean id="users_to_remove" scope="request" type="java.util.Vector<java.lang.String>" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -95,7 +96,15 @@
 			
 							<tr><h5>	Remove Friend:									</h5></tr>
 							
-							<tr>		<input type="text" name="removeFriendName">	</tr>
+							<select name="removeFriendName"  onChange="value = this.options[this.selectedIndex].text">
+							<%
+								for(String user: users_to_remove){
+							%>
+							   <option value=<%=user%>><%=user%></option>
+						    <%
+								}
+							%>
+						    </select>
 
 							<tr>		<input type="submit" value="Remove Friend">	</tr>
 							
