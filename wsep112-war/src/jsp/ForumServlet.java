@@ -63,7 +63,8 @@ public class ForumServlet extends HttpServlet {
 		
 		Vector<String> online_friends = new Vector<String>();
 		Vector<String> offline_friends = new Vector<String>();
-		Vector<String> all_users = new Vector<String>();
+		Vector<String> usersToAdd = new Vector<String>();
+		Vector<String> usersToRemove = new Vector<String>();
 		
 		for(UserInfo friend: friends){
 			
@@ -72,16 +73,31 @@ public class ForumServlet extends HttpServlet {
 			
 			else
 				offline_friends.add(friend.getUserName());
+			usersToRemove.add(friend.getUserName());
 		}
+		
 		Vector<UserInfo> users = _webController.getUsersList(username);
 		for(UserInfo user: users){
 			if (!user.getUserName().equals(username))
-				all_users.add(user.getUserName());
+			{
+				boolean inFriends = false;
+				for(UserInfo friend: friends){
+					if (user.getUserName().equals(friend.getUserName())){
+						inFriends = true;
+					}
+				}
+				if (!inFriends){
+					usersToAdd.add(user.getUserName());
+				}
+			}
 		}
+		
+		
 		
 		req.setAttribute("online_friends", online_friends);
 		req.setAttribute("offline_friends", offline_friends);
-		req.setAttribute("all_users", all_users);
+		req.setAttribute("users_to_add", usersToAdd);
+		req.setAttribute("users_to_remove", usersToRemove);
 
 		// decide which data should we retrieve from the server (forums\posts\threads)
 		String window = (String)req.getParameter("window");
