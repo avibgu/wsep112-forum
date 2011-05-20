@@ -1,5 +1,7 @@
+<%@ page import="java.lang.String" %>
 <jsp:useBean id="window" scope="request" type="java.lang.String" />
 <jsp:useBean id="username" scope="request" type="java.lang.String" />
+<jsp:useBean id="all_users" scope="request" type="java.util.Vector<java.lang.String>" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -75,6 +77,16 @@
 							
 							<tr>		<input type="text" name="addFriendName">	</tr>
 
+							<select>
+							<%
+								for(String user: all_users){
+							%>
+							   <option><%=user%></option>
+						    <%
+								}
+							%>
+						    </select>
+							
 							<tr>		<input type="submit" value="Add Friend">	</tr>
 							
 						</form>
