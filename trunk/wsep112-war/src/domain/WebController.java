@@ -86,6 +86,12 @@ public class WebController implements Observer{
 		
 		return cc.getFriendList();
 	}
+	
+	public Vector<UserInfo> getUsersList(String username){
+		ClientController cc = getClientController(username);
+		
+		return cc.getUsersList();
+	}
 
 	
 	public Vector<ForumInfo> getForumList(String username){
