@@ -1,7 +1,7 @@
 <%@ page import="java.lang.String" %>
 <jsp:useBean id="window" scope="request" type="java.lang.String" />
 <jsp:useBean id="username" scope="request" type="java.lang.String" />
-<jsp:useBean id="all_users" scope="request" type="java.util.Vector<java.lang.String>" />
+<jsp:useBean id="users_to_add" scope="request" type="java.util.Vector<java.lang.String>" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,12 +17,6 @@
 	    		color: #660066;
 	    	}
 	    </style>
-	    <SCRIPT LANGUAGE='JavaScript'>
-       		function setsel(what) 
-              {
-                alert(what)            
-              }
-		</SCRIPT>
 	</head>
 	
 	<body bgcolor="#CC99FF">
@@ -81,11 +75,9 @@
 			
 							<tr><h5>	Add Friend:									</h5></tr>
 							
-							
-
 							<select name="addFriendName"  onChange="value = this.options[this.selectedIndex].text">
 							<%
-								for(String user: all_users){
+								for(String user: users_to_add){
 							%>
 							   <option value=<%=user%>><%=user%></option>
 						    <%
