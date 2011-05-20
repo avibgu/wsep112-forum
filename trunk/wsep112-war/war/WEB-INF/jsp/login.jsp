@@ -33,8 +33,8 @@
 			
 			</table>
 			
-			<p align="center"><br><input type="submit" value="Login" style=" height: 42px; width: 128px;  background-color: #9999FF; font-size: 100% "/>
-			<br><br>or <a href="reg">Register to the Forum</a>
+			<p align="center"><br><input type="submit" value="Login" style=" height: 42px; width: 128px;  background-color: Navy; font-size: 100%; color: White; font-style: italic"/>
+			<br><br><td style="color: White; ">or <a href="reg">Register to the Forum</a>
 		</form>
 		
 	</body>
