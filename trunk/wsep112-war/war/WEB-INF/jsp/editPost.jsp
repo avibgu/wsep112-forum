@@ -29,7 +29,7 @@
             			</td></tr>
 			</table>
 			
-			<p align="center">	<input type="submit" value="Change" name=FillEditPostDetails style=" height: 42px; width: 128px;  background-color: #9999FF; font-size: 100% "/>
+			<p align="center">	<input type="submit" value="Change" name=FillEditPostDetails style=" height: 42px; width: 128px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif"/>
 		
 
 		</form>

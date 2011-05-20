@@ -18,7 +18,7 @@
 	
 	<body>
 	
-		<h1 style="font-size: large;" align="center">Add Post</h1>
+		<h1 style="font-size: large;" style="color: white" align="center"><b>Add Post</b></h1>
 	
 		<form name="AddPostForm" action="forum" method="post">
 		
@@ -34,7 +34,7 @@
             			</td></tr>
 			</table>
 			
-			<p align="center">	<input type="submit" value="Add" name=FillPostDetails style=" height: 42px; width: 128px;  background-color: #9999FF; font-size: 100% "/>
+			<p align="center" style="width: 844px; height: 46px">	<input type="submit" value="Add" name=FillPostDetails style=" height: 42px; width: 128px;  background-color: Navy; font-size: 100%; color: White"/>
 		
 
 		</form>

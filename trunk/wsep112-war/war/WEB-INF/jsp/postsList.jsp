@@ -23,17 +23,17 @@
                 <% for(int row=0; row < posts_list.size(); row++) {
                 	PostInfo post = posts_list.get(row); %>
 				    <TR>
-				    <TD style="width: 120px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal" "> 
+				    <TD style="width: 120px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal" "> 
 				    <p align="left" style="height: 64px; "><img src="http://icons.iconarchive.com/icons/fasticon/comic-iphone/48/mail-icon.png"><%= post.get_title() %></p> 
 				    </TD>
-                    <TD style="width: 496px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.get_body() %> </TD>
-                    <TD style="width: 82px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.getDateTime() %> </TD>
-                    <TD style="width: 70px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.getOwner().getUserName() %> </TD>
-                    <TD style="width: 70px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <% if (post.getOwner().getUserName().equals(username)) {%>
+                    <TD style="width: 496px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.get_body() %> </TD>
+                    <TD style="width: 82px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.getDateTime() %> </TD>
+                    <TD style="width: 70px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.getOwner().getUserName() %> </TD>
+                    <TD style="width: 70px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <% if (post.getOwner().getUserName().equals(username)) {%>
                              <a style="text-align: center;" href="forum?postId=<%=post.get_post_id()%>&amp;window=edit">Edit
 					</a>				      
                             <%} %> </TD>
-				    <TD style="width: 76px; background-color: #E0E0E0; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: left; white-space: normal""> <% if (post.getOwner().getUserName().equals(username)) {%>
+				    <TD style="width: 76px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: left; white-space: normal""> <% if (post.getOwner().getUserName().equals(username)) {%>
                              <p align="center"><a style="text-align: center;" href="forum?postId=<%=post.get_post_id()%>&amp;window=delete">Delete
 					</a>				      
 						     
@@ -43,7 +43,7 @@
 				<% } %>
 				
              </TABLE>
-             <p align="center" style="width: 473px; ">	<input type="submit" value="Add Post" name=AddPostButton style=" height: 42px; width: 128px;  background-color: #9999FF; font-size: 100% "/>
+             <p align="center" style="width: 473px; ">	<input type="submit" value="Add Post" name=AddPostButton style=' height: 42px; width: 128px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif'/>
 		</ul>
 	</form>
 	</body>

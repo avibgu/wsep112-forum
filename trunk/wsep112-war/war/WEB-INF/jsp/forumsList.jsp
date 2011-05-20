@@ -10,8 +10,8 @@
 	</head>
 	<body>
 	<form>
-		<p align="center"><br>Please choose one of the forums:
-		<ul style="list-style: none;">
+		<p align="center"><br><b><big><p align="center">Please choose one of the forums:
+		</p></big></b><ul style="list-style: none;">
 		
 			<%
 				for(ForumInfo forum: forums_list){

@@ -19,7 +19,7 @@
 	
 	<body bgcolor="#CC99FF">
 	
-		<h1 align="center">	Forum Web Client	</h1>
+		<h1 align="center" style="color: white">	Forum Web Client	</h1>
 		<td style="text-align: center; width: 923px" width="900">
 					<%
 						if (window.equals("forums")){
