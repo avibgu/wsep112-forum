@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
 		
 		<style type="text/css">
-			body { background:#CC99FF no-repeat fixed center;
+			body { background:#CC99FF url("http://www.cutewallpapers.net/wp-content/images/daisy_1920x1200.jpg") no-repeat fixed center;
 		    font:italic bold 12px/30px Georgia, serif;
 		    font-size: large;
 	    	}
