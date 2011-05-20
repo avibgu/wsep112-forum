@@ -167,13 +167,14 @@ public class ForumServlet extends HttpServlet {
 			String title = req.getParameter("title");
 			String body = req.getParameter("body");
 			_webController.addThread(username, (String) session.getAttribute("ForumId"),title, body);
+			forwardTo ="forum?id="+(String) session.getAttribute("ForumId")+"&window=threads";
 		}
 		else if (null != req.getParameter("FillPostDetails")){
 			String title = req.getParameter("title");
 			String body = req.getParameter("body");
 			_webController.addPost(username, (String)session.getAttribute("ForumId"), title, body, 
 								  (String)session.getAttribute("ThreadId"));
-			//TODO: Return to previous page.
+			forwardTo = "forum?id="+(String)session.getAttribute("ThreadId")+"&window=posts";
 		}
 		else if (null != req.getParameter("FillEditPostDetails")){
 			System.out.println("Post - edit post");
@@ -181,7 +182,7 @@ public class ForumServlet extends HttpServlet {
 			String body = req.getParameter("body");
 			_webController.editPost(username, (String)session.getAttribute("ForumId"), title, body, 
 								  (String)session.getAttribute("ThreadId"),(String)session.getAttribute("postId"));
-			//TODO: Return to previous page.
+			forwardTo = "forum?id="+(String)session.getAttribute("ThreadId")+"&window=posts";
 		}
 		
 		resp.sendRedirect(forwardTo);
