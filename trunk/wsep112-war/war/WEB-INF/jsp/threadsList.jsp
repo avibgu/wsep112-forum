@@ -16,8 +16,11 @@
 	    </style></head>
 	<body>
 		<form name="loginForm" action="forum" method="get">
-		
-		<br><br>
+		<a style="text-align: center;" href="forum"><p align="justify"><i><p align="center">Back</p></i></p>
+		</a>
+		<p align="center"><b><big><p align="center">Please choose one of the threads:
+		</p></big></b><ul style="list-style: none;">
+		<br>
 		
 		<TABLE align="center" BORDER="1" style=" height: 156px; width: 403px;">
                 <TR> 
