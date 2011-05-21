@@ -17,7 +17,7 @@
 		
 		<table>
 			<tr>
-				<td width="150">
+				<td width="150" valign="top">
 					<table>
 						<tr><h4>	Hello <%=username%>,					</h4></tr>
 					
@@ -73,7 +73,7 @@
 						</form>
 					</table>
 				</td>
-				<td width="900">
+				<td width="750" valign="top">
 					<%
 						if (window.equals("forums")){
 					%>
