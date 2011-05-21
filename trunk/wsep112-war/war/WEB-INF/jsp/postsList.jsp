@@ -8,43 +8,55 @@
 	    </head>	
 	<body>
 		<form name="PostsForm" action="forum" method="get" style="height: 385px; ">
-		<br><br><ul style="text-align: center;">
 		
-			<TABLE align="center" BORDER="1" style=" height: 156px; width: 900px;">
+		<p align="center"><b><big><p align="center"><%=posts_list.get(0).get_title() %>
+		</p></big></b><ul style="list-style: none;">
+		
+			<TABLE align="center" BORDER="3" style=" height: 188px; width: 842px;" cellpadding="7">
+		
                 <TR> 
-                    <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline; width: 205px"><p align="center">Title</p></TH>
-                    <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline"><p align="center">Body</p></TH>
-                    <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline"><p align="center">Publish date</p></TH>
-                    <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline"><p align="center">Owner</p></TH>
-                    <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline"><p align="center">Edit</p></TH>
-                    <TH style=" background-color: #9999FF; font-size: 24px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline"><p align="center">Delete</p></TH>
-                
+                    <TH style=" background-color: #9999FF; font-size: 18px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline; width: 696px"><p align="center">Message</p></TH>
+                    <TH style=" background-color: #9999FF; font-size: 18px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline; width: 111px; height: 36px"><p align="center">Author</p></TH>
                 </TR>
                 <% for(int row=0; row < posts_list.size(); row++) {
                 	PostInfo post = posts_list.get(row); %>
-				    <TR>
-				    <TD style="width: 120px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal" "> 
-				    <p align="left" style="height: 64px; "><img src="http://icons.iconarchive.com/icons/fasticon/comic-iphone/48/mail-icon.png"><%= post.get_title() %></p> 
-				    </TD>
-                    <TD style="width: 496px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.get_body() %> </TD>
-                    <TD style="width: 82px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.getDateTime() %> </TD>
-                    <TD style="width: 70px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.getOwner().getUserName() %> </TD>
-                    <TD style="width: 70px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <% if (post.getOwner().getUserName().equals(username)) {%>
-                             <a style="text-align: center;" href="forum?postId=<%=post.get_post_id()%>&amp;window=edit">Edit
-					</a>				      
-                            <%} %> </TD>
-				    <TD style="width: 76px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: left; white-space: normal""> <% if (post.getOwner().getUserName().equals(username)) {%>
-                             <p align="center"><a style="text-align: center;" href="forum?postId=<%=post.get_post_id()%>&amp;window=delete">Delete
-					</a>				      
-						     
-                            </p><%} %> </TD>
+				    <TR align="left">
+				    <TD style=" font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal; width: 658px">
+				 	<TABLE align="center" border="1" cellspacing="4" width="98%" style="background-color: #F0F0F0">
+				    <TR align="left">
+				    <TD style="font-size: x-small"> <big> <i><u>Subject:</u></i>   </big>   <%= post.get_title() %> <br /> <big> <i><u>Publish date:</u></i> </big><%= post.getDateTime() %>     </TD>
+				    
+				    				    
 				    </TR>
-				    <p align="center">	
+				     
+				    <TR>
+                    <TD style="width: 496px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.get_body() %> </TD>
+                    </TR>
+                    <TR>
+					<TD style="border-top-style: none; border-bottom-style: none; border-left-style: none; border-right-style: none; left: auto">
+					<% if (post.getOwner().getUserName().equals(username)) {%>
+                             <a style=" font-size:small; text-align: left;" href="forum?postId=<%=post.get_post_id()%>&amp;window=edit">Edit        
+					</a>	
+					/ 			
+					 <a style="font-size:small; text-align: right;" href="forum?postId=<%=post.get_post_id()%>&amp;window=delete">Delete
+					</a>				      				      
+                            <%} %>
+                    </TD>
+                    </TR>
+                 
+                    
+              		</TABLE>
+              		</TD>
+              		
+                    <TD style="width: 52px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal; clip: rect(auto, auto, auto, auto); top: auto; padding-top: 0px; vertical-align: top"> <%= post.getOwner().getUserName() %> </TD>
+                  
+                    </TR>
+                   
 				<% } %>
 				
              </TABLE>
              <p align="center" style="width: 473px; ">	<input type="submit" value="Add Post" name=AddPostButton style=' height: 42px; width: 128px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif'/>
-		</ul>
+	
 	</form>
 	</body>
 

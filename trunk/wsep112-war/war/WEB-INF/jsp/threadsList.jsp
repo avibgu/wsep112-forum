@@ -16,6 +16,7 @@
 	    </style></head>
 	<body>
 		<form name="loginForm" action="forum" method="get">
+		
 		<br><br>
 		
 		<TABLE align="center" BORDER="1" style=" height: 156px; width: 403px;">
@@ -45,7 +46,7 @@
 			<p align="center">	<br><br><input type="submit" value="Add Thread" name=AddThreadButton style=" height: 42px; width: 139px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif" />
 				
 		</ul>
-
+	</form>
 	</body>
 
 </html>
