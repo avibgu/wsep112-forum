@@ -25,6 +25,12 @@
   <property generated="never" lazy="false" name="_forumId">
    <column name="forum_id"/>
   </property>
+  <property access="field" generated="never" lazy="false" name="_lastModifiedDate" type="java.util.Date">
+   <column name="lastModifyDate"/>
+  </property>
+  <property generated="never" lazy="false" name="_lastModifiedUser" type="java.lang.String">
+   <column name="lastModifyUser"/>
+  </property>
   <list access="field" lazy="false" name="_watchingUsers" table="THREAD_WATCHERS">
    <key>
     <column name="THREAD_ID"/>

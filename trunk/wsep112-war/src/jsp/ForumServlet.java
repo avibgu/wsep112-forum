@@ -107,7 +107,6 @@ public class ForumServlet extends HttpServlet {
 			window = "forums";
 		}
 		if (req.getParameter("AddThreadButton") != null){
-			int forumId= Integer.parseInt((String)session.getAttribute("ForumId"));
 			req.setAttribute("window", "addThread");
 			
 		}

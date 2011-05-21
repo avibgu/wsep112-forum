@@ -22,9 +22,11 @@
 		</p></big></b><ul style="list-style: none;">
 		<br>
 		
-		<TABLE align="center" BORDER="1" style=" height: 156px; width: 403px;">
+		<TABLE align="center" BORDER="1" style=" height: 45px; width: 786px;">
                 <TR> 
-                
+                	 <TH style=" background-color: #9999FF; font-size: 18px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline; width: 369px"><p align="center">Subject</p></TH>
+                     <TH style=" background-color: #9999FF; font-size: 18px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline; width: 135px; height: 36px"><p align="center">Author</p></TH>
+                     <TH style=" background-color: #9999FF; font-size: 18px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline; width: 195px; height: 36px"><p align="center">Last change</p></TH>
                 
                 </TR>
                <%
@@ -32,21 +34,23 @@
 					
 			%>
 				    <TR>
-				    <TD style="width: 309px; font-size: 12px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal" "> 
+				    <TD style="width: 314px; font-size: 12px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal; height: 29px" "> 
 				    <p style="text-align: center; font-size: 14px; white-space: normal; line-height: normal; text-transform: none; font-style: normal; display: list-item; list-style: none;">
 					<a href="forum?id=<%=thread.getThread_id()%>&window=posts"><%=thread.getTitle()%></a>
 				    </TD>
-             	     
-                       
-				    </TR>
-				    <p align="center">	
+             	 	<TD style="width: 52px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal; clip: rect(auto, auto, auto, auto); top: auto; padding-top: 0px; vertical-align: top"> <%= thread.get_owner() %> </TD>
+             	 	<TD style="width: 52px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal; clip: rect(auto, auto, auto, auto); top: auto; padding-top: 0px; vertical-align: top">
+             	 	 <%= thread.getDateTime() %><br /><%= thread.get_lastModifiedUser()%>	
+             	 
+             	 	 </TD>
+					</TR>
 				<% } %>
 				
              </TABLE>
 		
-		<ul style="list-style: none;">
+		<ul style="list-style: none; width: 1008px">
 		
-			<p align="center">	<br><br><input type="submit" value="Add Thread" name=AddThreadButton style=" height: 42px; width: 139px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif" />
+			<p align="center" style="width: 1056px; ">	<br><br><input type="submit" value="Add Thread" name=AddThreadButton style=" height: 42px; width: 148px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif" />
 				
 		</ul>
 	</form>
