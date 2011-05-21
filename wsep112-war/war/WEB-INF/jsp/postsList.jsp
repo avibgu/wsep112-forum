@@ -5,12 +5,14 @@
 
 <html>
 		<head>
+		
 	    </head>	
 	<body>
 		<form name="PostsForm" action="forum" method="get" style="height: 385px; ">
-		
+		<a style="text-align: center;" href="forum?id=<%=session.getAttribute("ForumId")%>&window=threads"><p align="justify"><i><p align="center">Back</p></i></p>
+		</a>
 		<p align="center"><b><big><p align="center"><%=posts_list.get(0).get_title() %>
-		</p></big></b><ul style="list-style: none;">
+		</p></big></b><ul style="list-style: none;"></ul>
 		
 			<TABLE align="center" BORDER="3" style=" height: 188px; width: 842px;" cellpadding="7">
 		
@@ -30,7 +32,7 @@
 				    </TR>
 				     
 				    <TR>
-                    <TD style="width: 496px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal"> <%= post.get_body() %> </TD>
+                    <TD style="width: 496px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: left; white-space: normal"> <%= post.get_body() %> </TD>
                     </TR>
                     <TR>
 					<TD style="border-top-style: none; border-bottom-style: none; border-left-style: none; border-right-style: none; left: auto">
@@ -55,7 +57,9 @@
 				<% } %>
 				
              </TABLE>
-             <p align="center" style="width: 473px; ">	<input type="submit" value="Add Post" name=AddPostButton style=' height: 42px; width: 128px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif'/>
+      
+       
+             <p align="center" style="width: 1110px; ">	<input type="submit" value="Add Post" name=AddPostButton style=' height: 42px; width: 128px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif'/>
 	
 	</form>
 	</body>
