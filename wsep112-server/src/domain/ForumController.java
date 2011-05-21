@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -314,7 +315,8 @@ public class ForumController implements Serializable{
 		
 		for (Thread thread : threads)
 			tListOfThreads.add(new ThreadInfo(
-					thread.getThread_id(), thread.getTitle(), thread.get_forumId()));
+					thread.getThread_id(), thread.getTitle(), thread.get_forumId(),
+					thread.get_owner(),thread.get_lastModifiedDate(),thread.get_lastModifiedUser()));
 
 		sftm.setListOfThreads(tListOfThreads);
 		
@@ -435,7 +437,6 @@ public class ForumController implements Serializable{
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
 	public Message RemovePost(String threadId, String postId, WrappedObserver wo) {
-		
 		Thread tThread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
 		User tUser = HibernateUtil.retrievePostOwner(Integer.parseInt(postId));
 		tThread.delete(Integer.parseInt(postId), tUser);
@@ -473,7 +474,8 @@ public class ForumController implements Serializable{
 		WrappedObserver wo;
 		
 		ThreadInfo threadInfo = new ThreadInfo(
-				thread.getThread_id(), thread.getTitle(), thread.get_forumId());
+				thread.getThread_id(), thread.getTitle(), thread.get_forumId(),
+				thread.get_owner(),thread.get_lastModifiedDate(),thread.get_lastModifiedUser());
 		
 		// notify thread's owner..
 

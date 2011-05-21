@@ -1,7 +1,10 @@
 package domain;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Observer;
 import java.util.Vector;
@@ -24,7 +27,8 @@ public class Thread implements Serializable{
 	private List<Post> _posts;
 	private List<String> _watchingUsers;
 	private String _owner;
-	static int _available_post_id = 0;
+	private Date _lastModifiedDate;
+	private String _lastModifiedUser;
 	
 	private WrappedObserver _ownerObserver;
 	private List<WrappedObserver> _observers;
@@ -41,6 +45,8 @@ public class Thread implements Serializable{
 		this.set_forumId(forumId);
 		this.set_observers(new ArrayList<WrappedObserver>());
 		this.set_owner(username);
+		this.set_lastModifiedDate(new Date());
+		this.set_lastModifiedUser(username);
 	}
 	
 	/**
@@ -59,6 +65,10 @@ public Message reaply(String title, String body,User owner){
 		HibernateUtil.insertDB(new_post);
 		HibernateUtil.updateDB(owner);
 		
+		Thread thread = HibernateUtil.retrieveThread(getThread_id());
+		thread.set_lastModifiedDate(new Date());
+		thread.set_lastModifiedUser(owner.get_Username());
+		HibernateUtil.updateDB(thread);
 		return new OKMessage();
 	}
 	
@@ -179,6 +189,23 @@ public Message reaply(String title, String body,User owner){
 	}
 	public String get_owner() {
 		return _owner;
+	}
+	public void set_lastModifiedDate(Date _lastModifiedDate) {
+		this._lastModifiedDate = _lastModifiedDate;
+	}
+	public Date get_lastModifiedDate() {
+		return _lastModifiedDate;
+	}
+	public void set_lastModifiedUser(String _lastModifiedUser) {
+		this._lastModifiedUser = _lastModifiedUser;
+	}
+	public String get_lastModifiedUser() {
+		return _lastModifiedUser;
+	}
+	
+	public String getDateTime() {
+	    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    return dateFormat.format(_lastModifiedDate);
 	}
 	
 }
