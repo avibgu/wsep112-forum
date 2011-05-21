@@ -16,18 +16,32 @@
 	    </style></head>
 	<body>
 		<form name="loginForm" action="forum" method="get">
-		<br><br><ul style="list-style: none;">
+		<br><br>
 		
-			<%
+		<TABLE align="center" BORDER="1" style=" height: 156px; width: 403px;">
+                <TR> 
+                
+                
+                </TR>
+               <%
 				for(ThreadInfo thread: threads_list){
 					
 			%>
-			<li style="text-align: center; font-size: 24px; white-space: normal; line-height: normal; text-transform: none; font-style: normal; display: list-item">
-				<a href="forum?id=<%=thread.getThread_id()%>&window=posts"><%=thread.getTitle()%></a>
+				    <TR>
+				    <TD style="width: 309px; font-size: 12px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal" "> 
+				    <p style="text-align: center; font-size: 14px; white-space: normal; line-height: normal; text-transform: none; font-style: normal; display: list-item; list-style: none;">
+					<a href="forum?id=<%=thread.getThread_id()%>&window=posts"><%=thread.getTitle()%></a>
+				    </TD>
+             	     
+                       
+				    </TR>
+				    <p align="center">	
+				<% } %>
 				
-			</li>		
-			
-			<% } %>	
+             </TABLE>
+		
+		<ul style="list-style: none;">
+		
 			<p align="center">	<br><br><input type="submit" value="Add Thread" name=AddThreadButton style=" height: 42px; width: 139px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif" />
 				
 		</ul>
