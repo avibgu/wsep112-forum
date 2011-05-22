@@ -21,6 +21,7 @@
 	</head>
 	
 	<body bgcolor="#CC99FF" >
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js">
 		<h1 align="center" style="color: white">	Forum Web Client	</h1>
 		
 		<table>
