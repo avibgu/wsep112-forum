@@ -461,6 +461,10 @@ public class ForumController implements Serializable{
 		Post tPost = HibernateUtil.retrievePost(Integer.parseInt(postId));
 		tPost.edit_post(title, body);
 		HibernateUtil.updateDB(tPost);
+		Thread thread = HibernateUtil.retrieveThread(Integer.parseInt(threadId));
+		thread.set_lastModifiedDate(new Date());
+		thread.set_lastModifiedUser(username);
+		HibernateUtil.updateDB(thread);
 		return new OKMessage();
 	}
 
