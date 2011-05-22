@@ -42,7 +42,7 @@ public class HibernateUtil {
 	   * Update existing object in the database.
 	   * @param obj
 	   */
-	   public static void updateDB(Object obj){
+	   public synchronized static void updateDB(Object obj){
 		   Session session=null;
 		   try{
 			   session = getSession();
@@ -66,7 +66,7 @@ public class HibernateUtil {
 	    * @param obj
 	    * @return
 	    */
-	   public static Serializable insertDB(Object obj){
+	   public synchronized static Serializable insertDB(Object obj){
 		   try{
 			   Session session = getSession();
 			   Transaction transaction = session.beginTransaction();

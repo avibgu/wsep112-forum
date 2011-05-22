@@ -35,7 +35,7 @@
    <key>
     <column name="THREAD_ID"/>
    </key>
-   <list-index base="0"/>
+   <index column="idx"/>
    <element type="java.lang.String">
     <column name="USERNAME"/>
    </element>

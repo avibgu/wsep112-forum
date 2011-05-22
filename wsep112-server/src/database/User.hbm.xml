@@ -34,7 +34,7 @@
    <key>
     <column name="USERNAME"/>
    </key>
-   <list-index base="0"/>
+   <index column="idx"/>
    <element type="java.lang.String">
     <column name="FRIEND_USERNAME"/>
    </element>
@@ -43,7 +43,7 @@
    <key>
     <column name="USERNAME"/>
    </key>
-   <list-index base="0"/>
+   <index column="idx"/>
    <element type="java.lang.String">
     <column name="NOTIFIERFRIEND"/>
    </element>
