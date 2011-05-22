@@ -47,7 +47,7 @@
 							%>
 						    </select>
 							
-							<tr>		<input type="submit" value="Add Friend">	</tr>
+							<tr>		<input type="submit" value="Add Friend" style=" height: 28px; width: 90px;  background-color: Navy; font-size: 65%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif">	</tr>
 							
 						</form>
 						
@@ -67,7 +67,7 @@
 							%>
 						    </select>
 
-							<tr>		<input type="submit" value="Remove Friend">	</tr>
+							<tr>		<input type="submit" value="Remove Friend" style=" height: 28px; width: 90px;  background-color: Navy; font-size: 65%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif">	</tr>
 							
 						</form>
 
@@ -76,7 +76,7 @@
 
 						<form name="LogoutForm" action="login" method="get">
 			
-							<tr>		<input type="submit" value="Logout" name="logoutButton">	</tr>
+							<tr>		<input type="submit" value="Logout" name="logoutButton" style=" height: 28px; width: 90px;  background-color: Navy; font-size: 65%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif">	</tr>
 							
 						</form>
 					</table>
