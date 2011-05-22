@@ -116,7 +116,7 @@ public class WebController implements Observer{
 	}
 
 	public boolean AddFriend(String username, String addFriendName) {
-
+		System.out.println("username = " + username + " friend= " + addFriendName);
 		ClientController cc = getClientController(username);
 		
 		return cc.AddFriend(addFriendName);

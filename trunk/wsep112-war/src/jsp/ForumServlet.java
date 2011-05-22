@@ -65,9 +65,8 @@ public class ForumServlet extends HttpServlet {
 		Vector<String> offline_friends = new Vector<String>();
 		Vector<String> usersToAdd = new Vector<String>();
 		Vector<String> usersToRemove = new Vector<String>();
-		
+
 		for(UserInfo friend: friends){
-			
 			if (friend.getStatus().equals("ONLINE"))
 				online_friends.add(friend.getUserName());
 			
