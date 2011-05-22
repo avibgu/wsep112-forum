@@ -5,7 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
 		<title>Forum Web Client</title>
 		<style type="text/css">
-			body { background:#CC99FF  url("http://www.cutewallpapers.net/wp-content/images/daisy_1920x1200.jpg") no-repeat fixed center;
+			body { background:#CC99FF  url("http://old.wallcoo.net/cartoon/Creative_Ideas_and_Digital_Design_1920x1200/wallpapers/1920x1080/CG_Design_Fly_away_dandelion_under_blue_sky.jpg") no-repeat fixed center;
 		    font:italic bold 12px/30px Georgia, serif;
 	    	font-size: large;}
 	    	h1{
