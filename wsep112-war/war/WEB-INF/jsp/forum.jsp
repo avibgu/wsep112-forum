@@ -81,7 +81,7 @@
 						</form>
 					</table>
 				</td>
-				<td width="750" valign="top">
+				<td width="750" valign="top" align="center">
 					<%
 						if (window.equals("forums")){
 					%>
