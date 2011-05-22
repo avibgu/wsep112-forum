@@ -164,7 +164,7 @@ public class User implements Serializable{
 			return new ErrorMessage("Friend is already exists in user's list.");
 		}
 		
-		getFriends().add(userNameFriend);
+		get_friends().add(userNameFriend);
 		return new OKMessage();
 	}
 	
@@ -247,7 +247,7 @@ public class User implements Serializable{
 	 * @return true if the userName exist, and false otherwise.
 	 */
 	public Boolean isExistUser(String username){
-	    if (getFriends().contains(username))
+	    if (get_friends().contains(username))
 			return true;
 		else
 			return false;
@@ -296,7 +296,7 @@ public class User implements Serializable{
 		return -1;
 	}
 	
-	public List<String> getFriends(){
+	public List<String> get_friends(){
 		return _friends;
 		/*List<String> ans = new ArrayList<String>();
 		List<User> tFriends  = HibernateUtil.retrieveUserFriends(_username);
@@ -305,7 +305,9 @@ public class User implements Serializable{
 		}
 		return ans;*/
 	}
-	
+	public void set_friends(List<String> _friends){
+		this._friends = _friends;
+	}
 	public void set_friendsToNotify(List<String> _friendsToNotify) {
 		this._friendsToNotify = _friendsToNotify;
 	}

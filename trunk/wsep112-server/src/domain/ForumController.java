@@ -372,7 +372,7 @@ public class ForumController implements Serializable{
 		
 		Vector<UserInfo> tListOfFriends = new Vector<UserInfo>();
 		User tUser = HibernateUtil.retrieveUser(username);
-		List<String> tUserFriends = tUser.getFriends();
+		List<String> tUserFriends = tUser.get_friends();
 		tUserFriends.removeAll(Arrays.asList(new Object[]{null}));
 		for (int i=0; i< tUserFriends.size(); ++i){
 			String tFriendUserName= tUserFriends.get(i);
