@@ -18,11 +18,27 @@
 	    		color: #660066;
 	    	}
 	    </style>
+	    <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
+		<script>
+			function checkNotifications()
+			{
+				$.get('notifications', function(data) {
+					$('#notifications').html(data);
+				});
+				setTimeout('checkNotifications()', 5000);
+			}
+			
+			$(document).ready(function()
+			{
+				setTimeout('checkNotifications()', 10000);
+			});
+		</script>
+    
 	</head>
 	
 	<body bgcolor="#CC99FF" >
 		<h1 align="center" style="color: white">	Forum Web Client	</h1>
-			<script>
+
 		<table>
 			<tr>
 				<td width="150" valign="top">
@@ -79,6 +95,7 @@
 							<tr>		<input type="submit" value="Logout" name="logoutButton" style=" height: 28px; width: 95px;  background-color: Navy; font-size: 65%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif">	</tr>
 							
 						</form>
+						<div id="notifications"></div>
 					</table>
 				</td>
 				<td width="750" valign="top" align="center">
