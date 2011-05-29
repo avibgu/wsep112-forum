@@ -18,6 +18,21 @@
 	    		color: #660066;
 	    	}
 	    </style>
+	    <link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
+		<style>
+			body {
+			  font-family: 'Wire One', serif;
+			  font-size: 25px;
+			  font-style: normal;
+			  font-weight: 400;
+			  text-shadow: none;
+			  text-decoration: none;
+			  text-transform: none;
+			  letter-spacing: 0em;
+			  word-spacing: 0em;
+			  line-height: 1.2;
+			}
+		</style>
 	    <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
 		<script>
 			function checkNotifications()
@@ -25,12 +40,12 @@
 				$.get('notifications', function(data) {
 					$('#notifications').html(data);
 				});
-				setTimeout('checkNotifications()', 5000);
+				setTimeout('checkNotifications()', 10000);
 			}
 			
 			$(document).ready(function()
 			{
-				setTimeout('checkNotifications()', 10000);
+				setTimeout('checkNotifications()', 1000);
 			});
 		</script>
     
