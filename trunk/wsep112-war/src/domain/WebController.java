@@ -2,6 +2,7 @@ package domain;
 
 import java.rmi.RemoteException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Vector;
@@ -9,18 +10,12 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-import presentation.gui.PostsViewPanel;
-
 import main.MainClient;
 
 import common.forum.items.ForumInfo;
 import common.forum.items.PostInfo;
 import common.forum.items.ThreadInfo;
 import common.forum.items.UserInfo;
-import common.network.messages.ErrorMessage;
 import common.notifications.FriendAddedPostNotification;
 import common.notifications.PostAddedToYourThreadNotification;
 import common.notifications.ThreadChangedNotification;
@@ -31,17 +26,26 @@ import common.notifications.ThreadChangedNotification;
 public class WebController implements Observer{
 
 	private HashMap<String, ClientController> _usersControllersMap;
-	private ReentrantReadWriteLock _rwLock;
-	private ReadLock _rdLock;
-	private WriteLock _wrLock;
+	private HashMap<String, LinkedList<String>> _usersNotificationsMap;
+	private ReentrantReadWriteLock _rwControllerLock;
+	private ReadLock _rdControllerLock;
+	private WriteLock _wrControllerLock;
+	private ReentrantReadWriteLock _rwNotificationLock;
+	private ReadLock _rdNotificationLock;
+	private WriteLock _wrNotificationLock;
 	
 	// Private constructor prevents instantiation from other classes
 	private WebController() {
 		
 		setUsersControllersMap(new HashMap<String, ClientController>());
-		setRwLock(new ReentrantReadWriteLock(true));
-		setRdLock(getRwLock().readLock());
-		setWrLock(getRwLock().writeLock());
+		setRwControllerLock(new ReentrantReadWriteLock(true));
+		setRdControllerLock(getRwControllerLock().readLock());
+		setWrControllerLock(getRwControllerLock().writeLock());
+		
+		setUsersNotificationsMap(new HashMap<String, LinkedList<String>>());
+		setRwNotificationLock(new ReentrantReadWriteLock(true));
+		setRdNotificationLock(getRwNotificationLock().readLock());
+		setWrNotificationLock(getRwNotificationLock().writeLock());
 	}
 	
 	/**
@@ -163,11 +167,11 @@ public class WebController implements Observer{
 	}
 	public ClientController getClientController(String username) {
 
-		getRdLock().lock();
+		getRdControllerLock().lock();
 		
 		ClientController cc = getUsersControllersMap().get(username);
 		
-		getRdLock().unlock();
+		getRdControllerLock().unlock();
 		
 		if (cc == null){
 			
@@ -179,13 +183,19 @@ public class WebController implements Observer{
 					
 					if (cc != null){
 						
-						getWrLock().lock();
+						getWrControllerLock().lock();
 						
 						getUsersControllersMap().put(username, cc);
 						
 						cc.addObserver(this);
 						
-						getWrLock().unlock();
+						getWrControllerLock().unlock();
+						
+						getWrNotificationLock().lock();
+						
+						getUsersNotificationsMap().put(username, new LinkedList<String>());
+						
+						getWrNotificationLock().unlock();
 						
 						break;
 					}
@@ -213,6 +223,17 @@ public class WebController implements Observer{
 	private void nofity(ThreadChangedNotification tcn) {
 
 		//	TODO: should do nothing.. the page will refresh automatically..
+		//	AVID: CHANGE IT
+		
+		ThreadInfo tInfo = tcn.getThreadInfo();
+
+		String msg =	"Thread \"" + tInfo.getTitle() + "\" has been changed";
+		
+		getWrNotificationLock().lock();
+		
+		getUsersNotificationsMap().get(tcn.getForWho()).add(msg);
+		
+		getWrNotificationLock().unlock();
 	}
 	
 	private void nofity(FriendAddedPostNotification fapn) {
@@ -223,7 +244,11 @@ public class WebController implements Observer{
 		String msg =	"Your friend " + uInfo.getUserName() +
 						" added post to Thread \"" + tInfo.getTitle() + "\"";
 		
-		//	TODO: add this notification to queue
+		getWrNotificationLock().lock();
+		
+		getUsersNotificationsMap().get(fapn.getForWho()).add(msg);
+		
+		getWrNotificationLock().unlock();
 	}
 	
 	private void nofity(PostAddedToYourThreadNotification patytn) {
@@ -232,14 +257,27 @@ public class WebController implements Observer{
 					
 		String msg =	"Your Thread \"" + tInfo.getTitle() + "\" has been changed";
 
-		//	TODO: add this notification to queue
+		getWrNotificationLock().lock();
+		
+		getUsersNotificationsMap().get(patytn.getForWho()).add(msg);
+		
+		getWrNotificationLock().unlock();
 	}
 	
 	public String getNotificationFromQueue(String username){
 		
-		//	TODO: remove notification from queue and return it..
+		getWrNotificationLock().lock();
 		
-		return "";
+		LinkedList<String> list = getUsersNotificationsMap().get(username);
+		
+		String msg = null;
+		
+		if (!list.isEmpty())
+			msg = list.remove();
+		
+		getWrNotificationLock().unlock();
+		
+		return msg;
 	}
 
 	public void setUsersControllersMap(HashMap<String, ClientController> _usersControllersMap) {
@@ -250,27 +288,59 @@ public class WebController implements Observer{
 		return _usersControllersMap;
 	}
 	
-	private void setRwLock(ReentrantReadWriteLock rwLock) {
-		this._rwLock = rwLock;
+	private void setRwControllerLock(ReentrantReadWriteLock rwLock) {
+		this._rwControllerLock = rwLock;
 	}
 
-	private ReentrantReadWriteLock getRwLock() {
-		return _rwLock;
+	public void setUsersNotificationsMap(HashMap<String, LinkedList<String>> _usersNotificationsMap) {
+		this._usersNotificationsMap = _usersNotificationsMap;
 	}
 
-	private void setRdLock(ReadLock rdLock) {
-		this._rdLock = rdLock;
+	public HashMap<String, LinkedList<String>> getUsersNotificationsMap() {
+		return _usersNotificationsMap;
 	}
 
-	private ReadLock getRdLock() {
-		return _rdLock;
+	private ReentrantReadWriteLock getRwControllerLock() {
+		return _rwControllerLock;
 	}
 
-	private void setWrLock(WriteLock wrLock) {
-		this._wrLock = wrLock;
+	private void setRdControllerLock(ReadLock rdLock) {
+		this._rdControllerLock = rdLock;
 	}
 
-	private WriteLock getWrLock() {
-		return _wrLock;
+	private ReadLock getRdControllerLock() {
+		return _rdControllerLock;
+	}
+
+	private void setWrControllerLock(WriteLock wrLock) {
+		this._wrControllerLock = wrLock;
+	}
+
+	private WriteLock getWrControllerLock() {
+		return _wrControllerLock;
+	}
+
+	public void setRwNotificationLock(ReentrantReadWriteLock _rwNotificationLock) {
+		this._rwNotificationLock = _rwNotificationLock;
+	}
+
+	public ReentrantReadWriteLock getRwNotificationLock() {
+		return _rwNotificationLock;
+	}
+
+	public void setRdNotificationLock(ReadLock _rdNotificationLock) {
+		this._rdNotificationLock = _rdNotificationLock;
+	}
+
+	public ReadLock getRdNotificationLock() {
+		return _rdNotificationLock;
+	}
+
+	public void setWrNotificationLock(WriteLock _wrNotificationLock) {
+		this._wrNotificationLock = _wrNotificationLock;
+	}
+
+	public WriteLock getWrNotificationLock() {
+		return _wrNotificationLock;
 	}
 }
