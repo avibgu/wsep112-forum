@@ -47,6 +47,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>friends</servlet-name>
 		<url-pattern>/friends</url-pattern>
 	</servlet-mapping>
-
+	
+		<servlet>
+		<servlet-name>notifications</servlet-name>
+		<servlet-class>jsp.NotificationsServlet</servlet-class>
+	</servlet>
+   
+	<servlet-mapping>
+		<servlet-name>notifications</servlet-name>
+		<url-pattern>/notifications</url-pattern>
+	</servlet-mapping>
 
 </web-app>
