@@ -44,16 +44,15 @@
 			
 			function check()
 			{
-				$.get('forumsList', function(data) {
+				$.get('forumsList',	function(data) {
 					$('#windowToLoad').html(data);
 				});
-				setTimeout('check()', 10000);
 			}
 			
 			$(document).ready(function()
 			{
-			    setTimeout('check()', 1000);
 				setTimeout('checkNotifications()', 1000);
+				check();
 			});
 		</script>
     
