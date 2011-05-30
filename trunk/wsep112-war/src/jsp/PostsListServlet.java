@@ -1,3 +1,4 @@
+
 package jsp;
 
 import java.io.IOException;
@@ -11,23 +12,24 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import common.forum.items.ForumInfo;
+import javax.servlet.http.HttpSession;
+import common.forum.items.ThreadInfo;
+import common.forum.items.PostInfo;
 
 import domain.WebController;
 
-public class ForumsListServlet extends HttpServlet{
+public class PostsListServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1744399642421914945L;
 	
-	private RequestDispatcher _forumsListJsp;
+	private RequestDispatcher _postsListJsp;
 	private WebController _webController;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		
 		ServletContext context = config.getServletContext();
-		_forumsListJsp = context.getRequestDispatcher("/WEB-INF/jsp/forumsList.jsp");
+		_postsListJsp = context.getRequestDispatcher("/WEB-INF/jsp/postsList.jsp");
 		_webController = WebController.getInstance();
 	}
 	
@@ -35,6 +37,9 @@ public class ForumsListServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
+		// Get the session
+		HttpSession session = req.getSession();
+		
 		// get the username
 		Cookie[] cookies = req.getCookies();
 		
@@ -44,10 +49,14 @@ public class ForumsListServlet extends HttpServlet{
 			if (cookie.getName().equals("username"))
 				username = cookie.getValue();
 		}
-
-		Vector<ForumInfo> forumList = _webController.getForumList(username);
-		req.setAttribute("forums_list", forumList);
-		req.setAttribute("window", "forums");
-		_forumsListJsp.forward(req, resp);
+		
+		String threadId = req.getParameter("id");
+		session.setAttribute("ThreadId", threadId);
+	    Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
+	    req.setAttribute("window", "posts");
+	    req.setAttribute("posts_list", postsList);
+	    req.setAttribute("username", username);
+	    
+	    _postsListJsp.forward(req, resp);
 	}
 }

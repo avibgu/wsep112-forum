@@ -97,8 +97,20 @@ public class ForumServlet extends HttpServlet {
 		req.setAttribute("offline_friends", offline_friends);
 		req.setAttribute("users_to_add", usersToAdd);
 		req.setAttribute("users_to_remove", usersToRemove);
+		
+		
+		String window = (String)req.getParameter("window");
+		if (null == window){			
+			req.setAttribute("window", "forums");
+			window = "forums";
+		}
+		else if (window.equals("threads"))
+		    req.setAttribute("window", "threads");
+		
+//		System.out.println("win:" + window);
 
-/*
+		
+		/*
 	
 		// decide which data should we retrieve from the server (forums\posts\threads)
 		String window = (String)req.getParameter("window");
