@@ -1,5 +1,4 @@
 <%@ page import="java.lang.String" %>
-<jsp:useBean id="window" scope="request" type="java.lang.String" />
 <jsp:useBean id="username" scope="request" type="java.lang.String" />
 <jsp:useBean id="users_to_add" scope="request" type="java.util.Vector<java.lang.String>" />
 <jsp:useBean id="users_to_remove" scope="request" type="java.util.Vector<java.lang.String>" />
@@ -43,8 +42,17 @@
 				setTimeout('checkNotifications()', 10000);
 			}
 			
+			function check()
+			{
+				$.get('forumsList', function(data) {
+					$('#windowToLoad').html(data);
+				});
+				setTimeout('check()', 10000);
+			}
+			
 			$(document).ready(function()
 			{
+			    setTimeout('check()', 1000);
 				setTimeout('checkNotifications()', 1000);
 			});
 		</script>
@@ -53,7 +61,6 @@
 	
 	<body bgcolor="#CC99FF" >
 		<h1 align="center" style="color: white">	Forum Web Client	</h1>
-
 		<table>
 			<tr>
 				<td width="150" valign="top">
@@ -114,38 +121,7 @@
 					</table>
 				</td>
 				<td width="750" valign="top" align="center">
-					<%
-						if (window.equals("forums")){
-					%>
-							<jsp:include page="forumsList.jsp" />
-					<%
-						}
-						else if (window.equals("posts")){
-					%>
-							<jsp:include page="postsList.jsp" />
-					<%
-						}
-						else if (window.equals("threads")){
-					%>
-							<jsp:include page="threadsList.jsp" />
-					<%
-						}
-						else if (window.equals("addThread")){
-					%>
-							<jsp:include page="addThread.jsp" />
-					<%
-						}
-						else if (window.equals("addPost")){
-					%>
-							<jsp:include page="addPost.jsp" />
-					<%
-						}
-						else if (window.equals("editPost")){
-					%>
-							<jsp:include page="editPost.jsp" />
-					<%
-						}
-					%>
+					<div id="windowToLoad"></div>
 				</td>
 			</tr>
 		</table>

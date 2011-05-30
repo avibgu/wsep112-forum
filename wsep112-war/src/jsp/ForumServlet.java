@@ -98,6 +98,8 @@ public class ForumServlet extends HttpServlet {
 		req.setAttribute("users_to_add", usersToAdd);
 		req.setAttribute("users_to_remove", usersToRemove);
 
+/*
+	
 		// decide which data should we retrieve from the server (forums\posts\threads)
 		String window = (String)req.getParameter("window");
 		if (null == window){
@@ -130,7 +132,7 @@ public class ForumServlet extends HttpServlet {
 		}
 		else if (window.equals("forums")){
 			
-			System.out.println("Forums");
+			System.out.println("Forums old");
 			
 			Vector<ForumInfo> forumList = _webController.getForumList(username);
 			
@@ -155,8 +157,9 @@ public class ForumServlet extends HttpServlet {
 		    req.setAttribute("username", username);
 		}
 		
-	
+	*/
 		_forumJsp.forward(req, resp);
+		
 	}
 	
 	@Override
