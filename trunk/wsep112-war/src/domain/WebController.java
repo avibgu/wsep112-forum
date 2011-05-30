@@ -272,7 +272,7 @@ public class WebController implements Observer{
 		
 		String msg = null;
 		
-		if (!list.isEmpty())
+		if (null != list && !list.isEmpty())
 			msg = list.remove();
 		
 		getWrNotificationLock().unlock();
