@@ -17,10 +17,10 @@
 	    		color: #660066;
 	    	}
 	    </style>
-	    <link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
+	    <link  href="http://fonts.googleapis.com/css?family=Architects+Daughter:regular" rel="stylesheet" type="text/css" >
 		<style>
 			body {
-			  font-family: 'Wire One', serif;
+			  font-family: 'Architects Daughter', serif;
 			  font-size: 25px;
 			  font-style: normal;
 			  font-weight: 400;
@@ -42,17 +42,25 @@
 				setTimeout('checkNotifications()', 10000);
 			}
 			
-			function check()
+			function loadForumsList()
 			{
-				$.get('forumsList',	function(data) {
+				$.get('forumsList', function(data) {
 					$('#windowToLoad').html(data);
+				});
+			}
+			
+			function loadThreadsList(forumId)
+			{
+				$.get('threadsList', {id : forumId}, 
+						function(data) {
+							$('#windowToLoad').html(data);
 				});
 			}
 			
 			$(document).ready(function()
 			{
 				setTimeout('checkNotifications()', 1000);
-				check();
+				loadForumsList();
 			});
 		</script>
     
