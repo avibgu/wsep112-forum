@@ -5,8 +5,7 @@
 <html>
 	
 	<body>
-		
-		</br>
+
 		</br>
 		<div><%=date%></div>
 		</br>
