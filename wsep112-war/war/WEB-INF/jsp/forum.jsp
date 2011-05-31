@@ -10,19 +10,19 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
 		<title>Forum Web Client</title>
 		<style type="text/css">
-			body { background:#CC99FF  url("http://www.wallcoo.com/cartoon/abstract_colors_1920x1200_1112/wallpapers/1440x900/abstract_color_background_picture_8015.jpg") no-repeat fixed center;
-		    font:italic bold 12px/30px Georgia, serif;
+			body { background:#555  url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
+		    font: bold 20px COMIC SANS MS;;
 	    	font-size: large;}
 	    	h1{
-	    		color: #660066;
+	    		color: #555;
 	    	}
 	    </style>
 	    <link  href="http://fonts.googleapis.com/css?family=Architects+Daughter:regular" rel="stylesheet" type="text/css" >
 		<style>
 			body {
-			  font-family: 'Architects Daughter', serif;
-			  font-size: 25px;
-			  font-style: normal;
+			  font-family: COMIC SANS MS;
+			  font-size: 20px;
+			  font-style: bold;
 			  font-weight: 400;
 			  text-shadow: none;
 			  text-decoration: none;
@@ -99,15 +99,14 @@
     
 	</head>
 	
-	<body bgcolor="#CC99FF" >
+	<body bgcolor="#CC99FF" style="height: 275px; ">
 		<h1 align="center" style="color: white">	Forum Web Client	</h1>
-		<table>
+		<table style="height: 197px; ">
 			<tr>
-				<td width="150" valign="top">
+				<td width="150" valign="top" style="height: 143px; ">
 					<table>
 					<div id="friendLoad"></div>
 						<tr><h4>	Hello <%=username%>,					</h4></tr>
-					
 						<tr><h5>	Your Friends:							</h5></tr>
 
 						<tr>		<jsp:include page="friendsList.jsp" />	</tr>
@@ -126,7 +125,7 @@
 							%>
 						    </select>
 							
-							<tr>		<input type="submit" value="Add Friend" style=" height: 28px; width: 95px;  background-color: Navy; font-size: 65%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif">	</tr>
+							<tr>		<input type="submit" value="Add" style=" height: 28px; width: 80px;  background-color: Black; font-size: 65%; color: White; font-family: COMIC SANS MS;">	</tr>
 							
 						</form>
 						
@@ -146,7 +145,7 @@
 							%>
 						    </select>
 
-							<tr>		<input type="submit" value="Remove Friend" style=" height: 28px; width: 95px;  background-color: Navy; font-size: 65%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif">	</tr>
+							<tr>		<input type="submit" value="Remove" style=" height: 28px; width: 80px;  background-color: Black; font-size: 65%; color: White; font-family: COMIC SANS MS;">	</tr>
 							
 						</form>
 
@@ -155,7 +154,7 @@
 
 						<form name="LogoutForm" action="login" method="get">
 			
-							<tr>		<input type="submit" value="Logout" name="logoutButton" style=" height: 28px; width: 95px;  background-color: Navy; font-size: 65%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif">	</tr>
+							<tr>		<input type="submit" value="Logout" name="logoutButton" style=" height: 28px; width: 80px;  background-color: Black; font-size: 65%; color: White; font-family: COMIC SANS MS;">	</tr>
 							
 						</form>
 						<div id="notifications"></div>
