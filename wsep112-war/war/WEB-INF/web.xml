@@ -26,7 +26,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>friends</servlet-name>
-    <servlet-class>jsp.FriendsListServlet</servlet-class>
+    <servlet-class>jsp.FriendServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>friends</servlet-name>
@@ -51,10 +51,6 @@
   <servlet>
     <servlet-name>threadsList</servlet-name>
     <servlet-class>jsp.ThreadsListServlet</servlet-class>
-  </servlet>
-    <servlet>
-    <servlet-name>friendsList</servlet-name>
-    <servlet-class>jsp.FriendServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>threadsList</servlet-name>
