@@ -16,7 +16,7 @@
 	    </style></head>
 	<body>
 		<form name="loginForm" action="forum" method="get">
-		<a style="text-align: center;" href="forum"><p align="justify"><i><p align="center">Back</p></i></p>
+		<a style="text-align: center;" onclick="loadForumsList()"  href="#"><p align="justify"><i><p align="center">Back</p></i></p>
 		</a>
 		<p align="center"><b><big><p align="center">Please choose one of the threads:
 		</p></big></b><ul style="list-style: none;">
