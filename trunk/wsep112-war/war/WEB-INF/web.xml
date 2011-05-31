@@ -60,4 +60,12 @@
     <servlet-name>threadsList</servlet-name>
     <url-pattern>/threadsList</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>postsList</servlet-name>
+    <servlet-class>jsp.PostsListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>postsList</servlet-name>
+    <url-pattern>/postsList</url-pattern>
+  </servlet-mapping>
 </web-app>
