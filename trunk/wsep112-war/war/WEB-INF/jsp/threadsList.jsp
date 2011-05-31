@@ -52,7 +52,7 @@
 		
 		<ul style="list-style: none; width: 1008px">
 		
-			<p align="center" style="width: 1056px; ">	<br><br><input type="submit" value="Add Thread" name=AddThreadButton style=" height: 42px; width: 148px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif" />
+			<p align="center" style="width: 1056px; " onclick="addThread()"  href="#">	<br><br><input type="submit" value="Add Thread" name=AddThreadButton  style=" height: 42px; width: 148px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif" />
 				
 		</ul>
 	</body>

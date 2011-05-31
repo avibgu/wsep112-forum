@@ -24,8 +24,7 @@ public class ForumsListServlet extends HttpServlet{
 	private WebController _webController;
 	
 	@Override
-	public void init(ServletConfig config) throws ServletException {
-		
+	public void init(ServletConfig config) throws ServletException {		
 		ServletContext context = config.getServletContext();
 		_forumsListJsp = context.getRequestDispatcher("/WEB-INF/jsp/forumsList.jsp");
 		_webController = WebController.getInstance();
@@ -48,8 +47,6 @@ public class ForumsListServlet extends HttpServlet{
 		Vector<ForumInfo> forumList = _webController.getForumList(username);
 
 		req.setAttribute("forums_list", forumList);
-		
-		System.out.println(forumList.size());
 		
 		_forumsListJsp.forward(req, resp);
 	}
