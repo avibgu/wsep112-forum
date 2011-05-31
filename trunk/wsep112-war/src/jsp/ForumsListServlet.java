@@ -46,8 +46,11 @@ public class ForumsListServlet extends HttpServlet{
 		}
 
 		Vector<ForumInfo> forumList = _webController.getForumList(username);
+
 		req.setAttribute("forums_list", forumList);
-		req.setAttribute("window", "forums");
+		
+		System.out.println(forumList.size());
+		
 		_forumsListJsp.forward(req, resp);
 	}
 }
