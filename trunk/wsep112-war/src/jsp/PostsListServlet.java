@@ -36,7 +36,6 @@ public class PostsListServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
 		// Get the session
 		HttpSession session = req.getSession();
 		
@@ -53,7 +52,7 @@ public class PostsListServlet extends HttpServlet{
 		String threadId = req.getParameter("id");
 		session.setAttribute("ThreadId", threadId);
 	    Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
-	    req.setAttribute("window", "posts");
+	    System.out.println("Thread id is "+ threadId );
 	    req.setAttribute("posts_list", postsList);
 	    req.setAttribute("username", username);
 	    
