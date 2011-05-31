@@ -57,6 +57,21 @@
 				});
 			}
 			
+			function loadPostsList(threadId)
+			{
+				$.get('postsList', {id : threadId}, 
+						function(data) {
+							$('#windowToLoad').html(data);
+				});
+			}
+			
+			function loadFriendsList()
+			{
+				$.get('friends', function(data) {
+						$('#friendLoad').html(data);
+				});
+			}
+			
 			$(document).ready(function()
 			{
 				setTimeout('checkNotifications()', 1000);
@@ -72,6 +87,7 @@
 			<tr>
 				<td width="150" valign="top">
 					<table>
+					<div id="friendLoad"></div>
 						<tr><h4>	Hello <%=username%>,					</h4></tr>
 					
 						<tr><h5>	Your Friends:							</h5></tr>
