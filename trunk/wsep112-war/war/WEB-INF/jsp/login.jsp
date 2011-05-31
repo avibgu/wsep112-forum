@@ -7,16 +7,16 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
 		<title>Forum Web Client</title>
 			<style type="text/css">
-			body { background:#CC99FF  url("http://old.wallcoo.net/cartoon/Creative_Ideas_and_Digital_Design_1920x1200/wallpapers/1920x1080/CG_Design_Fly_away_dandelion_under_blue_sky.jpg") no-repeat fixed center;
-		    font:italic bold 12px/30px Georgia, serif;
+			body { background:#555 url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
+		    font: bold 20px COMIC SANS MS;
 	    	font-size: large;}
 	    	h1{
-	    		color: #660066;
+	    		color: #555;
 	    	}
 	    </style>
 	</head>
 	
-	<body bgcolor="#CC99FF">
+	<body bgcolor="#555">
 	
 		<h1 align="center" style="color: white"><b>Forum Web Client</b></h1>
 	
@@ -33,7 +33,7 @@
 			
 			</table>
 			
-			<p align="center"><br><input type="submit" value="Login" style=" height: 42px; width: 128px;  background-color: Navy; font-size: 100%; color: White; font-style: italic"/>
+			<p align="center"><br><input type="submit" value="Login" style=" height: 32px; width: 80px;  background-color: Black; font-size: 70%; color: White;"/>
 			<br><br><td style="color: White; ">or <a href="reg">Register to the Forum</a>
 		</form>
 		
