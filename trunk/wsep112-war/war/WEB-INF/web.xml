@@ -52,6 +52,10 @@
     <servlet-name>threadsList</servlet-name>
     <servlet-class>jsp.ThreadsListServlet</servlet-class>
   </servlet>
+    <servlet>
+    <servlet-name>friendsList</servlet-name>
+    <servlet-class>jsp.FriendServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>threadsList</servlet-name>
     <url-pattern>/threadsList</url-pattern>
