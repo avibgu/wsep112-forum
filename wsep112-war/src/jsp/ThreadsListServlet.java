@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import common.forum.items.ThreadInfo;
 
@@ -38,7 +39,10 @@ public class ThreadsListServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
+		// Get the session
+		HttpSession session = req.getSession();
+		
 		// get the username
 		Cookie[] cookies = req.getCookies();
 		
@@ -50,13 +54,11 @@ public class ThreadsListServlet extends HttpServlet {
 		}
 
 		String forumId = req.getParameter("id");
-
+		session.setAttribute("ForumId", forumId);
 	    Vector<ThreadInfo> threadList =
 	    	_webController.getThreadList(username, forumId);
 		
 	    req.setAttribute("threads_list", threadList);
-	    
-		System.out.println(threadList.size());
 		
 		_threadsListJsp.forward(req, resp);
 	}
