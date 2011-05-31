@@ -9,7 +9,7 @@
 	    </head>	
 	<body>
 		<form>
-		<a style="text-align: center;" href="#"><p align="justify"><i><p align="center">Back</p></i></p>
+		<a style="text-align: center;" onclick="loadThreadsList(<%=session.getAttribute("ForumId")%>)" href="#"><p align="justify"><i><p align="center">Back</p></i></p>
 		</a>
 		<p align="center"><b><big><p align="center"><%=posts_list.get(0).get_title() %>
 		</p></big></b><ul style="list-style: none;"></ul>
