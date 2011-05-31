@@ -31,7 +31,6 @@ public class ThreadsListServlet extends HttpServlet {
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException{
-		
 		ServletContext context = config.getServletContext();
 		_threadsListJsp = context.getRequestDispatcher("/WEB-INF/jsp/threadsList.jsp");
 		_webController = WebController.getInstance();
@@ -54,13 +53,23 @@ public class ThreadsListServlet extends HttpServlet {
 		}
 
 		String forumId = req.getParameter("id");
+		System.out.println("parameter = "+forumId);
 		session.setAttribute("ForumId", forumId);
+		
+		String addedThread = req.getParameter("FillThreadDetails");
+		if (addedThread!=null){
+			System.out.println("!!!Here!");
+			String title = req.getParameter("title");
+			String body = req.getParameter("body");
+			System.out.println(title +" "+ body);
+			System.out.println(username);
+			System.out.println(forumId);
+			_webController.addThread(username, forumId,title, body);
+		}
 	    Vector<ThreadInfo> threadList =
 	    	_webController.getThreadList(username, forumId);
 		
 	    req.setAttribute("threads_list", threadList);
-		
 		_threadsListJsp.forward(req, resp);
 	}
-
 }

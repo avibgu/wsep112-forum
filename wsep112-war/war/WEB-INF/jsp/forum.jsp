@@ -57,6 +57,24 @@
 				});
 			}
 			
+			function loadAddedThread(forumId)
+			{	
+				alert($('#threadTitle'));
+			
+				$.get('threadsList', {id : forumId,  FillThreadDetails: "FillThreadDetails"}, 
+						function(data) {
+							$('#windowToLoad').html(data);
+				})
+				.Error(function(){alert("error");});
+			}			
+			
+			function addThread()
+			{
+				$.get('addThread',function(data) {
+						$('#windowToLoad').html(data);
+				});
+			}
+			
 			function loadPostsList(threadId)
 			{
 				$.get('postsList', {id : threadId}, 
