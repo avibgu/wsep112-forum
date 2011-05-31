@@ -8,8 +8,8 @@
 		
 	    </head>	
 	<body>
-		<form name="PostsForm" action="forum" method="get" style="height: 385px; ">
-		<a style="text-align: center;" href="forum?id=<%=session.getAttribute("ForumId")%>&window=threads"><p align="justify"><i><p align="center">Back</p></i></p>
+		<form>
+		<a style="text-align: center;" href="#"><p align="justify"><i><p align="center">Back</p></i></p>
 		</a>
 		<p align="center"><b><big><p align="center"><%=posts_list.get(0).get_title() %>
 		</p></big></b><ul style="list-style: none;"></ul>
@@ -37,10 +37,10 @@
                     <TR>
 					<TD style="border-top-style: none; border-bottom-style: none; border-left-style: none; border-right-style: none; left: auto">
 					<% if (post.getOwner().getUserName().equals(username)) {%>
-                             <a style=" font-size:small; text-align: left;" href="forum?postId=<%=post.get_post_id()%>&amp;window=edit">Edit        
+                             <a style=" font-size:small; text-align: left;" href="#">Edit        
 					</a>	
 					/ 			
-					 <a style="font-size:small; text-align: right;" href="forum?postId=<%=post.get_post_id()%>&amp;window=delete">Delete
+					 <a style="font-size:small; text-align: right;" href="#">Delete
 					</a>				      				      
                             <%} %>
                     </TD>
