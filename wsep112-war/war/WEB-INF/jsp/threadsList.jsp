@@ -1,8 +1,6 @@
 <%@ page import="common.forum.items.ThreadInfo" %>
 <jsp:useBean id="threads_list" scope="request" type="java.util.List<common.forum.items.ThreadInfo>" />
 
-
-
 <html>
 <head>
 
@@ -14,10 +12,12 @@
 	    		color: #660066;
 	    	}
 	    </style></head>
+	
 	<body>
-		<form name="loginForm" action="forum" method="get">
-		<a style="text-align: center;" onclick="loadForumsList()"  href="#"><p align="justify"><i><p align="center">Back</p></i></p>
+		<a style="text-align: center;" onclick="loadForumsList()"  href="#">
+			<p align="justify"><i><p align="center">Back</p></i></p>
 		</a>
+		
 		<p align="center"><b><big><p align="center">Please choose one of the threads:
 		</p></big></b><ul style="list-style: none;">
 		<br>
@@ -33,10 +33,12 @@
 				for(ThreadInfo thread: threads_list){
 					
 			%>
+			
 				    <TR>
 				    <TD style="width: 314px; font-size: 12px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal; height: 29px" "> 
 				    <p style="text-align: center; font-size: 14px; white-space: normal; line-height: normal; text-transform: none; font-style: normal; display: list-item; list-style: none;">
-					<a href="forum?id=<%=thread.getThread_id()%>&window=posts"><%=thread.getTitle()%></a>
+					<a style="text-align: center;" onclick="loadPostsList(<%=thread.getThread_id()%>)"  href="#">
+					<%=thread.getTitle()%></a>
 				    </TD>
              	 	<TD style="width: 52px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal; clip: rect(auto, auto, auto, auto); top: auto; padding-top: 0px; vertical-align: top"> <%= thread.get_owner() %> </TD>
              	 	<TD style="width: 52px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal; clip: rect(auto, auto, auto, auto); top: auto; padding-top: 0px; vertical-align: top">
@@ -53,7 +55,6 @@
 			<p align="center" style="width: 1056px; ">	<br><br><input type="submit" value="Add Thread" name=AddThreadButton style=" height: 42px; width: 148px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif" />
 				
 		</ul>
-	</form>
 	</body>
 
 </html>
