@@ -23,6 +23,8 @@
 			}
 		%>
 		
+		<br>
+		
 		<form>
 	
 			<select id="addFriendName">
