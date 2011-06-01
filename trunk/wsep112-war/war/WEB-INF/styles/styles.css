@@ -54,7 +54,7 @@
 	z-index: auto;
 }
 .pageStyle {
-	background:#555  url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
+	background: #006600 /*#555 url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center	*/;
 	font-family: COMIC SANS MS;
 	font-size: 20px;
 	font-style: bold;
@@ -67,6 +67,12 @@
 	line-height: 1.2;
 	color: white;
 }
+
+A:link {text-decoration: none; color: yellow;}
+A:visited {text-decoration: none; color: yellow;}
+A:active {text-decoration: none; color: yellow;}
+A:hover {text-decoration: underline; color: yellow;}
+
 .threadsListTableStyle{
 	border-color: white;
 	border-style: solid;

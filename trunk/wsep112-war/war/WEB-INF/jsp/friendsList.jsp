@@ -12,7 +12,7 @@
 		<%
 			for(String friend: online_friends){
 		%>
-					<div style="color:green;"><%=friend%></div>
+					<div style="color:#66FF00;"><%=friend%></div>
 		<%
 			}
 	
