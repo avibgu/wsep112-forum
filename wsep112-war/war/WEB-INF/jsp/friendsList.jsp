@@ -35,7 +35,7 @@
 				<form>
 	
 							
-					<select name="addFriendName"  onChange="value = this.options[this.selectedIndex].text">
+					<select id="addFriendName">
 					<%
 						for(String user: users_to_add){
 					%>
@@ -55,7 +55,7 @@
 				<form>
 	
 				<br>				
-					<select name="removeFriendName"  onChange="value = this.options[this.selectedIndex].text">
+					<select id="removeFriendName" >
 					<%
 						for(String user: users_to_remove){
 					%>

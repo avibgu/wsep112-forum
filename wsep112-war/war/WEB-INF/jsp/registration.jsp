@@ -5,13 +5,25 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
 		<title>Forum Web Client</title>
 		<style type="text/css">
-			body { background:#CC99FF  url("http://old.wallcoo.net/cartoon/Creative_Ideas_and_Digital_Design_1920x1200/wallpapers/1920x1080/CG_Design_Fly_away_dandelion_under_blue_sky.jpg") no-repeat fixed center;
-		    font:italic bold 12px/30px Georgia, serif;
-	    	font-size: large;}
-	    	h1{
-	    		color: #660066;
-	    	}
+			body {
+				background:#555  url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
+			}
 	    </style>
+	    <link  href="http://fonts.googleapis.com/css?family=Architects+Daughter:regular" rel="stylesheet" type="text/css" >
+		<style>
+			body {
+			  font-family: COMIC SANS MS;
+			  font-size: 20px;
+			  font-style: bold;
+			  font-weight: 400;
+			  text-shadow: none;
+			  text-decoration: none;
+			  text-transform: none;
+			  letter-spacing: 0em;
+			  word-spacing: 0em;
+			  line-height: 1.2;
+			}
+		</style>
  
 	</head>
 	

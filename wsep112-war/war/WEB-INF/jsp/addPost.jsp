@@ -4,16 +4,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
 		
-		<style type="text/css">
-			body { background:#CC99FF url("http://www.wallcoo.com/cartoon/abstract_colors_1920x1200_1112/wallpapers/1440x900/abstract_color_background_picture_8015.jpg") no-repeat fixed center;
-		    font:italic bold 12px/30px Georgia, serif;
-		    font-size: large;
-	    	}
-	    	h1{
-	    		color: #660066;
-	    		
-	    	}
-	    </style>
+		
 	</head>
 	
 	<body>

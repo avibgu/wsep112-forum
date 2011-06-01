@@ -7,13 +7,25 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
 		<title>Forum Web Client</title>
 			<style type="text/css">
-			body { background:#555 url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
-		    font: bold 20px COMIC SANS MS;
-	    	font-size: large;}
-	    	h1{
-	    		color: #555;
-	    	}
+			body {
+				background:#555  url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
+			}
 	    </style>
+	    <link  href="http://fonts.googleapis.com/css?family=Architects+Daughter:regular" rel="stylesheet" type="text/css" >
+		<style>
+			body {
+			  font-family: COMIC SANS MS;
+			  font-size: 20px;
+			  font-style: bold;
+			  font-weight: 400;
+			  text-shadow: none;
+			  text-decoration: none;
+			  text-transform: none;
+			  letter-spacing: 0em;
+			  word-spacing: 0em;
+			  line-height: 1.2;
+			}
+		</style>
 	</head>
 	
 	<body bgcolor="#555">

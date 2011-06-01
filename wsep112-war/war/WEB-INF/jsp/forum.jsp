@@ -9,12 +9,9 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
 		<title>Forum Web Client</title>
 		<style type="text/css">
-			body { background:#555  url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
-		    font: bold 20px COMIC SANS MS;;
-	    	font-size: large;}
-	    	h1{
-	    		color: #555;
-	    	}
+			body {
+				background:#555  url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
+			}
 	    </style>
 	    <link  href="http://fonts.googleapis.com/css?family=Architects+Daughter:regular" rel="stylesheet" type="text/css" >
 		<style>
@@ -33,6 +30,7 @@
 		</style>
 	    <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
 		<script>
+		
 			function checkNotifications()
 			{
 				$.get('notifications', function(data) {
@@ -91,17 +89,18 @@
 			
 			function addFriend()
 			{ 
-				alert("Add Friend");
-				$.get('friends',{Addfriend : "miripe"},
+								
+				$.get('friends',{Addfriend : $('#addFriendName').val()},
 				 function(data) {
+						
 						$('#friendLoad').html(data);
 				});
 			}
 			
 			function removeFriend()
 			{
-				alert("remove Friend");
-				$.get('friends',{Removefriend : "miripe"},
+				
+				$.get('friends',{Removefriend : $('#removeFriendName').val()},
 				 function(data) {
 						$('#friendLoad').html(data);
 				});
@@ -118,6 +117,7 @@
 	</head>
 	
 	<body bgcolor="#CC99FF" style="height: 275px; ">
+		<div align="left" id="notifications"></div>
 		<h1 align="center" style="color: white">	Forum Web Client	</h1>
 		<table style="height: 197px; ">
 			<tr>
@@ -140,10 +140,10 @@
 							<tr>		<input type="submit" value="Logout" name="logoutButton" style=" height: 28px; width: 80px;  background-color: Black; font-size: 65%; color: White; font-family: COMIC SANS MS;">	</tr>
 							
 						</form>
-						<div id="notifications"></div>
+						
 					</table>
 				</td>
-				<td width="750" valign="top" align="center">
+				<td width="650" valign="top" align="center">
 					<div id="windowToLoad"></div>
 				</td>
 			</tr>
