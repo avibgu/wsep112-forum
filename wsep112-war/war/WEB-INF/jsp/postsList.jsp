@@ -57,7 +57,7 @@
              </TABLE>
 
 			<div align="center">
-				<button onclick="addPost()" class="buttonsStyle"> Add Thread </button>
+				<button onclick="addPost()" class="buttonsStyle"> Add Post </button>
 			</div>
 
 	</form>
