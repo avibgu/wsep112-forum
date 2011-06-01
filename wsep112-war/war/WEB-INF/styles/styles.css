@@ -85,17 +85,47 @@
 	border-color: white;
 	border-style: solid;
 	border-width: 1px;
+	text-align: center;
 }
 .threadsListTdStyle{
 	width: 314px;
 	font-size: 12px;
-	font-family: Verdana, Arial, Sans-Serif;
 	text-align: left;
 	white-space: normal;
 	height: 29px;
 	border-color: white;
 	border-style: solid;
 	border-width: 1px;
+}
+.postsListTableStyle{
+	border-color: white;
+	border-style: solid;
+	border-width: 1px;
+	height: 188px;
+	width: 842px;
+}
+.postsListThStyle{
+	background-color: #9999FF;
+	font-size: 18px;
+	line-height: normal;
+	color: #400080;
+	white-space: normal;
+	text-decoration: underline;
+	width: 696px;
+	border-color: white;
+	border-style: solid;
+	border-width: 1px;
+	text-align: center;
+}
+.postsListTdStyle{
+	font-size: 14px;
+	text-align: center;
+	white-space: normal;
+	width: 658px;
+	border-color: white;
+	border-style: solid;
+	border-width: 1px;
+	text-align: center;
 }
 .buttonsStyle{
 /*	height: 42px;
@@ -106,6 +136,4 @@
 	font-style: italic;
 	font-family: Tahoma, Verdana, Arial, Sans-Serif;
 */
-}
-.postssListTableStyle{
 }
