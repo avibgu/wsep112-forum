@@ -7,6 +7,8 @@
 	height: 10%;
 	width: auto;
 	z-index: auto;
+	text-align: center;
+	font-size: x-large;
 }
 .friendsStyle {
 	float:left;
@@ -41,8 +43,6 @@
 	z-index: auto;
 }
 .pageStyle {
-}
-.body {
 	background:#555  url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
 	font-family: COMIC SANS MS;
 	font-size: 20px;
