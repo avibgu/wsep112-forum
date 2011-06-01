@@ -1,0 +1,105 @@
+.notificationsStyle {
+	position: relative;
+	top: auto;
+	right: auto;
+	left: auto;
+	bottom: auto;
+	height: 10%;
+	width: auto;
+	z-index: auto;
+}
+.titlestyle {
+	position: relative;
+	top: auto;
+	right: auto;
+	left: auto;
+	bottom: auto;
+	height: 10%;
+	width: auto;
+	z-index: auto;
+	text-align: center;
+	font-size: x-large;
+}
+.friendsStyle {
+	float: left;
+	position: relative;
+	left: auto;
+	right: auto;
+	top: auto;
+	bottom: auto;
+	height: 80%;
+	width: 20%;
+	z-index: auto;
+}
+.windowStyle {
+	float: right;
+	position: relative;
+	bottom: auto;
+	top: auto;
+	right: auto;
+	left: auto;
+	height: 80%;
+	width: 60%;
+	z-index: auto;
+}
+.spareStyle {
+	float: right;
+	position: relative;
+	left: auto;
+	right: auto;
+	top: auto;
+	bottom: auto;
+	height: 80%;
+	width: 20%;
+	z-index: auto;
+}
+.pageStyle {
+	background:#555  url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
+	font-family: COMIC SANS MS;
+	font-size: 20px;
+	font-style: bold;
+	font-weight: 400;
+	text-shadow: none;
+	text-decoration: none;
+	text-transform: none;
+	letter-spacing: 0em;
+	word-spacing: 0em;
+	line-height: 1.2;
+	color: white;
+}
+.threadsListTableStyle{
+	border-color: white;
+	border-width: 2;
+/*	align="center" BORDER="1" style=" height: 45px; width: 786px;" */
+}
+.threadsListThStyle{
+/*	background-color: #9999FF;
+	font-size: 18px;
+	line-height: normal;
+	color: #400080;
+	white-space: normal;
+	text-decoration: underline;
+	width: 369px;
+*/
+}
+.threadsListTdStyle{
+/*	width: 314px;
+	font-size: 12px;
+	font-family: Verdana, Arial, Sans-Serif;
+*/	text-align: left;
+/*	white-space: normal;
+	height: 29px;
+*/
+}
+.buttonsStyle{
+/*	height: 42px;
+	width: 148px;
+	background-color: Navy;
+	font-size: 100%;
+	color: White;
+	font-style: italic;
+	font-family: Tahoma, Verdana, Arial, Sans-Serif;
+*/
+}
+.postssListTableStyle{
+}
