@@ -4,9 +4,7 @@
 
 
 <html>
-		<head>
-		
-	    </head>	
+
 	<body>
 		<form>
 		<a style="text-align: center;" onclick="loadThreadsList(<%=session.getAttribute("ForumId")%>)" href="#"><p align="justify"><i><p align="center">Back</p></i></p>
