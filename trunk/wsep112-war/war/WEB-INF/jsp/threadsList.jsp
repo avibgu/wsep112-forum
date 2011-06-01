@@ -4,47 +4,57 @@
 <html>
 
 	<body>
-		<a style="text-align: center;" onclick="loadForumsList()"  href="#">
-			<p align="justify"><i><p align="center">Back</p></i></p>
-		</a>
 		
-		<p align="center"><b><big><p align="center">Please choose one of the threads:
-		</p></big></b><ul style="list-style: none;">
+		<p align="center">
+			<a style="text-align: center;" onclick="loadForumsList()"  href="#"> Back </a>
+		</p>
+		
+		<p align="center">	Please choose one of the threads:	</p>
+		
+		<TABLE align="center" class="threadsListTableStyle">
+		
+			<TR> 
+				<TH class="threadsListThStyle">Subject</TH>
+				<TH class="threadsListThStyle">Author</TH>
+				<TH class="threadsListThStyle">Last change</TH>
+			</TR>
+			
+			<%
+				for(ThreadInfo thread: threads_list){
+			%>
+		
+			<TR>
+			    
+			    <TD class="threadsListTdStyle">
+			    
+					<a onclick="loadPostsList(<%=thread.getThread_id()%>)"  href="#"><%=thread.getTitle()%></a>
+					
+			    </TD>
+			    
+				<TD class="threadsListTdStyle"> <%= thread.get_owner() %> </TD>
+				
+				<TD class="threadsListTdStyle">
+
+					<%= thread.getDateTime() %>
+					
+					<br>
+					
+					<%= thread.get_lastModifiedUser()%>	
+            	 
+				</TD>
+            	 	 
+			</TR>
+			
+			<%	}	%>
+			
+		</TABLE>
+
 		<br>
 		
-		<TABLE align="center" BORDER="1" style=" height: 45px; width: 786px;">
-                <TR> 
-                	 <TH style=" background-color: #9999FF; font-size: 18px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline; width: 369px"><p align="center">Subject</p></TH>
-                     <TH style=" background-color: #9999FF; font-size: 18px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline; width: 135px; height: 36px"><p align="center">Author</p></TH>
-                     <TH style=" background-color: #9999FF; font-size: 18px; line-height: normal; color: #400080; white-space: normal; text-decoration: underline; width: 195px; height: 36px"><p align="center">Last change</p></TH>
-                
-                </TR>
-               <%
-				for(ThreadInfo thread: threads_list){
-					
-			%>
-			
-				    <TR>
-				    <TD style="width: 314px; font-size: 12px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal; height: 29px" "> 
-				    <p style="text-align: center; font-size: 14px; white-space: normal; line-height: normal; text-transform: none; font-style: normal; display: list-item; list-style: none;">
-					<a style="text-align: center;" onclick="loadPostsList(<%=thread.getThread_id()%>)"  href="#">
-					<%=thread.getTitle()%></a>
-				    </TD>
-             	 	<TD style="width: 52px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal; clip: rect(auto, auto, auto, auto); top: auto; padding-top: 0px; vertical-align: top"> <%= thread.get_owner() %> </TD>
-             	 	<TD style="width: 52px; font-size: 14px; font-family: Verdana, Arial, Sans-Serif; text-align: center; white-space: normal; clip: rect(auto, auto, auto, auto); top: auto; padding-top: 0px; vertical-align: top">
-             	 	 <%= thread.getDateTime() %><br /><%= thread.get_lastModifiedUser()%>	
-             	 
-             	 	 </TD>
-					</TR>
-				<% } %>
-				
-             </TABLE>
+		<div align="center">
+			<button onclick="addThread()" class="buttonsStyle"> Add Thread </button>
+		</div>
 		
-		<ul style="list-style: none; width: 1008px">
-		
-			<p align="center" style="width: 1056px; " onclick="addThread()"  href="#">	<br><br><input type="submit" value="Add Thread" name=AddThreadButton  style=" height: 42px; width: 148px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif" />
-				
-		</ul>
 	</body>
 
 </html>

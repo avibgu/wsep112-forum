@@ -12,7 +12,7 @@
 	    <link  href="http://fonts.googleapis.com/css?family=Architects+Daughter:regular" rel="stylesheet" type="text/css" >
 		
 		<style type="text/css">
-			<%@ include file="../styles.css" %>
+			<%@ include file="../styles/styles.css" %>
 		</style>
 		
 	    <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
@@ -133,8 +133,10 @@
 			
 		</div>
 
-		<div id="windowToLoad" class="windowStyle"></div>			
-			
+		<div class="spareStyle">	<br>	</div>	
+
+		<div id="windowToLoad" class="windowStyle"></div>
+
 	</body>
 	
 </html>
