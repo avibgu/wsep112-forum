@@ -51,20 +51,23 @@ public class ThreadsListServlet extends HttpServlet {
 			if (cookie.getName().equals("username"))
 				username = cookie.getValue();
 		}
-
-		String forumId = req.getParameter("id");
-		System.out.println("parameter = "+forumId);
-		session.setAttribute("ForumId", forumId);
-		
-		String addedThread = req.getParameter("FillThreadDetails");
+		String forumId ="";
+		String addedThread = req.getParameter("idOfForum");
+		System.out.println("Added: "+addedThread);
 		if (addedThread!=null){
+			forumId = req.getParameter("idOfForum");
 			System.out.println("!!!Here!");
-			String title = req.getParameter("threadTitle");
-			String body = req.getParameter("threadBody");
+			String title = req.getParameter("title");
+			String body = req.getParameter("body");
 			System.out.println(title +" "+ body);
 			System.out.println(username);
-			System.out.println(forumId);
+			System.out.println("ForumId= "+forumId);
 			_webController.addThread(username, forumId,title, body);
+		}
+		else{
+			forumId = req.getParameter("id");
+			System.out.println("parameter = "+forumId);
+			session.setAttribute("ForumId", forumId);
 		}
 	    Vector<ThreadInfo> threadList =
 	    	_webController.getThreadList(username, forumId);
