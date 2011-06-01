@@ -59,8 +59,8 @@ public class ThreadsListServlet extends HttpServlet {
 		String addedThread = req.getParameter("FillThreadDetails");
 		if (addedThread!=null){
 			System.out.println("!!!Here!");
-			String title = req.getParameter("title");
-			String body = req.getParameter("body");
+			String title = req.getParameter("threadTitle");
+			String body = req.getParameter("threadBody");
 			System.out.println(title +" "+ body);
 			System.out.println(username);
 			System.out.println(forumId);
