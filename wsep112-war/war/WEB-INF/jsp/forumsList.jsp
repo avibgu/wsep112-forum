@@ -5,24 +5,21 @@
 
 	<body>
 
-		<form style=" width: 948px; height: 215px">
-			<p style="width: 343px; "><br><b><big><p style="width: 500px; text-align: center"> Please choose one of the forums:
-			</p></big></b><ul style="width: 100%; list-style-type: none; text-align: center; list-style-image: none">
-			
+		<p align="center">	Please choose one of the forums:	</p>
+		
+		<form>
 				<%
-					for(ForumInfo forum: forums_list){
-						
+					for(ForumInfo forum: forums_list){	
 				%>
-				<li style="text-align: center; font-size: 24px; white-space: normal">
-				
-					<a style="text-align: center;" onclick="loadThreadsList(<%=forum.getForumId()%>)"  href="#">
-					<%=forum.getName()%></a>
 
-				</li>		
-				<% } %>	
+				<div align="center">
+					<a href="#" onclick="loadThreadsList(<%=forum.getForumId()%>)"><%=forum.getName()%></a>
+				</div>
 				
+				<%
+					}
+				%>
 			
-			</ul>
 		</form>
 
 	</body>

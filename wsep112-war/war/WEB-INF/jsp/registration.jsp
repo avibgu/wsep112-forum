@@ -8,7 +8,7 @@
 	    <link  href="http://fonts.googleapis.com/css?family=Architects+Daughter:regular" rel="stylesheet" type="text/css" >
 		
 		<style type="text/css">
-			<%@ include file="../styles.css" %>
+			<%@ include file="../styles/styles.css" %>
 		</style>
  
 	</head>
