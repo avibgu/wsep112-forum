@@ -69,7 +69,7 @@ function removeFriend()
 
 $(document).ready(function()
 {
-	setTimeout('checkNotifications()', 1000);
+	setTimeout('checkNotifications()', 10);
 	loadForumsList();
 	loadFriendsList();
 });
