@@ -2,6 +2,8 @@
 
 <jsp:useBean id="online_friends" scope="request" type="java.util.Vector<java.lang.String>" />
 <jsp:useBean id="offline_friends" scope="request" type="java.util.Vector<java.lang.String>" />
+<jsp:useBean id="users_to_add" scope="request" type="java.util.Vector<java.lang.String>" />
+<jsp:useBean id="users_to_remove" scope="request" type="java.util.Vector<java.lang.String>" />
 
 <html>
 
@@ -28,6 +30,45 @@
 			%>
 		
 		</ul>
+		
+		
+				<form>
+	
+							
+					<select name="addFriendName"  onChange="value = this.options[this.selectedIndex].text">
+					<%
+						for(String user: users_to_add){
+					%>
+					   <option value=<%=user%>><%=user%></option>
+				    <%
+						}
+					%>
+				    </select>
+					
+				<tr>		<input type="button" value="Add Friend" onclick="addFriend()" style=" height: 28px; width: 126px;  background-color: Navy; font-size: 65%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif">	</tr>
+					
+					
+				</form>
+				
+				
+				
+				<form>
+	
+				<br>				
+					<select name="removeFriendName"  onChange="value = this.options[this.selectedIndex].text">
+					<%
+						for(String user: users_to_remove){
+					%>
+					   <option value=<%=user%>><%=user%></option>
+				    <%
+						}
+					%>
+				    </select>
+
+					<tr>		<input type="button" value="Remove Friend" onclick="removeFriend()" style=" height: 28px; width: 126px;  background-color: Navy; font-size: 65%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif">	</tr>
+					
+				</form>
+
 
 	</body>
 
