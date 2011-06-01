@@ -25,7 +25,7 @@
  
 	</head>
 	
-	<body bgcolor="#CC99FF">
+	<body>
 	
 		<h1 align="center" style="color: white">Forum Web Client</h1>
 	
