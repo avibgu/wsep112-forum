@@ -137,9 +137,9 @@
 								<tr>	<div id="friendLoad"></div> </tr>
 		
 								
-								</br>
+								<br>
 		
-								</br>
+								<br>
 		
 								<form name="LogoutForm" action="login" method="get">
 					

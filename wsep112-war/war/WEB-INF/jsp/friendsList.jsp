@@ -8,67 +8,57 @@
 <html>
 
 	<body>
-
-		<ul>
 		
-			<%
-				for(String friend: online_friends){
-			%>
-					<li>
-						<div style="color:green;"><%=friend%></div>
-					</li>
-			<%
-				}
-		
-				for(String friend: offline_friends){
-			%>
-					<li>	
-						<div style="color:red;"><p><%=friend%></p></div>
-					</li>
-			<%
-				}
-			%>
-		
-		</ul>
-		
-		
-				<form>
+		<%
+			for(String friend: online_friends){
+		%>
+					<div style="color:green;"><%=friend%></div>
+		<%
+			}
 	
-							
-					<select id="addFriendName">
-					<%
-						for(String user: users_to_add){
-					%>
-					   <option value=<%=user%>><%=user%></option>
-				    <%
-						}
-					%>
-				    </select>
-					
-				<tr>		<input type="button" value="Add Friend" onclick="addFriend()" style=" height: 28px; width: 126px;  background-color: Navy; font-size: 65%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif">	</tr>
-					
-					
-				</form>
-				
-				
-				
-				<form>
+			for(String friend: offline_friends){
+		%>
+					<div style="color:red;"><p><%=friend%></p></div>
+		<%
+			}
+		%>
+		
+		<form>
 	
-				<br>				
-					<select id="removeFriendName" >
-					<%
-						for(String user: users_to_remove){
-					%>
-					   <option value=<%=user%>><%=user%></option>
-				    <%
-						}
-					%>
-				    </select>
+			<select id="addFriendName">
+			<%
+				for(String user: users_to_add){
+			%>
+			   <option value=<%=user%>><%=user%></option>
+		    <%
+				}
+			%>
+		    </select>
+			
+			<br>
+		
+			<input type="button" value="Add Friend" onclick="addFriend()"/>
+			
+		</form>
+		
+		<form>
 
-					<tr>		<input type="button" value="Remove Friend" onclick="removeFriend()" style=" height: 28px; width: 126px;  background-color: Navy; font-size: 65%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif">	</tr>
-					
-				</form>
+		<br>				
+			<select id="removeFriendName" >
+			<%
+				for(String user: users_to_remove){
+			%>
+			   <option value=<%=user%>><%=user%></option>
+		    <%
+				}
+			%>
+		    </select>
 
+			<br>
+			
+			<input type="button" value="Remove Friend" onclick="removeFriend()"/>
+			
+		</form>
 
 	</body>
 
