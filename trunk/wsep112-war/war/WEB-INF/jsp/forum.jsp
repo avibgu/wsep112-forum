@@ -1,21 +1,18 @@
 <%@ page import="java.lang.String" %>
 <jsp:useBean id="username" scope="request" type="java.lang.String" />
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
+		
 		<title>Forum Web Client</title>
-		<style type="text/css">
-			body {
-				background:#555  url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
-			}
-	    </style>
+		
 	    <link  href="http://fonts.googleapis.com/css?family=Architects+Daughter:regular" rel="stylesheet" type="text/css" >
 		<style>
 			body {
+			  background:#555  url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
 			  font-family: COMIC SANS MS;
 			  font-size: 20px;
 			  font-style: bold;
@@ -26,8 +23,10 @@
 			  letter-spacing: 0em;
 			  word-spacing: 0em;
 			  line-height: 1.2;
+			  color: white;
 			}
 		</style>
+		
 	    <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
 		<script>
 		
@@ -116,39 +115,51 @@
     
 	</head>
 	
-	<body bgcolor="#CC99FF" style="height: 275px; ">
+	<body>
+
 		<div align="left" id="notifications"></div>
-		<h1 align="center" style="color: white">	Forum Web Client	</h1>
-		<table style="height: 197px; ">
-			<tr>
-				<td width="150" valign="top" style="height: 143px; ">
-					<table>
-						<tr><h4>	Hello <%=username%>,					</h4></tr>
-				
-						<tr><h5>	Your Friends:							</h5></tr>
-						
 
-						<div id="friendLoad"></div>
+		<div>	<h1 align="center">	Forum Web Client	</h1>	</div>
 
-						
-						<br>
-
-						<br>
-
-						<form name="LogoutForm" action="login" method="get">
+		<div>	<table>
 			
-							<tr>		<input type="submit" value="Logout" name="logoutButton" style=" height: 28px; width: 80px;  background-color: Black; font-size: 65%; color: White; font-family: COMIC SANS MS;">	</tr>
+					<tr>
+						<td width="150" valign="top">
 							
-						</form>
-						
-					</table>
-				</td>
-				<td width="650" valign="top" align="center">
-					<div id="windowToLoad"></div>
-				</td>
-			</tr>
-		</table>
+							<table>
+							
+								<tr>
+										<div>	Hello <%=username%>,	</div>
+										<div>	Your Friends:			</div>
+								</tr>
+								
 		
+								<tr>	<div id="friendLoad"></div> </tr>
+		
+								
+								</br>
+		
+								</br>
+		
+								<form name="LogoutForm" action="login" method="get">
+					
+									<tr>	<input type="submit" value="Logout" name="logoutButton">	</tr>
+									
+								</form>
+								
+							</table>
+							
+						</td>
+						
+						<td width="650" valign="top" align="center">
+							<div id="windowToLoad"></div>
+						</td>
+						
+					</tr>
+					
+				</table>
+		</div>
+			
 	</body>
 	
 </html>
