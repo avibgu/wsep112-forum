@@ -6,26 +6,14 @@
 		<title>Forum Web Client</title>
 
 	    <link  href="http://fonts.googleapis.com/css?family=Architects+Daughter:regular" rel="stylesheet" type="text/css" >
-		<style>
-			body {
-			  background:#555  url("http://www.reka.us//rekaim/Fantasy/This_Chosen_Tree_Wallpaper_by_P0RG.jpg") no-repeat fixed center;
-			  font-family: COMIC SANS MS;
-			  font-size: 20px;
-			  font-style: bold;
-			  font-weight: 400;
-			  text-shadow: none;
-			  text-decoration: none;
-			  text-transform: none;
-			  letter-spacing: 0em;
-			  word-spacing: 0em;
-			  line-height: 1.2;
-			  color: white;
-			}
+		
+		<style type="text/css">
+			<%@ include file="../styles.css" %>
 		</style>
  
 	</head>
 	
-	<body>
+	<body class="pageStyle">
 	
 		<h1 align="center" style="color: white">Forum Web Client</h1>
 	
