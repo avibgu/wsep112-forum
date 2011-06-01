@@ -58,45 +58,6 @@ public class ForumServlet extends HttpServlet {
 		String notification = _webController.getNotificationFromQueue(username);
 		req.setAttribute("notification", notification);
 		
-		// sets friends list
-		Vector<UserInfo> friends = _webController.getFriendList(username);
-		
-		Vector<String> online_friends = new Vector<String>();
-		Vector<String> offline_friends = new Vector<String>();
-		Vector<String> usersToAdd = new Vector<String>();
-		Vector<String> usersToRemove = new Vector<String>();
-
-		for(UserInfo friend: friends){
-			if (friend.getStatus().equals("ONLINE"))
-				online_friends.add(friend.getUserName());
-			
-			else
-				offline_friends.add(friend.getUserName());
-			usersToRemove.add(friend.getUserName());
-		}
-		
-		Vector<UserInfo> users = _webController.getUsersList(username);
-		for(UserInfo user: users){
-			if (!user.getUserName().equals(username))
-			{
-				boolean inFriends = false;
-				for(UserInfo friend: friends){
-					if (user.getUserName().equals(friend.getUserName())){
-						inFriends = true;
-					}
-				}
-				if (!inFriends){
-					usersToAdd.add(user.getUserName());
-				}
-			}
-		}
-		
-		
-		
-		req.setAttribute("online_friends", online_friends);
-		req.setAttribute("offline_friends", offline_friends);
-		req.setAttribute("users_to_add", usersToAdd);
-		req.setAttribute("users_to_remove", usersToRemove);
 
 /*
 	
@@ -176,17 +137,11 @@ public class ForumServlet extends HttpServlet {
 			if (cookie.getName().equals("username"))
 				username = cookie.getValue();
 		}
-		String addFriendName = req.getParameter( "addFriendName" );
-		String removeFriendName = req.getParameter( "removeFriendName" );
+		
 		String addedThread = req.getParameter("FillThreadDetails");
 		
-		if (null != addFriendName)
-			_webController.AddFriend(username, addFriendName);
-			
-		else if (null != removeFriendName)
-			_webController.RemoveFriend(username, removeFriendName);
 		
-		else if (null != addedThread){
+		if (null != addedThread){
 			String title = req.getParameter("title");
 			String body = req.getParameter("body");
 			_webController.addThread(username, (String) session.getAttribute("ForumId"),title, body);
