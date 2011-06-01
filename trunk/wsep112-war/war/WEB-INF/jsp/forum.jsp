@@ -1,7 +1,6 @@
 <%@ page import="java.lang.String" %>
 <jsp:useBean id="username" scope="request" type="java.lang.String" />
-<jsp:useBean id="users_to_add" scope="request" type="java.util.Vector<java.lang.String>" />
-<jsp:useBean id="users_to_remove" scope="request" type="java.util.Vector<java.lang.String>" />
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -90,10 +89,29 @@
 				});
 			}
 			
+			function addFriend()
+			{ 
+				alert("Add Friend");
+				$.get('friends',{Addfriend : "miripe"},
+				 function(data) {
+						$('#friendLoad').html(data);
+				});
+			}
+			
+			function removeFriend()
+			{
+				alert("remove Friend");
+				$.get('friends',{Removefriend : "miripe"},
+				 function(data) {
+						$('#friendLoad').html(data);
+				});
+			}
+			
 			$(document).ready(function()
 			{
 				setTimeout('checkNotifications()', 1000);
 				loadForumsList();
+				loadFriendsList();
 			});
 		</script>
     
@@ -105,51 +123,16 @@
 			<tr>
 				<td width="150" valign="top" style="height: 143px; ">
 					<table>
-					<div id="friendLoad"></div>
 						<tr><h4>	Hello <%=username%>,					</h4></tr>
+				
 						<tr><h5>	Your Friends:							</h5></tr>
-
-						<tr>		<jsp:include page="friendsList.jsp" />	</tr>
 						
-						<form name="addFriendForm" action="forum" method="post">
-			
-							<tr><h5>	Add Friend:									</h5></tr>
-							
-							<select name="addFriendName"  onChange="value = this.options[this.selectedIndex].text">
-							<%
-								for(String user: users_to_add){
-							%>
-							   <option value=<%=user%>><%=user%></option>
-						    <%
-								}
-							%>
-						    </select>
-							
-							<tr>		<input type="submit" value="Add" style=" height: 28px; width: 80px;  background-color: Black; font-size: 65%; color: White; font-family: COMIC SANS MS;">	</tr>
-							
-						</form>
+
+						<div id="friendLoad"></div>
+
 						
 						<br>
-						
-						<form name="removeFriendForm" action="forum" method="post">
-			
-							<tr><h5>	Remove Friend:									</h5></tr>
-							
-							<select name="removeFriendName"  onChange="value = this.options[this.selectedIndex].text">
-							<%
-								for(String user: users_to_remove){
-							%>
-							   <option value=<%=user%>><%=user%></option>
-						    <%
-								}
-							%>
-						    </select>
 
-							<tr>		<input type="submit" value="Remove" style=" height: 28px; width: 80px;  background-color: Black; font-size: 65%; color: White; font-family: COMIC SANS MS;">	</tr>
-							
-						</form>
-
-						<br>
 						<br>
 
 						<form name="LogoutForm" action="login" method="get">
