@@ -25,7 +25,7 @@
             			</td></tr>
 			</table>
 			
-			<p align="center"><button onclick="loadAddedThread(<%=ForumId%>)">Add</button></p>
+			<p align="center"><input type="button" value="Add" onclick="loadAddedThread(<%=ForumId%>)"></input></p>
 			
 				<input type="submit" value="Add" name="FillThreadDetails" style=" height: 42px; width: 128px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif"/>
 
