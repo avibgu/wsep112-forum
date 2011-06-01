@@ -55,9 +55,10 @@
 			
 			function loadAddedThread(forumId)
 			{	
-				alert($('#threadTitle'));
-			
-				$.get('threadsList', {id : forumId,  FillThreadDetails: "FillThreadDetails"}, 
+				alert($('#threadTitle').val());
+				alert($('#threadBody').val());
+				alert(forumId);
+				$.get('threadsList', {idOfForum : forumId, title: $('#threadTitle').val(), body: $('#threadBody').val()}, 
 						function(data) {
 							$('#windowToLoad').html(data);
 				})
