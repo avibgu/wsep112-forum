@@ -121,43 +121,38 @@
 
 		<div>	<h1 align="center">	Forum Web Client	</h1>	</div>
 
-		<div>	<table>
+		<div>	
+			<table>
 			
-					<tr>
-						<td width="150" valign="top">
-							
-							<table>
-							
-								<tr>
-										<div>	Hello <%=username%>,	</div>
-										<div>	Your Friends:			</div>
-								</tr>
-								
-		
-								<tr>	<div id="friendLoad"></div> </tr>
-		
-								
-								<br>
-		
-								<br>
-		
-								<form name="LogoutForm" action="login" method="get">
-					
-									<tr>	<input type="submit" value="Logout" name="logoutButton">	</tr>
-									
-								</form>
-								
-							</table>
-							
-						</td>
+				<tr>
+					<td width="150" valign="top">
+
+						<div>	Hello <%=username%>,	</div>
+						<div>	Your Friends:			</div>
 						
-						<td width="650" valign="top" align="center">
-							<div id="windowToLoad"></div>
-						</td>
+						<div id="friendLoad">			</div>
 						
-					</tr>
+						<div>	<br>					</div>
+						<div>	<br>					</div>
+
+						<div>
+							<form name="LogoutForm" action="login" method="get">
+			
+								<input type="submit" value="Logout" name="logoutButton"/>
+							
+							</form>
+						</div>
+						
+					</td>
 					
-				</table>
+					<td width="650" valign="top" align="center">
+						<div id="windowToLoad"></div>
+					</td>
+					
+				</tr>
+				
+			</table>
+			
 		</div>
 			
 	</body>
