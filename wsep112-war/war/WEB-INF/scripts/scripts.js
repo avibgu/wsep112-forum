@@ -12,7 +12,8 @@ function loadForumsList()
 		$('#windowToLoad').html(data);
 	});
 }
-
+// id - is the of the variable
+// forumId - is the value variable
 function loadThreadsList(forumId)
 {
 	$.get('threadsList', {id : forumId}, 
@@ -29,13 +30,36 @@ function loadAddedThread(forumId)
 	});
 }
 
+
+function loadAddedPost(forumId)
+{
+	
+	
+	$.get('postsList', {id : threadId,title: $('#postTitle').val(), body: $('#postBody').val()}, 
+			function(data) {
+				$('#windowToLoad').html(data);
+		});
+}
+
 function addThread()
 {
+	
 	$.get('addThread',function(data) {
 		$('#windowToLoad').html(data);
 	});
 }
 
+
+
+function loadEditPost(postTitle,postBody)
+{
+	
+	$.get('editPost',{title:postTitle,body:postBody},
+	function(data) {
+		$('#windowToLoad').html(data);
+	});
+}
+// we will call the parameter id in the postsListServlet using the getParameter("id") method 
 function loadPostsList(threadId)
 {
 	$.get('postsList', {id : threadId}, 
@@ -66,6 +90,8 @@ function removeFriend()
 			$('#friendLoad').html(data);
 	});
 }
+
+
 
 $(document).ready(function()
 {
