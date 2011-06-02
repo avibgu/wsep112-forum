@@ -3,7 +3,15 @@
 <jsp:useBean id="username" scope="request" type="java.lang.String" />
 
 <html>
-
+	<head>
+		 <script type="text/javascript">
+			 function getTitle(num)
+			 {
+			 alert(num);
+			 EditPostWindow(num);
+			 }
+		 </script>
+	 </head>
 	<body>
 	
 		<p align="center">
@@ -38,7 +46,7 @@
 							<%
 								if (post.getOwner().getUserName().equals(username)) {
 							%>
-									<a onclick="loadEditPost(<%=post.get_title() %>,<%= post.get_body() %>)" href="#"> Edit </a>	
+									<a onclick="getTitle(<%=row %>)" href="#"> Edit </a>	
 									/ 
 									<%} 
 									if (post.getOwner().getUserName().equals(username) || username.equals("forum-admin")) {%>			
