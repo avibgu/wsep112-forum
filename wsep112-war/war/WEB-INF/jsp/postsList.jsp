@@ -18,7 +18,7 @@
 		
                 <TR> 
                     <TH class="postsListThStyle"> Message </TH>
-                    <TH class="postsListThStyle"> Author </TH>
+                    <TH class="postsListThAuthorStyle"> Author </TH>
                 </TR>
                 
 			<%
@@ -37,7 +37,6 @@
 							
 							<%
 								if (post.getOwner().getUserName().equals(username)) {
-									System.out.println("************ ENTERED TO IF ************\n");
 							%>
 									<a onclick="loadEditPost(<%=post.get_title() %>,<%= post.get_body() %>)" href="#"> Edit </a>	
 									/ 
@@ -51,7 +50,7 @@
 						</div>
 					</TD>
 					
-					<TD class="postsListTdStyle">
+					<TD class="postsListTdAuthorStyle">
 						<%= post.getOwner().getUserName() %>
 					</TD>
 				
