@@ -40,7 +40,9 @@
 									System.out.println("************ ENTERED TO IF ************\n");
 							%>
 									<a onclick="loadEditPost(<%=post.get_title() %>,<%= post.get_body() %>)" href="#"> Edit </a>	
-									/ 			
+									/ 
+									<%} 
+									if (post.getOwner().getUserName().equals(username) || username.equals("forum-admin")) {%>			
 									<a href="#"> Delete </a>				      				      
 							<%
 								}
