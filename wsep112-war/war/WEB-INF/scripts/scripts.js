@@ -29,7 +29,6 @@ function loadAddedThread(forumId)
 	});
 }
 
-
 function loadAddedPost(threadId)
 {
 	$.get('postsList', {id : threadId,title: $('#postTitle').val(), body: $('#postBody').val()}, 
