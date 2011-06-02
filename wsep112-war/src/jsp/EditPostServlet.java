@@ -50,20 +50,15 @@ public class EditPostServlet extends HttpServlet{
 			if (cookie.getName().equals("username"))
 				username = cookie.getValue();
 		}
-		System.out.println("*************** GET TO EDIT SERVLET *************\n");
-		System.out.println("username is "+username);
+
 		String numEditPost= req.getParameter("numPostEdit");
-		System.out.println("numEditPost "+numEditPost);
-		System.out.println("thread id " + (String)session.getAttribute("ThreadId"));
+		String threadId=(String)session.getAttribute("ThreadId");
 		session.setAttribute("postId", numEditPost);
-		 PostInfo post = _webController.getPost(username, (String)session.getAttribute("ThreadId"), numEditPost);
-		 if (post==null)
-			 System.out.println("nullllllll");
-		//String title=post.get_title();
-		//System.out.println("title "+title);
+		Integer numPost = Integer.valueOf(numEditPost);
+		PostInfo post = _webController.getPostList(username,threadId).get(numPost);
+		String title=post.get_title();
 		String body=post.get_body();
-		System.out.println("body "+body);
-		//req.setAttribute("title", title);
+		req.setAttribute("title", title);
 		req.setAttribute("body", body);
 		_editPostJsp.forward(req, resp);
 	}
