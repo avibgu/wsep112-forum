@@ -99,3 +99,11 @@ $(document).ready(function()
 	loadForumsList();
 	loadFriendsList();
 });
+
+function deletePost(postId)
+{
+	$.get('postsList', {deletePostId : postId}, 
+		function(data) {
+			$('#windowToLoad').html(data);
+	});
+}
