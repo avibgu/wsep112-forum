@@ -12,8 +12,7 @@ function loadForumsList()
 		$('#windowToLoad').html(data);
 	});
 }
-// id - is the of the variable
-// forumId - is the value variable
+
 function loadThreadsList(forumId)
 {
 	$.get('threadsList', {id : forumId}, 
@@ -31,10 +30,8 @@ function loadAddedThread(forumId)
 }
 
 
-function loadAddedPost(forumId)
+function loadAddedPost(threadId)
 {
-	
-	
 	$.get('postsList', {id : threadId,title: $('#postTitle').val(), body: $('#postBody').val()}, 
 			function(data) {
 				$('#windowToLoad').html(data);
@@ -43,7 +40,6 @@ function loadAddedPost(forumId)
 
 function addThread()
 {
-	
 	$.get('addThread',function(data) {
 		$('#windowToLoad').html(data);
 	});
@@ -90,8 +86,6 @@ function removeFriend()
 			$('#friendLoad').html(data);
 	});
 }
-
-
 
 $(document).ready(function()
 {
