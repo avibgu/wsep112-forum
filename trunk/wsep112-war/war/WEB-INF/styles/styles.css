@@ -108,8 +108,7 @@ A:hover {text-decoration: underline; color: yellow;}
 	border-color: white;
 	border-style: solid;
 	border-width: 1px;
-	height: 188px;
-	width: 842px;
+	width: 600px;
 }
 .postsListThStyle{
 	background-color: #9999FF;
@@ -118,7 +117,20 @@ A:hover {text-decoration: underline; color: yellow;}
 	color: #400080;
 	white-space: normal;
 	text-decoration: underline;
-	width: 696px;
+	width: 500px;
+	border-color: white;
+	border-style: solid;
+	border-width: 1px;
+	text-align: center;
+}
+.postsListThAuthorStyle {
+	background-color: #9999FF;
+	font-size: 18px;
+	line-height: normal;
+	color: #400080;
+	white-space: normal;
+	text-decoration: underline;
+	width: 100px;
 	border-color: white;
 	border-style: solid;
 	border-width: 1px;
@@ -128,7 +140,17 @@ A:hover {text-decoration: underline; color: yellow;}
 	font-size: 14px;
 	text-align: center;
 	white-space: normal;
-	width: 658px;
+	width: 500px;
+	border-color: white;
+	border-style: solid;
+	border-width: 1px;
+	text-align: left;
+}
+.postsListTdAuthorStyle{
+	font-size: 14px;
+	text-align: center;
+	white-space: normal;
+	width: 100px;
 	border-color: white;
 	border-style: solid;
 	border-width: 1px;
