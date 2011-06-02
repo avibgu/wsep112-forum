@@ -45,11 +45,10 @@ function addThread()
 }
 
 
-
-function loadEditPost(postTitle,postBody)
+function EditPostWindow(numPost)
 {
 	
-	$.get('editPost',{title:postTitle,body:postBody},
+	$.get('editPost',{numPostEdit: numPost},
 	function(data) {
 		$('#windowToLoad').html(data);
 	});
