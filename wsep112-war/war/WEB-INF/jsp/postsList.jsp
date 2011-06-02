@@ -37,8 +37,9 @@
 							
 							<%
 								if (post.getOwner().getUserName().equals(username)) {
+									System.out.println("************ ENTERED TO IF ************\n");
 							%>
-									<a href="#"> Edit </a>	
+									<a onclick="loadEditPost(<%=post.get_title() %>,<%= post.get_body() %>)" href="#"> Edit </a>	
 									/ 			
 									<a href="#"> Delete </a>				      				      
 							<%
