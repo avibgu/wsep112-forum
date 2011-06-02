@@ -48,8 +48,10 @@
 							%>
 									<a onclick="getTitle(<%=row %>)" href="#"> Edit </a>	
 									/ 
-									<%} 
-									if (post.getOwner().getUserName().equals(username) || username.equals("forum-admin")) {%>			
+							<%
+								} 
+								if (post.getOwner().getUserName().equals(username) || username.equals("forum-admin")) {
+							%>			
 									<a href="#" onclick="deletePost(<%=post.get_post_id()%>)"> Delete </a>				      				      
 							<%
 								}
