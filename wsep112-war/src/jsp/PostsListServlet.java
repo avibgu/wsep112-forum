@@ -43,17 +43,28 @@ public class PostsListServlet extends HttpServlet{
 		Cookie[] cookies = req.getCookies();
 		
 		String username = "";
-		
+		String threadId="";
 		for (Cookie cookie : cookies) {
 			if (cookie.getName().equals("username"))
 				username = cookie.getValue();
 		}
-		
-		String threadId = req.getParameter("id");
-		session.setAttribute("ThreadId", threadId);
+		String id = req.getParameter("deletePostId");
+		System.out.println("delete = " + id);
+		if (id != null){
+			threadId = session.getAttribute("ThreadId").toString();
+			_webController.deletePost(username, threadId,id);
+		}
+		else{
+			threadId = req.getParameter("id");
+			System.out.println("threadid = " + threadId);
+			session.setAttribute("ThreadId", threadId);
+		}
 	    Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
+/*	    if (postsList.size() == 0)
+	    	_webController.deleteThread(username, forumID, threadId)*/
 	    req.setAttribute("posts_list", postsList);
 	    req.setAttribute("username", username);
+		
 	    
 	    _postsListJsp.forward(req, resp);
 	}
