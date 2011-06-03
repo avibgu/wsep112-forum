@@ -48,14 +48,16 @@ public class PostsListServlet extends HttpServlet{
 		}
 		
 		String id = req.getParameter("deletePostId");
+		String editThread = req.getParameter("idThread");
+		String addedPost = req.getParameter("idAddedThread");
+		
 		System.out.println("delete = " + id);
 		if (id != null){
 			threadId = session.getAttribute("ThreadId").toString();
 			_webController.deletePost(username, threadId,id);
 			
 		}
-		String editThread = req.getParameter("idThread");
-		if (editThread != null){
+		else if (editThread != null){
 			threadId = req.getParameter("idThread");
 			session.setAttribute("ThreadId", threadId);
 			String title = req.getParameter("title");
@@ -67,8 +69,8 @@ public class PostsListServlet extends HttpServlet{
 
 			_webController.editPost(username, forumId , title, body, threadId, String.valueOf(post.get_post_id()));
 		}
-		String addedPost = req.getParameter("idAddedThread");
-		if (addedPost != null){
+		
+		else if (addedPost != null){
 			threadId = req.getParameter("idAddedThread");
 			session.setAttribute("ThreadId", threadId);
 			String title = req.getParameter("title");
@@ -80,11 +82,9 @@ public class PostsListServlet extends HttpServlet{
 			threadId = req.getParameter("id");
 			session.setAttribute("ThreadId", threadId);
 		}
+	
 	    Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
-	   /* if (postsList.size() == 0){
-	    	_webController.deleteThread(username, (String)session.getAttribute("ForumId"), threadId);
-	    	
-	    }*/
+	   
 	    req.setAttribute("posts_list", postsList);
 	    req.setAttribute("username", username);
 		
