@@ -58,8 +58,8 @@ public class EditPostServlet extends HttpServlet{
 		PostInfo post = _webController.getPostList(username,threadId).get(numPost);
 		String title=post.get_title();
 		String body=post.get_body();
-		req.setAttribute("title", title);
-		req.setAttribute("body", body);
+		req.setAttribute("titlePost", title);
+		req.setAttribute("bodyPost", body);
 		_editPostJsp.forward(req, resp);
 	}
 }
