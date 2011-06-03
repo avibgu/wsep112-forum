@@ -39,6 +39,8 @@ public class ThreadsListServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		String threadId="";
+		String forumId ="";
 		// Get the session
 		HttpSession session = req.getSession();
 		
@@ -51,9 +53,17 @@ public class ThreadsListServlet extends HttpServlet {
 			if (cookie.getName().equals("username"))
 				username = cookie.getValue();
 		}
-		String forumId ="";
+		
 		String addedThread = req.getParameter("idOfForum");
-		if (addedThread!=null){
+		String id = req.getParameter("deleteThreadId");
+		System.out.println("delete thread = " + id);
+		if (id != null){
+			forumId =(String)session.getAttribute("ForumId");
+			System.out.println("forum id= " + forumId);
+			_webController.deleteThread(username, forumId, id);
+		}
+		
+		else if (addedThread!=null){
 			forumId = req.getParameter("idOfForum");
 			String title = req.getParameter("title");
 			String body = req.getParameter("body");
@@ -68,6 +78,8 @@ public class ThreadsListServlet extends HttpServlet {
 	    	_webController.getThreadList(username, forumId);
 		
 	    req.setAttribute("threads_list", threadList);
+	    req.setAttribute("username", username);
+	    
 		_threadsListJsp.forward(req, resp);
 	}
 }
