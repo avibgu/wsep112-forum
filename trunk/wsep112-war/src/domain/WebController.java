@@ -233,9 +233,10 @@ public class WebController implements Observer{
 		//	TODO: should do nothing.. the page will refresh automatically..
 		//	AVID: CHANGE IT
 		
-		ThreadInfo tInfo = tcn.getThreadInfo();
+		//	ThreadInfo tInfo = tcn.getThreadInfo();
 
-		String msg =	"Thread \"" + tInfo.getTitle() + "\" has been changed";
+		//	String msg =	"Thread \"" + tInfo.getTitle() + "\" has been changed";
+		String msg = "REFRESH";
 		
 		getWrNotificationLock().lock();
 		
