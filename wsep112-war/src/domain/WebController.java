@@ -138,6 +138,11 @@ public class WebController implements Observer{
 		cc.addThread(forumID, title, body);
 	}
 	
+	public void deleteThread(String username,String forumID,String threadId) {
+		ClientController cc = getClientController(username);
+		cc.RemoveThread(threadId, forumID);
+	}
+	
 	public void addPost(String username, String forumID, String title, String body, String threadId){
 		ClientController cc = getClientController(username);
 		cc.replyToThread(forumID, title, body, threadId);
@@ -153,6 +158,7 @@ public class WebController implements Observer{
 		cc.RemovePost(threadId, postId);
 	}
 	
+		
 	public PostInfo getPost(String username,String threadId,String postId){
 		ClientController cc = getClientController(username);
 		Vector<PostInfo> posts = cc.getPostsList(threadId);
