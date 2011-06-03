@@ -47,7 +47,6 @@ function addThread()
 
 function EditPostWindow(numPost)
 {
-	
 	$.get('editPost',{numPostEdit: numPost},
 	function(data) {
 		$('#windowToLoad').html(data);
@@ -60,6 +59,17 @@ function loadPostsList(threadId)
 		function(data) {
 			$('#windowToLoad').html(data);
 	});
+}
+
+function loadEditListPosts(threadId)
+{
+	alert(threadId);
+	alert($('#postTitleEdit').val());
+	alert( $('#postBodyEdit').val());
+	$.get('postsList', {idThread : threadId,title: $('#postTitleEdit').val(), body: $('#postBodyEdit').val()}, 
+			function(data) {
+				$('#windowToLoad').html(data);
+		});
 }
 
 function loadFriendsList()
