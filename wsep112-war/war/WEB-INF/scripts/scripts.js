@@ -3,6 +3,10 @@ function checkNotifications()
 	$.get('notifications', function(data) {
 		$('#notifications').html(data);
 	});
+	
+	alert( $('#date').text() );
+	alert( $('#notificationContent').text() );
+
 	setTimeout('checkNotifications()', 10000);
 }
 
