@@ -1,5 +1,6 @@
 <%@ page import="common.forum.items.ThreadInfo" %>
 <jsp:useBean id="threads_list" scope="request" type="java.util.List<common.forum.items.ThreadInfo>" />
+<jsp:useBean id="username" scope="request" type="java.lang.String" />
 
 <html>
 
@@ -28,6 +29,12 @@
 			    <TD class="threadsListTdStyle">
 			    
 					<a onclick="loadPostsList(<%=thread.getThread_id()%>)"  href="#"><%=thread.getTitle()%></a>
+					<% if (thread.get_owner().equals(username) || username.equals("forum-admin")) {
+							%>			
+									<a href="#" onclick="deleteThread(<%=thread.getThread_id()%>)"> <br>Delete </a>				      				      
+							<%
+								}
+							%>
 					
 			    </TD>
 			    
