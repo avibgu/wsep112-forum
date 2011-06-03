@@ -8,10 +8,12 @@ function checkNotifications()
 	})
 	.success(function(){
 		
-		if ($('#notificationContent').text() == "REFRESH" && currentThreadId != -1){
+		if ($('#notificationContent').text() == "REFRESH"){
 			
-			alert("refreshing..");
-			loadPostsList(currentThreadId);
+			$('#notificationContent').text("");
+			
+			if (currentThreadId != -1)
+				loadPostsList(currentThreadId);
 		}
 	});
 	
@@ -46,9 +48,9 @@ function loadAddedThread(forumId)
 function loadAddedPost(threadId)
 {
 	$.get('postsList', {id : threadId,title: $('#postTitle').val(), body: $('#postBody').val()}, 
-			function(data) {
-				$('#windowToLoad').html(data);
-		});
+		function(data) {
+			$('#windowToLoad').html(data);
+	});
 }
 
 function addThread()
@@ -58,16 +60,16 @@ function addThread()
 	});
 }
 
-
 function EditPostWindow(numPost)
 {
 	currentThreadId = -1;
 	
 	$.get('editPost',{numPostEdit: numPost},
-	function(data) {
-		$('#windowToLoad').html(data);
+		function(data) {
+			$('#windowToLoad').html(data);
 	});
 }
+
 // we will call the parameter id in the postsListServlet using the getParameter("id") method 
 function loadPostsList(threadId)
 {
@@ -81,12 +83,15 @@ function loadPostsList(threadId)
 
 function loadEditListPosts(threadId)
 {
-	//alert("here!");
+	currentThreadId = threadId;
+
 	$.get('postsList', {idThread : threadId,title: $('#postTitleEdit').val(), body: $('#postBodyEdit').val()}, 
 			function(data) {
 				$('#windowToLoad').html(data);
-		});
-	alert("Your Message Has been changed!");
+	})
+	.success(function(){
+		alert("Your Message has been added.");
+	});
 }
 
 function loadFriendsList()
@@ -114,16 +119,24 @@ function removeFriend()
 
 function deletePost(postId,size,threadId)
 {
+<<<<<<< .mine
+	alert(size);
+	if (size == 1){
+		
+=======
 	alert(size);
 	if (size == 1)
 	{
+>>>>>>> .r803
 		deleteThread(threadId);
 	}
-	else{
+	else {
+		
 		$.get('postsList', {deletePostId : postId}, 
-		function(data) {
-			$('#windowToLoad').html(data);
-	});}
+			function(data) {
+				$('#windowToLoad').html(data);
+		});
+	}
 }
 
 function deleteThread(threadId)
@@ -138,20 +151,24 @@ function deleteThread(threadId)
 function addPost(){
 	
 	currentThreadId = -1;
-	$.get('addPost',
-			function(data) {
-			    $('#windowToLoad').html(data);
-		});
-	alert("Wait");
+	
+	$.get('addPost', function(data) {
+		$('#windowToLoad').html(data);
+	})
+	.success(function(){
+		alert("Wait");
+	});
 }
 
 function loadAddedPosts(threadId)
 {
 	$.get('postsList', {idAddedThread : threadId,title: $('#postTitle').val(), body: $('#postBody').val()}, 
-			function(data) {
-				$('#windowToLoad').html(data);
-		});
-	alert("Your post has been added.");
+		function(data) {
+			$('#windowToLoad').html(data);
+	})
+	.success(function(){
+		alert("Your post has been added.");
+	});
 }
 
 
@@ -161,4 +178,3 @@ $(document).ready(function()
 	loadForumsList();
 	loadFriendsList();
 });
-
