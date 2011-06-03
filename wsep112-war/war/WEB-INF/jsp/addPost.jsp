@@ -17,15 +17,16 @@
 				
 			<table align="center">
 				
-				<tr><td>	Title:	</td><td>	<input type="text" name="title" size="25" style="width: 430px; "/>		</td></tr>
+				<tr><td>	Title:	</td><td>	<input type="text" id="postTitle" size="25" style="width: 430px; "/>		</td></tr>
 				<tr><td>	Body:	</td><td>
 				<BR>
-            		<TEXTAREA NAME="body" COLS= 50 ROWS="18"></TEXTAREA>
+            		<TEXTAREA id="postBody"  COLS= 50 ROWS="18"></TEXTAREA>
             	<BR>
             			</td></tr>
 			</table>
 			
-			<p align="center" style="width: 844px; height: 46px">	<input type="submit" value="Add" name=FillPostDetails style=" height: 42px; width: 128px;  background-color: Navy; font-size: 100%; color: White"/>
+			<p align="center" style="width: 844px; height: 46px">	
+			<button onclick="loadAddedThread(<%=session.getAttribute("ThreadId")%>)" class="buttonsStyle"> Add Thread </button>
 		
 
 		</form>
