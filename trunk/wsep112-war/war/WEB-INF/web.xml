@@ -72,6 +72,14 @@
     <servlet-name>addThread</servlet-name>
     <url-pattern>/addThread</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>addPost</servlet-name>
+    <servlet-class>jsp.AddPostServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addPost</servlet-name>
+    <url-pattern>/addPost</url-pattern>
+  </servlet-mapping>
     <servlet>
     <servlet-name>editPost</servlet-name>
     <servlet-class>jsp.EditPostServlet</servlet-class>
