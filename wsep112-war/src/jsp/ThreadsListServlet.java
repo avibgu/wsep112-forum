@@ -53,7 +53,6 @@ public class ThreadsListServlet extends HttpServlet {
 		}
 		String forumId ="";
 		String addedThread = req.getParameter("idOfForum");
-		System.out.println("Added: "+addedThread);
 		if (addedThread!=null){
 			forumId = req.getParameter("idOfForum");
 			String title = req.getParameter("title");
