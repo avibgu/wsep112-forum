@@ -56,12 +56,8 @@ public class ThreadsListServlet extends HttpServlet {
 		System.out.println("Added: "+addedThread);
 		if (addedThread!=null){
 			forumId = req.getParameter("idOfForum");
-			System.out.println("!!!Here!");
 			String title = req.getParameter("title");
 			String body = req.getParameter("body");
-			System.out.println(title +" "+ body);
-			System.out.println(username);
-			System.out.println("ForumId= "+forumId);
 			_webController.addThread(username, forumId,title, body);
 		}
 		else{
