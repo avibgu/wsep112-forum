@@ -7,7 +7,7 @@
 	<body>
 		
 		<div id="date">	<%=date%>	</div>
-		<div id="notificationContent" style="color:orange;">	<%=notification%>	</div>
+		<div id="notificationContent" style="color:orange;"><%=notification%></div>
 
 	</body>
 	
