@@ -349,13 +349,18 @@ public static Post retrievePost(int postId) {
 	
 	public static int deleteThread(int threadId){
 		try{
-			   
+			System.out.println("thread id = " +threadId);
 			Session session = getSession();
 			Transaction transaction = session.beginTransaction();
+			Query q;
+			q = session.createSQLQuery("delete from thread_watchers where thread_id=" + String.valueOf(threadId));
+			q.executeUpdate();
 			
-			Query q = session.createQuery("delete from Thread as t where t._threadID = :threadId");
+			q = session.createQuery("delete from Thread as t where t._threadID = :threadId");
 			q.setParameter("threadId", threadId);
 			int row_count = q.executeUpdate();
+			System.out.println("row_count = " +row_count);
+			transaction.commit();
 			session.close();
 			
 			return row_count;
