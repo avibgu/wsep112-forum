@@ -36,7 +36,6 @@ public class PostsListServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		// Get the session
-		System.out.println("***********pOST List Servlet");
 		HttpSession session = req.getSession();
 		
 		// get the username
@@ -56,23 +55,20 @@ public class PostsListServlet extends HttpServlet{
 			_webController.deletePost(username, threadId,id);
 		}
 		String editThread = req.getParameter("idThread");
-		System.out.println("FLAG IS "+editThread);
 		if (editThread != null){
-			System.out.println("Here");
-			threadId = req.getParameter("idThreadEdit");
+			threadId = req.getParameter("idThread");
 			session.setAttribute("ThreadId", threadId);
-			System.out.println("thread id "+threadId);
 			String title = req.getParameter("title");
-			System.out.println("title "+title);
 			String body = req.getParameter("body");
-			System.out.println("body "+body);
-			_webController.editPost(username, (String)session.getAttribute("ForumId"), title, body, 
-					session.getAttribute("ThreadId").toString(),(String)session.getAttribute("postId"));
+			String postId = (String)session.getAttribute("postId");
+			String forumId =(String)session.getAttribute("ForumId");
+			//get the right post by his place in array (postId)
+			PostInfo post = _webController.getPostByLocation(username,threadId,postId);
+
+			_webController.editPost(username, forumId , title, body, threadId, String.valueOf(post.get_post_id()));
 		}
 		else{
-			System.out.println("Here1");
 			threadId = req.getParameter("id");
-			System.out.println("threadid = " + threadId);
 			session.setAttribute("ThreadId", threadId);
 		}
 	    Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
