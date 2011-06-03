@@ -24,8 +24,7 @@ import domain.WebController;
 @WebServlet("/ThreadsListServlet")
 public class ThreadsListServlet extends HttpServlet {
 
-	private static final long serialVersionUID = -8203970789782134483L;
-
+	private static final long serialVersionUID = -2679488364422410083L;
 	private RequestDispatcher _threadsListJsp;
 	private WebController _webController;
 	
