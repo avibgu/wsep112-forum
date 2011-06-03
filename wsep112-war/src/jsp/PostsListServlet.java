@@ -18,9 +18,8 @@ import common.forum.items.PostInfo;
 import domain.WebController;
 
 public class PostsListServlet extends HttpServlet{
-
-	private static final long serialVersionUID = 1744399642421914945L;
 	
+	private static final long serialVersionUID = 4140626949494494061L;
 	private RequestDispatcher _postsListJsp;
 	private WebController _webController;
 	
