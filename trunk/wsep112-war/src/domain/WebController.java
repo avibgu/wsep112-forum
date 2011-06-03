@@ -165,6 +165,14 @@ public class WebController implements Observer{
 		
 		return null;
 	}
+	
+	public PostInfo getPostByLocation(String username,String threadId,String postId){
+		ClientController cc = getClientController(username);
+		Vector<PostInfo> posts = cc.getPostsList(threadId);
+		
+		return posts.get(Integer.parseInt(postId));
+	}
+
 	public ClientController getClientController(String username) {
 
 		getRdControllerLock().lock();
