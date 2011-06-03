@@ -129,12 +129,25 @@ function deleteThread(threadId)
 }
 
 
-function addPost(threadId){
+function addPost(){
 	
 	currentThreadId = -1;
-	
-	//TODO
+	$.get('addPost',
+			function(data) {
+			    $('#windowToLoad').html(data);
+		});
+	alert("Wait");
 }
+
+function loadAddedPosts(threadId)
+{
+	$.get('postsList', {idAddedThread : threadId,title: $('#postTitle').val(), body: $('#postBody').val()}, 
+			function(data) {
+				$('#windowToLoad').html(data);
+		});
+	alert("Your post has been added.");
+}
+
 
 $(document).ready(function()
 {
