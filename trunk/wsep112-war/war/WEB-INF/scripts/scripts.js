@@ -120,6 +120,15 @@ function deletePost(postId)
 	});
 }
 
+function deleteThread(threadId)
+{
+	$.get('threadsList', {deleteThreadId : threadId}, 
+		function(data) {
+			$('#windowToLoad').html(data);
+	});
+}
+
+
 function addPost(threadId){
 	
 	currentThreadId = -1;
@@ -133,3 +142,4 @@ $(document).ready(function()
 	loadForumsList();
 	loadFriendsList();
 });
+
