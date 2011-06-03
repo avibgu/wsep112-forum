@@ -63,10 +63,12 @@ function loadPostsList(threadId)
 
 function loadEditListPosts(threadId)
 {
+	//alert("here!");
 	$.get('postsList', {idThread : threadId,title: $('#postTitleEdit').val(), body: $('#postBodyEdit').val()}, 
 			function(data) {
 				$('#windowToLoad').html(data);
 		});
+	alert("Your Message Has been changed!");
 }
 
 function loadFriendsList()
