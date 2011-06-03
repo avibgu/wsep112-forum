@@ -5,11 +5,9 @@
 <html>
 	
 	<body>
-
-		</br>
-		<div><%=date%></div>
-		</br>
-		<div><%=notification%></div>
+		
+		<div id="date">	<%=date%>	</div>
+		<div id="notificationContent" style="color:orange;">	<%=notification%>	</div>
 
 	</body>
 	
