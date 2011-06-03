@@ -1,5 +1,5 @@
 
-//val currentThreadId = -1;
+var currentThreadId = -1;
 
 function checkNotifications()
 {
@@ -8,11 +8,11 @@ function checkNotifications()
 	})
 	.success(function(){
 		
-		/*if ($('#notificationContent').text() == "REFRESH" && currentThreadId != -1){
+		if ($('#notificationContent').text() == "REFRESH" && currentThreadId != -1){
 			
 			alert("refreshing..");
 			loadPostsList(currentThreadId);
-		}*/
+		}
 	});
 	
 	setTimeout('checkNotifications()', 10000);
@@ -27,7 +27,7 @@ function loadForumsList()
 
 function loadThreadsList(forumId)
 {
-	//currentThreadId = -1;
+	currentThreadId = -1;
 	
 	$.get('threadsList', {id : forumId}, 
 		function(data) {
@@ -61,7 +61,7 @@ function addThread()
 
 function EditPostWindow(numPost)
 {
-	//currentThreadId = -1;
+	currentThreadId = -1;
 	
 	$.get('editPost',{numPostEdit: numPost},
 	function(data) {
@@ -71,7 +71,7 @@ function EditPostWindow(numPost)
 // we will call the parameter id in the postsListServlet using the getParameter("id") method 
 function loadPostsList(threadId)
 {
-	//currentThreadId = threadId;
+	currentThreadId = threadId;
 	
 	$.get('postsList', {id : threadId}, 
 		function(data) {
@@ -131,7 +131,7 @@ function deleteThread(threadId)
 
 function addPost(threadId){
 	
-	//currentThreadId = -1;
+	currentThreadId = -1;
 	
 	//TODO
 }
