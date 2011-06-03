@@ -115,7 +115,6 @@ public class WebController implements Observer{
 	public Vector<PostInfo> getPostList(String username,String thread_id){
 		
 		ClientController cc = getClientController(username);
-		
 		return cc.getPostsList(thread_id);
 	}
 
