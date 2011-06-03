@@ -26,7 +26,7 @@
 			</table>
 			
 			<p align="center" style="width: 844px; height: 46px">	
-			<button onclick="loadAddedThread(<%=session.getAttribute("ThreadId")%>)" class="buttonsStyle"> Add Thread </button>
+			<button onclick="loadAddedPosts(<%=session.getAttribute("ThreadId")%>)" class="buttonsStyle"> Add Post </button>
 		
 
 		</form>
