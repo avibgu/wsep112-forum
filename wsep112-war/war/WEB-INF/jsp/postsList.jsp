@@ -51,8 +51,8 @@
 							<%
 								} 
 								if (post.getOwner().getUserName().equals(username) || username.equals("forum-admin")) {
-							%>			
-									<a href="#" onclick="deletePost(<%=post.get_post_id()%>)"> Delete </a>				      				      
+							%>		
+									<a href="#" onclick="deletePost(<%=post.get_post_id()%>,<%=posts_list.size()%>,<%=post.getThread_id()%>)"> Delete </a>				      				      
 							<%
 								}
 							%>
