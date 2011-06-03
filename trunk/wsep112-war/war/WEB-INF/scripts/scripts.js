@@ -1,13 +1,20 @@
+
+val currentThreadId = -1;
+
 function checkNotifications()
 {
 	$.get('notifications', function(data) {
 		$('#notifications').html(data);
 	})
 	.success(function(){
-		alert( $('#date').text() );
-		alert( $('#notificationContent').text() );
+		
+		if ($('#notificationContent').text() == "REFRESH" && currentThreadId != -1){
+			
+			alert("refreshing..");
+			loadPostsList(currentThreadId);
+		}
 	});
-
+	
 	setTimeout('checkNotifications()', 10000);
 }
 
@@ -20,6 +27,8 @@ function loadForumsList()
 
 function loadThreadsList(forumId)
 {
+	currentThreadId = -1;
+	
 	$.get('threadsList', {id : forumId}, 
 		function(data) {
 			$('#windowToLoad').html(data);
@@ -52,6 +61,8 @@ function addThread()
 
 function EditPostWindow(numPost)
 {
+	currentThreadId = -1;
+	
 	$.get('editPost',{numPostEdit: numPost},
 	function(data) {
 		$('#windowToLoad').html(data);
@@ -60,6 +71,8 @@ function EditPostWindow(numPost)
 // we will call the parameter id in the postsListServlet using the getParameter("id") method 
 function loadPostsList(threadId)
 {
+	currentThreadId = threadId;
+	
 	$.get('postsList', {id : threadId}, 
 		function(data) {
 			$('#windowToLoad').html(data);
@@ -99,13 +112,6 @@ function removeFriend()
 	});
 }
 
-$(document).ready(function()
-{
-	setTimeout('checkNotifications()', 10);
-	loadForumsList();
-	loadFriendsList();
-});
-
 function deletePost(postId)
 {
 	$.get('postsList', {deletePostId : postId}, 
@@ -113,3 +119,17 @@ function deletePost(postId)
 			$('#windowToLoad').html(data);
 	});
 }
+
+function addPost(threadId){
+	
+	currentThreadId = -1;
+	
+	//TODO
+}
+
+$(document).ready(function()
+{
+	setTimeout('checkNotifications()', 10);
+	loadForumsList();
+	loadFriendsList();
+});
