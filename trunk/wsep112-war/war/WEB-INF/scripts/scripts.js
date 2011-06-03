@@ -67,7 +67,6 @@ function loadEditListPosts(threadId)
 			function(data) {
 				$('#windowToLoad').html(data);
 		});
-	alert("finish");
 }
 
 function loadFriendsList()
