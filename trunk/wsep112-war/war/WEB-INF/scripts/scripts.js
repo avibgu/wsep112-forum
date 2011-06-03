@@ -112,12 +112,17 @@ function removeFriend()
 	});
 }
 
-function deletePost(postId)
+function deletePost(postId,size,threadId)
 {
-	$.get('postsList', {deletePostId : postId}, 
+	if (size == 1)
+	{
+		deleteThread(threadId);
+	}
+	else{
+		$.get('postsList', {deletePostId : postId}, 
 		function(data) {
 			$('#windowToLoad').html(data);
-	});
+	});}
 }
 
 function deleteThread(threadId)
