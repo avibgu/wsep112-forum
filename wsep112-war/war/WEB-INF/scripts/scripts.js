@@ -114,6 +114,7 @@ function removeFriend()
 
 function deletePost(postId,size,threadId)
 {
+	alert(size);
 	if (size == 1)
 	{
 		deleteThread(threadId);
