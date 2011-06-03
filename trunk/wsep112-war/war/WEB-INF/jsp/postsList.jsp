@@ -7,7 +7,7 @@
 		 <script type="text/javascript">
 			 function getTitle(num)
 			 {
-			 alert(num);
+			 //alert(num);
 			 EditPostWindow(num);
 			 }
 		 </script>
