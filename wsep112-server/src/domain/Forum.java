@@ -12,6 +12,7 @@ import server.network.WrappedObserver;
 
 import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
+import common.network.messages.OKMessage;
 
 import database.HibernateUtil;
 
@@ -66,14 +67,26 @@ public class Forum implements Serializable{
 	 */
 	//removing the given specific thread from the forum
 	public void deleteThread(int threadId){
-		//List<Thread> tThreadList = getThreads();
-		//for(int i=0;i<tThreadList.size();i++){
-		//	Thread tThread = tThreadList.get(i); 
-		//	if(tThread.getThread_id()==threadId){
-				 HibernateUtil.deleteThread(threadId);
-		//		 break;
-		//	}
-		//}
+
+		List<Thread> tAllThreads = getThreads();
+		for(int i=0;i<tAllThreads.size();i++){
+			Thread tThread = tAllThreads.get(i); 
+			if(tThread.getThread_id() == threadId){
+				for (int j=0; j< tThread.getPosts().size(); ++j){
+						User tUser = HibernateUtil.retrieveUser(tThread.get_owner());
+						tThread.delete(tThread.getPosts().get(j).get_post_id(), tUser);
+
+				}
+				tThread.setPosts(new ArrayList<Post>());
+				
+				HibernateUtil.updateDB(tThread);
+				int row = HibernateUtil.deleteThread(threadId);
+				
+				getThreads().remove(tThread);
+				
+	
+			}
+		}
 		
 	}
 	
@@ -101,7 +114,9 @@ public class Forum implements Serializable{
 		
 		new_thread.setThread_id(ans.intValue());
 		HibernateUtil.updateDB(new_thread);
-		return new_thread.reaply(title, body, owner);
+		Message answer = new_thread.reaply(title, body, owner);
+		
+		return answer;
 	}
 	
 	/**

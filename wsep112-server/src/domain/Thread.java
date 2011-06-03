@@ -29,6 +29,7 @@ public class Thread implements Serializable{
 	private String _owner;
 	private Date _lastModifiedDate;
 	private String _lastModifiedUser;
+
 	
 	private WrappedObserver _ownerObserver;
 	private List<WrappedObserver> _observers;
@@ -132,7 +133,7 @@ public Message reaply(String title, String body,User owner){
 		return HibernateUtil.retrievePostList(_threadID);
 	}
 
-	public void setPosts(Vector<Post> posts) {
+	public void setPosts(List<Post> posts) {
 		this._posts = posts;
 	}
 
@@ -207,5 +208,6 @@ public Message reaply(String title, String body,User owner){
 	    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	    return dateFormat.format(_lastModifiedDate);
 	}
+
 	
 }
