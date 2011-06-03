@@ -24,8 +24,7 @@ import domain.WebController;
 @WebServlet("/AddThreadServlet")
 public class AddPostServlet extends HttpServlet {
 
-	private static final long serialVersionUID = -8203970789782134483L;
-
+	private static final long serialVersionUID = -7210511051821948978L;
 	private RequestDispatcher _addPostdJsp;
 	private WebController _webController;
 	
