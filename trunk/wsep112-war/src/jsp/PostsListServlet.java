@@ -77,7 +77,6 @@ public class PostsListServlet extends HttpServlet{
 	    req.setAttribute("posts_list", postsList);
 	    req.setAttribute("username", username);
 		
-	    
 	    _postsListJsp.forward(req, resp);
 	}
 }
