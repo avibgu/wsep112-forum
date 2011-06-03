@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<jsp:useBean id="title" scope="request" type="java.lang.String" />
-<jsp:useBean id="body" scope="request" type="java.lang.String" />
+<jsp:useBean id="titlePost" scope="request" type="java.lang.String" />
+<jsp:useBean id="bodyPost" scope="request" type="java.lang.String" />
 
 <html>
 
@@ -20,16 +20,18 @@
 			<table align="center">
 				
 				<tr><td>	Title:	</td><td>	<BR>
-            		<TEXTAREA NAME="title" COLS= 50 ROWS="1"><%=title %></TEXTAREA>
+            		<TEXTAREA id="postTitleEdit" COLS= 50 ROWS="1"><%=titlePost %></TEXTAREA>
             	<BR>
 				<tr><td>	Body:	</td><td>
 				<BR>
-            		<TEXTAREA NAME="body" COLS= 50 ROWS="18"><%=body %></TEXTAREA>
+            		<TEXTAREA id="postBodyEdit" COLS= 50 ROWS="18"><%=bodyPost %></TEXTAREA>
             	<BR>
             			</td></tr>
 			</table>
 			
-			<p align="center">	<input type="submit" value="Change" name=FillEditPostDetails style=" height: 42px; width: 128px;  background-color: Navy; font-size: 100%; color: White; font-style: italic; font-family: Tahoma, Verdana, Arial, Sans-Serif"/>
+		<div align="center">
+			<button onclick="loadEditListPosts(<%= session.getAttribute("ThreadId")%>)"> Change </button>
+		</div>
 		
 
 		</form>
