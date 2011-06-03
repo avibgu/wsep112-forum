@@ -53,6 +53,7 @@ public class PostsListServlet extends HttpServlet{
 		if (id != null){
 			threadId = session.getAttribute("ThreadId").toString();
 			_webController.deletePost(username, threadId,id);
+			
 		}
 		String editThread = req.getParameter("idThread");
 		if (editThread != null){
@@ -81,8 +82,10 @@ public class PostsListServlet extends HttpServlet{
 			session.setAttribute("ThreadId", threadId);
 		}
 	    Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
-/*	    if (postsList.size() == 0)
-	    	_webController.deleteThread(username, forumID, threadId)*/
+	   /* if (postsList.size() == 0){
+	    	_webController.deleteThread(username, (String)session.getAttribute("ForumId"), threadId);
+	    	
+	    }*/
 	    req.setAttribute("posts_list", postsList);
 	    req.setAttribute("username", username);
 		
