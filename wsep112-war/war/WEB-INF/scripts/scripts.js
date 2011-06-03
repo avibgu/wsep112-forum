@@ -119,15 +119,10 @@ function removeFriend()
 
 function deletePost(postId,size,threadId)
 {
-<<<<<<< .mine
 	alert(size);
+
 	if (size == 1){
-		
-=======
-	alert(size);
-	if (size == 1)
-	{
->>>>>>> .r803
+
 		deleteThread(threadId);
 	}
 	else {
