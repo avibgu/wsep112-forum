@@ -31,6 +31,12 @@
   <property generated="never" lazy="false" name="_lastModifiedUser" type="java.lang.String">
    <column name="lastModifyUser"/>
   </property>
+   <property access="field" generated="never" lazy="false" name="numOfPosts" type="int">
+   <column name="NUMOFPOSTS"/>
+  </property>
+    <property access="field" generated="never" lazy="false" name="numOfViews" type="int">
+   <column name="NUMOFVIEWS"/>
+  </property>
   <list access="field" lazy="false" name="_watchingUsers" table="THREAD_WATCHERS">
    <key>
     <column name="THREAD_ID"/>

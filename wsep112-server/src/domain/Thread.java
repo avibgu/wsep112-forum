@@ -29,6 +29,8 @@ public class Thread implements Serializable{
 	private String _owner;
 	private Date _lastModifiedDate;
 	private String _lastModifiedUser;
+	private int numOfPosts;
+	private int numOfViews;
 
 	
 	private WrappedObserver _ownerObserver;
@@ -48,6 +50,7 @@ public class Thread implements Serializable{
 		this.set_owner(username);
 		this.set_lastModifiedDate(new Date());
 		this.set_lastModifiedUser(username);
+		this.setNumOfPosts(0);
 	}
 	
 	/**
@@ -69,6 +72,7 @@ public Message reaply(String title, String body,User owner){
 		Thread thread = HibernateUtil.retrieveThread(getThread_id());
 		thread.set_lastModifiedDate(new Date());
 		thread.set_lastModifiedUser(owner.get_Username());
+		thread.setNumOfPosts(thread.getNumOfPosts() + 1);
 		HibernateUtil.updateDB(thread);
 		return new OKMessage();
 	}
@@ -207,6 +211,18 @@ public Message reaply(String title, String body,User owner){
 	public String getDateTime() {
 	    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	    return dateFormat.format(_lastModifiedDate);
+	}
+	public void setNumOfPosts(int numOfPosts) {
+		this.numOfPosts = numOfPosts;
+	}
+	public int getNumOfPosts() {
+		return numOfPosts;
+	}
+	public void setNumOfViews(int numOfViews) {
+		this.numOfViews = numOfViews;
+	}
+	public int getNumOfViews() {
+		return numOfViews;
 	}
 
 	
