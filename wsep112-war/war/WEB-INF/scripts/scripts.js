@@ -29,9 +29,10 @@ function loadForumsList()
 
 function loadThreadsList(forumId)
 {
+	currentThreadId = -1;
+	
 	$.get('threadsList', {id : forumId}, 
 		function(data) {
-			currentThreadId = -1;
 			$('#windowToLoad').html(data);
 	});
 }
@@ -61,9 +62,10 @@ function addThread()
 
 function EditPostWindow(numPost)
 {
+	currentThreadId = -1;
+	
 	$.get('editPost',{numPostEdit: numPost},
 		function(data) {
-			currentThreadId = -1;
 			$('#windowToLoad').html(data);
 	});
 }
@@ -71,18 +73,20 @@ function EditPostWindow(numPost)
 // we will call the parameter id in the postsListServlet using the getParameter("id") method 
 function loadPostsList(threadId)
 {
+	currentThreadId = threadId;
+	
 	$.get('postsList', {id : threadId}, 
 		function(data) {
-			currentThreadId = threadId;
 			$('#windowToLoad').html(data);
 	});
 }
 
 function loadEditListPosts(threadId)
 {
+	currentThreadId = threadId;
+	
 	$.get('postsList', {idThread : threadId,title: $('#postTitleEdit').val(), body: $('#postBodyEdit').val()}, 
 		function(data) {
-			currentThreadId = threadId;
 			$('#windowToLoad').html(data);
 	});
 }
@@ -134,9 +138,10 @@ function deleteThread(threadId)
 }
 
 function addPost(){
-
+	
+	currentThreadId = -1;
+	
 	$.get('addPost', function(data) {
-		currentThreadId = -1;
 		$('#windowToLoad').html(data);
 	});
 }
