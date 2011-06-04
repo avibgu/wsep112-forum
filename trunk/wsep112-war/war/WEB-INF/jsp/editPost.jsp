@@ -1,40 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="java.lang.String" %>
 <jsp:useBean id="titlePost" scope="request" type="java.lang.String" />
 <jsp:useBean id="bodyPost" scope="request" type="java.lang.String" />
+<jsp:useBean id="ThreadId" scope="session" type="java.lang.String" />
 
 <html>
-
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1255">
-		<title>Forum Web Client</title>
-	</head>
 	
-	<body bgcolor="#BBF07F">
+	<body>
 	
-		<h1 style="font-size: large;" align="center">Edit Post</h1>
-	
-		<form name="AddPostForm" action="forum" method="post">
+		<p align="center">
+			<a style="text-align: center;" onclick="loadPostsList(<%=ThreadId%>)"  href="#"> Back </a>
+		</p>
 		
-			<p align="center">	<big><b>Edit the post details:</b></big>
-				
-			<table align="center">
-				
-				<tr><td>	Title:	</td><td>	<BR>
-            		<TEXTAREA id="postTitleEdit" COLS= 50 ROWS="1"><%=titlePost %></TEXTAREA>
-            	<BR>
-				<tr><td>	Body:	</td><td>
-				<BR>
-            		<TEXTAREA id="postBodyEdit" COLS= 50 ROWS="18"><%=bodyPost %></TEXTAREA>
-            	<BR>
-            			</td></tr>
-			</table>
+		<h1 align="center">	Edit Post	</h1>
+		
+		<p align="center">	Edit the post details:	</p>
+
+		<table align="center">
 			
-		<div align="center">
-			<button onclick="loadEditListPosts(<%= session.getAttribute("ThreadId")%>)"> Change </button>
-		</div>
+			<tr>
+				<td>	Title:	</td>
+				<td>	<TEXTAREA id="postTitleEdit" COLS= 50 ROWS="1"><%=titlePost %></TEXTAREA>	</td>
+			</tr>
+			
+			<tr>
+				<td valign="top">	Body:	</td>
+				<td> <TEXTAREA id="postBodyEdit" COLS= 50 ROWS="18"><%=bodyPost %></TEXTAREA>	</td>
+			</tr>
+			
+		</table>
 		
-
-		</form>
+		<div align="center">
+			<button onclick="loadEditListPosts(<%=ThreadId%>)" class="buttonsStyle"> Change </button>
+		</div>
 		
 	</body>
 	
