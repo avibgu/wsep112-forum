@@ -18,6 +18,8 @@
 				<TH class="threadsListThStyle">Subject</TH>
 				<TH class="threadsListThStyle">Author</TH>
 				<TH class="threadsListThStyle">Last change</TH>
+				<TH class="threadsListThStyle">Num of posts</TH>
+				<TH class="threadsListThStyle">Num of Views</TH>
 			</TR>
 			
 			<%
@@ -49,6 +51,10 @@
 					<%= thread.get_lastModifiedUser()%>	
             	 
 				</TD>
+				
+				<TD class="threadsListTdStyle"> <%= thread.get_numOfPosts() %> </TD>
+				
+				<TD class="threadsListTdStyle"> <%= thread.get_numOfViews() %> </TD>
             	 	 
 			</TR>
 			
