@@ -15,13 +15,16 @@ public class ThreadInfo implements Serializable  {
 	private String _owner;
 	private Date _lastModifiedDate;
 	private String _lastModifiedUser; 
+	private int _numOfPosts;
+	private int _numOfViews;
 
 	/**
 	 * @param _threadId
 	 * @param _title
 	 * @param _forumId
 	 */
-	public ThreadInfo(int _threadId, String _title, int _forumId,String owner,Date lastModifyDate,String lastModifyUser) {
+	public ThreadInfo(int _threadId, String _title, int _forumId,String owner,Date lastModifyDate,
+			          String lastModifyUser,int numOfposts, int numOfViews) {
 		
 		super();
 		this._threadId = _threadId;
@@ -30,6 +33,8 @@ public class ThreadInfo implements Serializable  {
 		this._owner = owner;
 		this._lastModifiedDate = lastModifyDate;
 		this._lastModifiedUser = lastModifyUser;
+		this._numOfPosts = numOfposts;
+		this.set_numOfViews(numOfViews);
 	}
 
 	public int getThread_id(){
@@ -71,5 +76,21 @@ public class ThreadInfo implements Serializable  {
 	public String getDateTime() {
 	    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	    return dateFormat.format(_lastModifiedDate);
+	}
+
+	public void set_numOfPosts(int _numOfPosts) {
+		this._numOfPosts = _numOfPosts;
+	}
+
+	public int get_numOfPosts() {
+		return _numOfPosts;
+	}
+
+	public void set_numOfViews(int _numOfViews) {
+		this._numOfViews = _numOfViews;
+	}
+
+	public int get_numOfViews() {
+		return _numOfViews;
 	}
 }
