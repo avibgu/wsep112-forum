@@ -1,21 +1,14 @@
 <%@ page import="common.forum.items.PostInfo" %>
 <jsp:useBean id="posts_list" scope="request" type="java.util.List<common.forum.items.PostInfo>" />
 <jsp:useBean id="username" scope="request" type="java.lang.String" />
+<jsp:useBean id="ForumId" scope="session" type="java.lang.String" />
 
 <html>
-	<head>
-		 <script type="text/javascript">
-			 function getTitle(num)
-			 {
-			 //alert(num);
-			 EditPostWindow(num);
-			 }
-		 </script>
-	 </head>
+
 	<body>
 	
 		<p align="center">
-			<a style="text-align: center;" onclick="loadThreadsList(<%=session.getAttribute("ForumId")%>)"  href="#"> Back </a>
+			<a style="text-align: center;" onclick="loadThreadsList(<%=ForumId%>)"  href="#"> Back </a>
 		</p>
 		
 		<p align="center">	<%= posts_list.get(0).get_title() %>	</p>

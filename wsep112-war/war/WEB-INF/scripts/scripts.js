@@ -89,9 +89,9 @@ function loadEditListPosts(threadId)
 			function(data) {
 				$('#windowToLoad').html(data);
 	})
-	.success(function(){
+	/*.success(function(){
 		alert("Your Message has been added.");
-	});
+	})*/;
 }
 
 function loadFriendsList()
@@ -119,7 +119,7 @@ function removeFriend()
 
 function deletePost(postId,size,threadId)
 {
-	alert(size);
+	//alert(size);
 
 	if (size == 1){
 
@@ -142,7 +142,6 @@ function deleteThread(threadId)
 	});
 }
 
-
 function addPost(){
 	
 	currentThreadId = -1;
@@ -150,22 +149,27 @@ function addPost(){
 	$.get('addPost', function(data) {
 		$('#windowToLoad').html(data);
 	})
-	.success(function(){
+	/*.success(function(){
 		alert("Wait");
-	});
+	})*/;
 }
 
 function loadAddedPosts(threadId)
 {
-	$.get('postsList', {idAddedThread : threadId,title: $('#postTitle').val(), body: $('#postBody').val()}, 
+	$.get('postsList', {idAddedThread : threadId, title: $('#postTitle').val(), body: $('#postBody').val()}, 
 		function(data) {
 			$('#windowToLoad').html(data);
 	})
-	.success(function(){
+	/*.success(function(){
 		alert("Your post has been added.");
-	});
+	})*/;
 }
 
+function getTitle(num)
+{
+	//alert(num);
+	EditPostWindow(num);
+}
 
 $(document).ready(function()
 {
