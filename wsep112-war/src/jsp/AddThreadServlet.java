@@ -21,7 +21,6 @@ import domain.WebController;
 /**
  * Servlet implementation class ThreadsListServlet
  */
-@WebServlet("/AddThreadServlet")
 public class AddThreadServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -8203970789782134483L;
