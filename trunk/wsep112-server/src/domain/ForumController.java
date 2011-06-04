@@ -316,7 +316,8 @@ public class ForumController implements Serializable{
 		for (Thread thread : threads)
 			tListOfThreads.add(new ThreadInfo(
 					thread.getThread_id(), thread.getTitle(), thread.get_forumId(),
-					thread.get_owner(),thread.get_lastModifiedDate(),thread.get_lastModifiedUser()));
+					thread.get_owner(),thread.get_lastModifiedDate(),thread.get_lastModifiedUser(),
+					thread.getNumOfPosts(),thread.getNumOfViews()));
 
 		sftm.setListOfThreads(tListOfThreads);
 		
@@ -339,9 +340,9 @@ public class ForumController implements Serializable{
 		
 		// add this user as watcher on this thread..
 		Thread thread = HibernateUtil.retrieveThread(Integer.parseInt(threadID));
+		thread.setNumOfViews(thread.getNumOfViews() + 1);
 		boolean ans = thread.addWatchUser(username);
-		if (ans)
-			HibernateUtil.updateDB(thread);
+		HibernateUtil.updateDB(thread);
 
 		Vector<PostInfo> tListOfPosts = new Vector<PostInfo>();
 		
@@ -479,7 +480,8 @@ public class ForumController implements Serializable{
 		
 		ThreadInfo threadInfo = new ThreadInfo(
 				thread.getThread_id(), thread.getTitle(), thread.get_forumId(),
-				thread.get_owner(),thread.get_lastModifiedDate(),thread.get_lastModifiedUser());
+				thread.get_owner(),thread.get_lastModifiedDate(),thread.get_lastModifiedUser(),
+				thread.getNumOfPosts(),thread.getNumOfViews());
 		
 		// notify thread's owner..
 
