@@ -24,43 +24,36 @@
 		%>
 		
 		<br>
+
+		<select id="addFriendName">
+		<%
+			for(String user: users_to_add){
+		%>
+		   <option value=<%=user%>><%=user%></option>
+	    <%
+			}
+		%>
+	    </select>
 		
-		<form>
+		<br>
+
+		<button onclick="addFriend()" class="buttonsStyle">Add Friend</button>
 	
-			<select id="addFriendName">
-			<%
-				for(String user: users_to_add){
-			%>
-			   <option value=<%=user%>><%=user%></option>
-		    <%
-				}
-			%>
-		    </select>
-			
-			<br>
-		
-			<input type="button" value="Add Friend" onclick="addFriend()"/>
-			
-		</form>
-		
-		<form>
+		<br>
+						
+		<select id="removeFriendName" >
+		<%
+			for(String user: users_to_remove){
+		%>
+		   <option value=<%=user%>><%=user%></option>
+	    <%
+			}
+		%>
+	    </select>
 
-		<br>				
-			<select id="removeFriendName" >
-			<%
-				for(String user: users_to_remove){
-			%>
-			   <option value=<%=user%>><%=user%></option>
-		    <%
-				}
-			%>
-		    </select>
-
-			<br>
-			
-			<input type="button" value="Remove Friend" onclick="removeFriend()"/>
-			
-		</form>
+		<br>
+		
+		<button onclick="removeFriend()" class="buttonsStyle">Remove Friend</button>
 
 	</body>
 
