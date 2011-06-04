@@ -16,24 +16,23 @@ import domain.WebController;
 /**
  * Servlet implementation class ThreadsListServlet
  */
-@WebServlet("/AddThreadServlet")
 public class AddPostServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -7210511051821948978L;
 	
-	private RequestDispatcher _addPostdJsp;
+	private RequestDispatcher _addPostJsp;
 	private WebController _webController;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException{
 		
 		ServletContext context = config.getServletContext();
-		_addPostdJsp = context.getRequestDispatcher("/WEB-INF/jsp/addPost.jsp");
+		_addPostJsp = context.getRequestDispatcher("/WEB-INF/jsp/addPost.jsp");
 		_webController = WebController.getInstance();
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		_addPostdJsp.forward(req, resp);
+		_addPostJsp.forward(req, resp);
 	}
 }
