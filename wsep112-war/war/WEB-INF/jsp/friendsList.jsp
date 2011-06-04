@@ -37,7 +37,7 @@
 		
 		<br>
 
-		<button onclick="addFriend()" class="buttonsStyle">Add Friend</button>
+		<button onclick="addFriend()" class="buttonsStyle">Add Friend</button><br>
 	
 		<br>
 						
