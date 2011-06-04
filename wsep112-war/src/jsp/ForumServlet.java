@@ -1,23 +1,17 @@
 package jsp;
 
 import java.io.IOException;
-import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.SessionCookieConfig;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import common.forum.items.ForumInfo;
-import common.forum.items.PostInfo;
-import common.forum.items.ThreadInfo;
-import common.forum.items.UserInfo;
 import domain.WebController;
 
 public class ForumServlet extends HttpServlet {
@@ -139,8 +133,7 @@ public class ForumServlet extends HttpServlet {
 		}
 		
 		String addedThread = req.getParameter("FillThreadDetails");
-		
-		
+
 		if (null != addedThread){
 			String title = req.getParameter("title");
 			String body = req.getParameter("body");
