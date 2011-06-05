@@ -18,14 +18,16 @@
 	
 			for(String friend: offline_friends){
 		%>
-					<div style="color:red;"><%=friend%></div>
+				<div style="color:red;"><%=friend%></div>
 		<%
 			}
 		%>
 		
 		<br>
+		<br>
+		<br>
 
-		<select id="addFriendName">
+		<select class="selectStyle" id="addFriendName">
 		<%
 			for(String user: users_to_add){
 		%>
@@ -37,12 +39,13 @@
 		
 		<br>
 
-		<button onclick="addFriend()" class="buttonsStyle">Add Friend</button>
-		
+		<button onclick="addFriend()" class="buttonsStyle1">Add</button>
+
+		<br>		
 		<br>
 		<br>
 						
-		<select id="removeFriendName" >
+		<select class="selectStyle" id="removeFriendName" >
 		<%
 			for(String user: users_to_remove){
 		%>
@@ -54,7 +57,7 @@
 
 		<br>
 		
-		<button onclick="removeFriend()" class="buttonsStyle">Remove Friend</button>
+		<button onclick="removeFriend()" class="buttonsStyle1">Remove</button>
 
 	</body>
 

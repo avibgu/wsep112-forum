@@ -17,7 +17,7 @@
 			<TR> 
 				<TH class="threadsListThStyle">Subject</TH>
 				<TH class="threadsListThStyle">Author</TH>
-				<TH class="threadsListThStyle">Last change</TH>
+				<TH class="threadsListThLastChangeStyle">Last change</TH>
 				<TH class="threadsListThStyle">Num of posts</TH>
 				<TH class="threadsListThStyle">Num of Views</TH>
 			</TR>
@@ -42,7 +42,7 @@
 			    
 				<TD class="threadsListTdStyle"> <%= thread.get_owner() %> </TD>
 				
-				<TD class="threadsListTdStyle">
+				<TD class="threadsListTdLastChangeStyle">
 
 					<%= thread.getDateTime() %>
 					

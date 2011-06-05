@@ -18,7 +18,7 @@
 	width: auto;
 	z-index: auto;
 	text-align: center;
-	font-size: x-large;
+	font-size: xx-large;
 }
 .friendsStyle {
 	float: left;
@@ -69,34 +69,53 @@
 	color: white;
 }
 
-A:link {text-decoration: none; color: yellow;}
-A:visited {text-decoration: none; color: yellow;}
-A:active {text-decoration: none; color: yellow;}
-A:hover {text-decoration: underline; color: yellow;}
+A:link {text-decoration: none; color: #339999;}
+A:visited {text-decoration: none; color: #339999;}
+A:active {text-decoration: none; color: #339999;}
+A:hover {text-decoration: underline; color: #339999;}
 
 .threadsListTableStyle{
 	border-color: white;
 	border-style: solid;
 	border-width: 1px;
 	height: 45px;
-	width: 786px;
+	width: 840px;
 }
 .threadsListThStyle{
-	background-color: #9999FF;
 	font-size: 18px;
 	line-height: normal;
-	color: #400080;
+	color: #339999;
 	white-space: normal;
-	text-decoration: underline;
-	width: 369px;
+	width: 160px;
 	border-color: white;
 	border-style: solid;
 	border-width: 1px;
 	text-align: center;
 }
 .threadsListTdStyle{
-	width: 314px;
-	font-size: 12px;
+	width: 160px;
+	font-size: large;
+	text-align: left;
+	white-space: normal;
+	height: 29px;
+	border-color: white;
+	border-style: solid;
+	border-width: 1px;
+}
+.threadsListThLastChangeStyle{
+	font-size: 18px;
+	line-height: normal;
+	color: #339999;
+	white-space: normal;
+	width: 200px;
+	border-color: white;
+	border-style: solid;
+	border-width: 1px;
+	text-align: center;
+}
+.threadsListTdLastChangeStyle{
+	width: 200px;
+	font-size: large;
 	text-align: left;
 	white-space: normal;
 	height: 29px;
@@ -111,12 +130,10 @@ A:hover {text-decoration: underline; color: yellow;}
 	width: 600px;
 }
 .postsListThStyle{
-	background-color: #9999FF;
 	font-size: 18px;
 	line-height: normal;
-	color: #400080;
+	color: #339999;
 	white-space: normal;
-	text-decoration: underline;
 	width: 500px;
 	border-color: white;
 	border-style: solid;
@@ -124,12 +141,10 @@ A:hover {text-decoration: underline; color: yellow;}
 	text-align: center;
 }
 .postsListThAuthorStyle {
-	background-color: #9999FF;
 	font-size: 18px;
 	line-height: normal;
-	color: #400080;
+	color: #339999;
 	white-space: normal;
-	text-decoration: underline;
 	width: 100px;
 	border-color: white;
 	border-style: solid;
@@ -137,7 +152,7 @@ A:hover {text-decoration: underline; color: yellow;}
 	text-align: center;
 }
 .postsListTdStyle{
-	font-size: 14px;
+	font-size: large;
 	text-align: center;
 	white-space: normal;
 	width: 500px;
@@ -147,7 +162,7 @@ A:hover {text-decoration: underline; color: yellow;}
 	text-align: left;
 }
 .postsListTdAuthorStyle{
-	font-size: 14px;
+	font-size: large;
 	text-align: center;
 	white-space: normal;
 	width: 100px;
@@ -155,6 +170,17 @@ A:hover {text-decoration: underline; color: yellow;}
 	border-style: solid;
 	border-width: 1px;
 	text-align: center;
+}
+.buttonsStyle1{
+	width: 70px;
+/*	height: 42px;
+	width: 148px;
+	background-color: Navy;
+	font-size: 100%;
+	color: White;
+	font-style: italic;
+	font-family: Tahoma, Verdana, Arial, Sans-Serif;
+*/
 }
 .buttonsStyle{
 /*	height: 42px;
@@ -165,4 +191,7 @@ A:hover {text-decoration: underline; color: yellow;}
 	font-style: italic;
 	font-family: Tahoma, Verdana, Arial, Sans-Serif;
 */
+}
+.selectStyle{
+	width: 100px;
 }
