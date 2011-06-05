@@ -9,7 +9,7 @@
 			<a style="text-align: center;" onclick="loadThreadsList(<%=ForumId%>)"  href="#"> Back </a>
 		</p>
 		
-		<h1 align="center">	Add Thread	</h1>
+		<h3 align="center">	Add Thread	</h3>
 		
 		<p align="center">	Enter the thread details:	</p>
 
