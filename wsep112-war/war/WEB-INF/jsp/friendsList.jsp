@@ -37,8 +37,9 @@
 		
 		<br>
 
-		<button onclick="addFriend()" class="buttonsStyle">Add Friend</button><br>
-	
+		<button onclick="addFriend()" class="buttonsStyle">Add Friend</button>
+		
+		<br>
 		<br>
 						
 		<select id="removeFriendName" >
