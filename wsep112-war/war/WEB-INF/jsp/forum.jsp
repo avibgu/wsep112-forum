@@ -51,7 +51,7 @@
 			
 		</div>
 
-		<div class="spareStyle">	<br>	</div>	
+		<div id="spareWindow" class="spareStyle">	<br>	</div>	
 
 		<div id="windowToLoad" class="windowStyle"></div>
 
