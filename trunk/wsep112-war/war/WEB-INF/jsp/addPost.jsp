@@ -9,7 +9,7 @@
 			<a style="text-align: center;" onclick="loadPostsList(<%=ThreadId%>)"  href="#"> Back </a>
 		</p>
 		
-		<h1 align="center">	Add Post	</h1>
+		<h3 align="center">	Add Post	</h3>
 		
 		<p align="center">	Enter the Post details:	</p>
 
