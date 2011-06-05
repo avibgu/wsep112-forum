@@ -31,7 +31,7 @@
 			    <TD class="threadsListTdStyle">
 			    
 					<a onclick="loadPostsList(<%=thread.getThread_id()%>)"  href="#"><%=thread.getTitle()%></a>
-					<% if (thread.get_owner().equals(username) || username.equals("forum-admin")) {
+					<% if (username.equals("forum-admin")) {
 							%>			
 									<a href="#" onclick="deleteThread(<%=thread.getThread_id()%>)"> <br>Delete </a>				      				      
 							<%
@@ -52,9 +52,9 @@
             	 
 				</TD>
 				
-				<TD class="threadsListTdStyle"> <%= thread.get_numOfPosts() %> </TD>
+				<TD class="threadsListTdStyle" style="text-align:center;"> <%= thread.get_numOfPosts() %> </TD>
 				
-				<TD class="threadsListTdStyle"> <%= thread.get_numOfViews() %> </TD>
+				<TD class="threadsListTdStyle" style="text-align:center;"> <%= thread.get_numOfViews() %> </TD>
             	 	 
 			</TR>
 			
