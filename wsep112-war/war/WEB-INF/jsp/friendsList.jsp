@@ -18,7 +18,7 @@
 	
 			for(String friend: offline_friends){
 		%>
-					<div style="color:red;"><p><%=friend%></p></div>
+					<div style="color:red;"><%=friend%></div>
 		<%
 			}
 		%>
