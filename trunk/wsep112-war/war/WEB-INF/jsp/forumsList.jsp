@@ -5,6 +5,8 @@
 
 	<body>
 
+		<br>
+		
 		<p align="center">	Please choose one of the forums:	</p>
 
 	<%
@@ -14,6 +16,8 @@
 		<div align="center">
 			<a href="#" onclick="loadThreadsList(<%=forum.getForumId()%>)"><%=forum.getName()%></a>
 		</div>
+		
+		<br>
 	
 	<%
 		}

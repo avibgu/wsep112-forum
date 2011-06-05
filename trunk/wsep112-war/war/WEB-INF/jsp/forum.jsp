@@ -30,6 +30,9 @@
 
 		<div class="friendsStyle">	
 
+			<div>	<br>					</div>
+			<div>	<br>					</div>
+
 			<div>	Hello <%=username%>,	</div>
 			
 			<div>	<br>					</div>
@@ -38,6 +41,8 @@
 			
 			<div id="friendLoad">			</div>
 			
+			<div>	<br>					</div>
+			<div>	<br>					</div>
 			<div>	<br>					</div>
 			<div>	<br>					</div>
 

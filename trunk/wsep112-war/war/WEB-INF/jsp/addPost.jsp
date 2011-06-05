@@ -17,8 +17,10 @@
 			
 			<tr>
 				<td>	Title:	</td>
-				<td>	<input type="text" id="postTitle" size="25" style="width: 430px; "/>	</td>
+				<td>	<input type="text" id="postTitle" size="25" style="width: 420px; "/>	</td>
 			</tr>
+			
+			<tr></tr>
 			
 			<tr>
 				<td valign="top">	Body:	</td>
@@ -26,6 +28,8 @@
 			</tr>
 			
 		</table>
+		
+		<br>
 		
 		<div align="center">
 			<button onclick="loadAddedPosts(<%=ThreadId%>)" class="buttonsStyle"> Add Post </button>

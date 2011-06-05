@@ -22,12 +22,16 @@
 				<td>	<TEXTAREA id="postTitleEdit" COLS= 50 ROWS="1"><%=titlePost %></TEXTAREA>	</td>
 			</tr>
 			
+			<tr></tr>
+			
 			<tr>
 				<td valign="top">	Body:	</td>
 				<td> <TEXTAREA id="postBodyEdit" COLS= 50 ROWS="18"><%=bodyPost %></TEXTAREA>	</td>
 			</tr>
 			
 		</table>
+		
+		<br>
 		
 		<div align="center">
 			<button onclick="loadEditListPosts(<%=ThreadId%>)" class="buttonsStyle"> Change </button>

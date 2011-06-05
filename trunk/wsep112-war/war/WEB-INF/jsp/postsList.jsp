@@ -63,6 +63,8 @@
 						
 		</TABLE>
 
+		<br>
+
 		<div align="center">
 			<button onclick="addPost()" class="buttonsStyle"> Add Post </button>
 		</div>
