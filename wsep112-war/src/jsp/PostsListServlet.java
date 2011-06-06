@@ -51,7 +51,6 @@ public class PostsListServlet extends HttpServlet{
 		String editThread = req.getParameter("idThread");
 		String addedPost = req.getParameter("idAddedThread");
 		
-		System.out.println("delete = " + id);
 		if (id != null){
 			threadId = session.getAttribute("ThreadId").toString();
 			_webController.deletePost(username, threadId,id);
