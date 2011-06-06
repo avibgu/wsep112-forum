@@ -168,7 +168,8 @@ public class PostsViewPanel extends javax.swing.JPanel {
             String body=post.get_body();
             String owner=post.getOwner().getUserName();
             String post_id=Integer.toString(post.get_post_id());
-            if(this.getclientController().getCurrentLogedInUsername().equals(owner))
+            if(this.getclientController().getCurrentLogedInUsername().equals(owner)
+            		|| this.getclientController().getCurrentLogedInUsername().equals("forum-admin"))
                 {
                     getStartWindow().getForum().displayForum( new EditPostPanel(this.getclientController(), this.getForum_id(), this.getThread_id(), post_id, title, body, this.getStartWindow()));
                     this.setVisible(false);
