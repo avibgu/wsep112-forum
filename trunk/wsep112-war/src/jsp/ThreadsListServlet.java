@@ -55,10 +55,9 @@ public class ThreadsListServlet extends HttpServlet {
 		
 		String addedThread = req.getParameter("idOfForum");
 		String id = req.getParameter("deleteThreadId");
-		System.out.println("delete thread = " + id);
+	
 		if (id != null){
 			forumId =(String)session.getAttribute("ForumId");
-			System.out.println("forum id= " + forumId);
 			_webController.deleteThread(username, forumId, id);
 		}
 		
@@ -70,7 +69,6 @@ public class ThreadsListServlet extends HttpServlet {
 		}
 		else{
 			forumId = req.getParameter("id");
-			System.out.println("parameter = "+forumId);
 			session.setAttribute("ForumId", forumId);
 		}
 	    Vector<ThreadInfo> threadList =
