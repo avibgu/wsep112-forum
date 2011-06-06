@@ -52,67 +52,6 @@ public class ForumServlet extends HttpServlet {
 		String notification = _webController.getNotificationFromQueue(username);
 		req.setAttribute("notification", notification);
 		
-
-/*
-	
-		// decide which data should we retrieve from the server (forums\posts\threads)
-		String window = (String)req.getParameter("window");
-		if (null == window){
-			
-			req.setAttribute("window", "forums");
-			window = "forums";
-		}
-		if (req.getParameter("AddThreadButton") != null){
-			req.setAttribute("window", "addThread");
-			
-		}
-		else if (req.getParameter("AddPostButton") != null){
-			req.setAttribute("window", "addPost");
-		}
-		else if (window.equals("edit")){
-			String postId = req.getParameter("postId");
-		    session.setAttribute("postId", postId);
-		    PostInfo post = _webController.getPost(username, (String)session.getAttribute("ThreadId"), postId);
-			req.setAttribute("title", post.get_title());
-			req.setAttribute("body", post.get_body());
-			req.setAttribute("window", "editPost");
-		}
-		else if (window.equals("delete")){
-			String threadId = (String)session.getAttribute("ThreadId");
-			_webController.deletePost(username, threadId, req.getParameter("postId"));
-			session.setAttribute("postId", req.getParameter("postId"));
-			Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
-			req.setAttribute("posts_list", postsList);
-			req.setAttribute("window", "posts");
-		}
-		else if (window.equals("forums")){
-			
-			System.out.println("Forums old");
-			
-			Vector<ForumInfo> forumList = _webController.getForumList(username);
-			
-			req.setAttribute("forums_list", forumList);
-		}
-		else if (window.equals("threads")){
-			
-			String forumId = req.getParameter("id");
-			session.setAttribute("ForumId", forumId);
-		    Vector<ThreadInfo> threadList =
-		    	_webController.getThreadList(username, forumId);
-		    req.setAttribute("window", "threads");
-		    req.setAttribute("threads_list", threadList);
-		}
-		
-		else if (window.equals("posts")){
-			String threadId= req.getParameter("id");
-			session.setAttribute("ThreadId", threadId);
-		    Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
-		    req.setAttribute("window", "posts");
-		    req.setAttribute("posts_list", postsList);
-		    req.setAttribute("username", username);
-		}
-		
-	*/
 		_forumJsp.forward(req, resp);
 		
 	}
@@ -148,7 +87,6 @@ public class ForumServlet extends HttpServlet {
 			forwardTo = "forum?id="+(String)session.getAttribute("ThreadId")+"&window=posts";
 		}
 		else if (null != req.getParameter("FillEditPostDetails")){
-			System.out.println("Post - edit post");
 			String title = req.getParameter("title");
 			String body = req.getParameter("body");
 			_webController.editPost(username, (String)session.getAttribute("ForumId"), title, body, 
