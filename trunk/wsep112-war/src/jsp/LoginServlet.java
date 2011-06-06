@@ -53,7 +53,6 @@ public class LoginServlet extends HttpServlet {
 		
 		if (null != logout){
 			
-			System.out.println("n\n\n\n\n\n" + logout + "\n\n\n\n");
 			_webController.logout(username);
 		}
 			
