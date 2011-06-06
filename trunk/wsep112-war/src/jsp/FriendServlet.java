@@ -59,16 +59,13 @@ public class FriendServlet extends HttpServlet {
 
 		String addFriendName = req.getParameter("Addfriend");
 		String removeFriendName = req.getParameter( "Removefriend" );
-		System.out.println("FRIEND GETTTTTTTT"+ addFriendName);
-		System.out.println("add friend name = " + req.getParameter( "addFriendName" ));
+		
 		if (null != addFriendName){
-			System.out.println("Add friend");
 			_webController.AddFriend(username, addFriendName);
 			
 		}
 			
 		else if (null != removeFriendName){
-			System.out.println("Remove friend");
 			_webController.RemoveFriend(username, removeFriendName);
 		}
 
