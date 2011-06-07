@@ -25,5 +25,6 @@ public enum MessageType {
     SEE_USERS_LIST,
     REMOVE_THREAD,
     REMOVE_POST,
-    EDIT_POST
+    EDIT_POST,
+    CHANGE_PASSWORD
 }
