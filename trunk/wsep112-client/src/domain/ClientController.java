@@ -10,6 +10,7 @@ import java.util.Observer;
 import java.util.Vector;
 import java.util.logging.Logger;
 
+
 import common.encryption.SHA1;
 import common.forum.items.ForumInfo;
 import common.forum.items.PostInfo;
@@ -19,12 +20,14 @@ import common.network.ForumServer;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.AddPostMessage;
 import common.network.messages.AddThreadMessage;
+import common.network.messages.ChangePasswordMessage;
 import common.network.messages.EditPostMessage;
 import common.network.messages.ErrorMessage;
 import common.network.messages.LoginMessage;
 import common.network.messages.LogoutMessage;
 import common.network.messages.Message;
 import common.network.messages.MessageType;
+import common.network.messages.OKMessage;
 import common.network.messages.RegMessage;
 import common.network.messages.RemoveFriendMessage;
 import common.network.messages.RemovePostMessage;
@@ -38,6 +41,7 @@ import common.notifications.Notification;
 import common.notifications.ThreadChangedNotification;
 import common.observation.Observable;
 import common.observation.RemoteObserver;
+
 
 /**
  * @author Avi Digmi
@@ -157,6 +161,57 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			
 			log(reason);
 			errorMessage = new ErrorMessage(reason);
+		}
+
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
+		notifyObservers(errorMessage);
+		
+		return false;
+	}
+	
+	/**
+	 *
+	 * @param username
+	 * @param password
+	 *
+	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
+	 */
+	public boolean changePass(String username, String password) {
+		
+		System.out.println("CLIENT CONTROLLER- CHANGE PASSWORD");
+		ErrorMessage errorMessage;
+		
+		// Check if the password is strong enough.
+		if (!validPassword(password)){
+			errorMessage = new ErrorMessage("Password is too weak.");
+		}
+		
+		else{
+
+			// Encrypt the password using SHA1 algorithm.
+			String tEncrypted_Password = SHA1.hash(password);
+	
+			ChangePasswordMessage cpm = new ChangePasswordMessage(username, tEncrypted_Password, this);
+	
+			try {
+	
+				Message answer = getForumServerStub().setInformation(cpm);
+
+				if (answer.getMessageType() == MessageType.OK){
+
+					return true;
+				}
+
+				errorMessage = (ErrorMessage)answer;
+			}
+			catch (RemoteException e) {
+				
+				String reason = "Connection Error - can't connect with the server";
+				
+				log(reason);
+				errorMessage = new ErrorMessage(reason);
+			}
 		}
 
 		errorMessage.setForWho(getCurrentLogedInUsername());
