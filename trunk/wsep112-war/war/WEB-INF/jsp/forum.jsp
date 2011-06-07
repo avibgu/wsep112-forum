@@ -51,11 +51,7 @@
 			
 			<div id="friendLoad">			</div>
 			
-			<div>	<br>					</div>
-	
-			
-			
-	<br>
+
 			<div id="changePassword"> </div>
 			<br>
 			<div>
