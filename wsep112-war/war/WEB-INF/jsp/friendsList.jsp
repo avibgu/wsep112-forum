@@ -27,17 +27,24 @@
 		
 		<br>
 		<br>
-		<input type="text" id="searchFriend" onchange="loadFriendsList()" style="width: 93px; "><br>
-
-		<select class="selectStyle" id="addFriendName">
+		
+    <tr>
+      <td style="width: 132px; ">
+        <input type="hidden" name="dff_view" value="grid">
+        Search:<input type="text" name="dff_keyword" id="searchFriend"  size="30" maxlength="50" style="width: 125px; ">
+		<button onclick="loadFriendsList()" class="buttonsStyle1">Find</button><select class="selectStyle" id="addFriendName">
 		<%
 			for(String user: users_to_add){
 		%>
-		   <option value=<%=user%>><%=user%></option>
+		   <option value="<%=user%>"><%=user%></option>
 	    <%
 			}
 		%>
 	    </select>
+      </td>
+    </tr>
+
+		
 		
 		<br>
 
