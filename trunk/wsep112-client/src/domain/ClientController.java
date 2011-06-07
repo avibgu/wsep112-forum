@@ -179,7 +179,6 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 */
 	public boolean changePass(String username, String password) {
 		
-		System.out.println("CLIENT CONTROLLER- CHANGE PASSWORD");
 		ErrorMessage errorMessage;
 		
 		// Check if the password is strong enough.
