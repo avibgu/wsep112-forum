@@ -27,7 +27,7 @@
 		
 		<br>
 		<br>
-		<br>
+		<input type="text" id="searchFriend" onchange="loadFriendsList()" style="width: 93px; "><br>
 
 		<select class="selectStyle" id="addFriendName">
 		<%
