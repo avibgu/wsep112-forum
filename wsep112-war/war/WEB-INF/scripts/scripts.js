@@ -159,9 +159,28 @@ function getTitle(num)
 	EditPostWindow(num);
 }
 
+function changePassword()
+{	
+	alert($('#pass').val());
+	$.get('changePassword',{newpass : $('#pass').val()}, function(data) {
+		$('#changePassword').html(data);
+	});
+}
+
+
+function losdChangePassword()
+{	
+	$.get('changePassword', function(data) {
+		$('#changePassword').html(data);
+	});
+} 
 $(document).ready(function()
 {
 	setTimeout('checkNotifications()', 10);
 	loadForumsList();
 	loadFriendsList();
+	losdChangePassword();
 });
+
+
+
