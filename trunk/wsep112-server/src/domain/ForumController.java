@@ -136,6 +136,30 @@ public class ForumController implements Serializable{
 		HibernateUtil.updateDB(loginUser);
 		return new OKMessage();
 	}
+	
+	
+	/**
+	 *
+	 * @param username
+	 * @param password
+	 *
+	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
+	 */
+	public Message changePass(String username, String password, WrappedObserver wo) {
+			
+		System.out.println("CHANGE PASSWORDDDDDDD");
+		//AVID_DONE: ???? notify user about things that happened when he was offline?.. no
+
+		// Check is username exists.
+		if (!isExist(username))
+			return new ErrorMessage("Username doesn't exists.");
+
+		User loginUser = getUser(username);
+		loginUser.setPassword(password);
+		
+		HibernateUtil.updateDB(loginUser);
+		return new OKMessage();
+	}
 
 	/**
 	 *
