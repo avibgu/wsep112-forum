@@ -55,19 +55,17 @@ public class FriendServlet extends HttpServlet {
 		Vector<String> usersToAdd = new Vector<String>();
 		Vector<String> usersToRemove = new Vector<String>();
 
-
+		String inputSearchName = req.getParameter("searchInput");
 		String addFriendName = req.getParameter("Addfriend");
 		String removeFriendName = req.getParameter( "Removefriend" );
 		
 		if (null != addFriendName){
 			_webController.AddFriend(username, addFriendName);
-			
 		}
 			
 		else if (null != removeFriendName){
 			_webController.RemoveFriend(username, removeFriendName);
 		}
-		
 		
 		Vector<UserInfo> friends = _webController.getFriendList(username);
 		
@@ -79,9 +77,19 @@ public class FriendServlet extends HttpServlet {
 				offline_friends.add(friend.getUserName());
 			usersToRemove.add(friend.getUserName());
 		}
-		
-		Vector<UserInfo> users = _webController.getUsersList(username);
+		Vector<UserInfo> users = new Vector<UserInfo>();
+		if (null != inputSearchName){
+			if (!inputSearchName.equals("")){
+				System.out.println("!!!!!!!!!!!! "+inputSearchName);
+				users = _webController.getSearchUsersList(username, inputSearchName);
+				System.out.println("size search "+users.size());
+			}
+		}
+		else{
+			users = _webController.getUsersList(username);
+		}
 		for(UserInfo user: users){
+			System.out.println(user.getUserName());
 			if (!user.getUserName().equals(username))
 			{
 				boolean inFriends = false;
