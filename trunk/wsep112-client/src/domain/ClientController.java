@@ -332,6 +332,43 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		
 		return false;
     }
+    
+	public Vector<UserInfo> searchFriendsByInput(String input) {
+
+		ErrorMessage errorMessage;
+
+    	SeeUsersMessage sum = new SeeUsersMessage();
+
+		try {
+
+			Message answer = getForumServerStub().getInformation(sum);
+			
+			if (answer.getMessageType() != MessageType.ERROR){
+				Vector<UserInfo> users = ((SeeUsersMessage)answer).getListOfUsers();
+				for (int i=0; i<users.size(); i++){
+					if (!users.get(i).getUserName().contains(input)){
+						users.remove(i);
+					}
+				}
+				return users;
+			}
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
+		notifyObservers(errorMessage);
+
+		return null;
+	}
+    
 
     /**
      *
