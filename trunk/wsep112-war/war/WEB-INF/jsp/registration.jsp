@@ -1,4 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<jsp:useBean id="error" scope="request" type="java.lang.String" />
+
 <html>
 
 	<head>
@@ -19,7 +21,13 @@
 	
 		<form name="RegistrationForm" action="reg" method="post">
 		
-			<p align="center"><br>Enter the following information for registration:<br><br>
+			<br>
+			
+			<p align="center">Enter the following information for registration:</p>
+			
+			<p align="center" style="color: red">	<%=error%>	</p>
+			
+			<br>
 				
 			<table align="center">
 				
@@ -37,7 +45,9 @@
 			
 			<br>
 			
-			<p align="center">	<input type="submit" value="Register"/> or <a href="login">Login to the Forum</a>
+			<p align="center">
+				<input type="submit" value="Register"/> or <a href="login">Login to the Forum</a>
+			</p>
 
 		</form>
 		
