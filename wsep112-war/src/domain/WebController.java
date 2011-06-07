@@ -243,12 +243,6 @@ public class WebController implements Observer{
 
 	private void nofity(ThreadChangedNotification tcn) {
 
-		//	TODO: should do nothing.. the page will refresh automatically..
-		//	AVID: CHANGE IT
-		
-		//	ThreadInfo tInfo = tcn.getThreadInfo();
-
-		//	String msg =	"Thread \"" + tInfo.getTitle() + "\" has been changed";
 		String msg = "REFRESH";
 		
 		getWrNotificationLock().lock();
@@ -276,8 +270,10 @@ public class WebController implements Observer{
 	private void nofity(PostAddedToYourThreadNotification patytn) {
 
 		ThreadInfo tInfo = patytn.getThreadInfo();
+		String whoReplied = patytn.getNewPostOwner();
 					
-		String msg =	"Your Thread \"" + tInfo.getTitle() + "\" has been changed";
+		//String msg =	"Your Thread \"" + tInfo.getTitle() + "\" has been changed";
+		String msg =	whoReplied + " replied to your Thread \"" + tInfo.getTitle() + "\"";
 
 		getWrNotificationLock().lock();
 		
