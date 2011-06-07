@@ -488,7 +488,8 @@ public class ForumController implements Serializable{
 		if (0 != user.get_Username().compareTo(thread.get_owner())){
 			wo = getUsersToObserversMap().get(thread.get_owner());
 			if (wo != null)
-				wo.update(null, new PostAddedToYourThreadNotification(threadInfo, thread.get_owner()));
+				wo.update(null, new PostAddedToYourThreadNotification(
+						threadInfo, thread.get_owner(), user.get_Username()));
 		}
 		
 		// notify thread's observers..

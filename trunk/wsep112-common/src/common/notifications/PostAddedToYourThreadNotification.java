@@ -18,16 +18,19 @@ public class PostAddedToYourThreadNotification implements Notification,
 
 	private ThreadInfo _threadInfo;
 	private String _forWho;
+	private String _newPostOwner;
 	
 	/**
 	 * 
 	 * @param threadInfo
 	 */
-	public PostAddedToYourThreadNotification(ThreadInfo threadInfo, String forWho){
+	public PostAddedToYourThreadNotification(ThreadInfo threadInfo,
+			String forWho, String newPostOwner){
 	
 		super();
 		setThreadInfo(threadInfo);
 		setForWho(forWho);
+		setNewPostOwner(newPostOwner);
 	}
 	
 	/* (non-Javadoc)
@@ -52,5 +55,13 @@ public class PostAddedToYourThreadNotification implements Notification,
 
 	public String getForWho() {
 		return _forWho;
+	}
+
+	public String getNewPostOwner() {
+		return _newPostOwner;
+	}
+	
+	public void setNewPostOwner(String newPostOwner) {
+		this._newPostOwner = newPostOwner;
 	}
 }
