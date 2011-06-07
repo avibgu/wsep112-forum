@@ -116,6 +116,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			}
 		}
 
+		errorMessage.setForWho("REGERROR");
+		
 		notifyObservers(errorMessage);
 		
 		return false;
@@ -157,6 +159,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
 		
 		return false;
@@ -196,6 +200,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
 	}
 
@@ -229,6 +235,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
 		
 		return false;
@@ -264,6 +272,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
 		
 		return false;
@@ -300,6 +310,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
     }
     
@@ -335,6 +347,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
    }
 
@@ -368,6 +382,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
     }
 
@@ -400,6 +416,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
 
 		return null;
@@ -431,6 +449,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
 
 		return null;
@@ -469,6 +489,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
 
 		return null;
@@ -504,6 +526,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
 
 		return null;
@@ -536,6 +560,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
 
 		return null;
@@ -571,6 +597,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
 		
 		return false;
@@ -606,6 +634,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			errorMessage = new ErrorMessage(reason);
 		}
 
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
 		notifyObservers(errorMessage);
 		
 		return false;
