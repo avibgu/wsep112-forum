@@ -62,7 +62,7 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 	 */
 	@Override
 	public Message getInformation(Message whatToGet) throws RemoteException {
-
+		
 		log("got a " + whatToGet.getMessageType() + " message");
 
 		Message answer;
