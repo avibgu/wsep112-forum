@@ -75,7 +75,6 @@ public class WebController implements Observer{
 	
 	public boolean changePassword(String username, String password) {
 		
-		System.out.println("WEB CONTROLLER CHANGE PASSWORD = " + password);
 		ClientController cc = getClientController(username);
 		
 		return cc.changePass(username, password);

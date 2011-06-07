@@ -46,7 +46,25 @@ public class changePasswordServlet extends HttpServlet {
 		req.setAttribute("username", username);
 		
 		if(req.getParameter("newpass") != null){
-			_webController.changePassword(username, req.getParameter( "newpass" ));
+			boolean ans = _webController.changePassword(username, req.getParameter( "newpass" ));
+			if (!ans){
+				String error = _webController.getErrorFromQueue(username);
+				
+				if (null != error)
+					req.setAttribute("error", error);
+				else
+					req.setAttribute("error", "Password too weak");
+			}
+			else{
+				req.setAttribute("error", "Password has been changed");
+			}
+				
+		}
+		else{
+			String error = (String) req.getAttribute("error");
+			
+			if (null == error)
+				req.setAttribute("error", "");
 		}
 		_changePassJsp.forward(req, resp);
 	}

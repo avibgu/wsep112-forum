@@ -161,7 +161,6 @@ function getTitle(num)
 
 function changePassword()
 {	
-	alert($('#pass').val());
 	$.get('changePassword',{newpass : $('#pass').val()}, function(data) {
 		$('#changePassword').html(data);
 	});
@@ -173,6 +172,11 @@ function losdChangePassword()
 	$.get('changePassword', function(data) {
 		$('#changePassword').html(data);
 	});
+} 
+
+function showError(error)
+{	
+	alert(error);
 } 
 $(document).ready(function()
 {
