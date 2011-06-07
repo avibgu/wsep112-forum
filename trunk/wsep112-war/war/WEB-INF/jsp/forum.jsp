@@ -33,6 +33,7 @@
 
 			<div>	<br>					</div>
 			<div>	<br>					</div>
+			
 			<% int date = new Date().getHours();
 			   String ans="Hello"; 
 			   if (date >= 5 && date < 12)
@@ -44,8 +45,7 @@
 			   else
 			   		ans = "Good night";
 			%>
-			   		
-			<div>	<%=ans %> <%=username%>,	</div>
+			<div>	<%=ans%> <%=username%>,	</div>
 			
 			<div>	<br>					</div>
 			
