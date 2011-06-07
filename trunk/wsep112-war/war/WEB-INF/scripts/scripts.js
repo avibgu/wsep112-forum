@@ -93,7 +93,8 @@ function loadEditListPosts(threadId)
 
 function loadFriendsList()
 {
-	$.get('friends', function(data) {
+	$.get('friends', {searchInput: $('#searchFriend').val()},
+		function(data) {
 		$('#friendLoad').html(data);
 	});
 }
@@ -178,6 +179,7 @@ function showError(error)
 {	
 	alert(error);
 } 
+
 $(document).ready(function()
 {
 	setTimeout('checkNotifications()', 10);
