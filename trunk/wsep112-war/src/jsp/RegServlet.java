@@ -59,7 +59,13 @@ public class RegServlet extends HttpServlet {
 		}		
 		else{
 		
-			req.setAttribute("error", "ERROR - Enter Details again..");
+			String error = _webController.getErrorFromQueue("REGERROR");
+			
+			if (null != error)
+				req.setAttribute("error", error);
+			else
+				req.setAttribute("error", "ERROR - Enter Details again..");
+			
 			_regJsp.forward(req, resp);
 		}
 	}

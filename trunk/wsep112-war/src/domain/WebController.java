@@ -16,6 +16,7 @@ import common.forum.items.ForumInfo;
 import common.forum.items.PostInfo;
 import common.forum.items.ThreadInfo;
 import common.forum.items.UserInfo;
+import common.network.messages.ErrorMessage;
 import common.notifications.FriendAddedPostNotification;
 import common.notifications.PostAddedToYourThreadNotification;
 import common.notifications.ThreadChangedNotification;
@@ -27,6 +28,7 @@ public class WebController implements Observer{
 
 	private HashMap<String, ClientController> _usersControllersMap;
 	private HashMap<String, LinkedList<String>> _usersNotificationsMap;
+	private HashMap<String, String> _usersErrorsMap;
 	private ReentrantReadWriteLock _rwControllerLock;
 	private ReadLock _rdControllerLock;
 	private WriteLock _wrControllerLock;
@@ -46,6 +48,8 @@ public class WebController implements Observer{
 		setRwNotificationLock(new ReentrantReadWriteLock(true));
 		setRdNotificationLock(getRwNotificationLock().readLock());
 		setWrNotificationLock(getRwNotificationLock().writeLock());
+		
+		setUsersErrorsMap(new HashMap<String, String>());
 	}
 	
 	/**
@@ -232,8 +236,11 @@ public class WebController implements Observer{
 		
 		else if (arg instanceof PostAddedToYourThreadNotification)
 			nofity((PostAddedToYourThreadNotification)arg);
+		
+		else if (arg instanceof ErrorMessage)
+			nofity((ErrorMessage)arg);
     }
-	
+
 	private void nofity(ThreadChangedNotification tcn) {
 
 		//	TODO: should do nothing.. the page will refresh automatically..
@@ -295,6 +302,22 @@ public class WebController implements Observer{
 		return msg;
 	}
 	
+	private void nofity(ErrorMessage arg) {
+		synchronized (_usersErrorsMap) {
+			_usersErrorsMap.put(arg.getForWho(), arg.getReason());
+		}
+	}
+	
+	public String getErrorFromQueue(String username){
+		
+		String error = "";
+		
+		synchronized (_usersErrorsMap) {
+			error = _usersErrorsMap.remove(username);
+		}
+		
+		return error;
+	}
 	
 	public void setUsersControllersMap(HashMap<String, ClientController> _usersControllersMap) {
 		this._usersControllersMap = _usersControllersMap;
@@ -314,6 +337,14 @@ public class WebController implements Observer{
 
 	public HashMap<String, LinkedList<String>> getUsersNotificationsMap() {
 		return _usersNotificationsMap;
+	}
+
+	public void setUsersErrorsMap(HashMap<String, String> _usersErrorsMap) {
+		this._usersErrorsMap = _usersErrorsMap;
+	}
+
+	public HashMap<String, String> getUsersErrorsMap() {
+		return _usersErrorsMap;
 	}
 
 	private ReentrantReadWriteLock getRwControllerLock() {
