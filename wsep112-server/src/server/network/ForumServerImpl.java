@@ -14,6 +14,7 @@ import common.network.ForumServer;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.AddPostMessage;
 import common.network.messages.AddThreadMessage;
+import common.network.messages.ChangePasswordMessage;
 import common.network.messages.EditPostMessage;
 import common.network.messages.ErrorMessage;
 import common.network.messages.LoginMessage;
@@ -113,7 +114,7 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 				answer = getForumController().getUsersList(sum);
 				
 				break;
-
+				
 			default:
 
 				answer = new ErrorMessage("Message Type is unrecognized");
@@ -146,6 +147,16 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 				answer = getForumController().register(rm.getFirstName(), rm.getLastName(), rm.getUsername(),
 						rm.getPassword(), rm.getEmail(), wo);
 
+				break;
+				
+			case CHANGE_PASSWORD:
+				
+				ChangePasswordMessage cpm =  (ChangePasswordMessage)whatToSet;
+				
+				wo = new WrappedObserver(cpm.getRemoteObserver());
+				
+				answer = getForumController().changePass(cpm.getUsername(), cpm.getPassword(), wo);
+				
 				break;
 
 			case LOGIN:
