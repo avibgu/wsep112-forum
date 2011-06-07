@@ -80,16 +80,13 @@ public class FriendServlet extends HttpServlet {
 		Vector<UserInfo> users = new Vector<UserInfo>();
 		if (null != inputSearchName){
 			if (!inputSearchName.equals("")){
-				System.out.println("!!!!!!!!!!!! "+inputSearchName);
 				users = _webController.getSearchUsersList(username, inputSearchName);
-				System.out.println("size search "+users.size());
 			}
 		}
 		else{
 			users = _webController.getUsersList(username);
 		}
 		for(UserInfo user: users){
-			System.out.println(user.getUserName());
 			if (!user.getUserName().equals(username))
 			{
 				boolean inFriends = false;
