@@ -77,6 +77,7 @@ public class WebController implements Observer{
 		return cc.register(firstName, lastName, username, password, email);
 	}
 	
+
 	public void logout(String username) {
 
 		ClientController cc = getClientController(username);
@@ -119,7 +120,6 @@ public class WebController implements Observer{
 	}
 
 	public boolean AddFriend(String username, String addFriendName) {
-		System.out.println("username = " + username + " friend= " + addFriendName);
 		ClientController cc = getClientController(username);
 		
 		return cc.AddFriend(addFriendName);
@@ -178,6 +178,7 @@ public class WebController implements Observer{
 		return posts.get(Integer.parseInt(postId));
 	}
 
+	
 	public ClientController getClientController(String username) {
 
 		getRdControllerLock().lock();
@@ -293,7 +294,8 @@ public class WebController implements Observer{
 		
 		return msg;
 	}
-
+	
+	
 	public void setUsersControllersMap(HashMap<String, ClientController> _usersControllersMap) {
 		this._usersControllersMap = _usersControllersMap;
 	}
