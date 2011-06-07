@@ -20,6 +20,7 @@ import common.network.messages.ErrorMessage;
 import common.network.messages.Message;
 import common.network.messages.MessageType;
 import common.network.messages.OKMessage;
+import common.network.messages.SearchUsersMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeFriendsMessage;
@@ -424,6 +425,27 @@ public class ForumController implements Serializable{
 		List<User> tUsers = HibernateUtil.retrieveUsers();
 		for (int i=0; i< tUsers.size(); ++i){
 			tListOfUsers.add(new UserInfo(tUsers.get(i).getStatusAsString(),tUsers.get(i).get_Username()));
+		}
+				
+		sum.setListOfUsers(tListOfUsers);
+		
+		return sum;
+	}
+	/**
+	 * 
+	 * @param sum
+	 * @param input - part of a string of username to search
+	 * @return list of all users that contain String input
+	 */
+	public Message getSearchUsersList(SearchUsersMessage sum, String input) {
+
+		Vector<UserInfo> tListOfUsers = new Vector<UserInfo>();
+		
+		List<User> tUsers = HibernateUtil.retrieveUsers();
+		for (int i=0; i< tUsers.size(); ++i){
+			if (tUsers.get(i).get_Username().contains(input)){
+				tListOfUsers.add(new UserInfo(tUsers.get(i).getStatusAsString(),tUsers.get(i).get_Username()));	
+			}
 		}
 				
 		sum.setListOfUsers(tListOfUsers);
