@@ -32,6 +32,7 @@ import common.network.messages.RegMessage;
 import common.network.messages.RemoveFriendMessage;
 import common.network.messages.RemovePostMessage;
 import common.network.messages.RemoveThreadMessage;
+import common.network.messages.SearchUsersMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeFriendsMessage;
@@ -334,17 +335,15 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
     }
     
 	public Vector<UserInfo> searchFriendsByInput(String input) {
-
 		ErrorMessage errorMessage;
 
-    	SeeUsersMessage sum = new SeeUsersMessage();
+    	SearchUsersMessage sum = new SearchUsersMessage(input);
 
 		try {
 
 			Message answer = getForumServerStub().getInformation(sum);
-			
 			if (answer.getMessageType() != MessageType.ERROR){
-				Vector<UserInfo> users = ((SeeUsersMessage)answer).getListOfUsers();
+				Vector<UserInfo> users = ((SearchUsersMessage)answer).getListOfUsers();
 				for (int i=0; i<users.size(); i++){
 					if (!users.get(i).getUserName().contains(input)){
 						users.remove(i);
