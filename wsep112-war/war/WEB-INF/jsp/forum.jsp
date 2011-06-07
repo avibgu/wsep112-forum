@@ -1,4 +1,5 @@
 <%@ page import="java.lang.String" %>
+<%@ page import="java.util.Date" %>
 <jsp:useBean id="username" scope="request" type="java.lang.String" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -32,8 +33,19 @@
 
 			<div>	<br>					</div>
 			<div>	<br>					</div>
-
-			<div>	Hello <%=username%>,	</div>
+			<% int date = new Date().getHours();
+			   String ans="Hello"; 
+			   if (date >= 5 && date < 12)
+			   		ans = "Good morning ";   
+			   else if (date >= 12 & date < 18)
+			   		ans = "Good afternoon";
+			   else if (date >= 18 & date < 22)
+			   		ans = "Good evening";
+			   else
+			   		ans = "Good night";
+			%>
+			   		
+			<div>	<%=ans %> <%=username%>,	</div>
 			
 			<div>	<br>					</div>
 			
