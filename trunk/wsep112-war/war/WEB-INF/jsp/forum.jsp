@@ -32,7 +32,7 @@
 		<div class="friendsStyle">	
 
 			<div>	<br>					</div>
-			<div>	<br>					</div>
+			
 			
 			<% int date = new Date().getHours();
 			   String ans="Hello"; 
@@ -49,15 +49,15 @@
 			
 			<div>	<br>					</div>
 			
-			<div>	Your Friends:			</div>
-			
 			<div id="friendLoad">			</div>
 			
 			<div>	<br>					</div>
-			<div>	<br>					</div>
-			<div>	<br>					</div>
-			<div>	<br>					</div>
-
+	
+			
+			
+	<br>
+			<div id="changePassword"> </div>
+			<br>
 			<div>
 				<form name="LogoutForm" action="login" method="get">
 

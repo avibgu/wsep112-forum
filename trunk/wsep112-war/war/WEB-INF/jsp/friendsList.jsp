@@ -9,6 +9,8 @@
 
 	<body>
 		
+		<br>
+		<div>	Your Friends:			</div>
 		<%
 			for(String friend: online_friends){
 		%>
@@ -58,7 +60,7 @@
 		<br>
 		
 		<button onclick="removeFriend()" class="buttonsStyle1">Remove</button>
-
+		
 	</body>
 
 </html>

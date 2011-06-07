@@ -88,4 +88,12 @@
     <servlet-name>editPost</servlet-name>
     <url-pattern>/editPost</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>changePassword</servlet-name>
+    <servlet-class>jsp.changePasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>changePassword</servlet-name>
+    <url-pattern>/changePassword</url-pattern>
+  </servlet-mapping>
 </web-app>

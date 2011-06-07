@@ -49,8 +49,7 @@ public class FriendServlet extends HttpServlet {
 		
 		req.setAttribute("username", username);
 		// sets friends list
-		
-		
+				
 		Vector<String> online_friends = new Vector<String>();
 		Vector<String> offline_friends = new Vector<String>();
 		Vector<String> usersToAdd = new Vector<String>();
@@ -68,7 +67,8 @@ public class FriendServlet extends HttpServlet {
 		else if (null != removeFriendName){
 			_webController.RemoveFriend(username, removeFriendName);
 		}
-
+		
+		
 		Vector<UserInfo> friends = _webController.getFriendList(username);
 		
 		for(UserInfo friend: friends){
