@@ -108,6 +108,12 @@ public class WebController implements Observer{
 		
 		return cc.getUsersList();
 	}
+	
+	public Vector<UserInfo> getSearchUsersList(String username, String inputSearch){
+		ClientController cc = getClientController(username);
+		
+		return cc.searchFriendsByInput(inputSearch);
+	}
 
 	
 	public Vector<ForumInfo> getForumList(String username){
