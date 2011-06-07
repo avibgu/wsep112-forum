@@ -74,8 +74,8 @@ public class PostsListServlet extends HttpServlet{
 			session.setAttribute("ThreadId", threadId);
 			String title = req.getParameter("title");
 			String body = req.getParameter("body");
-			_webController.addPost(username, (String)session.getAttribute("ForumId"), title, body, 
-					threadId);
+			_webController.addPost(username, (String)session.getAttribute("ForumId"),
+					title, body, threadId);
 		}
 		else{
 			threadId = req.getParameter("id");
