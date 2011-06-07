@@ -24,6 +24,7 @@ import common.network.messages.RegMessage;
 import common.network.messages.RemoveFriendMessage;
 import common.network.messages.RemovePostMessage;
 import common.network.messages.RemoveThreadMessage;
+import common.network.messages.SearchUsersMessage;
 import common.network.messages.SeeForumThreadsMessage;
 import common.network.messages.SeeForumsListMessage;
 import common.network.messages.SeeFriendsMessage;
@@ -112,6 +113,14 @@ public class ForumServerImpl extends RemoteStub implements ForumServer {
 				SeeUsersMessage sum = (SeeUsersMessage)whatToGet;
 
 				answer = getForumController().getUsersList(sum);
+				
+				break;
+				
+			case SEARCH_USERS_LIST:
+				
+				SearchUsersMessage searchum = (SearchUsersMessage)whatToGet;
+
+				answer = getForumController().getSearchUsersList(searchum, searchum.getSearchInput());
 				
 				break;
 				
