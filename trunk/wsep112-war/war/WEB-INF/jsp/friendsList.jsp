@@ -14,13 +14,13 @@
 		<%
 			for(String friend: online_friends){
 		%>
-					<div style="color:#66FF00;"><%=friend%></div>
+					<div style="color:#66FF00;"><img src="http://www.veryicon.com/icon/16/Application/MSN/online.png"><%=friend%></div>
 		<%
 			}
 	
 			for(String friend: offline_friends){
 		%>
-				<div style="color:red;"><%=friend%></div>
+				<div style="color:red;"><img src="http://www.veryicon.com/icon/16/Application/Msn%20Buddy/Msn%20Buddy%20Offline.png"><%=friend%></div>
 		<%
 			}
 		%>
