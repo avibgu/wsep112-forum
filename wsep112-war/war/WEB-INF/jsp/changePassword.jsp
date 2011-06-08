@@ -7,8 +7,10 @@
 
 </head>
 <body style="width: 215px; ">
-		<p style="color: red; font-size: medium;">	<%=error%>	</p>
-				
+		<div id="changePassError">
+			<p style="color: red; font-size: medium;">	<%=error%>	</p>
+		</div>
+		<br>			
 		<tr><td>	New password:	</td><td>	<input type="password" id="pass"/>	</td></tr>
 		<button onclick="changePassword()" class="buttonsStyle"> Change </button>
 	

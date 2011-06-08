@@ -165,7 +165,11 @@ function changePassword()
 	$.get('changePassword',{newpass : $('#pass').val()}, function(data) {
 		$('#changePassword').html(data);
 	});
+	setTimeout(function() {
+	    $('#changePassError').fadeOut('fast');
+	}, 4000);
 }
+
 
 
 function loadChangePassword()
