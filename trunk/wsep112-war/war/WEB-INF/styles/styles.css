@@ -31,6 +31,18 @@
 	width: 20%;
 	z-index: auto;
 }
+.licenseStyle {
+	font-family: Tahoma, Verdana, Arial, Sans-Serif;
+	font-size: 14px;
+	font-style: bold;
+	text-shadow: none;
+	text-decoration: none;
+	text-transform: none;
+	letter-spacing: 0em;
+	word-spacing: 0em;
+	line-height: 1.2;
+	color: white;
+}
 .windowStyle {
 	float: right;
 	position: relative;
