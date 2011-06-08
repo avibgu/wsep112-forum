@@ -32,7 +32,13 @@
       <td style="width: 132px; ">
         <input type="hidden" name="dff_view" value="grid">
         Search:<input type="text" name="dff_keyword" id="searchFriend"  size="30" maxlength="50" style="width: 125px; ">
-		<button onclick="loadFriendsList()" class="buttonsStyle1">Find</button><select class="selectStyle" id="addFriendName">
+		<button onclick="loadFriendsList()" class="buttonsStyle1">Find</button>
+      </td>
+    </tr>
+
+		
+		
+		<br><select class="selectStyle" id="addFriendName">
 		<%
 			for(String user: users_to_add){
 		%>
@@ -40,17 +46,11 @@
 	    <%
 			}
 		%>
-	    </select>
-      </td>
-    </tr>
+	    </select><br>
 
 		
-		
-		<br>
 
-		<button onclick="addFriend()" class="buttonsStyle1">Add</button>
-
-		<br>		
+		<button onclick="addFriend()" class="buttonsStyle1">Add</button><br>		
 		<br>
 		<br>
 						
