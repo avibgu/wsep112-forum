@@ -56,7 +56,7 @@
 			<br>
 			<div>
 				<form name="LogoutForm" action="login" method="get">
-
+					<img src="http://png-3.findicons.com/files/icons/1722/gnome_2_18_icon_theme/16/application_exit.png">
 					<input type="submit" value="Logout" name="logoutButton"/>
 				
 				</form>
