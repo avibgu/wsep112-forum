@@ -20,7 +20,7 @@
 	
 			for(String friend: offline_friends){
 		%>
-				<div style="color:red;"><img src="http://www.veryicon.com/icon/16/Application/Msn%20Buddy/Msn%20Buddy%20Offline.png"><%=friend%></div>
+				<div style="color:red;"><img src="http://www.veryicon.com/icon/16/Application/MSN/online%20red.png"><%=friend%></div>
 		<%
 			}
 		%>
