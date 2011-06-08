@@ -168,7 +168,7 @@ function changePassword()
 }
 
 
-function losdChangePassword()
+function loadChangePassword()
 {	
 	$.get('changePassword', function(data) {
 		$('#changePassword').html(data);
@@ -185,7 +185,7 @@ $(document).ready(function()
 	setTimeout('checkNotifications()', 10);
 	loadForumsList();
 	loadFriendsList();
-	losdChangePassword();
+	loadChangePassword();
 });
 
 
