@@ -20,14 +20,11 @@
 		<h1 align="center" style="color: white">Forum Web Client</h1>
 	
 		<form name="RegistrationForm" action="reg" method="post">
-		
-			<br>
+
 			
 			<p align="center">Enter the following information for registration:</p>
 			
 			<p align="center" style="color: red">	<%=error%>	</p>
-			
-			<br>
 				
 			<table align="center">
 				
@@ -40,10 +37,16 @@
 				<tr><td>	<br>Password:	</td><td>	<input type="password" name="password" />	</td></tr>
 				<tr></tr>
 				<tr><td>	<br>EMail:		</td><td>	<input type="text" name="email" />			</td></tr>
-			
-			</table>
-			
-			<br>
+
+				</table>
+				<br>
+				<table border="1" align="center">
+				<tr> <th>License Agreement:</th></tr>
+				<tr> <td class="licenseStyle"> IMPORTANT! PLEASE READ CAREFULLY! BY COPYING, OR USING OUR FORUM(S)IN ANY MANNER, YOU AGREE TO BE BOUND BY THE TERMS OF THIS AGREEMENT AND PRIVACY POLICY.
+				     IF YOU DO NOT AGREE WITH OUR END USER LICENSE AGREEMENT, PLEASE DO NOT PROCEED WITH THE REGISTRATION PROCESS AND LEAVE OUR SITES IMMEDIATELY AND DO NOT ACCESS OR USE OUR FORUM(S).
+ 			    </td></tr>
+ 			    </table>
+ 			    <p align="center"> <td class="licenseStyle"> <input type="checkbox" value="I agree"> I agree<br></td></p>
 			
 			<p align="center">
 				<input type="submit" value="Register"/> or <a href="login">Login to the Forum</a>
