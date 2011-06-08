@@ -78,12 +78,15 @@ public class FriendServlet extends HttpServlet {
 			usersToRemove.add(friend.getUserName());
 		}
 		Vector<UserInfo> users = new Vector<UserInfo>();
+		
+		boolean found = false;
 		if (null != inputSearchName){
 			if (!inputSearchName.equals("")){
+				found = true;
 				users = _webController.getSearchUsersList(username, inputSearchName);
 			}
 		}
-		else{
+		if (!found){
 			users = _webController.getUsersList(username);
 		}
 		for(UserInfo user: users){
