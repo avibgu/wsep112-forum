@@ -1,6 +1,7 @@
 package jsp;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -66,6 +67,8 @@ public class changePasswordServlet extends HttpServlet {
 			if (null == error)
 				req.setAttribute("error", "");
 		}
+		
 		_changePassJsp.forward(req, resp);
+		
 	}
 }
