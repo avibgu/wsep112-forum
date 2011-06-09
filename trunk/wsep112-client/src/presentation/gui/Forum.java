@@ -222,6 +222,7 @@ public class Forum extends javax.swing.JFrame {
        }
        else{
            String newPassword = jTextField1.getText();
+           controller.changePass(newPassword);
 System.out.println("password = " + newPassword);
        }
     }//GEN-LAST:event_jButton4ActionPerformed
