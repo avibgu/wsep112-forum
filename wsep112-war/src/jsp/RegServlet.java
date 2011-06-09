@@ -50,23 +50,33 @@ public class RegServlet extends HttpServlet {
 		String password = req.getParameter( "password" );
 		String email = req.getParameter( "email" );
 		String checkbox = req.getParameter( "checkbox" );
-
-		boolean ans = _webController.register(firstName, lastName,
-				username, password, email, checkbox);
-		if(ans){
-				resp.addCookie(new Cookie("username", username));
-				resp.sendRedirect("forum");
-		}		
-		else{
 		
-			String error = _webController.getErrorFromQueue("REGERROR");
-			if (null != error)
-				req.setAttribute("error", error);
-			else
-				req.setAttribute("error", "ERROR - Enter Details again..");
-			
+		if (	firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() ||
+				password.isEmpty() || email.isEmpty()){
+
+			req.setAttribute("error", "Please fill up all fields");
 			_regJsp.forward(req, resp);
 		}
+		else{
+
+			boolean ans = _webController.register(firstName, lastName,
+					username, password, email, checkbox);
+			
+			if(ans){
+
+				resp.addCookie(new Cookie("username", username));
+				resp.sendRedirect("forum");
+			}		
+			else{
+			
+				String error = _webController.getErrorFromQueue("REGERROR");
+				if (null != error)
+					req.setAttribute("error", error);
+				else
+					req.setAttribute("error", "ERROR - Enter Details again..");
+				
+				_regJsp.forward(req, resp);
+			}
+		}
 	}
-	
 }
