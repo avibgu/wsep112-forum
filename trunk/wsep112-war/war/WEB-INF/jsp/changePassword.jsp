@@ -10,9 +10,9 @@
 		<div id="changePassError">
 			<p style="color: red; font-size: medium;">	<%=error%>	</p>
 		</div>
-		<br>			
-		<tr><td>	New password:	</td><td>	<input type="password" id="pass"/>	</td></tr>
-		<button onclick="changePassword()" class="buttonsStyle"> Change </button>
+					
+		<tr><td>	New password:	</td><td><br>	<input type="password" id="pass" style="width: 90px; "/>	</td></tr><br>
+		<button style="width: 95px; onclick="changePassword()" class="buttonsStyle"><img src="http://png-3.findicons.com/files/icons/2222/gloss_basic/16/arrow_undo.png"> Change </button>
 	
 </body>
 </html>

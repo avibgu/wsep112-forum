@@ -30,7 +30,7 @@
 			    
 			    <TD class="threadsListTdStyle">
 			    
-					<a onclick="loadPostsList(<%=thread.getThread_id()%>)"  href="#"><img src="http://png-5.findicons.com/files/icons/566/isimple_system/48/email_send.png"><%=thread.getTitle()%></a>
+					<a onclick="loadPostsList(<%=thread.getThread_id()%>)"  href="#"><%=thread.getTitle()%></a>
 					<% if (username.equals("forum-admin")) {
 							%>			
 									<a href="#" onclick="deleteThread(<%=thread.getThread_id()%>)"> <br>Delete </a>				      				      
