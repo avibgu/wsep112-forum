@@ -93,7 +93,7 @@ public class StartWindow extends javax.swing.JFrame {
         getContentPane().add(jTextField6);
         jTextField6.setBounds(450, 210, 120, 30);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +103,7 @@ public class StartWindow extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(460, 360, 80, 30);
 
-        jToggleButton1.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
+        jToggleButton1.setFont(new java.awt.Font("Kristen ITC", 1, 18));
         jToggleButton1.setForeground(new java.awt.Color(255, 0, 102));
         jToggleButton1.setText("Click here to register");
         jToggleButton1.setBorderPainted(false);
@@ -115,10 +115,16 @@ public class StartWindow extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButton1);
         jToggleButton1.setBounds(360, 450, 290, 33);
+
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jPasswordField1);
         jPasswordField1.setBounds(450, 270, 120, 30);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 18));
         jLabel2.setForeground(new java.awt.Color(255, 0, 102));
         jLabel2.setText("Don't you have an account?");
         getContentPane().add(jLabel2);
@@ -168,6 +174,11 @@ public class StartWindow extends javax.swing.JFrame {
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

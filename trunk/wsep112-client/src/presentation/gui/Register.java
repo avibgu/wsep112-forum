@@ -88,7 +88,7 @@ public class Register extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(360, 270, 73, 20);
 
-        jLabel5.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel5.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("License Agreement");
         getContentPane().add(jLabel5);
@@ -115,7 +115,7 @@ public class Register extends javax.swing.JFrame {
         getContentPane().add(jTextField2);
         jTextField2.setBounds(450, 310, 130, 30);
 
-        jLabel7.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Kristen ITC", 1, 18));
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Please insert all details in order to register to the forum");
         getContentPane().add(jLabel7);
@@ -188,6 +188,10 @@ public class Register extends javax.swing.JFrame {
         if (jTextField2.getText().equals("") ||  jTextField3.getText().equals("") || jTextField4.getText().equals("") || jTextField5.getText().equals("") || jTextField6.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Please insert all details!", "Register Error", 0);
         } else{
+            if(!(jCheckBox1.isSelected())){
+                JOptionPane.showMessageDialog(null, "Please accept the term!", "License Agreement", 0);
+             }
+            else {
             String firstname = jTextField4.getText();
             String lastname = jTextField3.getText();
             String username = jTextField6.getText();
@@ -200,7 +204,7 @@ public class Register extends javax.swing.JFrame {
             }
         }
 }//GEN-LAST:event_jButton1ActionPerformed
-
+    }
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
