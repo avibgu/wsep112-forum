@@ -72,13 +72,13 @@ public class StartWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel4.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Kristen ITC", 1, 18));
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Password");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(330, 270, 100, 20);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 18));
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("UserName");
         getContentPane().add(jLabel3);
@@ -93,7 +93,7 @@ public class StartWindow extends javax.swing.JFrame {
         getContentPane().add(jTextField6);
         jTextField6.setBounds(450, 210, 120, 30);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +114,7 @@ public class StartWindow extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(350, 450, 290, 33);
+        jToggleButton1.setBounds(360, 450, 290, 33);
         getContentPane().add(jPasswordField1);
         jPasswordField1.setBounds(450, 270, 120, 30);
 
@@ -122,9 +122,9 @@ public class StartWindow extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 0, 102));
         jLabel2.setText("Don't you have an account?");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(360, 420, 290, 25);
+        jLabel2.setBounds(370, 420, 290, 25);
 
-        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 36)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 36));
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Forum System");
         getContentPane().add(jLabel6);
@@ -135,7 +135,7 @@ public class StartWindow extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 970, 570);
 
-        jLabel5.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("UserName");
         getContentPane().add(jLabel5);

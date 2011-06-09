@@ -35,6 +35,7 @@ public class ForumsViewPanel extends javax.swing.JPanel {
             _forumsList= new DefaultListModel();
             _start=start;
             fillListForum();
+              this.setSize(985,605);
              setVisible(true);
             initComponents();
     }
