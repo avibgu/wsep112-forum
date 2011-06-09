@@ -2,6 +2,7 @@
 <jsp:useBean id="posts_list" scope="request" type="java.util.List<common.forum.items.PostInfo>" />
 <jsp:useBean id="username" scope="request" type="java.lang.String" />
 <jsp:useBean id="ForumId" scope="session" type="java.lang.String" />
+<jsp:useBean id="error" scope="request" type="java.lang.String" />
 
 <html>
 
@@ -10,6 +11,8 @@
 		<p align="center">
 			<a style="text-align: center;" onclick="loadThreadsList(<%=ForumId%>)"  href="#"><img src="http://png-5.findicons.com/files/icons/756/ginux/16/backward.png"> Back </a>
 		</p>
+		
+		<p align="center" style="color: red">	<%=error%>	</p>
 		
 		<p align="center">	<%= posts_list.get(0).get_title() %>	</p>
 
