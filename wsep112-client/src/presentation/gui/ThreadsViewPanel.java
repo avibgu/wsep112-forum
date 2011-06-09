@@ -84,7 +84,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
 
         jLayeredPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/view_bottom.png"))); // NOI18N
         jButton2.setText("Add Thread");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +92,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        jButton2.setBounds(160, 360, 180, 40);
+        jButton2.setBounds(270, 490, 180, 40);
         jLayeredPane4.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Please choose one of the Threads below", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -107,10 +107,10 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jScrollPane1.setBounds(10, 30, 470, 260);
+        jScrollPane1.setBounds(10, 30, 670, 410);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLayeredPane2.setBounds(10, 30, 490, 300);
+        jLayeredPane2.setBounds(10, 30, 690, 450);
         jLayeredPane4.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/go_back.png"))); // NOI18N
@@ -125,7 +125,7 @@ public class ThreadsViewPanel extends javax.swing.JPanel {
         jLayeredPane4.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         add(jLayeredPane4);
-        jLayeredPane4.setBounds(10, 11, 508, 459);
+        jLayeredPane4.setBounds(10, 11, 719, 548);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
