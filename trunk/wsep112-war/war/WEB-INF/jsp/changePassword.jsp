@@ -12,7 +12,7 @@
 		</div>
 					
 		<tr><td>	New password:	</td><td><br>	<input type="password" id="pass" style="width: 90px; "/>	</td></tr><br>
-		<button style="width: 95px; onclick="changePassword()" class="buttonsStyle"><img src="http://png-3.findicons.com/files/icons/2222/gloss_basic/16/arrow_undo.png"> Change </button>
+		<button onclick="changePassword()" class="buttonsStyle" style="width: 95px;" ><img src="http://png-3.findicons.com/files/icons/2222/gloss_basic/16/arrow_undo.png"> Change </button>
 	
 </body>
 </html>
