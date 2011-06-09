@@ -65,20 +65,24 @@ public class StartWindow extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel4.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel4.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Password");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(120, 250, 73, 20);
+        jLabel4.setBounds(330, 270, 100, 20);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("UserName");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(120, 210, 79, 20);
+        jLabel3.setBounds(330, 210, 100, 25);
 
         jTextField6.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -87,9 +91,9 @@ public class StartWindow extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField6);
-        jTextField6.setBounds(210, 200, 120, 30);
+        jTextField6.setBounds(450, 210, 120, 30);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,9 +101,9 @@ public class StartWindow extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(230, 300, 80, 30);
+        jButton1.setBounds(460, 360, 80, 30);
 
-        jToggleButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jToggleButton1.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
         jToggleButton1.setForeground(new java.awt.Color(255, 0, 102));
         jToggleButton1.setText("Click here to register");
         jToggleButton1.setBorderPainted(false);
@@ -110,20 +114,32 @@ public class StartWindow extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jToggleButton1);
-        jToggleButton1.setBounds(160, 370, 230, 29);
+        jToggleButton1.setBounds(350, 450, 290, 33);
         getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(210, 250, 120, 30);
+        jPasswordField1.setBounds(450, 270, 120, 30);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 102));
         jLabel2.setText("Don't you have an account?");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(170, 350, 230, 20);
+        jLabel2.setBounds(360, 420, 290, 25);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/forums.jpg"))); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Forum System");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(340, 80, 265, 49);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/wallpaper_by_J_Sheldon.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 0, 0)));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 530, 430);
+        jLabel1.setBounds(0, 0, 970, 570);
+
+        jLabel5.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("UserName");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(120, 210, 79, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,7 +161,7 @@ public class StartWindow extends javax.swing.JFrame {
 }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-           new Register(controller, this).setSize(550,467);
+           new Register(controller, this).setSize(985,605);
            this.setVisible(false);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
@@ -159,6 +175,8 @@ public class StartWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JToggleButton jToggleButton1;
