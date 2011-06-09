@@ -49,18 +49,17 @@ public class RegServlet extends HttpServlet {
 		String username = req.getParameter( "username" );
 		String password = req.getParameter( "password" );
 		String email = req.getParameter( "email" );
-		
+		String checkbox = req.getParameter( "checkbox" );
+
 		boolean ans = _webController.register(firstName, lastName,
-				username, password, email);
-		
+				username, password, email, checkbox);
 		if(ans){
-			resp.addCookie(new Cookie("username", username));
-			resp.sendRedirect("forum");
+				resp.addCookie(new Cookie("username", username));
+				resp.sendRedirect("forum");
 		}		
 		else{
 		
 			String error = _webController.getErrorFromQueue("REGERROR");
-			
 			if (null != error)
 				req.setAttribute("error", error);
 			else

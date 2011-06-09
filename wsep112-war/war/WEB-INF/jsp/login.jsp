@@ -39,7 +39,7 @@
 			
 			<br>
 			
-			<p align="center"><input type="submit" value="Login"/> or <a href="reg">Register to the Forum</a></p>
+			<p align="center"><input src="http://www.jobcanvas.com/images/buttons/login_button.png" type="image" alt="submit" value="Login"/> or <a href="reg">Register to the Forum</a></p>
 			
 		</form>
 		

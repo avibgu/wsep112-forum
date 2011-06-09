@@ -30,8 +30,8 @@
     <tr>
       <td style="width: 132px; ">
         <input type="hidden" name="dff_view" value="grid">
-        Search:<br><input type="text" name="dff_keyword" id="searchFriend"  size="30" maxlength="50" style="width: 125px; ">
-		<button onclick="loadFriendsList()" class="buttonsStyle1">Find</button>
+        Search:<br><input type="text" name="dff_keyword" id="searchFriend"  size="30" maxlength="50" style="width: 90px; "><br>
+		<button onclick="loadFriendsList()" class="buttonsStyle1" style="width: 95px;" ><img src="http://png-5.findicons.com/files/icons/1715/gion/16/system_search.png">Find</button>
       </td>
     </tr>
 
@@ -49,9 +49,9 @@
 
 		
 
-		<button onclick="addFriend()" class="buttonsStyle1">Add</button><br>		
+		<button onclick="addFriend()" class="buttonsStyle1" style="width: 95px;" ><img src="http://png-2.findicons.com/files/icons/1620/crystal_project/16/ok.png">Add</button><br>		
 		<br>
-		<br>
+
 						
 		<select class="selectStyle" id="removeFriendName" >
 		<%
@@ -65,7 +65,7 @@
 
 		<br>
 		
-		<button onclick="removeFriend()" class="buttonsStyle1">Remove</button>
+		<button onclick="removeFriend()" class="buttonsStyle1" style="width: 95px;" ><img src="http://png-4.findicons.com/files/icons/577/refresh_cl/16/delete.png">Remove</button>
 		
 	</body>
 

@@ -81,11 +81,11 @@ public class WebController implements Observer{
 	}
 	
 	public boolean register(String firstName, String lastName, String username,
-			String password, String email) {
+			String password, String email, String checkbox) {
 		
 		ClientController cc = getClientController(username);
 		
-		return cc.register(firstName, lastName, username, password, email);
+		return cc.register(firstName, lastName, username, password, email, checkbox);
 	}
 	
 
