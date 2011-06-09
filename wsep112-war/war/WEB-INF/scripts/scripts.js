@@ -15,6 +15,8 @@ function checkNotifications()
 			if (currentThreadId != -1)
 				loadPostsList(currentThreadId);
 		}
+		else
+			$('#notificationContent').hide().slideDown('slow').delay(7000).slideUp();
 	});
 	
 	setTimeout('checkNotifications()', 10000);
