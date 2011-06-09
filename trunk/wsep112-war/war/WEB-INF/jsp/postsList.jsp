@@ -8,7 +8,7 @@
 	<body>
 	
 		<p align="center">
-			<a style="text-align: center;" onclick="loadThreadsList(<%=ForumId%>)"  href="#"> Back </a>
+			<a style="text-align: center;" onclick="loadThreadsList(<%=ForumId%>)"  href="#"><img src="http://png-5.findicons.com/files/icons/756/ginux/16/backward.png"> Back </a>
 		</p>
 		
 		<p align="center">	<%= posts_list.get(0).get_title() %>	</p>
@@ -66,7 +66,7 @@
 		<br>
 
 		<div align="center">
-			<button onclick="addPost()" class="buttonsStyle"> Add Post </button>
+			<button onclick="addPost()" class="buttonsStyle"><img src="http://png-5.findicons.com/files/icons/1035/human_o2/16/document_new.png"> Add Post </button>
 		</div>
 		
 	</body>

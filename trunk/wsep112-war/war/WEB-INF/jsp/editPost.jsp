@@ -8,7 +8,7 @@
 	<body>
 	
 		<p align="center">
-			<a style="text-align: center;" onclick="loadPostsList(<%=ThreadId%>)"  href="#"> Back </a>
+			<a style="text-align: center;" onclick="loadPostsList(<%=ThreadId%>)"  href="#"><img src="http://png-5.findicons.com/files/icons/756/ginux/16/backward.png"> Back </a>
 		</p>
 		
 		<h1 align="center">	Edit Post	</h1>
@@ -34,7 +34,7 @@
 		<br>
 		
 		<div align="center">
-			<button onclick="loadEditListPosts(<%=ThreadId%>)" class="buttonsStyle"> Change </button>
+			<button onclick="loadEditListPosts(<%=ThreadId%>)" class="buttonsStyle"><img src="http://png.findicons.com/files/icons/77/icandy_junior_toolbar/16/write.png"> Change </button>
 		</div>
 		
 	</body>
