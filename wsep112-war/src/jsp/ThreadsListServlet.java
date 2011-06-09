@@ -55,6 +55,8 @@ public class ThreadsListServlet extends HttpServlet {
 		
 		String addedThread = req.getParameter("idOfForum");
 		String id = req.getParameter("deleteThreadId");
+		
+		req.setAttribute("error","");
 	
 		if (id != null){
 			forumId =(String)session.getAttribute("ForumId");
@@ -65,7 +67,12 @@ public class ThreadsListServlet extends HttpServlet {
 			forumId = req.getParameter("idOfForum");
 			String title = req.getParameter("title");
 			String body = req.getParameter("body");
-			_webController.addThread(username, forumId,title, body);
+			
+			if (title.isEmpty() || body.isEmpty())
+				req.setAttribute("error", "The title and the body of the thread shouldn't be empty");
+			
+			else
+				_webController.addThread(username, forumId,title, body);
 		}
 		else{
 			forumId = req.getParameter("id");

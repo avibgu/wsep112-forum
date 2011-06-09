@@ -51,6 +51,8 @@ public class PostsListServlet extends HttpServlet{
 		String editThread = req.getParameter("idThread");
 		String addedPost = req.getParameter("idAddedThread");
 		
+		req.setAttribute("error","");
+				
 		if (id != null){
 			threadId = session.getAttribute("ThreadId").toString();
 			_webController.deletePost(username, threadId,id);
@@ -66,7 +68,11 @@ public class PostsListServlet extends HttpServlet{
 			//get the right post by his place in array (postId)
 			PostInfo post = _webController.getPostByLocation(username,threadId,postId);
 
-			_webController.editPost(username, forumId , title, body, threadId, String.valueOf(post.get_post_id()));
+			if (title.isEmpty() || body.isEmpty())
+				req.setAttribute("error", "The title and the body of the post shouldn't be empty");
+			
+			else
+				_webController.editPost(username, forumId , title, body, threadId, String.valueOf(post.get_post_id()));
 		}
 		
 		else if (addedPost != null){
@@ -74,8 +80,13 @@ public class PostsListServlet extends HttpServlet{
 			session.setAttribute("ThreadId", threadId);
 			String title = req.getParameter("title");
 			String body = req.getParameter("body");
-			_webController.addPost(username, (String)session.getAttribute("ForumId"),
-					title, body, threadId);
+			
+			if (title.isEmpty() || body.isEmpty())
+				req.setAttribute("error", "The title and the body of the post shouldn't be empty");
+			
+			else
+				_webController.addPost(username, (String)session.getAttribute("ForumId"),
+						title, body, threadId);
 		}
 		else{
 			threadId = req.getParameter("id");
