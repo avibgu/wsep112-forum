@@ -363,7 +363,8 @@ public class CLI implements Observer{
 		String password = buf.readLine();
 		System.out.println("Please insert your email");
 		String email = buf.readLine();
-		return getClientController().register(firstName, lastName, username, password, email);
+		String checkbox = buf.readLine();
+		return getClientController().register(firstName, lastName, username, password, email, checkbox);
 	}
 
 	/**

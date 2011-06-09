@@ -144,7 +144,7 @@ public class Register extends javax.swing.JFrame {
            String username = jTextField6.getText();
            String password = jTextField5.getText();
            String email = jTextField2.getText();
-           boolean flag = controller.register(firstname, lastname, username, password, email);
+           boolean flag = controller.register(firstname, lastname, username, password, email, "");
            if (flag){
                    this.getStartWindow().setForum(new Forum(controller, getStartWindow()));
                    this.setVisible(false);
