@@ -78,7 +78,7 @@ public class MainClient {
         
 		if (null == clientController) return;
 		
-		new StartWindow(clientController).setSize(546,465);		
+		new StartWindow(clientController).setSize(985,605);
 		//new CLI(clientController, logger).start();
 	}
 	
