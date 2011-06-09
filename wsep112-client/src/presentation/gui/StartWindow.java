@@ -94,6 +94,7 @@ public class StartWindow extends javax.swing.JFrame {
         jTextField6.setBounds(450, 210, 120, 30);
 
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/log_in.png"))); // NOI18N
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +102,7 @@ public class StartWindow extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(460, 360, 80, 30);
+        jButton1.setBounds(450, 350, 120, 30);
 
         jToggleButton1.setFont(new java.awt.Font("Kristen ITC", 1, 18));
         jToggleButton1.setForeground(new java.awt.Color(255, 0, 102));
