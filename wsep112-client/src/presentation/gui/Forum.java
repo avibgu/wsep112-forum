@@ -192,7 +192,7 @@ public class Forum extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new ManageFriends(controller, getStartWindow());
+        new ManageFriends(controller, getStartWindow()).setSize(985,605);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
