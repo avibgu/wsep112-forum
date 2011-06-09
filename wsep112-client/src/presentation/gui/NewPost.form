@@ -23,8 +23,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLayeredPane1" min="-2" pref="511" max="-2" attributes="0"/>
-              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <Component id="jLayeredPane1" min="-2" pref="719" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -32,7 +32,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLayeredPane1" pref="459" max="32767" attributes="0"/>
+              <Component id="jLayeredPane1" pref="548" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -64,7 +64,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="20" y="60" width="50" height="-1" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="80" y="60" width="50" height="-1" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -80,7 +80,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="20" y="90" width="50" height="-1" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="80" y="110" width="50" height="-1" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -95,7 +95,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="70" y="60" width="360" height="30" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="140" y="60" width="360" height="30" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -114,7 +114,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="100" y="350" width="130" height="30" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="180" y="430" width="130" height="30" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -133,7 +133,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="260" y="350" width="140" height="30" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="330" y="430" width="140" height="30" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -143,7 +143,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="70" y="90" width="360" height="220" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="140" y="110" width="360" height="260" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
 
