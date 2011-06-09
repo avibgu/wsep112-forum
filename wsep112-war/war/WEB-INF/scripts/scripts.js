@@ -161,7 +161,7 @@ function getTitle(num)
 }
 
 function changePassword()
-{	
+{		
 	$.get('changePassword',{newpass : $('#pass').val()}, function(data) {
 		$('#changePassword').html(data);
 	});
