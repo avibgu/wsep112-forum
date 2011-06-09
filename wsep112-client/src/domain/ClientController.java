@@ -182,7 +182,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 *
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
-	public boolean changePass(String username, String password) {
+	public boolean changePass(String password) {
 		
 		ErrorMessage errorMessage;
 		
@@ -196,7 +196,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			// Encrypt the password using SHA1 algorithm.
 			String tEncrypted_Password = SHA1.hash(password);
 	
-			ChangePasswordMessage cpm = new ChangePasswordMessage(username, tEncrypted_Password, this);
+			ChangePasswordMessage cpm = new ChangePasswordMessage(getCurrentLogedInUsername(), tEncrypted_Password, this);
 	
 			try {
 	
