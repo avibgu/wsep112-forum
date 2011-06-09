@@ -78,12 +78,17 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
 	public boolean register(String firstName, String lastName, String username,
-			String password, String email) {
+			String password, String email, String checkbox) {
 		
 		ErrorMessage errorMessage;
 		
 		// Check if the password is strong enough.
-		if (!validPassword(password)){
+		if (checkbox==null){
+			errorMessage = new ErrorMessage("Please accept the term.");
+		}
+		
+		// Check if the password is strong enough.
+		else if (!validPassword(password)){
 			errorMessage = new ErrorMessage("Password is too weak.");
 		}
 		
@@ -124,7 +129,6 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		errorMessage.setForWho("REGERROR");
 		
 		notifyObservers(errorMessage);
-		
 		return false;
 	}
 
