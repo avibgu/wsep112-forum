@@ -64,19 +64,19 @@ public class AddThreadPanel extends javax.swing.JPanel {
         jLayeredPane1.setForeground(new java.awt.Color(255, 255, 255));
 
         jTextField4.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jTextField4.setBounds(70, 40, 380, 30);
+        jTextField4.setBounds(140, 60, 380, 30);
         jLayeredPane1.add(jTextField4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Title");
-        jLabel2.setBounds(20, 40, 79, 20);
+        jLabel2.setBounds(80, 60, 79, 20);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Body");
-        jLabel6.setBounds(20, 70, 38, 20);
+        jLabel6.setBounds(80, 110, 38, 20);
         jLayeredPane1.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
@@ -87,7 +87,7 @@ public class AddThreadPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(120, 380, 120, 30);
+        jButton1.setBounds(210, 410, 120, 30);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
@@ -98,15 +98,15 @@ public class AddThreadPanel extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        jButton2.setBounds(280, 380, 130, 30);
+        jButton2.setBounds(380, 410, 130, 30);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextField3.setColumns(20);
-        jTextField3.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jTextField3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jTextField3.setRows(5);
         jScrollPane1.setViewportView(jTextField3);
 
-        jScrollPane1.setBounds(70, 70, 380, 250);
+        jScrollPane1.setBounds(140, 110, 380, 250);
         jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -115,15 +115,15 @@ public class AddThreadPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
