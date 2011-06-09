@@ -14,7 +14,7 @@
 	%>
 
 		<div align="center">
-			<a href="#" onclick="loadThreadsList(<%=forum.getForumId()%>)"><%=forum.getName()%></a>
+			<a href="#" onclick="loadThreadsList(<%=forum.getForumId()%>)"><img src="http://png-5.findicons.com/files/icons/1670/smashy_the_alien/32/contact.png"><%=forum.getName()%> </a>
 		</div>
 		
 		<br>

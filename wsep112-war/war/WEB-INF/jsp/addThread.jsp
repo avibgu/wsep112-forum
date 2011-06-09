@@ -6,7 +6,7 @@
 	<body>
 	
 		<p align="center">
-			<a style="text-align: center;" onclick="loadThreadsList(<%=ForumId%>)"  href="#"> Back </a>
+			<a style="text-align: center;" onclick="loadThreadsList(<%=ForumId%>)"  href="#"><img src="http://png-5.findicons.com/files/icons/756/ginux/16/backward.png"> Back </a>
 		</p>
 		
 		<h3 align="center">	Add Thread	</h3>
@@ -32,7 +32,7 @@
 		<br>
 
 		<div align="center">
-			<button onclick="loadAddedThread(<%=ForumId%>)" class="buttonsStyle"> Add Thread </button>
+			<button onclick="loadAddedThread(<%=ForumId%>)" class="buttonsStyle"><img src="http://png-5.findicons.com/files/icons/1035/human_o2/16/document_new.png"> Add Thread </button>
 		</div>
 		
 	</body>
