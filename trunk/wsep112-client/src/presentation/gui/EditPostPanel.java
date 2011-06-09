@@ -58,16 +58,16 @@ private String _postId;
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Forum System", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Please edit your post");
-        jLabel1.setBounds(160, 40, 165, 20);
+        jLabel1.setBounds(310, 40, -1, -1);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Body");
-        jLabel3.setBounds(50, 110, 40, 20);
+        jLabel3.setBounds(180, 120, 40, -1);
         jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         title.setFont(new java.awt.Font("Kristen ITC", 1, 14));
@@ -76,10 +76,10 @@ private String _postId;
                 titleActionPerformed(evt);
             }
         });
-        title.setBounds(100, 70, 290, 30);
+        title.setBounds(240, 70, 290, 30);
         jLayeredPane1.add(title, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        ok.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        ok.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         ok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Ok-icon.png"))); // NOI18N
         ok.setText("Ok");
         ok.addActionListener(new java.awt.event.ActionListener() {
@@ -87,10 +87,10 @@ private String _postId;
                 okActionPerformed(evt);
             }
         });
-        ok.setBounds(120, 350, 110, 33);
+        ok.setBounds(260, 370, 110, -1);
         jLayeredPane1.add(ok, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        cancel.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        cancel.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
         cancel.setText("Cancel");
         cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -98,13 +98,13 @@ private String _postId;
                 cancelActionPerformed(evt);
             }
         });
-        cancel.setBounds(260, 350, 120, 33);
+        cancel.setBounds(400, 370, 120, -1);
         jLayeredPane1.add(cancel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Title");
-        jLabel2.setBounds(50, 70, 40, 30);
+        jLabel2.setBounds(180, 70, 40, 30);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         body.setColumns(20);
@@ -112,7 +112,7 @@ private String _postId;
         body.setRows(5);
         jScrollPane1.setViewportView(body);
 
-        jScrollPane1.setBounds(100, 110, 290, 170);
+        jScrollPane1.setBounds(240, 120, 290, 220);
         jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -121,14 +121,15 @@ private String _postId;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
