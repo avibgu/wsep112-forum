@@ -43,7 +43,7 @@ public class Forum extends javax.swing.JFrame {
         setFriends();
         dispalyInitialForum( new ForumsViewPanel(controller, getStartWindow() ));
         initComponents();
-        this.setSize(693,516);
+        this.setSize(985,605);
         setVisible(true);
     }
 
@@ -85,7 +85,7 @@ public class Forum extends javax.swing.JFrame {
                this.remove(getMainPanel());
                setMainPanel(panel);
                initComponents();
-               this.setSize(693,516);
+               this.setSize(985,605);
                setVisible(true);
         }
         else
@@ -96,7 +96,7 @@ public class Forum extends javax.swing.JFrame {
         if (panel!=null){
                setMainPanel(panel);
                initComponents();
-               this.setSize(693,516);
+               this.setSize(985,605);
                setVisible(true);
         }
         else
@@ -119,11 +119,10 @@ public class Forum extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        newPass = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -138,19 +137,19 @@ public class Forum extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jButton1.setBounds(10, 420, 130, 30);
+        jButton1.setBounds(20, 490, 130, 30);
         jLayeredPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "My Friends", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jList1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jList1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jList1.setModel(presentation.gui.Forum.getFriendsListModel());
         jScrollPane1.setViewportView(jList1);
 
-        jScrollPane1.setBounds(10, 40, 110, 170);
+        jScrollPane1.setBounds(10, 40, 120, 170);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLayeredPane2.setBounds(10, 40, 130, 230);
+        jLayeredPane2.setBounds(20, 30, 140, 230);
         jLayeredPane1.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
@@ -161,60 +160,49 @@ public class Forum extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jButton2.setBounds(20, 280, 110, 30);
+        jButton2.setBounds(30, 280, 110, 30);
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton3.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
-        jButton3.setText("Change");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jButton3.setBounds(30, 380, 90, 20);
-        jLayeredPane1.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("New password:");
-        jLabel2.setBounds(20, 330, 110, 20);
+        jLabel2.setBounds(30, 340, 130, 20);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        newPass.addActionListener(new java.awt.event.ActionListener() {
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newPassActionPerformed(evt);
+                jTextField1ActionPerformed(evt);
             }
         });
-        newPass.setBounds(10, 350, 130, 20);
-        jLayeredPane1.add(newPass, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jTextField1.setBounds(30, 370, 110, 20);
+        jLayeredPane1.add(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jButton4.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jButton4.setText("Change");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jButton4.setBounds(30, 400, 110, 25);
+        jLayeredPane1.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         getContentPane().add(jLayeredPane1);
-        jLayeredPane1.setBounds(520, 10, 150, 460);
+        jLayeredPane1.setBounds(750, 20, 180, 540);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/forum_img.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/wallpaper_by_J_Sheldon.jpg"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(970, 710));
+        jLabel1.setMinimumSize(new java.awt.Dimension(970, 710));
+        jLabel1.setPreferredSize(new java.awt.Dimension(970, 710));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 680, 480);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 140, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 140, 470);
+        jLabel1.setBounds(0, -80, 960, 710);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         controller.logout();
-        new StartWindow(controller).setSize(546,465);
+        new StartWindow(controller).setSize(985,605);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -223,35 +211,33 @@ public class Forum extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String newPassword = newPass.getText();
-        JOptionPane.showMessageDialog(null, newPassword, "", 0);
-        System.out.println("password = " + newPassword);
-        boolean ans = controller.changePass(newPassword);
-       // if (ans)
-         //   JOptionPane.showMessageDialog(null, "Password has been changed", "", 0);
-        //else
-         //   JOptionPane.showMessageDialog(null, "Password too weak", "", 0);
-        newPass.setText("");
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void newPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPassActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_newPassActionPerformed
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+            if (jTextField1.getText().equals("")){
+           // JOptionPane.showMessageDialog(null, "Please insert all details!", "Login Error", 0);
+                System.out.println("here ");
+       }
+       else{
+           String newPassword = jTextField1.getText();
+System.out.println("password = " + newPassword);
+       }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JList jList1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField newPass;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
 }
