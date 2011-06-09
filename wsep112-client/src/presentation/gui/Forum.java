@@ -22,6 +22,7 @@ import presentation.gui.workers.SetFriendsWorker;
 import common.forum.items.UserInfo;
 
 import domain.ClientController;
+import javax.swing.JOptionPane;
 /**
  *
  * @author
@@ -178,6 +179,12 @@ public class Forum extends javax.swing.JFrame {
         jLabel2.setText("New password:");
         jLabel2.setBounds(20, 330, 110, 20);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        newPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newPassActionPerformed(evt);
+            }
+        });
         newPass.setBounds(10, 350, 130, 20);
         jLayeredPane1.add(newPass, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -218,8 +225,19 @@ public class Forum extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String newPassword = newPass.getText();
-       // controller.changePass(, newPassword);
+        JOptionPane.showMessageDialog(null, newPassword, "", 0);
+        System.out.println("password = " + newPassword);
+        boolean ans = controller.changePass(newPassword);
+       // if (ans)
+         //   JOptionPane.showMessageDialog(null, "Password has been changed", "", 0);
+        //else
+         //   JOptionPane.showMessageDialog(null, "Password too weak", "", 0);
+        newPass.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void newPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newPassActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
