@@ -50,9 +50,9 @@ private String _postId;
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         title = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         ok = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         body = new javax.swing.JTextArea();
 
@@ -61,13 +61,13 @@ private String _postId;
         jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Please edit your post");
-        jLabel1.setBounds(310, 40, -1, -1);
+        jLabel1.setBounds(310, 40, 165, 20);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Body");
-        jLabel3.setBounds(180, 120, 40, -1);
+        jLabel3.setBounds(180, 120, 40, 20);
         jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         title.setFont(new java.awt.Font("Kristen ITC", 1, 14));
@@ -79,6 +79,12 @@ private String _postId;
         title.setBounds(240, 70, 290, 30);
         jLayeredPane1.add(title, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Title");
+        jLabel2.setBounds(180, 70, 40, 30);
+        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         ok.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         ok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Ok-icon.png"))); // NOI18N
         ok.setText("Ok");
@@ -87,7 +93,7 @@ private String _postId;
                 okActionPerformed(evt);
             }
         });
-        ok.setBounds(260, 370, 110, -1);
+        ok.setBounds(260, 370, 110, 33);
         jLayeredPane1.add(ok, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         cancel.setFont(new java.awt.Font("Kristen ITC", 1, 14));
@@ -98,14 +104,8 @@ private String _postId;
                 cancelActionPerformed(evt);
             }
         });
-        cancel.setBounds(400, 370, 120, -1);
+        cancel.setBounds(400, 370, 120, 33);
         jLayeredPane1.add(cancel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Title");
-        jLabel2.setBounds(180, 70, 40, 30);
-        jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         body.setColumns(20);
         body.setFont(new java.awt.Font("Kristen ITC", 1, 14));
