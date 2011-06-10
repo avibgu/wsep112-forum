@@ -196,6 +196,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
 
            String  viewInfo= dateTime+ "\n"+"created by: "+author +"\n\n"+ body;
            bodyArea.setText(viewInfo);
+           bodyArea.setCaretPosition(0);//sets the scroll bar to point to the top
            bodyArea.setEditable(false);
         
            //getStartWindow().nonDisplayForum(); //setVisible false
@@ -203,6 +204,34 @@ public class PostsViewPanel extends javax.swing.JPanel {
             //this.setVisible(false);
 }//GEN-LAST:event_postsListValueChanged
 
+    private String manageText( String text){
+    	  int textSize=text.length();
+    	  String result=" ";
+    	  int charsForRow=50;
+    	  int charNumber=0;
+    	  int numOfSpaces=0;
+    	  while(charNumber<textSize){
+    	        if(text.charAt(charNumber)==' ' && numOfSpaces>=6)
+    	        {
+    	        	result = result + "\n";
+    	        	numOfSpaces=0;
+    	        }
+    	        else
+    	        {
+    	        	if(text.charAt(charNumber)==' ')
+    	        		numOfSpaces++;
+    	        	
+    	        	if(text.charAt(charNumber)=='\n' && numOfSpaces<6)
+    	        		result = result + " ";
+    	        	else
+    	        		result = result + text.charAt(charNumber);
+    	        	
+    	        	charNumber++;
+    	        }
+    	  }
+    	                    
+    	      return result;
+    	  }
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // Back Button
         this.setVisible(false);
