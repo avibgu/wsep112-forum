@@ -194,7 +194,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
         String thread_id=Integer.toString(post.getThread_id());
         String post_id=Integer.toString(post.get_post_id());
 
-           String  viewInfo= dateTime+ "\n"+"created by: "+author +"\n\n"+ body;
+           String  viewInfo= dateTime+ "\n"+"created by: "+author +"\n\n"+ manageText(body);
            bodyArea.setText(viewInfo);
            bodyArea.setCaretPosition(0);//sets the scroll bar to point to the top
            bodyArea.setEditable(false);
