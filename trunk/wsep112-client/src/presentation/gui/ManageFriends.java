@@ -132,7 +132,7 @@ public class ManageFriends extends javax.swing.JFrame {
         getContentPane().add(jButton3);
         jButton3.setBounds(20, 20, 50, 30);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/add-user-icon (1).png"))); // NOI18N
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -141,9 +141,9 @@ public class ManageFriends extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(370, 430, 150, 41);
+        jButton1.setBounds(200, 500, 150, 41);
 
-        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jButton2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/remove-user-icon (1).png"))); // NOI18N
         jButton2.setText("Remove");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +152,7 @@ public class ManageFriends extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(660, 430, 150, 41);
+        jButton2.setBounds(600, 500, 150, 41);
 
         jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 18));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -160,7 +160,7 @@ public class ManageFriends extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(210, 130, 530, 25);
 
-        jList2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jList2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jList2.setModel(presentation.gui.ManageFriends.getMembersListModel());
         jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -171,29 +171,29 @@ public class ManageFriends extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jList2);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(370, 230, 150, 150);
+        jScrollPane3.setBounds(200, 310, 150, 170);
 
-        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 18));
+        jLabel1.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Add new friend");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(360, 190, 200, 25);
+        jLabel1.setBounds(200, 280, 200, 25);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 18));
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Remove exist friend");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(630, 190, 240, 25);
+        jLabel3.setBounds(570, 280, 240, 25);
 
-        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 18));
+        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Search Friend");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(110, 190, 160, 30);
+        jLabel6.setBounds(240, 170, 160, 30);
 
-        jTextField1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jTextField1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(100, 230, 160, 50);
+        jTextField1.setBounds(390, 170, 150, 40);
 
         jCheckBox1.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
         jCheckBox1.setText("show all users");
@@ -203,7 +203,7 @@ public class ManageFriends extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jCheckBox1);
-        jCheckBox1.setBounds(370, 390, 140, 25);
+        jCheckBox1.setBounds(390, 260, 150, 25);
 
         jButton4.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/SearchUser.png"))); // NOI18N
@@ -214,9 +214,9 @@ public class ManageFriends extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(100, 430, 160, 40);
+        jButton4.setBounds(390, 220, 150, 30);
 
-        jList1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jList1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jList1.setModel(presentation.gui.ManageFriends.getFriendsListModel());
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -227,7 +227,7 @@ public class ManageFriends extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jList1);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(660, 230, 150, 150);
+        jScrollPane2.setBounds(600, 310, 150, 170);
 
         jLabel5.setFont(new java.awt.Font("Kristen ITC", 1, 36));
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));

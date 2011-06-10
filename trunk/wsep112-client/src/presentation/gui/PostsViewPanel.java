@@ -79,7 +79,7 @@ public class PostsViewPanel extends javax.swing.JPanel {
 
         jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Please choose one of the Posts below for view", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        postsList.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        postsList.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         postsList.setModel(getThreadsListModel());
         postsList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         postsList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -89,11 +89,11 @@ public class PostsViewPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(postsList);
 
-        jScrollPane1.setBounds(10, 30, 350, 390);
+        jScrollPane1.setBounds(10, 30, 340, 390);
         jLayeredPane2.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         bodyArea.setColumns(20);
-        bodyArea.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        bodyArea.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         bodyArea.setRows(5);
         jScrollPane2.setViewportView(bodyArea);
 

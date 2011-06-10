@@ -63,20 +63,20 @@ public class AddThreadPanel extends javax.swing.JPanel {
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Add Thread", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Kristen ITC", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jLayeredPane1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jTextField4.setFont(new java.awt.Font("Kristen ITC", 1, 14));
-        jTextField4.setBounds(140, 60, 380, 30);
+        jTextField4.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jTextField4.setBounds(170, 70, 380, 30);
         jLayeredPane1.add(jTextField4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Title");
-        jLabel2.setBounds(80, 60, 79, 20);
+        jLabel2.setBounds(90, 70, 79, 20);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel6.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Body");
-        jLabel6.setBounds(80, 110, 38, 20);
+        jLabel6.setBounds(90, 130, 38, 20);
         jLayeredPane1.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
@@ -102,11 +102,11 @@ public class AddThreadPanel extends javax.swing.JPanel {
         jLayeredPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTextField3.setColumns(20);
-        jTextField3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jTextField3.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jTextField3.setRows(5);
         jScrollPane1.setViewportView(jTextField3);
 
-        jScrollPane1.setBounds(140, 110, 380, 250);
+        jScrollPane1.setBounds(170, 130, 380, 250);
         jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
