@@ -89,13 +89,13 @@ public class PostPanel extends javax.swing.JPanel {
         author.setBounds(110, 60, 80, 20);
         jLayeredPane2.add(author, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        date.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        date.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         date.setForeground(new java.awt.Color(255, 255, 255));
         date.setText("Date: ");
         date.setBounds(270, 60, 170, 20);
         jLayeredPane2.add(date, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        title.setFont(new java.awt.Font("Kristen ITC", 1, 18)); // NOI18N
+        title.setFont(new java.awt.Font("Kristen ITC", 1, 18));
         title.setEnabled(false);
         title.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +105,7 @@ public class PostPanel extends javax.swing.JPanel {
         title.setBounds(40, 80, 410, 31);
         jLayeredPane2.add(title, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        remove.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        remove.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         remove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
         remove.setText("Remove");
         remove.addActionListener(new java.awt.event.ActionListener() {
@@ -113,10 +113,10 @@ public class PostPanel extends javax.swing.JPanel {
                 removeActionPerformed(evt);
             }
         });
-        remove.setBounds(260, 370, 140, 33);
+        remove.setBounds(260, 340, 140, 33);
         jLayeredPane2.add(remove, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        editBtm.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        editBtm.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         editBtm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Edit-Users-icon.png"))); // NOI18N
         editBtm.setText("Edit");
         editBtm.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +124,7 @@ public class PostPanel extends javax.swing.JPanel {
                 editBtmActionPerformed(evt);
             }
         });
-        editBtm.setBounds(90, 370, 100, 33);
+        editBtm.setBounds(80, 340, 130, 33);
         jLayeredPane2.add(editBtm, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/go_back.png"))); // NOI18N
@@ -139,7 +139,7 @@ public class PostPanel extends javax.swing.JPanel {
         jLayeredPane2.add(back, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         body.setColumns(20);
-        body.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        body.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         body.setRows(5);
         body.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         body.setEnabled(false);
@@ -168,7 +168,7 @@ public class PostPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

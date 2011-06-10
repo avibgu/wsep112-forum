@@ -64,28 +64,28 @@ private String _postId;
         jLabel1.setBounds(310, 40, 165, 20);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel3.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Body");
-        jLabel3.setBounds(180, 120, 40, 20);
+        jLabel3.setBounds(110, 130, 40, 20);
         jLayeredPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        title.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        title.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         title.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titleActionPerformed(evt);
             }
         });
-        title.setBounds(240, 70, 290, 30);
+        title.setBounds(180, 80, 380, 30);
         jLayeredPane1.add(title, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        jLabel2.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Title");
-        jLabel2.setBounds(180, 70, 40, 30);
+        jLabel2.setBounds(110, 70, 40, 30);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        ok.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        ok.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         ok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Ok-icon.png"))); // NOI18N
         ok.setText("Ok");
         ok.addActionListener(new java.awt.event.ActionListener() {
@@ -93,10 +93,10 @@ private String _postId;
                 okActionPerformed(evt);
             }
         });
-        ok.setBounds(260, 370, 110, 33);
+        ok.setBounds(220, 410, 130, 33);
         jLayeredPane1.add(ok, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        cancel.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        cancel.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Close-icon.png"))); // NOI18N
         cancel.setText("Cancel");
         cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -104,15 +104,15 @@ private String _postId;
                 cancelActionPerformed(evt);
             }
         });
-        cancel.setBounds(400, 370, 120, 33);
+        cancel.setBounds(400, 410, 130, 33);
         jLayeredPane1.add(cancel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         body.setColumns(20);
-        body.setFont(new java.awt.Font("Kristen ITC", 1, 14));
+        body.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
         body.setRows(5);
         jScrollPane1.setViewportView(body);
 
-        jScrollPane1.setBounds(240, 120, 290, 220);
+        jScrollPane1.setBounds(180, 140, 380, 240);
         jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
