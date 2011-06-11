@@ -103,8 +103,6 @@ public class WebController implements Observer{
 		ClientController cc = getClientController(username);
 		
 		cc.logout();
-		
-		System.err.println("LOGGGGGGGGGGOUT " + username );
 	}
 
 	public Vector<UserInfo> getFriendList(String username) {
