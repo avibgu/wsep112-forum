@@ -54,7 +54,7 @@
 			<br>
 			<div>
 				<form name="LogoutForm" action="login" method="get">
-					<input src="http://www.jmsconsultants.name/client/lgp/images/header/logout_button.gif" type="image" value="Logout" alt="submit" name="logoutButton"/>
+					<input src="http://www.jmsconsultants.name/client/lgp/images/header/logout_button.gif" type="submit" value="Logout" alt="submit" name="logoutButton"/>
 				
 				</form>
 			</div>
