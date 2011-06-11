@@ -46,15 +46,17 @@ function loadAddedThread(forumId)
 			$('#windowToLoad').html(data);
 	});
 }
-
+/*
 function loadAddedPost(threadId)
 {
+	currentThreadId = threadId;
+	
 	$.get('postsList', {id : threadId,title: $('#postTitle').val(), body: $('#postBody').val()}, 
 		function(data) {
 			$('#windowToLoad').html(data);
 	});
 }
-
+*/
 function addThread()
 {
 	$.get('addThread',function(data) {
@@ -151,6 +153,8 @@ function addPost(){
 
 function loadAddedPosts(threadId)
 {
+	currentThreadId = threadId;
+	
 	$.get('postsList', {idAddedThread : threadId, title: $('#postTitle').val(), body: $('#postBody').val()}, 
 		function(data) {
 			$('#windowToLoad').html(data);
