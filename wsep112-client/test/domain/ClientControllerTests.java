@@ -110,7 +110,6 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 		    }
 		}
         client =  new ClientController(forumServerStub, logger);
-        //System.out.println(client.getFriendList().size());
 	}
 
 	/**
