@@ -70,7 +70,18 @@ public class WebController implements Observer{
 		
 		ClientController cc = getClientController(username);
 		
-		return cc.login(username, password);
+		boolean ans =  cc.login(username, password);
+		
+		if (ans){
+			
+			getWrNotificationLock().lock();
+			
+			getUsersNotificationsMap().put(username, new LinkedList<String>());
+			
+			getWrNotificationLock().unlock();
+		}
+		
+		return ans;
 	}
 	
 	public boolean changePassword(String username, String password) {
@@ -86,13 +97,14 @@ public class WebController implements Observer{
 		
 		return cc.register(firstName, lastName, username, password, email, checkbox);
 	}
-	
 
 	public void logout(String username) {
 
 		ClientController cc = getClientController(username);
 		
 		cc.logout();
+		
+		System.err.println("LOGGGGGGGGGGOUT " + username );
 	}
 
 	public Vector<UserInfo> getFriendList(String username) {
