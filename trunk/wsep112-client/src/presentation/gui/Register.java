@@ -88,13 +88,13 @@ public class Register extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(360, 270, 73, 20);
 
-        jLabel5.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("License Agreement");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(250, 340, 149, 20);
 
-        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Kristen ITC", 1, 14));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentation/gui/pics/Ok-icon.png"))); // NOI18N
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -134,15 +134,16 @@ public class Register extends javax.swing.JFrame {
         jScrollPane1.setName(""); // NOI18N
 
         jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Arial", 0, 12));
+        jTextArea1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.setText("IMPORTANT! PLEASE READ CAREFULLY!\nBY COPYING, OR USING OUR FORUM(S)IN ANY MANNER,\nYOU AGREE TO BE BOUND BY THE TERMS OF THIS AGREEMENT AND PRIVACY POLICY.\nIF YOU DO NOT AGREE WITH OUR END USER LICENSE AGREEMENT,\nPLEASE DO NOT PROCEED WITH THE REGISTRATION PROCESS\nAND LEAVE OUR SITES IMMEDIATELY AND DO NOT ACCESS OR USE OUR FORUM(S).");
+        jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(250, 370, 520, 100);
 
-        jCheckBox1.setFont(new java.awt.Font("Kristen ITC", 1, 12)); // NOI18N
+        jCheckBox1.setFont(new java.awt.Font("Kristen ITC", 1, 12));
         jCheckBox1.setLabel("I Agree");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
