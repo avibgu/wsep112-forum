@@ -5,15 +5,21 @@ package domain;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import common.logging.VerySimpleLogFormatter;
 import common.network.ForumServer;
 import common.network.messages.AddFriendMessage;
 import common.network.messages.LoginMessage;
@@ -39,36 +45,72 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 
 	private static final long serialVersionUID = 7654546365982223288L;
 
-	private ForumServer forumServerStub;
+	private ForumServer forumServerStub = null;
+	private ClientController client;
 	
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		// creating logger called ClientLog 
+		Logger logger = Logger.getLogger("ClientLog");
+		
+		// creating log file
+		Handler logFileHandler = null;
+		
+		int tError = 10;
+		
+		while(true){
+			
+			try{
+				
+				logFileHandler = new FileHandler("client.log");
+				
+				break;
+			}
+			catch(IOException e){
+				
+				if (tError == 10)
+					System.err.println("unable to open file for logging, will try again..");
+
+		    	else if (tError == 0){
+		    		
+		    		System.err.println("giving up.. exiting..");
+		    		return;
+		    	}
+		    	
+	    		tError--;
+			}
+		}
+		
+		logFileHandler.setFormatter(new VerySimpleLogFormatter());
+
+		// logger output is written to a file in logFileHandler handler - client.log
+	    logger.addHandler(logFileHandler);
+
+		// Set the log level specifying which message levels will be logged by this logger
+	    logger.setLevel(Level.INFO);
+
+	    logger.info("Client is Starting..");
 		
 		String serverName = "ForumServer";
 		
 		Registry registry  = null;
-		
-        try {
 
-        	registry = LocateRegistry.getRegistry("127.0.0.1");
-        	
-        	forumServerStub = (ForumServer) registry.lookup(serverName);
-        }
-        catch (Exception e){
-        	
-            System.err.println("ForumServer exception:");
-            e.printStackTrace();
-        }
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
+		while(true){
+			
+		    try {
+		    	registry = LocateRegistry.getRegistry("127.0.0.1");
+		    	forumServerStub = (ForumServer) registry.lookup(serverName);
+		    	break;
+		    }
+		    catch (Exception e){
+		    	System.err.println("ForumServer exception:");
+		    }
+		}
+        client =  new ClientController(forumServerStub, logger);
+        //System.out.println(client.getFriendList().size());
 	}
 
 	/**
@@ -76,234 +118,41 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	 */
 	@Test
 	public void testClientController() {
-		
+
 		try {
-			
 			assertNotNull(forumServerStub.getInformation(new OKMessage()));
 			assertNotNull(forumServerStub.setInformation(new OKMessage()));
 		}
 		catch (RemoteException e) { e.printStackTrace(); }
 	}
-
+	
 	/**
 	 * Test method for {@link domain.ClientController#register(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)}.
+	 * @throws RemoteException 
 	 */
 	@Test
-	public void testRegister() {
-		
-		RegMessage rm = new RegMessage("Avi", "Digmi", "digmia", "Aa1234", "digmia@bgu.ac.il", this);
-		
-		try {
-
-			assertEquals(MessageType.OK, forumServerStub.setInformation(rm).getMessageType());
-		}
-		catch (RemoteException e) { e.printStackTrace(); }
+	public void testRegister(){
+		//assertTrue(client.register("Avi", "Digmi", "digmiav", "Aa1234", "digmia@bgu.ac.il", "true"));
 	}
-
-	/**
-	 * Test method for {@link domain.ClientController#login(java.lang.String, java.lang.String)}.
-	 */
-	@Test
+	
 	public void testLogin() {
-
-		RegMessage regMessage = new RegMessage("Shiran", "Gabay", "gshir", "Aa1234", "gshir@bgu.ac.il", this);
-		LoginMessage loginMessage = new LoginMessage("gshir", "Aa1234", this);
-		
-		try {
-
-			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
-		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		assertTrue(client.login("digmiav", "Aa1234"));
 	}
-
-	/**
-	 * Test method for {@link domain.ClientController#logout(java.lang.String)}.
-	 */
-	@Test
-	public void testLogout() {
-
-		RegMessage regMessage = new RegMessage("Miri", "Peretz", "miripe", "Miri1234", "miripe@bgu.ac.il", this);
-		LoginMessage loginMessage = new LoginMessage("miripe", "Miri1234", this);
-		LogoutMessage logoutMessage = new LogoutMessage("miripe", this);
-		
-		try {
-			
-			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
-		}
-		catch (RemoteException e) { e.printStackTrace(); }
-	}
-
-	/**
-	 * Test method for {@link domain.ClientController#AddFriend(java.lang.String, java.lang.String)}.
-	 */
-	@Test
+	
 	public void testAddFriend() {
-
-		RegMessage regMessage1 = new RegMessage("ghi", "ghi", "ghi", "ab1234", "ghi@bgu.ac.il", this);
-		RegMessage regMessage2 = new RegMessage("jkl", "jkl", "jkl", "ab1234", "jkl@bgu.ac.il", this);
-		LoginMessage loginMessage = new LoginMessage("ghi", "ab1234", this);
-		AddFriendMessage addFriendMessage = new AddFriendMessage("ghi", "jkl", this);
-		LogoutMessage logoutMessage = new LogoutMessage("ghi", this);
-		
-		try {
-			
-			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage1).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage2).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(addFriendMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
-		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		client.register("Shiran", "Gabay", "gshiran", "Aa1234", "digmia@bgu.ac.il", "true");
+		assertTrue(client.AddFriend("gshiran"));
+		assertFalse(client.AddFriend("gshiran"));
 	}
-
-	/**
-	 * Test method for {@link domain.ClientController#RemoveFriend(java.lang.String, java.lang.String)}.
-	 */
-	@Test
-	public void testRemoveFriend() {
-		
-		RegMessage regMessage1 = new RegMessage("asghi", "asghi", "asghi", "ab1234", "asghi@bgu.ac.il", this);
-		RegMessage regMessage2 = new RegMessage("asjkl", "asjkl", "asjkl", "ab1234", "asjkl@bgu.ac.il", this);
-		LoginMessage loginMessage = new LoginMessage("asghi", "ab1234", this);
-		AddFriendMessage addFriendMessage = new AddFriendMessage("asghi", "asjkl", this);
-		RemoveFriendMessage removeFriendMessage = new RemoveFriendMessage("asghi", "asjkl", this);
-		LogoutMessage logoutMessage = new LogoutMessage("asghi", this);
-		
-		try {
-			
-			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage1).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage2).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(addFriendMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(removeFriendMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
-		}
-		catch (RemoteException e) { e.printStackTrace(); }
-	}
-
-	/**
-	 * Test method for {@link domain.ClientController#replyToThread(java.lang.String, java.lang.String, java.lang.String)}.
-	 */
-	@Test
-	public void testReplyToThread() {
-		RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il", this);
-		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234", this);
-		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay", this);
-		AddPostMessage add_post_msg=new AddPostMessage("0","new post", "shalom shalom","0","avishay", this);
-		LogoutMessage logoutMessage = new LogoutMessage("avishay", this);
-		try {
-			
-			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(add_post_msg).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
-		}
-		catch (RemoteException e) { e.printStackTrace(); }
-	}
-
-	/**
-	 * Test method for {@link domain.ClientController#addThread(java.lang.String, java.lang.String)}.
-	 */
-	@Test
-	public void testAddThread() {
-		//RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234", this);
-		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay", this);
-		LogoutMessage logoutMessage = new LogoutMessage("avishay", this);
-		
-		try {
-			
-			//assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
-		}
-		catch (RemoteException e) { e.printStackTrace();}
-	}
-
-	/**
-	 * Test method for {@link domain.ClientController#getForumsList(common.network.messages.SeeForumsListMessage)}.
-	 */
-	@Test
+	
 	public void testGetForumsList() {
-		
-		RegMessage regMessage = new RegMessage("dagsd", "asdgas", "wrgsd", "asdgasdg", "asdgasdf@bgu.ac.il", this);
-		LoginMessage loginMessage = new LoginMessage("wrgsd", "asdgasdg", this);
-		
-		SeeForumsListMessage seeForumThreadsMsg = new SeeForumsListMessage();
-		
-		LogoutMessage logoutMessage = new LogoutMessage("wrgsd", this);
-		
-		try {
-			
-			assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
-			
-			Message answer = forumServerStub.getInformation(seeForumThreadsMsg);
-			
-			assertEquals(MessageType.SEE_FORUMS_LIST, answer.getMessageType());
-			assertEquals(1, ((SeeForumsListMessage)answer).getListOfForums().size());
-			
-			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
-		}
-		catch (RemoteException e) { e.printStackTrace();}
-	}
-
-	/**
-	 * Test method for {@link domain.ClientController#getThreadsList(java.lang.String, common.network.messages.SeeForumThreadsMessage)}.
-	 */
-	@Test
-	public void testGetThreadsList() {
-		//RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234", this);
-		AddThreadMessage add_thread_msg1=new AddThreadMessage("0","new thread1","shalom shalom","avishay", this);
-		AddThreadMessage add_thread_msg2=new AddThreadMessage("0","new thread2","shalom shalom","avishay", this);
-		SeeForumThreadsMessage seeForumThreadsMsg= new SeeForumThreadsMessage("0");
-		LogoutMessage logoutMessage = new LogoutMessage("avishay", this);
-		
-		try {
-			
-			//assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg1).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg2).getMessageType());
-			assertEquals(MessageType.SEE_FORUM_THREADS, forumServerStub.getInformation(seeForumThreadsMsg).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
-		}
-		catch (RemoteException e) { e.printStackTrace();}
-	}
-
-	/**
-	 * Test method for {@link domain.ClientController#getPostsList(java.lang.String, common.network.messages.SeeThreadPostsMessage)}.
-	 */
-	@Test
-	public void testGetPostsList() {
-		//RegMessage regMessage = new RegMessage("avi", "shahimov", "avishay", "avi1234", "shahimov@bgu.ac.il");
-		LoginMessage loginMessage = new LoginMessage("avishay", "avi1234", this);
-		AddThreadMessage add_thread_msg=new AddThreadMessage("0","new thread","shalom shalom","avishay", this);
-		AddPostMessage add_post_msg1=new AddPostMessage("0","new post1", "shalom shalom","0","avishay", this);
-		AddPostMessage add_post_msg2=new AddPostMessage("0","new post2", "shalom shalom","0","avishay", this);
-		SeeThreadPostsMessage seeThreadPostMsg= new SeeThreadPostsMessage("0","0", this);
-		LogoutMessage logoutMessage = new LogoutMessage("avishay", this);
-		try {
-			
-			//assertEquals(MessageType.OK, forumServerStub.setInformation(regMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(loginMessage).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(add_thread_msg).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(add_post_msg1).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(add_post_msg2).getMessageType());
-			assertEquals(MessageType.SEE_POSTS_OF_SOME_THREAD, forumServerStub.getInformation(seeThreadPostMsg).getMessageType());
-			assertEquals(MessageType.OK, forumServerStub.setInformation(logoutMessage).getMessageType());
-		}
-		catch (RemoteException e) { e.printStackTrace(); }
+		assertNotNull(client.getForumsList());
+		assertEquals(client.getForumsList().get(0).getName(), "Cooking forum");
 	}
 
 	@Override
 	public void update(Object observable, Object arg) throws RemoteException {
 		// TODO Auto-generated method stub
+		
 	}
 }
