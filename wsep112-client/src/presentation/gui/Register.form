@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.1" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
@@ -206,6 +206,7 @@
             </Property>
             <Property name="rows" type="int" value="5"/>
             <Property name="text" type="java.lang.String" value="IMPORTANT! PLEASE READ CAREFULLY!&#xa;BY COPYING, OR USING OUR FORUM(S)IN ANY MANNER,&#xa;YOU AGREE TO BE BOUND BY THE TERMS OF THIS AGREEMENT AND PRIVACY POLICY.&#xa;IF YOU DO NOT AGREE WITH OUR END USER LICENSE AGREEMENT,&#xa;PLEASE DO NOT PROCEED WITH THE REGISTRATION PROCESS&#xa;AND LEAVE OUR SITES IMMEDIATELY AND DO NOT ACCESS OR USE OUR FORUM(S)."/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
