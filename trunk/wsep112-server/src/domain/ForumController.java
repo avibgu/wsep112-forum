@@ -555,6 +555,9 @@ public class ForumController implements Serializable{
 
 		for (String friend : friends) {
 			
+			if (friend.equals(thread.get_owner()))
+				continue;
+			
 			wo = getUsersToObserversMap().get(friend);
 			if (wo != null)
 				wo.update(null, new FriendAddedPostNotification( threadInfo,
