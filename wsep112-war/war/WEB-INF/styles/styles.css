@@ -204,6 +204,11 @@ A:hover {text-decoration: underline; color: #339999;}
 	font-family: Tahoma, Verdana, Arial, Sans-Serif;
 */
 }
+.logoutButtonStyle{
+/*	background-image: url("http://www.jmsconsultants.name/client/lgp/images/header/logout_button.gif");
+	width: 71;
+	height: 29;*/
+}
 .selectStyle{
 	width: 100px;
 }
