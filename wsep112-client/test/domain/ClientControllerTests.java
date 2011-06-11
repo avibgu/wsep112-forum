@@ -132,26 +132,118 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	@Test
 	public void testRegister(){
 		//assertTrue(client.register("Avi", "Digmi", "digmiav", "Aa1234", "digmia@bgu.ac.il", "true"));
+		//client.register("Shiran", "Gabay", "gshiran", "Aa1234", "digmia@bgu.ac.il", "true");
 	}
 	
+	@Test
 	public void testLogin() {
 		assertTrue(client.login("digmiav", "Aa1234"));
 	}
 	
+	@Test
 	public void testAddFriend() {
-		client.register("Shiran", "Gabay", "gshiran", "Aa1234", "digmia@bgu.ac.il", "true");
-		assertTrue(client.AddFriend("gshiran"));
+		assertTrue(client.login("digmiav", "Aa1234"));
+		assertTrue(client.AddFriend("gshiran"));//we can only test this case only once because its affects the database
 		assertFalse(client.AddFriend("gshiran"));
 	}
 	
+	@Test
+	public void testsearchFriendsByInput() {
+		assertTrue(client.login("digmiav", "Aa1234"));
+		assertNotNull(client.searchFriendsByInput("gshiran"));
+	}
+	
+	@Test
+	public void testRemoveFriend() {
+		assertTrue(client.login("digmiav", "Aa1234"));
+		assertTrue(client.RemoveFriend("gshiran"));
+	}
+	
+	@Test
 	public void testGetForumsList() {
 		assertNotNull(client.getForumsList());
 		assertEquals(client.getForumsList().get(0).getName(), "Cooking forum");
 	}
+	
+	@Test
+	public void testAddThread() {
+		assertTrue(client.login("digmiav", "Aa1234"));
+		assertTrue(client.addThread("1", "new test thread", "body"));
+	}
+	
+	@Test
+	public void testGetThreadsList() {
+		assertNotNull(client.getThreadsList("1"));
+		assertEquals(client.getThreadsList("1").get(0).getTitle(), "new test thread");
+	}
+	
+	
+	
+	@Test
+	public void testReplyToThread() {
+		assertTrue(client.login("digmiav", "Aa1234"));
+		//this test is depend on the number of thread in the database , you can change the thread number to 1
+		assertTrue(client.replyToThread("1", "replay to thread", "my replay body", "2")); 
+	}
+	
+	
+	
+	@Test
+	public void testEditPost() {
+		assertTrue(client.login("digmiav", "Aa1234"));
+		//this test is depend on the number of thread in the database , you can change the thread number to 1
+		assertTrue(client.editPost("1", "edit Post", "edit post body", "2", "1")); 
+	}
+	
+	
+	//@Test
+//	public void testGetPostsList() {
+	//	assertNotNull(client.getPostsList("2"));
+	//	assertEquals(client.getPostsList("2").get(0).get_title(), "edit Post");
+//	}
+	
+	
+	
+	@Test
+	public void testRemovePost() {
+		assertTrue(client.login("digmiav", "Aa1234"));
+		//this test is depend on the number of thread in the database , you can change the thread number to 1
+		assertTrue(client.RemovePost("2", "1")); 
+	}
+	
+	
 
+	@Test
+	public void testRemoveThread() {
+		assertTrue(client.login("digmiav", "Aa1234"));
+		//this test is depend on the number of thread in the database , you can change the thread number to 1
+		assertTrue(client.RemoveThread("2", "1")); 
+	}
+	
+	
+	
+	
+
+	
+/*	@Test
+	public void testChangePass(){
+		assertTrue(client.login("digmiav", "Aa1234"));
+		assertFalse(client.changePass("1234"));//chaeck why it fails
+		assertFalse(client.login("digmiav", "Aa1234"));
+	}
+	
+	@Test
+	public void testLogout(){
+		assertTrue(client.login("digmiav", "Aa1234"));
+		assertTrue(client.logout());//chaeck why it fails
+		
+	}
+*/
+	
 	@Override
 	public void update(Object observable, Object arg) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}
+	
 }
