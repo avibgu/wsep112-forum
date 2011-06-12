@@ -104,9 +104,11 @@ public class NotificationsController implements Observer {
 	
 	private void nofity(PostAddedToYourThreadNotification patytn) {
 
-		ThreadInfo tInfo = patytn.getThreadInfo();
-					
-		String msg =	"Your Thread \"" + tInfo.getTitle() + "\" has been changed";
+		ThreadInfo tInfo = patytn.getThreadInfo();		
+		String whoReplied = patytn.getNewPostOwner();
+		
+		//String msg =	"Your Thread \"" + tInfo.getTitle() + "\" has been changed";
+		String msg =	whoReplied + " replied to your Thread \"" + tInfo.getTitle() + "\"";
 
 		genPopUp(msg);
 	}
