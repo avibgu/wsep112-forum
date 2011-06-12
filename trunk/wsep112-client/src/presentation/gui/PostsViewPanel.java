@@ -250,15 +250,22 @@ public class PostsViewPanel extends javax.swing.JPanel {
             Vector <PostInfo> posts= _clientController.getPostsList(this.getThread_id());
             PostInfo post=posts.get(_postSelected);
             String post_id=Integer.toString(post.get_post_id());
-            if (posts.size() != 1){
-		        this.getclientController().RemovePost(this.getThread_id(), post_id);
-		        getStartWindow().getForum().displayForum(  new PostsViewPanel(this.getclientController(), this.getForum_id(), this.getThread_id(), this.getStartWindow()));
+             if(this.getclientController().getCurrentLogedInUsername().equals(post.getOwner().getUserName())
+            		|| this.getclientController().getCurrentLogedInUsername().equals("forum-admin")){
+                    if (posts.size() != 1){
+                                this.getclientController().RemovePost(this.getThread_id(), post_id);
+                                getStartWindow().getForum().displayForum(  new PostsViewPanel(this.getclientController(), this.getForum_id(), this.getThread_id(), this.getStartWindow()));
+                    }
+                    else{
+                         this.getclientController().RemoveThread(this.getThread_id(), this.getForum_id());
+                         getStartWindow().getForum().displayForum( new ThreadsViewPanel(this.getclientController(), this.getForum_id(), this.getStartWindow()));
+                    }
+                    this.setVisible(false);
             }
             else{
-            	 this.getclientController().RemoveThread(this.getThread_id(), this.getForum_id());
-            	 getStartWindow().getForum().displayForum( new ThreadsViewPanel(this.getclientController(), this.getForum_id(), this.getStartWindow()));
+                 JOptionPane.showMessageDialog(null, "Only the owner of the post can delete it!", "Delete Error", 0);
             }
-		    this.setVisible(false);
+	   
     }//GEN-LAST:event_removeActionPerformed
 
     public void fillListPosts( ) {
