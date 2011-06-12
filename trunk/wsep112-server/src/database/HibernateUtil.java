@@ -44,9 +44,10 @@ public class HibernateUtil {
 	   */
 	   public synchronized static void updateDB(Object obj){
 		   Session session=null;
+		   Transaction transaction = null;
 		   try{
 			   session = getSession();
-			   Transaction transaction = session.beginTransaction();
+			   transaction = session.beginTransaction();
 			   session.merge(obj);
 			   transaction.commit();
 			   session.flush();
@@ -54,8 +55,11 @@ public class HibernateUtil {
 			  
 		   }
 		   catch(Exception e){
+			   if (transaction != null)
+				   transaction.rollback();
 			   if (session != null)
 				   session.close();
+			  
 			   e.printStackTrace();
 			  
 		   }
@@ -67,9 +71,11 @@ public class HibernateUtil {
 	    * @return
 	    */
 	   public synchronized static Serializable insertDB(Object obj){
+		   Session session=null;
+		   Transaction transaction=null;
 		   try{
-			   Session session = getSession();
-			   Transaction transaction = session.beginTransaction();
+			   session = getSession();
+			   transaction = session.beginTransaction();
 			   Serializable ans = session.save(obj);
 			   transaction.commit();
 			   session.flush();
@@ -77,15 +83,21 @@ public class HibernateUtil {
 			   return ans;
 		   }
 		   catch(Exception e){
+			   if (transaction != null)
+				   transaction.rollback();
+			   if (session != null)
+				   session.close();
 			   e.printStackTrace();
 			   return null;
 		   }
 	   }
 	   
 	   public static User retrieveUser(String username){
+		   Session session=null;
+		   Transaction transaction=null;
 	try{  
-		   Session session = getSession();
-		   Transaction transaction = session.beginTransaction();
+		   session = getSession();
+		   transaction = session.beginTransaction();
 		   Query q = session.createQuery("from User as u where u._username = :username");
 		   q.setParameter("username", username);
 		   List<User> tUserList= q.list();
@@ -95,6 +107,10 @@ public class HibernateUtil {
 			   	return null;
 		   else return tUserList.get(0);
 	}catch(Exception e){
+		if (transaction != null)
+			   transaction.rollback();
+		if (session != null)
+			session.close();
 		e.printStackTrace();
 		return null;
 	}
