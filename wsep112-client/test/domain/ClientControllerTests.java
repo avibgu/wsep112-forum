@@ -131,8 +131,8 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	 */
 	@Test
 	public void testRegister(){
-		//assertTrue(client.register("Avi", "Digmi", "digmiav", "Aa1234", "digmia@bgu.ac.il", "true"));
-		//client.register("Shiran", "Gabay", "gshiran", "Aa1234", "digmia@bgu.ac.il", "true");
+		assertTrue(client.register("Avi", "Digmi", "digmiav", "Aa1234", "digmia@bgu.ac.il", "true"));
+		client.register("Shiran", "Gabay", "gshiran", "Aa1234", "digmia@bgu.ac.il", "true");
 	}
 	
 	@Test
