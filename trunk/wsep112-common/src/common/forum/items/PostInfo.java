@@ -58,4 +58,8 @@ public class PostInfo implements Serializable  {
 	public String getDateTime(){
 		return _dateTime;
 	}
+	
+	public void setBody(String newBody){
+		_body = newBody;
+	}
 }
