@@ -94,7 +94,12 @@ public class PostsListServlet extends HttpServlet{
 		}
 	
 	    Vector<PostInfo> postsList = _webController.getPostList(username,threadId);
-	   
+	   for (int i=0; i < postsList.size(); ++ i){
+	    	String currBody = postsList.get(i).get_body();
+	    	postsList.get(i).setBody(currBody.replaceAll("(\r\n|\r|\n|\n\r)", "<br>"));
+	    }
+	    
+	    
 	    req.setAttribute("posts_list", postsList);
 	    req.setAttribute("username", username);
 		
