@@ -414,6 +414,65 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		return false;
     }
     
+    public boolean replyToThreadTest(String forumID, String title, String body, String threadTitle) {
+
+    	ErrorMessage errorMessage;
+    	String threadId="1";
+    	
+    	SeeForumThreadsMessage sftm = new SeeForumThreadsMessage(forumID);
+
+		try {
+			Message answer = getForumServerStub().getInformation(sftm);
+			if (answer.getMessageType() != MessageType.ERROR){
+				Vector<ThreadInfo> threadList=((SeeForumThreadsMessage)answer).getListOfThreads();
+				for(int i=0;i<threadList.size();i++){
+					if(threadList.elementAt(i).getTitle().equals(threadTitle)){
+						threadId=Integer.toString(threadList.elementAt(i).getThread_id());
+						System.out.println(threadId);
+					}
+				}
+				
+			}
+			//errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		//errorMessage.setForWho(getCurrentLogedInUsername());
+		
+		//notifyObservers(errorMessage);
+    	
+    	//////////////////////////////////////////////////////////////////////
+    	AddPostMessage apm = new AddPostMessage(forumID,title, body, threadId,
+    			getCurrentLogedInUsername(), this);
+
+		try {
+
+			Message answer = getForumServerStub().setInformation(apm);
+
+			if (answer.getMessageType() != MessageType.ERROR) return true;
+			
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
+		notifyObservers(errorMessage);
+		return false;
+    }
+    
     /**
     *avi shahimov: convert from void to boolean
     * @param title
@@ -426,6 +485,95 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		   String threadId, String postId) {
 
    	ErrorMessage errorMessage;
+   	
+   	EditPostMessage apm = new EditPostMessage(forumID, title, body,
+   			threadId, postId, getCurrentLogedInUsername(), this);
+
+		try {
+
+			Message answer = getForumServerStub().setInformation(apm);
+
+			if (answer.getMessageType() != MessageType.ERROR) return true;
+			
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
+		notifyObservers(errorMessage);
+		return false;
+   }
+   
+   
+   public boolean editPostByName(String forumID, String title, String body,
+		   String threadTitel, String postTitle) {
+
+   	ErrorMessage errorMessage;
+   	String threadId="1";
+	
+	SeeForumThreadsMessage sftm = new SeeForumThreadsMessage(forumID);
+
+	try {
+		Message answer = getForumServerStub().getInformation(sftm);
+		if (answer.getMessageType() != MessageType.ERROR){
+			Vector<ThreadInfo> threadList=((SeeForumThreadsMessage)answer).getListOfThreads();
+			for(int i=0;i<threadList.size();i++){
+				if(threadList.elementAt(i).getTitle().equals(threadTitel)){
+					threadId=Integer.toString(threadList.elementAt(i).getThread_id());
+					//System.out.println(threadId);
+				}
+			}
+			
+		}
+		//errorMessage = (ErrorMessage)answer;
+	}
+	catch (RemoteException e) {
+		
+		String reason = "Connection Error - can't connect with the server";
+		
+		log(reason);
+		errorMessage = new ErrorMessage(reason);
+	}
+	//////////////////////////////////////////////////////////////////
+
+	SeeForumThreadsMessage sftm1 = new SeeForumThreadsMessage(forumID);
+	
+	String postId="1";
+
+	try {
+		Message answer = getForumServerStub().getInformation(sftm1);
+		if (answer.getMessageType() != MessageType.ERROR){
+			Vector<ThreadInfo> threadList=((SeeForumThreadsMessage)answer).getListOfThreads();
+			for(int i=0;i<threadList.size();i++){
+			//	if(threadList.elementAt(i).getTitle().equals(threadTitle))
+					threadId=Integer.toString(threadList.elementAt(i).getThread_id());
+			}
+			
+		}
+		//errorMessage = (ErrorMessage)answer;
+	}
+	catch (RemoteException e) {
+		
+		String reason = "Connection Error - can't connect with the server";
+		
+		log(reason);
+		errorMessage = new ErrorMessage(reason);
+	}
+
+	//errorMessage.setForWho(getCurrentLogedInUsername());
+	
+	//notifyObservers(errorMessage);
+	
+	
+   	
+   	//////////////////////////////////////////////////////////////////
    	
    	EditPostMessage apm = new EditPostMessage(forumID, title, body,
    			threadId, postId, getCurrentLogedInUsername(), this);
@@ -557,6 +705,40 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		return null;
 	}
 
+	
+	public boolean getThreadByName(String forumID,String title) {
+
+		ErrorMessage errorMessage;
+		
+    	SeeForumThreadsMessage sftm = new SeeForumThreadsMessage(forumID);
+
+		try {
+			Message answer = getForumServerStub().getInformation(sftm);
+			if (answer.getMessageType() != MessageType.ERROR){
+				Vector<ThreadInfo> threadList=((SeeForumThreadsMessage)answer).getListOfThreads();
+				for(int i=0;i<threadList.size();i++){
+					if(threadList.elementAt(i).getTitle().equals(title))
+						return true;
+				}
+				return false;
+			}
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
+		notifyObservers(errorMessage);
+
+		return false;
+	}
+
 	/**
 	 *
 	 * @param threadID
@@ -595,6 +777,76 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		notifyObservers(errorMessage);
 
 		return null;
+	}
+	
+	
+	
+	public boolean getPostByName(String threadTitle,String postTitle) {
+
+		ErrorMessage errorMessage;
+		String threadId="1";
+		SeeForumThreadsMessage sftm = new SeeForumThreadsMessage("1");
+
+		try {
+			Message answer = getForumServerStub().getInformation(sftm);
+			if (answer.getMessageType() != MessageType.ERROR){
+				Vector<ThreadInfo> threadList=((SeeForumThreadsMessage)answer).getListOfThreads();
+				for(int i=0;i<threadList.size();i++){
+					if(threadList.elementAt(i).getTitle().equals(threadTitle))
+						threadId=Integer.toString(threadList.elementAt(i).getThread_id());
+				}
+				
+			}
+			//errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		//errorMessage.setForWho(getCurrentLogedInUsername());
+		
+		//notifyObservers(errorMessage);
+
+/////////////////////////////////////////////////////////////////////////////////
+    	SeeThreadPostsMessage stpm = new SeeThreadPostsMessage(
+    			threadId, getCurrentLogedInUsername(), this);
+
+    	setCurrentShownThread(threadId);
+    	
+		try {
+
+			Message answer = getForumServerStub().getInformation(stpm);
+			
+			if (answer.getMessageType() != MessageType.ERROR){
+				Vector<PostInfo> postsList= ((SeeThreadPostsMessage)answer).getListOfPosts();
+				for(int i=0;i<postsList.size();i++){
+					if(postsList.elementAt(i).get_title().equals(postTitle)){
+						return true;
+					}
+						
+				}
+				return false;
+			}
+			
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
+		notifyObservers(errorMessage);
+
+		return false;
 	}
 
 	/**
@@ -705,6 +957,67 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		return false;
     }
 	
+	public boolean RemoveThreadByName(String threadTitle, String forumId) {
+
+    	ErrorMessage errorMessage;
+    	String threadId="0";
+    	
+    	//	RemoveThreadMessage rfm = new RemoveThreadMessage(
+    	//			getCurrentShownThread(), getCurrentShownForum());
+    	SeeForumThreadsMessage sftm = new SeeForumThreadsMessage(forumId);
+
+    	try {
+			Message answer = getForumServerStub().getInformation(sftm);
+			if (answer.getMessageType() != MessageType.ERROR)
+				if (answer.getMessageType() != MessageType.ERROR){
+					Vector<ThreadInfo> threadList=((SeeForumThreadsMessage)answer).getListOfThreads();
+					for(int i=0;i<threadList.size();i++){
+						if(threadList.elementAt(i).getTitle()==threadTitle){
+							threadId=Integer.toString(threadList.elementAt(i).getThread_id());
+						}
+							
+					}
+					
+				}
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
+		notifyObservers(errorMessage);
+/////////////////////////////////////////////////////////////////////////////////////////////
+    	RemoveThreadMessage rtm = new RemoveThreadMessage(threadId, forumId);
+    	
+		try {
+
+			Message answer = getForumServerStub().setInformation(rtm);
+
+			if (answer.getMessageType() != MessageType.ERROR) return true;
+
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
+		notifyObservers(errorMessage);
+		
+		return false;
+    }
+	
 	/**
 	 * 
 	 * @param threadId
@@ -717,6 +1030,71 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
     	
     	//	RemovePostMessage rpm = new RemovePostMessage(getCurrentShownThread(), postId);
 
+    	RemovePostMessage rpm = new RemovePostMessage(threadId, postId, this);
+    	
+		try {
+
+			Message answer = getForumServerStub().setInformation(rpm);
+
+			if (answer.getMessageType() != MessageType.ERROR) return true;
+
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
+		notifyObservers(errorMessage);
+		
+		return false;
+    }
+	
+	public boolean RemovePostByName(String threadId, String postTitle) {
+
+    	ErrorMessage errorMessage;
+    	String postId="0";
+    	//	RemovePostMessage rpm = new RemovePostMessage(getCurrentShownThread(), postId);
+    	SeeThreadPostsMessage stpm = new SeeThreadPostsMessage(
+    			threadId, getCurrentLogedInUsername(), this);
+
+    	setCurrentShownThread(threadId);
+    	
+		try {
+
+			Message answer = getForumServerStub().getInformation(stpm);
+			
+			if (answer.getMessageType() != MessageType.ERROR){
+				Vector<PostInfo> postsList= ((SeeThreadPostsMessage)answer).getListOfPosts();
+				for(int i=0;i<postsList.size();i++){
+					if(postsList.elementAt(i).get_title()==postTitle){
+						postId=Integer.toString(postsList.elementAt(i).get_post_id());
+					}
+						
+				}
+			}
+			
+			errorMessage = (ErrorMessage)answer;
+		}
+		catch (RemoteException e) {
+			
+			String reason = "Connection Error - can't connect with the server";
+			
+			log(reason);
+			errorMessage = new ErrorMessage(reason);
+		}
+
+		errorMessage.setForWho(getCurrentLogedInUsername());
+		
+		notifyObservers(errorMessage);
+
+    	
+////////////////////////////////////////////////////////////////////////////////////////////
     	RemovePostMessage rpm = new RemovePostMessage(threadId, postId, this);
     	
 		try {
