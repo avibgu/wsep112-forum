@@ -246,8 +246,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			if (answer.getMessageType() == MessageType.OK){
 				
 				setCurrentLogedInUsername("");
-				System.out.println("trueeeeeeeeeeeeeeeeee\n");
-				return true;
+						return true;
 			}
 
 			errorMessage = (ErrorMessage)answer;
@@ -263,7 +262,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		errorMessage.setForWho(getCurrentLogedInUsername());
 		
 		notifyObservers(errorMessage);
-		System.out.println("falseeeeeeeeeeeeeeeeee\n");
+		
 
 		return false;
 	}
