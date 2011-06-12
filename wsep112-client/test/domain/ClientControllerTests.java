@@ -169,22 +169,26 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	public void testAddThread() {
 		assertTrue(client.login("digmiav", "Aa1234"));
 		assertTrue(client.addThread("1", "new test thread", "body"));
+		assertTrue(client.getThreadByName("1", "new test thread"));
 	}
-	
-	@Test
-	public void testGetThreadsList() {
-		assertNotNull(client.getThreadsList("1"));
-		assertEquals(client.getThreadsList("1").get(0).getTitle(), "new test thread");
-	}
-	
-	
 	
 	@Test
 	public void testReplyToThread() {
 		assertTrue(client.login("digmiav", "Aa1234"));
 		//this test is depend on the number of thread in the database , you can change the thread number to 1
-		assertTrue(client.replyToThread("1", "replay to thread", "my replay body", "2")); 
+		assertTrue(client.replyToThreadTest("1", "replay to thread", "my replay body", "new test thread")); 
+		assertTrue(client.getPostByName("new test thread","replay to thread" ));
 	}
+	
+	@Test
+	public void testGetThreadsList() {
+		assertNotNull(client.getThreadsList("1"));
+		//assertEquals(client.getThreadByName("1", "new test thread"));
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -192,7 +196,8 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	public void testEditPost() {
 		assertTrue(client.login("digmiav", "Aa1234"));
 		//this test is depend on the number of thread in the database , you can change the thread number to 1
-		assertTrue(client.editPost("1", "edit Post", "edit post body", "2", "1")); 
+		assertTrue(client.editPost("1", "edit Post", "edit post body", "1", "1")); 
+		//assertTrue(client.getPostByName("new test thread","edit Post" ));
 	}
 	
 	
@@ -204,12 +209,13 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	
 	
 	
-	@Test
-	public void testRemovePost() {
-		assertTrue(client.login("digmiav", "Aa1234"));
+	//@Test
+//	public void testRemovePost() {
+		//assertTrue(client.login("digmiav", "Aa1234"));
 		//this test is depend on the number of thread in the database , you can change the thread number to 1
-		assertTrue(client.RemovePost("2", "1")); 
-	}
+	//	assertTrue(client.RemovePostByName("1", "edit Post")); 
+		//assertFalse(client.getPostByName("1","edit Post" ));
+	//}
 	
 	
 
@@ -217,7 +223,7 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	public void testRemoveThread() {
 		assertTrue(client.login("digmiav", "Aa1234"));
 		//this test is depend on the number of thread in the database , you can change the thread number to 1
-		assertTrue(client.RemoveThread("2", "1")); 
+		//assertTrue(client.RemoveThreadByName("new test thread", "1")); 
 	}
 	
 	
