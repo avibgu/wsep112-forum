@@ -226,12 +226,12 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 	}
 
 	/**
-	 *
+	 *avi shahimov : i changed the return value from void to boolean
 	 * @param username
 	 *
 	 * @return OKMessage on success, or ErrorMessage (with reason) on failure
 	 */
-	public void logout() {
+	public boolean logout() {
 		
 		ErrorMessage errorMessage;
 
@@ -246,7 +246,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			if (answer.getMessageType() == MessageType.OK){
 				
 				setCurrentLogedInUsername("");
-				return;
+				System.out.println("trueeeeeeeeeeeeeeeeee\n");
+				return true;
 			}
 
 			errorMessage = (ErrorMessage)answer;
@@ -262,6 +263,9 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		errorMessage.setForWho(getCurrentLogedInUsername());
 		
 		notifyObservers(errorMessage);
+		System.out.println("falseeeeeeeeeeeeeeeeee\n");
+
+		return false;
 	}
 
     /**
@@ -319,7 +323,8 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
 			Message answer = getForumServerStub().setInformation(rfm);
 
-			if (answer.getMessageType() != MessageType.ERROR) return true;
+			if (answer.getMessageType() != MessageType.ERROR) 
+					return true;
 
 			errorMessage = (ErrorMessage)answer;
 		}
@@ -374,14 +379,14 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
     
 
     /**
-     *
+     *avi shahimov: convert from void to boolean
      * @param title
      * @param body
      * @param threadId
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public void replyToThread(String forumID, String title, String body, String threadId) {
+    public boolean replyToThread(String forumID, String title, String body, String threadId) {
 
     	ErrorMessage errorMessage;
     	
@@ -392,7 +397,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
 			Message answer = getForumServerStub().setInformation(apm);
 
-			if (answer.getMessageType() != MessageType.ERROR) return;
+			if (answer.getMessageType() != MessageType.ERROR) return true;
 			
 			errorMessage = (ErrorMessage)answer;
 		}
@@ -407,17 +412,18 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		errorMessage.setForWho(getCurrentLogedInUsername());
 		
 		notifyObservers(errorMessage);
+		return false;
     }
     
     /**
-    *
+    *avi shahimov: convert from void to boolean
     * @param title
     * @param body
     * @param threadId
     *
     * @return OKMessage on success, or ErrorMessage (with reason) on failure
     */
-   public void editPost(String forumID, String title, String body,
+   public boolean editPost(String forumID, String title, String body,
 		   String threadId, String postId) {
 
    	ErrorMessage errorMessage;
@@ -429,7 +435,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 
 			Message answer = getForumServerStub().setInformation(apm);
 
-			if (answer.getMessageType() != MessageType.ERROR) return;
+			if (answer.getMessageType() != MessageType.ERROR) return true;
 			
 			errorMessage = (ErrorMessage)answer;
 		}
@@ -444,16 +450,17 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		errorMessage.setForWho(getCurrentLogedInUsername());
 		
 		notifyObservers(errorMessage);
+		return false;
    }
 
     /**
-     *
+     *avi shahimov: convert from void to boolean
      * @param title
      * @param body
      *
      * @return OKMessage on success, or ErrorMessage (with reason) on failure
      */
-    public void addThread(String forumID,String title, String body) {
+    public boolean addThread(String forumID,String title, String body) {
 
     	ErrorMessage errorMessage;
     	
@@ -464,7 +471,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 			
 			Message answer = getForumServerStub().setInformation(atm);
 			
-			if (answer.getMessageType() != MessageType.ERROR) return;
+			if (answer.getMessageType() != MessageType.ERROR) return true;
 			
 			errorMessage = (ErrorMessage)answer;
 		}
@@ -479,6 +486,7 @@ public class ClientController extends UnicastRemoteObject implements RemoteObser
 		errorMessage.setForWho(getCurrentLogedInUsername());
 		
 		notifyObservers(errorMessage);
+		return false;
     }
 
     /**
