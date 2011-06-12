@@ -59,9 +59,7 @@ public class HibernateUtil {
 				   transaction.rollback();
 			   if (session != null)
 				   session.close();
-			  
-			   e.printStackTrace();
-			  
+		  
 		   }
 	   }
 	   
@@ -87,7 +85,6 @@ public class HibernateUtil {
 				   transaction.rollback();
 			   if (session != null)
 				   session.close();
-			   e.printStackTrace();
 			   return null;
 		   }
 	   }
@@ -111,15 +108,18 @@ public class HibernateUtil {
 			   transaction.rollback();
 		if (session != null)
 			session.close();
-		e.printStackTrace();
+
 		return null;
 	}
 		
 	   }
 	   
 	   public static List<User> retrieveOnlineUsers(){
-		 try{  Session session = getSession();
-		   Transaction transaction = session.beginTransaction();
+		   Session session=null;
+		   Transaction transaction = null;
+		 try{ 
+		   session = getSession();
+		   transaction = session.beginTransaction();
 		   Query q = session.createQuery("from User as u where u._status= :status");
 		   q.setParameter("status", "ONLINE");
 		   List<User> tAns = q.list();
@@ -127,30 +127,42 @@ public class HibernateUtil {
 		   return tAns;
 		   
 		 }catch (Exception e){
-			 e.printStackTrace();
+			 if (transaction != null)
+				   transaction.rollback();
+			 if (session != null)
+				session.close();
 			 return null;
 			 
 		 }
 	   }
 	   
 	   public static List<User> retrieveUsers(){
-			 try{  Session session = getSession();
-			   Transaction transaction = session.beginTransaction();
+		   Session session=null;
+		   Transaction transaction = null;
+			 try{  
+			   session = getSession();
+			   transaction = session.beginTransaction();
 			   Query q = session.createQuery("from User");
 			   List<User> tAns = q.list();
 			   
 			   return tAns;
 			   
 			 }catch (Exception e){
-				 e.printStackTrace();
+				 if (transaction != null)
+					   transaction.rollback();
+				 if (session != null)
+					session.close();
 				 return null;
 				 
 			 }
 		   }
 	   
 	   public static Forum retrieveForum(int id){
-		   try{Session session = getSession();
-		   Transaction transaction = session.beginTransaction();
+		   Session session=null;
+		   Transaction transaction = null;
+		   try{
+		   session = getSession();
+		   transaction = session.beginTransaction();
 		   Query q = session.createQuery("from Forum as f where f._forumId= :id");
 		   q.setParameter("id", id);
 		   List<Forum> tAns = q.list();
@@ -161,25 +173,35 @@ public class HibernateUtil {
 		   
 		  
 		   }catch (Exception e){
-			   e.printStackTrace();
+			   if (transaction != null)
+				   transaction.rollback();
+			   if (session != null)
+				session.close();
 		   }
 		  return null;
 	  }
 	   
 	   public static List<Forum> retrieveForumsList(){
-		  try{ Session session = getSession();
-		   Transaction transaction = session.beginTransaction();
+		   Session session=null;
+		   Transaction transaction = null;
+		  try{  session = getSession();
+		    transaction = session.beginTransaction();
 		   return session.createQuery("from Forum").list();
 		 
 		  }catch (Exception e){
-			  e.printStackTrace();
+			  if (transaction != null)
+				   transaction.rollback();
+			 if (session != null)
+				session.close();
 			  return null;
 		  }
 	  }
 	   
 	   public static List<Thread> retrieveThreadList(int ForumId){
-		   try{Session session = getSession();
-		   Transaction transaction = session.beginTransaction();
+		   Session session=null;
+		   Transaction transaction = null;
+		   try{ session = getSession();
+		    transaction = session.beginTransaction();
 		   Query q = session.createQuery("from Thread as t where t._forumId= :id");
 		   q.setParameter("id", ForumId);
 		   List<Thread> tAns = q.list();
@@ -187,7 +209,10 @@ public class HibernateUtil {
 		   return tAns;
 		   
 		   }catch(Exception e){
-			   e.printStackTrace();
+			   if (transaction != null)
+				   transaction.rollback();
+		       if (session != null)
+				session.close();
 			   return null;
 		   }
 		   
@@ -195,10 +220,12 @@ public class HibernateUtil {
 	   
 	   public static List<Post> retrievePostList(int threadId){
 		   
+		   Session session=null;
+		   Transaction transaction = null;
 		   try{
 			   
-			   Session session = getSession();
-			   Transaction transaction = session.beginTransaction();
+			   session = getSession();
+			   transaction = session.beginTransaction();
 
 			   Query q = session.createQuery("from Post as p where p._threadID= :id");
 			   q.setParameter("id", threadId);
@@ -208,19 +235,24 @@ public class HibernateUtil {
 		
 		   }
 		   catch (Exception e){
-			   
-			   e.printStackTrace();
+			   if (transaction != null)
+				   transaction.rollback();
+		       if (session != null)
+				session.close();
+	
 			   return null;
 		   }
 	  }
 
 	public static Thread retrieveThread(int threadId) {
 		
+		Session session=null;
+		Transaction transaction = null;
 		//			can we change the db query to receive only one thread?
 		try{
 			   
-			Session session = getSession();
-			Transaction transaction = session.beginTransaction();
+			session = getSession();
+			transaction = session.beginTransaction();
 			
 			  Query q = session.createQuery("from Thread as t where t._threadID= :id");
 			  q.setParameter("id", threadId);
@@ -231,18 +263,22 @@ public class HibernateUtil {
 			  else return tAns.get(0);
 		}
 		catch(Exception e){
-			   
-			e.printStackTrace();
+			 if (transaction != null)
+				   transaction.rollback();
+		       if (session != null)
+				session.close();
+
 			return null;
 		}
 	}
 	
 	public static List<User> retrieveUserFriends(String username) {
-		
+		Session session=null;
+		Transaction transaction = null;
 		try{
 			   
-			Session session = getSession();
-			Transaction transaction = session.beginTransaction();
+			session = getSession();
+			transaction = session.beginTransaction();
 			
 			  Query q = session.createQuery("from User as u where u._username= :id");
 			  q.setParameter("id", username);
@@ -251,20 +287,23 @@ public class HibernateUtil {
 			 
 		}
 		catch(Exception e){
-			   
-			e.printStackTrace();
+			if (transaction != null)
+				   transaction.rollback();
+		       if (session != null)
+				session.close();
 			return null;
 		}
 	}
 	
 
 public static Post retrievePost(int postId) {
-		
+	Session session=null;
+	Transaction transaction = null;
 		//			can we change the db query to receive only one thread?
 		try{
 			   
-			Session session = getSession();
-			Transaction transaction = session.beginTransaction();
+			session = getSession();
+			transaction = session.beginTransaction();
 			
 			  Query q = session.createQuery("from Post as p where p._post_id= :id");
 			  q.setParameter("id", postId);
@@ -275,36 +314,43 @@ public static Post retrievePost(int postId) {
 			  else return tAns.get(0);
 		}
 		catch(Exception e){
-			   
-			e.printStackTrace();
+			if (transaction != null)
+				   transaction.rollback();
+		     if (session != null)
+				session.close();
 			return null;
 		}
 	}
 	
 	public static List<Thread> retrieveAllThreadsList() {
-		
+		Session session=null;
+		Transaction transaction = null;
 		try{
 			   
-			Session session = getSession();
-			Transaction transaction = session.beginTransaction();
+			session = getSession();
+			transaction = session.beginTransaction();
 
 			List<Thread> tThreadList = session.createQuery("from Thread").list();
 		
 			return tThreadList;
 		}
 		catch(Exception e){
-			   
-			e.printStackTrace();
+			if (transaction != null)
+				   transaction.rollback();
+		     if (session != null)
+				session.close();
 			return null;
 		}
 	}
 
 	
 	public static User retrievePostOwner(int postId){
+		Session session=null;
+		Transaction transaction = null;
 		try{
 			   
-			Session session = getSession();
-			Transaction transaction = session.beginTransaction();
+			session = getSession();
+			transaction = session.beginTransaction();
 			
 			 Query q = session.createQuery("from Post as p where p._post_id = :id");
 			 q.setParameter("id", postId);
@@ -317,17 +363,21 @@ public static Post retrievePost(int postId) {
 	
 		}
 		catch(Exception e){
-			   
-			e.printStackTrace();
+			if (transaction != null)
+				   transaction.rollback();
+		     if (session != null)
+				session.close();
 			return null;
 		}
 	}
 	
 	public static void runQuery(String str){
+		Session session=null;
+		Transaction transaction = null;
 		try{
 			   
-			Session session = getSession();
-			Transaction transaction = session.beginTransaction();
+			session = getSession();
+			transaction = session.beginTransaction();
 			
 			Query q = session.createSQLQuery(str);
 			q.executeUpdate();
@@ -336,17 +386,22 @@ public static Post retrievePost(int postId) {
 			
 		}
 		catch(Exception e){
-			   
-			e.printStackTrace();
+			if (transaction != null)
+				   transaction.rollback();
+		     if (session != null)
+				session.close();
+
 		
 		}
 	}
 	
 	public static int deletePost(int postId){
+		Session session=null;
+		Transaction transaction = null;
 		try{
 			   
-			Session session = getSession();
-			Transaction transaction = session.beginTransaction();
+			session = getSession();
+			transaction = session.beginTransaction();
 		   	Query q = session.createQuery("delete from Post as p where p._post_id = :postId");
 			q.setParameter("postId", postId);
 			int row_count = q.executeUpdate();
@@ -356,18 +411,22 @@ public static Post retrievePost(int postId) {
 			
 		}
 		catch(Exception e){
-			   
-			e.printStackTrace();
+			if (transaction != null)
+				   transaction.rollback();
+		     if (session != null)
+				session.close();
 			return 0;
 		
 		}
 	}
 	
 	public static int deleteThread(int threadId){
+		Session session=null;
+		Transaction transaction = null;
 		try{
-			System.out.println("thread id = " +threadId);
-			Session session = getSession();
-			Transaction transaction = session.beginTransaction();
+		
+			session = getSession();
+			transaction = session.beginTransaction();
 			Query q;
 			q = session.createSQLQuery("delete from thread_watchers where thread_id=" + String.valueOf(threadId));
 			q.executeUpdate();
@@ -383,8 +442,10 @@ public static Post retrievePost(int postId) {
 			
 		}
 		catch(Exception e){
-			   
-			e.printStackTrace();
+			if (transaction != null)
+				   transaction.rollback();
+		     if (session != null)
+				session.close();
 			return 0;
 		
 		}
@@ -392,11 +453,13 @@ public static Post retrievePost(int postId) {
 	
 	
 	public static List<Post> retrieveUserPosts(String username){
+		Session session=null;
+		Transaction transaction = null;
 		User tUser = retrieveUser(username);
 		try{
 			   
-			Session session = getSession();
-			Transaction transaction = session.beginTransaction();
+			session = getSession();
+			transaction = session.beginTransaction();
 			
 			Query q = session.createQuery("from Post as p where p._owner._username = :_username");
 			q.setParameter("_username", username);
@@ -409,8 +472,10 @@ public static Post retrievePost(int postId) {
 			
 		}
 		catch(Exception e){
-			   
-			e.printStackTrace();
+			if (transaction != null)
+				   transaction.rollback();
+		     if (session != null)
+				session.close();
 			return null;
 		}
 		
