@@ -47,10 +47,21 @@ public class NotificationsServlet extends HttpServlet {
 
 		String notification = _webController.getNotificationFromQueue(username);
 		
-		if (null == notification)
+		String audio =	"<audio autoplay=\"autoplay\"> " +
+		"<source src=\"http://www.oringz.com/oringz-uploads/31_oringz-pack-nine-15.mp3\" type=\"audio/mpeg\"/>" +
+		"</audio>";
+		
+		req.setAttribute("audio","");
+		
+		if (null == notification){
 			req.setAttribute("notification","");
-		else
+		}
+		else{
 			req.setAttribute("notification", notification);
+			
+			if ( !notification.equals("REFRESH"))
+				req.setAttribute("audio", audio);
+		}
 		
 		req.setAttribute("date", new Date().toString());
 		
