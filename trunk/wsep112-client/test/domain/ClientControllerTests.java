@@ -183,68 +183,31 @@ public class ClientControllerTests implements RemoteObserver, Serializable{
 	@Test
 	public void testGetThreadsList() {
 		assertNotNull(client.getThreadsList("1"));
-		//assertEquals(client.getThreadByName("1", "new test thread"));
 	}
-	
-	
-	
-	
-	
-	
+
 	
 	@Test
 	public void testEditPost() {
 		assertTrue(client.login("digmiav", "Aa1234"));
 		//this test is depend on the number of thread in the database , you can change the thread number to 1
 		assertTrue(client.editPost("1", "edit Post", "edit post body", "1", "1")); 
-		//assertTrue(client.getPostByName("new test thread","edit Post" ));
 	}
 	
 	
-	//@Test
-//	public void testGetPostsList() {
-	//	assertNotNull(client.getPostsList("2"));
-	//	assertEquals(client.getPostsList("2").get(0).get_title(), "edit Post");
-//	}
-	
-	
-	
-	//@Test
-//	public void testRemovePost() {
-		//assertTrue(client.login("digmiav", "Aa1234"));
-		//this test is depend on the number of thread in the database , you can change the thread number to 1
-	//	assertTrue(client.RemovePostByName("1", "edit Post")); 
-		//assertFalse(client.getPostByName("1","edit Post" ));
-	//}
-	
-	
-
 	@Test
-	public void testRemoveThread() {
-		assertTrue(client.login("digmiav", "Aa1234"));
-		//this test is depend on the number of thread in the database , you can change the thread number to 1
-		//assertTrue(client.RemoveThreadByName("new test thread", "1")); 
-	}
-	
-	
-	
-	
-
-	
-/*	@Test
 	public void testChangePass(){
 		assertTrue(client.login("digmiav", "Aa1234"));
-		assertFalse(client.changePass("1234"));//chaeck why it fails
-		assertFalse(client.login("digmiav", "Aa1234"));
+		assertFalse(client.changePass("1234"));
+		assertTrue(client.changePass("Ab1234"));
+		assertTrue(client.changePass("Aa1234"));
 	}
 	
 	@Test
 	public void testLogout(){
 		assertTrue(client.login("digmiav", "Aa1234"));
-		assertTrue(client.logout());//chaeck why it fails
+		assertTrue(client.logout());
 		
 	}
-*/
 	
 	@Override
 	public void update(Object observable, Object arg) throws RemoteException {
